@@ -2,6 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github } from 'lucide-react';
+import { SiGitlab } from 'react-icons/si';
 import webtrackerImage from '@assets/Screenshot 2025-10-29 01.25.41_1761673713445.png';
 import buddydashImage from '@assets/Screenshot 2025-10-29 01.24.11_1761673731499.png';
 import libraryImage from '@assets/Screenshot 2025-10-29 01.20.09_1761673748927.png';
@@ -14,8 +15,8 @@ const projects = [
     description: 'A comprehensive web tracking and analytics application for monitoring online activities and generating detailed reports.',
     image: webtrackerImage,
     tags: ['HTML5', 'Python', 'PostgreSQL'],
-    github: '#',
-    demo: '#',
+    github: 'https://github.com/bukosalad123/Webtracker.git',
+    gitlab: 'https://gitlab.com/veronqueandrei/Webtracker.git',
   },
   {
     id: 2,
@@ -23,8 +24,8 @@ const projects = [
     description: 'Educational platform connecting students with learning resources and collaborative study features.',
     image: buddydashImage,
     tags: ['Dart', 'Java', 'MongoDB'],
-    github: '#',
-    demo: '#',
+    github: 'https://github.com/bukosalad123/BuddyDash.git',
+    gitlab: 'https://gitlab.com/veronqueandrei/BuddyDash.git',
   },
   {
     id: 3,
@@ -32,8 +33,8 @@ const projects = [
     description: 'Complete library management solution for tracking books, managing inventory, and handling member records.',
     image: libraryImage,
     tags: ['Python', 'PostgreSQL', 'HTML5'],
-    github: '#',
-    demo: '#',
+    github: 'https://github.com/bukosalad123/LIbrayManagement-System.git',
+    gitlab: 'https://gitlab.com/veronqueandrei/LIbrayManagement-System.git',
   },
   {
     id: 4,
@@ -41,8 +42,8 @@ const projects = [
     description: 'Advanced facial recognition system using artificial intelligence for secure authentication and identification.',
     image: aiFaceImage,
     tags: ['Python', 'C++', 'MongoDB'],
-    github: '#',
-    demo: '#',
+    github: 'https://github.com/bukosalad123/facial-recognition.git',
+    gitlab: 'https://github.com/bukosalad123/facial-recognition.git',
   },
 ];
 
@@ -75,18 +76,24 @@ export default function ProjectsSection() {
                     size="sm"
                     variant="secondary"
                     className="rounded-full"
+                    asChild
                     data-testid={`button-github-${project.id}`}
                   >
-                    <Github className="h-4 w-4 mr-2" />
-                    Code
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="h-4 w-4 mr-2" />
+                      GitHub
+                    </a>
                   </Button>
                   <Button
                     size="sm"
                     className="rounded-full"
-                    data-testid={`button-demo-${project.id}`}
+                    asChild
+                    data-testid={`button-gitlab-${project.id}`}
                   >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Demo
+                    <a href={project.gitlab} target="_blank" rel="noopener noreferrer">
+                      <SiGitlab className="h-4 w-4 mr-2" />
+                      GitLab
+                    </a>
                   </Button>
                 </div>
               </div>
