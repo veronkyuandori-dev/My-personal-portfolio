@@ -25,7 +25,7 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider">Quick Links</h3>
             <div className="space-y-2">
-              {['Home', 'About', 'Portfolio', 'Skills', 'Certifications', 'Contact'].map((item) => (
+              {['Home', 'About', 'Projects', 'Skills', 'Certifications', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(`#${item.toLowerCase()}`)}

@@ -1,46 +1,32 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Code2, Database, Wrench, Palette } from 'lucide-react';
+import { Code2, Database, Wrench, Coffee } from 'lucide-react';
+import { SiDart, SiHtml5, SiCplusplus, SiPython, SiFigma, SiPostgresql, SiMongodb } from 'react-icons/si';
 
-// todo: remove mock functionality
 const skillCategories = [
   {
-    title: 'Frontend Development',
+    title: 'Programming Languages',
     icon: Code2,
     skills: [
-      { name: 'React / Next.js', level: 90 },
-      { name: 'TypeScript', level: 85 },
-      { name: 'Tailwind CSS', level: 95 },
-      { name: 'Vue.js', level: 75 },
+      { name: 'Dart', Icon: SiDart, color: '#0175C2' },
+      { name: 'HTML5', Icon: SiHtml5, color: '#E34F26' },
+      { name: 'C++', Icon: SiCplusplus, color: '#00599C' },
+      { name: 'Python', Icon: SiPython, color: '#3776AB' },
+      { name: 'Java', Icon: Coffee, color: '#007396' },
     ],
   },
   {
-    title: 'Backend Development',
-    icon: Database,
-    skills: [
-      { name: 'Node.js / Express', level: 88 },
-      { name: 'Python / Django', level: 80 },
-      { name: 'PostgreSQL', level: 85 },
-      { name: 'MongoDB', level: 82 },
-    ],
-  },
-  {
-    title: 'Tools & Technologies',
+    title: 'Design & Development Tools',
     icon: Wrench,
     skills: [
-      { name: 'Git / GitHub', level: 92 },
-      { name: 'Docker', level: 78 },
-      { name: 'AWS', level: 75 },
-      { name: 'CI/CD', level: 80 },
+      { name: 'Figma', Icon: SiFigma, color: '#F24E1E' },
     ],
   },
   {
-    title: 'Design & Creative',
-    icon: Palette,
+    title: 'Databases',
+    icon: Database,
     skills: [
-      { name: 'Figma', level: 85 },
-      { name: 'UI/UX Design', level: 80 },
-      { name: 'Responsive Design', level: 95 },
-      { name: 'Accessibility', level: 88 },
+      { name: 'PostgreSQL', Icon: SiPostgresql, color: '#4169E1' },
+      { name: 'MongoDB', Icon: SiMongodb, color: '#47A248' },
     ],
   },
 ];
@@ -56,7 +42,7 @@ export default function SkillsSection() {
           Technical expertise and proficiencies
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <Card
               key={categoryIndex}
@@ -71,19 +57,17 @@ export default function SkillsSection() {
                   {category.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} data-testid={`skill-${skill.name.toLowerCase().replace(/\s+/g, '-')}`}>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                  <div
+                    key={skillIndex}
+                    className="flex items-center gap-4 p-3 rounded-lg bg-muted/30 hover-elevate transition-all"
+                    data-testid={`skill-${skill.name.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
+                    <div className="flex-shrink-0">
+                      <skill.Icon className="h-8 w-8" style={{ color: skill.color }} />
                     </div>
-                    <div className="h-2 bg-muted rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-primary to-chart-2 rounded-full transition-all duration-1000"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
+                    <span className="text-base font-medium">{skill.name}</span>
                   </div>
                 ))}
               </CardContent>

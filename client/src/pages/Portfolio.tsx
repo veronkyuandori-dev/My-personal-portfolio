@@ -2,7 +2,7 @@ import CosmicBackground from '@/components/CosmicBackground';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
-import PortfolioSection from '@/components/PortfolioSection';
+import ProjectsSection from '@/components/ProjectsSection';
 import SkillsSection from '@/components/SkillsSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
@@ -16,7 +16,7 @@ export default function Portfolio() {
       <main className="relative z-10">
         <HeroSection />
         <AboutSection />
-        <PortfolioSection />
+        <ProjectsSection />
         <SkillsSection />
         <CertificationsSection />
         <ContactSection />

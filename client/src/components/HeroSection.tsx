@@ -45,7 +45,7 @@ export default function HeroSection() {
         <div className="flex flex-wrap items-center justify-center gap-4 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
           <Button
             size="lg"
-            onClick={() => scrollToSection('#portfolio')}
+            onClick={() => scrollToSection('#projects')}
             className="rounded-full hover-elevate active-elevate-2"
             data-testid="button-view-work"
           >
