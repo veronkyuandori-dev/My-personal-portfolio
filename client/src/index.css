@@ -1,3 +1,32 @@
+
+@keyframes rotate-y {
+  from {
+    transform: perspective(1000px) rotateY(-90deg);
+  }
+  to {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+}
+
+.rotate-y-90 {
+  transform: perspective(1000px) rotateY(-90deg);
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

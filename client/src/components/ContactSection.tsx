@@ -32,6 +32,13 @@ export default function ContactSection() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const contactInfo = [
+    { icon: Mail, label: 'Email', value: 'veronqueandrei@gmail.com' },
+    { icon: Phone, label: 'Phone', value: '+63 XXX XXX XXXX' },
+    { icon: MapPin, label: 'Location', value: 'Cabuyao, Laguna, Philippines (Region 4-A CALABARZON)' },
+  ];
+
+
   return (
     <section id="contact" className="relative py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -53,45 +60,33 @@ export default function ContactSection() {
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-start gap-4" data-testid="contact-email">
-                <div className="p-3 rounded-md bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />
+              {contactInfo.map((info, index) => (
+                <div key={index} className="flex items-start gap-4" data-testid={`contact-${info.label.toLowerCase()}`}>
+                  <div className="p-3 rounded-md bg-primary/10">
+                    <info.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium mb-1">{info.label}</p>
+                    {info.label === 'Email' ? (
+                      <a
+                        href={`mailto:${info.value}`}
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {info.value}
+                      </a>
+                    ) : info.label === 'Phone' ? (
+                      <a
+                        href={`tel:${info.value.replace(/\D/g, '')}`}
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <p className="text-muted-foreground">{info.value}</p>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <p className="font-medium mb-1">Email</p>
-                  <a
-                    href="mailto:contact@example.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    contact@example.com
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4" data-testid="contact-phone">
-                <div className="p-3 rounded-md bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="font-medium mb-1">Phone</p>
-                  <a
-                    href="tel:+1234567890"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +1 (234) 567-890
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4" data-testid="contact-location">
-                <div className="p-3 rounded-md bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <p className="font-medium mb-1">Location</p>
-                  <p className="text-muted-foreground">San Francisco, CA</p>
-                </div>
-              </div>
+              ))}
             </div>
 
             <div>

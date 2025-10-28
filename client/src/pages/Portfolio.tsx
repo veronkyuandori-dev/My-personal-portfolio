@@ -1,4 +1,4 @@
-import CosmicBackground from '@/components/CosmicBackground';
+import EnhancedCosmicBackground from '@/components/EnhancedCosmicBackground';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 export default function Portfolio() {
   return (
     <div className="relative min-h-screen">
-      <CosmicBackground />
+      <EnhancedCosmicBackground />
       <Navigation />
       <main className="relative z-10">
         <HeroSection />
