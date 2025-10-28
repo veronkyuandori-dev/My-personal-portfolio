@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ThemeToggle from './ThemeToggle';
-import ThemeToggle from '@/components/ThemeToggle';
 
 const navItems = [
   { label: 'Home', href: '#home' },
