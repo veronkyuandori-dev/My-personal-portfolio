@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -74,9 +75,11 @@ export default function Navigation() {
                 {item.label}
               </Button>
             ))}
+            <ThemeToggle />
           </div>
 
           <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"
