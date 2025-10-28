@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -74,17 +75,21 @@ export default function Navigation() {
                 {item.label}
               </Button>
             ))}
+            <ThemeToggle />
           </div>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden hover-elevate active-elevate-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            data-testid="button-menu-toggle"
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hover-elevate active-elevate-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              data-testid="button-menu-toggle"
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
         </div>
       </div>
 
