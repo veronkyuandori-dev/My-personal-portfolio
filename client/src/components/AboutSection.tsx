@@ -1,6 +1,6 @@
 import { Card } from '@/components/ui/card';
 import { Code, Briefcase, Award, Zap } from 'lucide-react';
-import profileImage from '@assets/550406489_1129151318612807_3393823521163537089_n (1)_1761671062313.jpg';
+import profileImage from '@assets/Screenshot 2025-10-29 01.21.39_1761672556613.png';
 
 const stats = [
   { icon: Briefcase, label: 'Years Experience', value: '3+' },

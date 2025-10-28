@@ -1,7 +1,7 @@
 import { ArrowDown, Mail, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import profileImage from '@assets/550406489_1129151318612807_3393823521163537089_n (1)_1761671062313.jpg';
+import profileImage from '@assets/Screenshot 2025-10-29 01.21.39_1761672556613.png';
 
 export default function HeroSection() {
   const scrollToSection = (href: string) => {
