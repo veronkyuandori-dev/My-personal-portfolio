@@ -2,7 +2,7 @@ import { ArrowDown, Mail, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import AnimationWrapper from '@/components/AnimationWrapper';
-import profileImage from '@assets/Screenshot 2025-10-29 01.21.39_1761672556613.png';
+import profileImage from '@assets/582753724_1129297252616841_7787531120170901253_n_1763775009180.jpg';
 
 export default function HeroSection() {
   const scrollToSection = (href: string) => {
@@ -39,9 +39,11 @@ export default function HeroSection() {
         </AnimationWrapper>
 
         <AnimationWrapper type="blur-fade" delay={400} duration={800}>
-        <p className="text-xl md:text-2xl text-muted-foreground mb-4">
-          Aspiring Engineer
-        </p>
+        <div className="text-lg md:text-xl text-muted-foreground mb-6 space-y-2">
+          <p>Junior Mechatronics and Robotics Society of the Philippines (JMRSP – PnC Student Chapter)</p>
+          <p>Member — A.Y. 2025–2026</p>
+          <p>AWS Educate Member • Github Student Developer</p>
+        </div>
         </AnimationWrapper>
 
         <AnimationWrapper type="fade" delay={600} duration={800}>
