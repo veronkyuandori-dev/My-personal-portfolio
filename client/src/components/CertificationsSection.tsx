@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import AnimationWrapper from './AnimationWrapper';
 
 import awsCert from '@assets/567758881_4232711827000106_8629763992560919324_n_1761670898469.jpg';
 import ciscoCert from '@assets/569285157_2158626684881848_4799189794560792209_n_1761670919065.jpg';
@@ -141,12 +142,17 @@ export default function CertificationsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {certifications.map((cert, index) => (
-            <Card
+            <AnimationWrapper 
               key={index}
-              className="hover-elevate transition-all duration-300 cursor-pointer group"
-              onClick={() => setSelectedCert(index)}
-              data-testid={`certification-card-${index}`}
+              type="zoom"
+              delay={index * 100}
+              duration={650}
             >
+              <Card
+                className="hover-elevate transition-all duration-300 cursor-pointer group"
+                onClick={() => setSelectedCert(index)}
+                data-testid={`certification-card-${index}`}
+              >
               <div className="aspect-video overflow-hidden rounded-t-lg">
                 <img
                   src={cert.image}
@@ -178,7 +184,8 @@ export default function CertificationsSection() {
                   {cert.description}
                 </p>
               </CardContent>
-            </Card>
+              </Card>
+            </AnimationWrapper>
           ))}
         </div>
       </div>

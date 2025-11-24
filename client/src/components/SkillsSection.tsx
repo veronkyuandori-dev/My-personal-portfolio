@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Code2, Database, Wrench, Coffee } from 'lucide-react';
 import { SiDart, SiHtml5, SiCplusplus, SiPython, SiFigma, SiPostgresql, SiMongodb } from 'react-icons/si';
+import AnimationWrapper from './AnimationWrapper';
 
 const skillCategories = [
   {
@@ -44,11 +45,16 @@ export default function SkillsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {skillCategories.map((category, categoryIndex) => (
-            <Card
+            <AnimationWrapper 
               key={categoryIndex}
-              className="hover-elevate transition-all duration-300 border border-primary/10 hover:border-primary/30"
-              data-testid={`skill-category-${category.title.toLowerCase().replace(/\s+/g, '-')}`}
+              type="scale-up"
+              delay={categoryIndex * 150}
+              duration={600}
             >
+              <Card
+                className="hover-elevate transition-all duration-300 border border-primary/10 hover:border-primary/30"
+                data-testid={`skill-category-${category.title.toLowerCase().replace(/\s+/g, '-')}`}
+              >
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center gap-3 text-lg md:text-xl">
                   <div className="p-2.5 rounded-md bg-primary/15 hover:bg-primary/20 transition-colors">
@@ -71,7 +77,8 @@ export default function SkillsSection() {
                   </div>
                 ))}
               </CardContent>
-            </Card>
+              </Card>
+            </AnimationWrapper>
           ))}
         </div>
       </div>

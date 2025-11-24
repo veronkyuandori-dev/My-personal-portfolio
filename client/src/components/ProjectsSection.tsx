@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github } from 'lucide-react';
 import { SiGitlab } from 'react-icons/si';
+import AnimationWrapper from './AnimationWrapper';
 import webtrackerImage from '@assets/Screenshot 2025-10-29 01.25.41_1761673713445.png';
 import buddydashImage from '@assets/Screenshot 2025-10-29 01.24.11_1761673731499.png';
 import libraryImage from '@assets/Screenshot 2025-10-29 01.20.09_1761673748927.png';
@@ -59,12 +60,18 @@ export default function ProjectsSection() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <Card
+          {projects.map((project, projectIndex) => (
+            <AnimationWrapper 
               key={project.id}
-              className="group overflow-hidden hover-elevate transition-all duration-300 border border-primary/10 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/20"
-              data-testid={`project-card-${project.id}`}
+              type="fade"
+              direction="up"
+              delay={projectIndex * 150}
+              duration={700}
             >
+              <Card
+                className="group overflow-hidden hover-elevate transition-all duration-300 border border-primary/10 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/20"
+                data-testid={`project-card-${project.id}`}
+              >
               <div className="relative aspect-video overflow-hidden">
                 <img
                   src={project.image}
@@ -111,7 +118,8 @@ export default function ProjectsSection() {
                   ))}
                 </div>
               </CardContent>
-            </Card>
+              </Card>
+            </AnimationWrapper>
           ))}
         </div>
       </div>
