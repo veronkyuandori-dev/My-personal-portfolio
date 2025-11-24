@@ -25,6 +25,9 @@ import gcMLOpsCert from '@assets/Screenshot 2025-11-24 12.16.36_1763961392414.pn
 import gcResponsibleAICert from '@assets/Screenshot 2025-11-24 12.11.37_1763961402437.png';
 import wvsuBlockchainCert from '@assets/Screenshot 2025-11-24 12.01.32_1763961414090.png';
 import wvsuDigitalTwinsCert from '@assets/Screenshot 2025-11-24 12.01.14_1763961426672.png';
+import ciscoAIAtWorkCert from '@assets/Screenshot 2025-11-24 15.42.29_1763970250529.png';
+import ciscoGreenHouseGasCert from '@assets/588348165_861221569696072_8040529738883831105_n_1763970260154.png';
+import ciscoCppEssentialsCert from '@assets/588206646_811039185238147_600191988453529390_n_1763970271659.png';
 
 const certifications = [
   {
@@ -124,6 +127,27 @@ const certifications = [
     date: 'November 15, 2025',
     description: 'Participated in webinar on digital twin technology and its applications for intelligent systems at WVSU.',
     image: wvsuDigitalTwinsCert,
+  },
+  {
+    name: 'AI at Work: Analyze Customer Reviews',
+    organization: 'Cisco Networking Academy',
+    date: 'September 9, 2025',
+    description: 'Successfully completed training on AI applications for analyzing customer reviews through the DICT-ITU DTC Initiative.',
+    image: ciscoAIAtWorkCert,
+  },
+  {
+    name: 'Introduction to Greenhouse Gas Accounting for IT',
+    organization: 'Cisco Networking Academy',
+    date: 'September 21, 2025',
+    description: 'Earned certification for completing advanced training on greenhouse gas accounting principles for IT infrastructure.',
+    image: ciscoGreenHouseGasCert,
+  },
+  {
+    name: 'C++ Essentials 1',
+    organization: 'Cisco Networking Academy',
+    date: 'September 16, 2025',
+    description: 'Successfully completed C++ programming essentials training through Cisco Networking Academy and C3 Institute partnership.',
+    image: ciscoCppEssentialsCert,
   },
 ];
 
