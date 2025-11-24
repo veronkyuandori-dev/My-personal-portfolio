@@ -19,6 +19,11 @@ import aiGameDevCert from '@assets/566618271_1388054376370349_499914006268055845
 import googleCloudCert from '@assets/550406489_1129151318612807_3393823521163537089_n (1)_1761671062313.jpg';
 import hourOfCodeCert from '@assets/564999914_1743336026234176_350358078360885093_n (2)_1761671084083.jpg';
 import msDataAnalysisCert from '@assets/552151042_1970535093710852_5294022445060506020_n_1761671193904.jpg';
+import gcManagingChangeCert from '@assets/Screenshot 2025-11-24 12.18.05_1763961380327.png';
+import gcMLOpsCert from '@assets/Screenshot 2025-11-24 12.16.36_1763961392414.png';
+import gcResponsibleAICert from '@assets/Screenshot 2025-11-24 12.11.37_1763961402437.png';
+import wvsuBlockchainCert from '@assets/Screenshot 2025-11-24 12.01.32_1763961414090.png';
+import wvsuDigitalTwinsCert from '@assets/Screenshot 2025-11-24 12.01.14_1763961426672.png';
 
 const certifications = [
   {
@@ -83,6 +88,41 @@ const certifications = [
     date: 'September 16, 2025',
     description: 'Successfully completed Microsoft training on data analysis fundamentals and techniques.',
     image: msDataAnalysisCert,
+  },
+  {
+    name: 'Managing Change when Moving to Google Cloud',
+    organization: 'Google Cloud',
+    date: 'November 24, 2025',
+    description: 'Earned completion badge for mastering change management strategies during cloud migration.',
+    image: gcManagingChangeCert,
+  },
+  {
+    name: 'Machine Learning Operations (MLOps) for Generative AI',
+    organization: 'Google Cloud',
+    date: 'November 24, 2025',
+    description: 'Completed advanced training on implementing MLOps practices for generative AI systems.',
+    image: gcMLOpsCert,
+  },
+  {
+    name: 'Introduction to Responsible AI',
+    organization: 'Google Cloud',
+    date: 'November 24, 2025',
+    description: 'Earned completion badge demonstrating understanding of ethical AI principles and practices.',
+    image: gcResponsibleAICert,
+  },
+  {
+    name: 'A Beginner\'s Journey into Blockchain and Cryptocurrency',
+    organization: 'West Visayas State University',
+    date: 'November 14, 2025',
+    description: 'Actively participated in webinar on blockchain fundamentals and cryptocurrency concepts at WVSU College of ICT.',
+    image: wvsuBlockchainCert,
+  },
+  {
+    name: 'Digital Twins: Modeling Reality for Smarter Systems',
+    organization: 'West Visayas State University',
+    date: 'November 15, 2025',
+    description: 'Participated in webinar on digital twin technology and its applications for intelligent systems at WVSU.',
+    image: wvsuDigitalTwinsCert,
   },
 ];
 
