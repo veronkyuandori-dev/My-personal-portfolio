@@ -42,32 +42,32 @@ export default function SkillsSection() {
           Technical expertise and proficiencies
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <Card
               key={categoryIndex}
-              className="hover-elevate transition-all duration-300"
+              className="hover-elevate transition-all duration-300 border border-primary/10 hover:border-primary/30"
               data-testid={`skill-category-${category.title.toLowerCase().replace(/\s+/g, '-')}`}
             >
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-xl">
-                  <div className="p-3 rounded-md bg-primary/10">
-                    <category.icon className="h-6 w-6 text-primary" />
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center gap-3 text-lg md:text-xl">
+                  <div className="p-2.5 rounded-md bg-primary/15 hover:bg-primary/20 transition-colors">
+                    <category.icon className="h-5 w-5 text-primary" />
                   </div>
                   {category.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-3">
                 {category.skills.map((skill, skillIndex) => (
                   <div
                     key={skillIndex}
-                    className="flex items-center gap-4 p-3 rounded-lg bg-muted/30 hover-elevate transition-all"
+                    className="flex items-center gap-4 p-4 rounded-lg bg-muted/40 hover:bg-muted/60 transition-all duration-250 hover:scale-105 cursor-default"
                     data-testid={`skill-${skill.name.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     <div className="flex-shrink-0">
-                      <skill.Icon className="h-8 w-8" style={{ color: skill.color }} />
+                      <skill.Icon className="h-7 w-7 transition-transform duration-250" style={{ color: skill.color }} />
                     </div>
-                    <span className="text-base font-medium">{skill.name}</span>
+                    <span className="text-sm md:text-base font-medium flex-1">{skill.name}</span>
                   </div>
                 ))}
               </CardContent>

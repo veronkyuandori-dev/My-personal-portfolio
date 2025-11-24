@@ -62,7 +62,7 @@ export default function ProjectsSection() {
           {projects.map((project) => (
             <Card
               key={project.id}
-              className="group overflow-hidden hover-elevate transition-all duration-300"
+              className="group overflow-hidden hover-elevate transition-all duration-300 border border-primary/10 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/20"
               data-testid={`project-card-${project.id}`}
             >
               <div className="relative aspect-video overflow-hidden">
@@ -71,11 +71,11 @@ export default function ProjectsSection() {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-2">
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6 gap-3">
                   <Button
                     size="sm"
                     variant="secondary"
-                    className="rounded-full"
+                    className="rounded-full hover-elevate active-elevate-2"
                     asChild
                     data-testid={`button-github-${project.id}`}
                   >
@@ -86,7 +86,7 @@ export default function ProjectsSection() {
                   </Button>
                   <Button
                     size="sm"
-                    className="rounded-full"
+                    className="rounded-full hover-elevate active-elevate-2"
                     asChild
                     data-testid={`button-gitlab-${project.id}`}
                   >
@@ -99,13 +99,13 @@ export default function ProjectsSection() {
               </div>
 
               <CardContent className="p-6">
-                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                <h3 className="text-xl md:text-2xl font-bold mb-3">{project.title}</h3>
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-2">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs">
+                    <Badge key={index} variant="secondary" className="text-xs px-2.5 py-1">
                       {tag}
                     </Badge>
                   ))}

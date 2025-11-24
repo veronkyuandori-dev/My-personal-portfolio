@@ -23,11 +23,12 @@ export default function HeroSection() {
         <AnimationWrapper type="zoom" duration={1000}>
         <div className="mb-8 flex justify-center">
           <div className="relative">
-            <Avatar className="w-48 h-48 md:w-64 md:h-64 border-4 border-primary/30 shadow-xl shadow-primary/20">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-chart-2 to-primary opacity-75 blur-2xl scale-125 animate-pulse" />
+            <Avatar className="w-56 h-56 md:w-72 md:h-72 border-4 border-primary/50 shadow-2xl shadow-primary/40 relative z-10">
               <AvatarImage src={profileImage} alt="Profile" />
               <AvatarFallback className="text-6xl">VA</AvatarFallback>
             </Avatar>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-chart-2/20 animate-pulse" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/30 to-chart-2/30 animate-pulse z-0" />
           </div>
         </div>
         </AnimationWrapper>
@@ -39,10 +40,10 @@ export default function HeroSection() {
         </AnimationWrapper>
 
         <AnimationWrapper type="blur-fade" delay={400} duration={800}>
-        <div className="text-lg md:text-xl text-muted-foreground mb-6 space-y-2">
-          <p>Junior Mechatronics and Robotics Society of the Philippines (JMRSP – PnC Student Chapter)</p>
-          <p>Member — A.Y. 2025–2026</p>
-          <p>AWS Educate Member • Github Student Developer</p>
+        <div className="text-lg md:text-xl text-foreground/80 mb-8 space-y-1.5 max-w-2xl mx-auto">
+          <p>Junior Mechatronics and Robotics Society of the Philippines</p>
+          <p className="text-sm md:text-base text-foreground/70">(JMRSP – PnC Student Chapter) • Member — A.Y. 2025–2026</p>
+          <p className="text-sm md:text-base text-foreground/70">AWS Educate Member • GitHub Student Developer</p>
         </div>
         </AnimationWrapper>
 
@@ -54,11 +55,11 @@ export default function HeroSection() {
         </AnimationWrapper>
 
         <AnimationWrapper type="scale-up" delay={800} duration={700}>
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
           <Button
             size="lg"
             onClick={() => scrollToSection('#projects')}
-            className="rounded-full hover-elevate active-elevate-2"
+            className="rounded-full hover-elevate active-elevate-2 gap-2"
             data-testid="button-view-work"
           >
             View My Work
@@ -67,7 +68,7 @@ export default function HeroSection() {
             size="lg"
             variant="outline"
             onClick={() => scrollToSection('#contact')}
-            className="rounded-full backdrop-blur-md hover-elevate active-elevate-2"
+            className="rounded-full backdrop-blur-md hover-elevate active-elevate-2 gap-2"
             data-testid="button-contact"
           >
             Contact Me

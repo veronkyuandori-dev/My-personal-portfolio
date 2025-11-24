@@ -1,0 +1,142 @@
+HERO SECTION — GSAP Scroll Fade + Lift
+
+Perfect ito sa clean, futuristic theme mo.
+
+Effect
+
+Name & title fade in + slide up
+
+Profile picture zoom-in
+
+Subtext staggered fade
+
+Suggested Animation
+• Profile Image → zoom-in (smooth)
+• Name → fade-up (delay 0.15s)
+• Position / affiliations → fade-up (delay 0.3s)
+• Buttons → fade-up (delay 0.45s)
+
+
+Why?
+Gives a premium landing page feel — parang Apple or Stripe site.
+
+⭐ 2. NAVBAR — Subtle Fade on Scroll
+
+When user scrolls:
+
+Add blur glass effect
+
+Slight fade-in/out
+
+Recommended
+backdrop-filter: blur(10px);
+transition: background 0.3s ease;
+
+⭐ 3. SKILLS SECTION — Alternating Slide Animations (AOS)
+
+Your skills cards are in 3 columns.
+Best animation: left → middle → right flow
+
+Suggested:
+Left column → fade-right
+Center column → zoom-in-up
+Right column → fade-left
+
+
+With delays:
+
+0ms → 150ms → 300ms
+
+
+Why?
+Creates a wave-like motion habang nag-scroll.
+
+⭐ 4. PROJECTS SECTION — Zoom-In + Stagger (GSAP)
+
+Your project cards are big and prominent, so they need a more powerful animation.
+
+Effect:
+
+Cards zoom-in
+
+Titles fade-up
+
+Buttons slide from bottom
+
+Sequence:
+Card 1 → 0ms
+Card 2 → 200ms
+
+
+Why?
+Each project feels like it's “coming alive”.
+
+⭐ 5. CERTIFICATIONS SECTION — Soft Flip-Up Animation
+
+Certificates look like physical cards → best animation is flip-up or fade-in + slight rotation.
+
+Suggested:
+data-aos="flip-up"
+data-aos-duration="900"
+data-aos-easing="ease-out-back"
+
+
+Why?
+Elegant, smooth, and fits the formal vibe of certificates.
+
+⭐ 6. FOOTER — Fade From Bottom
+
+Simple but clean:
+
+data-aos="fade-up"
+data-aos-duration="700"
+
+⭐ 7. GLOBAL SCROLL EFFECT — Parallax Background
+
+Your neon mesh background will look AMAZING with this.
+
+Effect:
+
+Background moves slower than content
+
+Subtle 3D effect
+
+Recommendation:
+
+Use this CSS:
+
+background-attachment: fixed;
+
+
+Or GSAP Parallax:
+
+gsap.to(".background", {
+  y: 80,
+  scrollTrigger: {
+    scrub: 1,
+  }
+});
+
+⭐ 8. Section Divider Reveal (Optional Enhancement)
+
+Between sections, add:
+
+Soft glow lines
+
+Animated separators
+
+Sample:
+fade-left → glowing line → fade-right
+
+
+Adds polish and structure.
+
+🎯 SUMMARY OF ANIMATION PAIRINGS (Best Combo)
+Section	Best Animation	Tool
+Hero	fade-up + zoom-in	GSAP
+Navbar	fade + blur	CSS
+Skills	fade-right / zoom-in / fade-left	AOS
+Projects	zoom-in + stagger	GSAP
+Certifications	flip-up	AOS
+Footer	fade-up	AOS
+Background	parallax scroll	GSAP

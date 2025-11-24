@@ -22,7 +22,7 @@ export default function AboutSection() {
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <AnimationWrapper animation="fade-in-bottom">
+          <AnimationWrapper type="fade" direction="up">
             <div className="relative">
               <div className="aspect-square rounded-3xl overflow-hidden border-4 border-primary/20 shadow-2xl shadow-primary/10">
                 <img
@@ -36,7 +36,7 @@ export default function AboutSection() {
           </AnimationWrapper>
 
           <div className="space-y-6">
-            <AnimationWrapper animation="fade-in-left">
+            <AnimationWrapper type="fade" direction="left">
               <p className="text-base md:text-lg leading-relaxed text-foreground">
                 I'm a passionate software engineer with a strong foundation in computer science and a
                 drive to create innovative digital solutions. My journey in technology began with a
@@ -45,7 +45,7 @@ export default function AboutSection() {
               </p>
             </AnimationWrapper>
 
-            <AnimationWrapper animation="fade-in-left" delay={0.2}>
+            <AnimationWrapper type="fade" direction="left" delay={200}>
               <p className="text-base md:text-lg leading-relaxed text-foreground">
                 With expertise spanning frontend and backend development, I specialize in creating
                 responsive web applications, mobile solutions, and scalable architectures. I'm
@@ -54,7 +54,7 @@ export default function AboutSection() {
               </p>
             </AnimationWrapper>
 
-            <AnimationWrapper animation="fade-in-left" delay={0.4}>
+            <AnimationWrapper type="fade" direction="left" delay={400}>
               <p className="text-base md:text-lg leading-relaxed text-foreground">
                 When I'm not coding, I enjoy contributing to open-source projects, mentoring aspiring
                 developers, and exploring the latest trends in artificial intelligence and cloud
@@ -62,7 +62,7 @@ export default function AboutSection() {
               </p>
             </AnimationWrapper>
 
-            <AnimationWrapper animation="fade-in-up" delay={0.6}>
+            <AnimationWrapper type="fade" direction="up" delay={600}>
               <div className="grid grid-cols-2 gap-6 pt-8">
                 {stats.map((stat, index) => (
                   <Card
