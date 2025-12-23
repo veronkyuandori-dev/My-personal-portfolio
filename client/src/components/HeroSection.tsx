@@ -1,4 +1,4 @@
-import { ArrowDown, Mail, Github, Linkedin } from 'lucide-react';
+import { ArrowDown, Mail, Github, Linkedin, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import AnimationWrapper from '@/components/AnimationWrapper';
@@ -10,6 +10,181 @@ export default function HeroSection() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const downloadCV = () => {
+    // Create a professional resume/CV in HTML format
+    const cvContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veronque Andrie - CV</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 850px; margin: 0 auto; padding: 40px; background: #fff; }
+        .header { border-bottom: 3px solid #22C55E; padding-bottom: 20px; margin-bottom: 30px; }
+        .header h1 { font-size: 32px; color: #1a1a1a; margin-bottom: 5px; }
+        .header p { color: #666; font-size: 14px; }
+        .contact-info { display: flex; gap: 20px; font-size: 13px; color: #666; flex-wrap: wrap; margin-top: 10px; }
+        .section { margin-bottom: 25px; }
+        .section-title { font-size: 16px; font-weight: 700; color: #22C55E; border-bottom: 2px solid #22C55E; padding-bottom: 8px; margin-bottom: 12px; }
+        .entry { margin-bottom: 15px; }
+        .entry-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 5px; }
+        .entry-title { font-weight: 600; color: #1a1a1a; }
+        .entry-subtitle { color: #666; font-size: 14px; }
+        .entry-date { color: #22C55E; font-size: 13px; font-weight: 500; }
+        .entry-description { color: #555; font-size: 14px; margin-top: 5px; line-height: 1.5; }
+        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .skill-item { padding: 10px; background: #f8f8f8; border-left: 3px solid #22C55E; }
+        .skill-category { font-weight: 600; color: #22C55E; font-size: 13px; margin-bottom: 5px; }
+        .skill-list { font-size: 13px; color: #555; }
+        .certifications-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .cert-item { padding: 8px; background: #f8f8f8; border-left: 3px solid #22C55E; font-size: 13px; }
+        .cert-name { font-weight: 600; color: #1a1a1a; }
+        .cert-org { color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Veronque Andrie</h1>
+            <p>Junior Developer | Software Engineer | Mechatronics & Robotics Enthusiast</p>
+            <div class="contact-info">
+                <span>📧 Email: veronqueandrie@email.com</span>
+                <span>📱 Phone: +63 (XXX) XXX-XXXX</span>
+                <span>📍 Location: Philippines</span>
+                <span>💼 <a href="#">GitHub</a> | <a href="#">LinkedIn</a></span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">PROFESSIONAL SUMMARY</div>
+            <p class="entry-description">Passionate and driven junior developer specializing in web development, mobile applications, and modern software architecture. Active member of Junior Mechatronics and Robotics Society of the Philippines (JMRSP). AWS Educate Member and GitHub Student Developer with strong foundation in full-stack development and emerging technologies.</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">EDUCATION</div>
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <div class="entry-title">Bachelor of Science in [Your Program]</div>
+                        <div class="entry-subtitle">[Your University Name]</div>
+                    </div>
+                    <div class="entry-date">2024 - Present</div>
+                </div>
+            </div>
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <div class="entry-title">JMRSP Student Chapter - PnC Member</div>
+                        <div class="entry-subtitle">Junior Mechatronics and Robotics Society of the Philippines</div>
+                    </div>
+                    <div class="entry-date">A.Y. 2025-2026</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">EXPERIENCE</div>
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <div class="entry-title">AWS Educate Member</div>
+                        <div class="entry-subtitle">Amazon Web Services</div>
+                    </div>
+                    <div class="entry-date">2024 - Present</div>
+                </div>
+                <div class="entry-description">• Access to AWS cloud services and educational resources • Hands-on experience with cloud infrastructure</div>
+            </div>
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <div class="entry-title">GitHub Student Developer</div>
+                        <div class="entry-subtitle">GitHub Education</div>
+                    </div>
+                    <div class="entry-date">2024 - Present</div>
+                </div>
+                <div class="entry-description">• Developer pack benefits and premium tools • Contributing to open-source projects</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">TECHNICAL SKILLS</div>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-category">FRONTEND</div>
+                    <div class="skill-list">React, TypeScript, Tailwind CSS, HTML5, CSS3, JavaScript</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-category">BACKEND</div>
+                    <div class="skill-list">Node.js, Express, PostgreSQL, REST APIs, Full-Stack</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-category">TOOLS & PLATFORMS</div>
+                    <div class="skill-list">Git, GitHub, AWS, Docker, VS Code, Figma</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-category">LANGUAGES</div>
+                    <div class="skill-list">JavaScript, TypeScript, Python, SQL</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">CERTIFICATIONS</div>
+            <div class="certifications-list">
+                <div class="cert-item">
+                    <div class="cert-name">Google Cloud Associate Cloud Engineer</div>
+                    <div class="cert-org">Google Cloud</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-name">AWS Certified Cloud Practitioner</div>
+                    <div class="cert-org">Amazon Web Services</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-name">Microsoft Azure Fundamentals</div>
+                    <div class="cert-org">Microsoft</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-name">Cisco CCNA Routing & Switching</div>
+                    <div class="cert-org">Cisco</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">PROJECTS</div>
+            <div class="entry">
+                <div class="entry-title">Professional Portfolio Website</div>
+                <div class="entry-description">A futuristic cybersecurity-themed portfolio showcasing technical skills, projects, and achievements with animated components and responsive design.</div>
+            </div>
+            <div class="entry">
+                <div class="entry-title">Full-Stack Web Applications</div>
+                <div class="entry-description">Developed multiple web applications using modern tech stack including React, Node.js, and PostgreSQL with focus on user experience and performance.</div>
+            </div>
+        </div>
+
+        <div class="section" style="margin-bottom: 0; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #999;">
+            <p>Last updated: December 2025 | For more details, visit: [Your Portfolio URL]</p>
+        </div>
+    </div>
+</body>
+</html>
+    `;
+
+    // Create blob and download
+    const blob = new Blob([cvContent], { type: 'text/html' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Veronque-Andrie-CV.html';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
   };
 
   return (
@@ -75,6 +250,16 @@ export default function HeroSection() {
             data-testid="button-contact"
           >
             Contact Me
+          </Button>
+          <Button
+            size="lg"
+            variant="secondary"
+            onClick={downloadCV}
+            className="rounded-full hover-elevate active-elevate-2 gap-2 border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary"
+            data-testid="button-download-cv"
+          >
+            <Download className="h-5 w-5" />
+            Download CV
           </Button>
         </div>
         </AnimationWrapper>
