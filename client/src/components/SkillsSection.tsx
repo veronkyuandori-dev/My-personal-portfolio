@@ -52,7 +52,7 @@ export default function SkillsSection() {
               duration={600}
             >
               <Card
-                className="hover-elevate transition-all duration-300 border border-primary/10 hover:border-primary/30"
+                className="hover-elevate transition-all duration-300 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/30 bg-background/50 backdrop-blur-sm"
                 data-testid={`skill-category-${category.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
               <CardHeader className="pb-4">

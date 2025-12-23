@@ -69,7 +69,7 @@ export default function ProjectsSection() {
               duration={700}
             >
               <Card
-                className="group overflow-hidden hover-elevate transition-all duration-300 border border-primary/10 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/20"
+                className="group overflow-hidden hover-elevate transition-all duration-300 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm"
                 data-testid={`project-card-${project.id}`}
               >
               <div className="relative aspect-video overflow-hidden">

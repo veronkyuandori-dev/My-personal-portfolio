@@ -26,6 +26,79 @@
   animation: gradient-shift 8s ease infinite;
 }
 
+/* Cybersecurity theme animations */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3), 0 0 40px rgba(34, 197, 94, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.5), 0 0 60px rgba(34, 197, 94, 0.2);
+  }
+}
+
+@keyframes radial-pulse {
+  0% {
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+@keyframes moving-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes color-shift-threat {
+  0% {
+    color: rgb(34, 197, 94);
+  }
+  50% {
+    color: rgb(245, 158, 11);
+  }
+  100% {
+    color: rgb(239, 68, 68);
+  }
+}
+
+@keyframes subtle-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-1px);
+  }
+  75% {
+    transform: translateX(1px);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-radial-pulse {
+  animation: radial-pulse 3s ease-out infinite;
+}
+
+.animate-moving-gradient {
+  background-size: 200% 200%;
+  animation: moving-gradient 30s ease infinite;
+}
+
+.animate-threat-pulse {
+  animation: color-shift-threat 1.5s ease-in-out infinite;
+}
+
 
 @tailwind base;
 @tailwind components;
@@ -61,9 +134,9 @@
 
   --sidebar-border: 240 5% 84%;
 
-  --sidebar-primary: 262 83% 58%;
+  --sidebar-primary: 120 100% 40%;
 
-  --sidebar-primary-foreground: 262 80% 98%;
+  --sidebar-primary-foreground: 120 100% 98%;
 
   --sidebar-accent: 240 6% 88%;
 
@@ -77,9 +150,9 @@
 
   --popover-border: 240 5% 82%;
 
-  --primary: 262 83% 58%;
+  --primary: 120 100% 40%;
 
-  --primary-foreground: 262 80% 98%;
+  --primary-foreground: 120 100% 98%;
 
   --secondary: 240 6% 86%;
 
@@ -98,7 +171,7 @@
   --destructive-foreground: 0 86% 98%;
 
   --input: 240 6% 72%;
-  --ring: 262 83% 58%;
+  --ring: 120 100% 40%;
   --chart-1: 262 83% 48%;
   --chart-2: 280 76% 55%;
   --chart-3: 220 88% 62%;
@@ -121,9 +194,9 @@
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
-  /* Cosmic gradient colors for portfolio theme */
-  --cosmic-glow: 262 83% 58%;
-  --cosmic-accent: 280 76% 55%;
+  /* Cybersecurity theme colors */
+  --cyber-glow: 120 100% 40%;
+  --cyber-accent: 45 100% 50%;
 
   /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
 
@@ -184,9 +257,9 @@
 
   --sidebar-border: 240 6% 22%;
 
-  --sidebar-primary: 262 83% 62%;
+  --sidebar-primary: 120 100% 45%;
 
-  --sidebar-primary-foreground: 262 80% 98%;
+  --sidebar-primary-foreground: 120 100% 98%;
 
   --sidebar-accent: 240 8% 16%;
 
@@ -200,9 +273,9 @@
 
   --popover-border: 240 6% 24%;
 
-  --primary: 262 83% 62%;
+  --primary: 120 100% 45%;
 
-  --primary-foreground: 262 80% 98%;
+  --primary-foreground: 120 100% 98%;
 
   --secondary: 240 8% 18%;
 
@@ -221,7 +294,7 @@
   --destructive-foreground: 0 86% 98%;
 
   --input: 240 8% 32%;
-  --ring: 262 83% 62%;
+  --ring: 120 100% 45%;
   --chart-1: 262 83% 68%;
   --chart-2: 280 76% 72%;
   --chart-3: 220 88% 75%;
@@ -237,9 +310,9 @@
   --shadow-xl: 0px 20px 30px -5px hsl(240 6% 4% / 0.42), 0px 8px 12px -6px hsl(240 6% 4% / 0.32);
   --shadow-2xl: 0px 25px 50px -12px hsl(240 6% 4% / 0.50);
 
-  /* Cosmic gradient colors for portfolio theme */
-  --cosmic-glow: 262 83% 62%;
-  --cosmic-accent: 280 76% 72%;
+  /* Cybersecurity theme colors */
+  --cyber-glow: 120 100% 45%;
+  --cyber-accent: 45 100% 55%;
 }
 
 @layer base {

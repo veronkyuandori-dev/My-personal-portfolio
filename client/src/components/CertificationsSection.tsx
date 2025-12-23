@@ -173,7 +173,7 @@ export default function CertificationsSection() {
               duration={650}
             >
               <Card
-                className="hover-elevate transition-all duration-300 cursor-pointer group"
+                className="hover-elevate transition-all duration-300 cursor-pointer group border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm"
                 onClick={() => setSelectedCert(index)}
                 data-testid={`certification-card-${index}`}
               >

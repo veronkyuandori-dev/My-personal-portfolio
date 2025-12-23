@@ -17,14 +17,17 @@ export default function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-background to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
+      
+      {/* Radial Pulse Effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-radial-pulse" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-20 text-center">
         <AnimationWrapper type="zoom" duration={1000}>
         <div className="mb-8 flex justify-center">
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-chart-2 to-primary opacity-75 blur-2xl scale-125 animate-pulse" />
-            <Avatar className="w-56 h-56 md:w-72 md:h-72 border-4 border-primary/50 shadow-2xl shadow-primary/40 relative z-10">
+            <Avatar className="w-56 h-56 md:w-72 md:h-72 border-4 border-primary/70 shadow-2xl shadow-primary/60 relative z-10 animate-glow-pulse">
               <AvatarImage src={profileImage} alt="Profile" />
               <AvatarFallback className="text-6xl">VA</AvatarFallback>
             </Avatar>
