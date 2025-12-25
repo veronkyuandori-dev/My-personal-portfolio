@@ -65,8 +65,7 @@ export default function GitHubStatsSection() {
     }, {});
   const topLanguages = Object.entries(languages)
     .sort(([, a], [, b]) => b - a)
-    .slice(0, 5)
-    .map(([lang]) => lang);
+    .slice(0, 5);
 
   return (
     <section id="github" className="py-20 md:py-32 relative">
@@ -150,12 +149,12 @@ export default function GitHubStatsSection() {
                         <p className="text-sm text-muted-foreground mb-3">Top Languages</p>
                         <div className="flex flex-wrap gap-2">
                           {topLanguages.length > 0 ? (
-                            topLanguages.map((lang) => (
+                            topLanguages.map(([lang, count]) => (
                               <span
                                 key={lang}
                                 className="px-2.5 py-1 text-xs font-medium rounded-full bg-primary/20 text-primary border border-primary/40"
                               >
-                                {lang}
+                                {lang} ({count})
                               </span>
                             ))
                           ) : (
@@ -167,47 +166,6 @@ export default function GitHubStatsSection() {
                   </Card>
                 </div>
               </AnimationWrapper>
-            </div>
-
-            {/* Repositories List */}
-            <div className="mt-20">
-              <h3 className="text-2xl md:text-3xl font-heading font-bold mb-8 text-foreground">Featured Repositories</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {repos.slice(0, 8).map((repo, index) => (
-                  <AnimationWrapper key={repo.name} type="slide" direction="up" delay={200 + index * 100} duration={700}>
-                    <Card className="border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300 h-full">
-                      <CardContent className="pt-6">
-                        <div className="space-y-3">
-                          <a
-                            href={repo.html_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-lg font-semibold text-primary hover:underline"
-                            data-testid={`link-repo-${repo.name}`}
-                          >
-                            {repo.name}
-                          </a>
-                          {repo.description && (
-                            <p className="text-sm text-muted-foreground line-clamp-2">{repo.description}</p>
-                          )}
-                          <div className="flex items-center justify-between pt-2">
-                            {repo.language ? (
-                              <span className="px-3 py-1 text-xs font-medium rounded-full bg-primary/20 text-primary border border-primary/40">
-                                {repo.language}
-                              </span>
-                            ) : (
-                              <span className="text-xs text-muted-foreground">No language</span>
-                            )}
-                            <span className="text-xs text-muted-foreground flex items-center gap-1">
-                              ⭐ {repo.stargazers_count}
-                            </span>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </AnimationWrapper>
-                ))}
-              </div>
             </div>
           </>
         ) : null}
