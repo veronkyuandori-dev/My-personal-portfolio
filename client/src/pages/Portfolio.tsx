@@ -3,6 +3,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
+import GitHubStatsSection from '@/components/GitHubStatsSection';
 import SkillsSection from '@/components/SkillsSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
@@ -17,6 +18,7 @@ export default function Portfolio() {
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
+        <GitHubStatsSection />
         <SkillsSection />
         <CertificationsSection />
         <ContactSection />
