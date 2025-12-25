@@ -44,8 +44,28 @@ export default function GitHubStatsSection() {
           `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=stars&order=desc`
         );
         if (!reposResponse.ok) throw new Error('Failed to fetch repos');
-        const reposData = await reposResponse.json();
-        setRepos(reposData);
+        let reposData = await reposResponse.json();
+        
+        // Fetch language data for each repo
+        const reposWithLanguages = await Promise.all(
+          reposData.slice(0, 30).map(async (repo) => {
+            try {
+              const langResponse = await fetch(
+                `https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/languages`
+              );
+              if (langResponse.ok) {
+                const languages = await langResponse.json();
+                const primaryLanguage = Object.keys(languages)[0] || null;
+                return { ...repo, language: primaryLanguage };
+              }
+              return repo;
+            } catch {
+              return repo;
+            }
+          })
+        );
+        
+        setRepos(reposWithLanguages);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch GitHub data');
       } finally {
