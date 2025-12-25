@@ -39,31 +39,21 @@ export default function GitHubStatsSection() {
         const user = await userResponse.json();
         setUserData(user);
 
-        // Fetch repos
+        // Fetch repos with language data
         const reposResponse = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=stars&order=desc`
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=pushed&order=desc`
         );
         if (!reposResponse.ok) throw new Error('Failed to fetch repos');
-        let reposData = await reposResponse.json();
+        const reposData = await reposResponse.json();
         
-        // Fetch language data for each repo
-        const reposWithLanguages = await Promise.all(
-          reposData.slice(0, 30).map(async (repo) => {
-            try {
-              const langResponse = await fetch(
-                `https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/languages`
-              );
-              if (langResponse.ok) {
-                const languages = await langResponse.json();
-                const primaryLanguage = Object.keys(languages)[0] || null;
-                return { ...repo, language: primaryLanguage };
-              }
-              return repo;
-            } catch {
-              return repo;
-            }
-          })
-        );
+        // Get detailed language data for repos
+        const reposWithLanguages = (reposData as any[]).map((repo: any) => ({
+          name: repo.name,
+          html_url: repo.html_url,
+          description: repo.description,
+          stargazers_count: repo.stargazers_count,
+          language: repo.language,
+        }));
         
         setRepos(reposWithLanguages);
       } catch (err) {
