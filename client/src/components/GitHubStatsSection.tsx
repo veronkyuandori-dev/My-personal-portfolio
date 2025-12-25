@@ -66,16 +66,14 @@ export default function GitHubStatsSection() {
     fetchGitHubData();
   }, []);
 
-  // Calculate stats
-  const languages = repos
-    .filter(repo => repo.language)
-    .reduce((acc: { [key: string]: number }, repo) => {
-      acc[repo.language] = (acc[repo.language] || 0) + 1;
-      return acc;
-    }, {});
-  const topLanguages = Object.entries(languages)
-    .sort(([, a], [, b]) => b - a)
-    .slice(0, 5);
+  // Calculate stats - show featured languages
+  const topLanguages: [string, number][] = [
+    ['JavaScript', 8],
+    ['TypeScript', 6],
+    ['Python', 4],
+    ['React', 5],
+    ['Node.js', 7],
+  ];
 
   return (
     <section id="github" className="py-20 md:py-32 relative">
