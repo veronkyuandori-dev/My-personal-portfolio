@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Github, Code, Users, Star } from 'lucide-react';
+import { Github, Code } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
 
 interface GitHubUser {
   name: string;
   avatar_url: string;
   public_repos: number;
-  followers: number;
   html_url: string;
   bio: string;
 }
@@ -55,7 +54,6 @@ export default function GitHubStatsSection() {
   }, []);
 
   // Calculate stats
-  const totalStars = repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
   const languages = repos
     .filter(repo => repo.language)
     .reduce((acc: { [key: string]: number }, repo) => {
@@ -136,36 +134,6 @@ export default function GitHubStatsSection() {
                       <div>
                         <p className="text-sm text-muted-foreground">Public Repos</p>
                         <p className="text-3xl font-bold text-primary">{userData.public_repos}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Followers */}
-                <Card className="border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 rounded-lg bg-primary/15">
-                        <Users className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">Followers</p>
-                        <p className="text-3xl font-bold text-primary">{userData.followers}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Total Stars */}
-                <Card className="border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 rounded-lg bg-primary/15">
-                        <Star className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">Total Stars</p>
-                        <p className="text-3xl font-bold text-primary">{totalStars}</p>
                       </div>
                     </div>
                   </CardContent>
