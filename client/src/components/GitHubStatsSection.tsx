@@ -13,6 +13,9 @@ interface GitHubUser {
 }
 
 interface GitHubRepo {
+  name: string;
+  html_url: string;
+  description: string;
   stargazers_count: number;
   language: string;
 }
@@ -90,80 +93,123 @@ export default function GitHubStatsSection() {
             <p>Unable to load GitHub stats. Please try again later.</p>
           </div>
         ) : userData ? (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            {/* Main Profile Card */}
-            <AnimationWrapper type="slide" direction="up" delay={200} duration={700}>
-              <Card className="lg:col-span-1 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
-                <CardHeader>
-                  <div className="flex flex-col items-center gap-4">
-                    <img
-                      src={userData.avatar_url}
-                      alt={userData.name}
-                      className="w-24 h-24 rounded-full border-2 border-primary/50"
-                    />
-                    <div className="text-center">
-                      <CardTitle className="text-xl font-heading">{userData.name || 'Developer'}</CardTitle>
-                      <p className="text-sm text-muted-foreground mt-1">@{GITHUB_USERNAME}</p>
-                      {userData.bio && <p className="text-xs text-foreground/70 mt-2">{userData.bio}</p>}
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <Button
-                    className="w-full gap-2 rounded-full"
-                    onClick={() => window.open(userData.html_url, '_blank')}
-                    data-testid="button-visit-github"
-                  >
-                    <Github className="w-4 h-4" />
-                    Visit GitHub
-                  </Button>
-                </CardContent>
-              </Card>
-            </AnimationWrapper>
-
-            {/* Stats Grid */}
-            <AnimationWrapper type="slide" direction="up" delay={400} duration={700}>
-              <div className="lg:col-span-2 grid grid-cols-2 gap-4">
-                {/* Repositories */}
-                <Card className="border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 rounded-lg bg-primary/15">
-                        <Code className="w-6 h-6 text-primary" />
+          <>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+              {/* Main Profile Card */}
+              <AnimationWrapper type="slide" direction="up" delay={200} duration={700}>
+                <Card className="lg:col-span-1 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
+                  <CardHeader>
+                    <div className="flex flex-col items-center gap-4">
+                      <img
+                        src={userData.avatar_url}
+                        alt={userData.name}
+                        className="w-24 h-24 rounded-full border-2 border-primary/50"
+                      />
+                      <div className="text-center">
+                        <CardTitle className="text-xl font-heading">{userData.name || 'Developer'}</CardTitle>
+                        <p className="text-sm text-muted-foreground mt-1">@{GITHUB_USERNAME}</p>
+                        {userData.bio && <p className="text-xs text-foreground/70 mt-2">{userData.bio}</p>}
                       </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <Button
+                      className="w-full gap-2 rounded-full"
+                      onClick={() => window.open(userData.html_url, '_blank')}
+                      data-testid="button-visit-github"
+                    >
+                      <Github className="w-4 h-4" />
+                      Visit GitHub
+                    </Button>
+                  </CardContent>
+                </Card>
+              </AnimationWrapper>
+
+              {/* Stats Grid */}
+              <AnimationWrapper type="slide" direction="up" delay={400} duration={700}>
+                <div className="lg:col-span-2 grid grid-cols-2 gap-4">
+                  {/* Repositories */}
+                  <Card className="border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
+                    <CardContent className="pt-6">
+                      <div className="flex items-center gap-3">
+                        <div className="p-3 rounded-lg bg-primary/15">
+                          <Code className="w-6 h-6 text-primary" />
+                        </div>
+                        <div>
+                          <p className="text-sm text-muted-foreground">Public Repos</p>
+                          <p className="text-3xl font-bold text-primary">{userData.public_repos}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Languages */}
+                  <Card className="border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
+                    <CardContent className="pt-6">
                       <div>
-                        <p className="text-sm text-muted-foreground">Public Repos</p>
-                        <p className="text-3xl font-bold text-primary">{userData.public_repos}</p>
+                        <p className="text-sm text-muted-foreground mb-3">Top Languages</p>
+                        <div className="flex flex-wrap gap-2">
+                          {topLanguages.length > 0 ? (
+                            topLanguages.map((lang) => (
+                              <span
+                                key={lang}
+                                className="px-2.5 py-1 text-xs font-medium rounded-full bg-primary/20 text-primary border border-primary/40"
+                              >
+                                {lang}
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-xs text-muted-foreground">No language data</span>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </div>
+              </AnimationWrapper>
+            </div>
 
-                {/* Languages */}
-                <Card className="border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
-                  <CardContent className="pt-6">
-                    <div>
-                      <p className="text-sm text-muted-foreground mb-3">Top Languages</p>
-                      <div className="flex flex-wrap gap-2">
-                        {topLanguages.length > 0 ? (
-                          topLanguages.map((lang) => (
-                            <span
-                              key={lang}
-                              className="px-2.5 py-1 text-xs font-medium rounded-full bg-primary/20 text-primary border border-primary/40"
-                            >
-                              {lang}
+            {/* Repositories List */}
+            <div className="mt-20">
+              <h3 className="text-2xl md:text-3xl font-heading font-bold mb-8 text-foreground">Featured Repositories</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {repos.slice(0, 8).map((repo, index) => (
+                  <AnimationWrapper key={repo.name} type="slide" direction="up" delay={200 + index * 100} duration={700}>
+                    <Card className="border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300 h-full">
+                      <CardContent className="pt-6">
+                        <div className="space-y-3">
+                          <a
+                            href={repo.html_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-lg font-semibold text-primary hover:underline"
+                            data-testid={`link-repo-${repo.name}`}
+                          >
+                            {repo.name}
+                          </a>
+                          {repo.description && (
+                            <p className="text-sm text-muted-foreground line-clamp-2">{repo.description}</p>
+                          )}
+                          <div className="flex items-center justify-between pt-2">
+                            {repo.language ? (
+                              <span className="px-3 py-1 text-xs font-medium rounded-full bg-primary/20 text-primary border border-primary/40">
+                                {repo.language}
+                              </span>
+                            ) : (
+                              <span className="text-xs text-muted-foreground">No language</span>
+                            )}
+                            <span className="text-xs text-muted-foreground flex items-center gap-1">
+                              ⭐ {repo.stargazers_count}
                             </span>
-                          ))
-                        ) : (
-                          <span className="text-xs text-muted-foreground">No language data</span>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </AnimationWrapper>
+                ))}
               </div>
-            </AnimationWrapper>
-          </div>
+            </div>
+          </>
         ) : null}
       </div>
     </section>
