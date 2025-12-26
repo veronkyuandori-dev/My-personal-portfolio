@@ -23,7 +23,7 @@ const experiences = [
     description: 'Designed responsive, user-focused websites and collaborated with Filipino professionals on the Simate Web Application project.',
   },
   {
-    year: 'May 8, 2025',
+    year: 'December 8',
     role: 'Project Leader',
     title: 'Unicast Event Planning Management System',
     description: 'Led development and successful presentation with features for intelligent scheduling, smart recommendations, and automated event optimization.',
