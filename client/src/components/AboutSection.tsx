@@ -1,13 +1,40 @@
 import { Card } from '@/components/ui/card';
-import { Code, Briefcase, Award, Zap } from 'lucide-react';
+import { Briefcase, Award } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
 import profileImage from '@assets/582753724_1129297252616841_7787531120170901253_n_1763775009180.jpg';
 
-const stats = [
-  { icon: Briefcase, label: 'Years Experience', value: '3+' },
-  { icon: Code, label: 'Projects Completed', value: '25+' },
-  { icon: Award, label: 'Certifications', value: '8' },
-  { icon: Zap, label: 'Technologies', value: '15+' },
+const experiences = [
+  {
+    year: '2025',
+    role: 'Project Leader',
+    title: 'Progressive Responsive Website (Vue.js Application)',
+    description: 'Managed project repositories and version control using GitHub. Supervised collaboration, task assignments, and ensured smooth project progression from planning to deployment.',
+  },
+  {
+    year: '2025–2026',
+    role: 'Programmer (Capstone Thesis)',
+    title: 'IoT-Enabled Smart Agriculture and Real-Time Monitoring',
+    description: 'Contributed to design and implementation of IoT-based systems for environmental monitoring. Developed and maintained application modules ensuring reliability, scalability, and performance.',
+  },
+  {
+    year: 'Mid 2025',
+    role: 'Web Designer',
+    title: 'Simate Web Application (Filipino Web Development Peers)',
+    description: 'Designed responsive, user-focused websites and collaborated with Filipino professionals on the Simate Web Application project.',
+  },
+  {
+    year: 'May 8, 2025',
+    role: 'Project Leader',
+    title: 'Unicast Event Planning Management System',
+    description: 'Led development and successful presentation with features for intelligent scheduling, smart recommendations, and automated event optimization.',
+  },
+];
+
+const certifications = [
+  'Microsoft Trainee - Cloud computing & productivity tools',
+  'AWS Skill Builder Trainee - Cloud architecture & services',
+  'AWS Educate Member - EC2, S3, IAM, serverless architecture',
+  'GitHub Student Developer Pack - Real-world deployment experience',
 ];
 
 export default function AboutSection() {
@@ -18,10 +45,10 @@ export default function AboutSection() {
           About Me
         </h2>
         <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-          Get to know more about my background and expertise
+          Passionate developer with experience in full-stack development, IoT systems, and cloud technologies
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <AnimationWrapper type="fade" direction="up">
             <div className="relative">
               <div className="aspect-square rounded-3xl overflow-hidden border-4 border-primary/20 shadow-2xl shadow-primary/10">
@@ -35,50 +62,49 @@ export default function AboutSection() {
             </div>
           </AnimationWrapper>
 
-          <div className="space-y-6">
-            <AnimationWrapper type="fade" direction="left">
-              <p className="text-base md:text-lg leading-relaxed text-foreground">
-                I'm a passionate software engineer with a strong foundation in computer science and a
-                drive to create innovative digital solutions. My journey in technology began with a
-                curiosity about how things work and evolved into a career dedicated to building
-                meaningful applications.
-              </p>
-            </AnimationWrapper>
-
-            <AnimationWrapper type="fade" direction="left" delay={200}>
-              <p className="text-base md:text-lg leading-relaxed text-foreground">
-                With expertise spanning frontend and backend development, I specialize in creating
-                responsive web applications, mobile solutions, and scalable architectures. I'm
-                constantly learning and adapting to new technologies to stay at the forefront of the
-                industry.
-              </p>
-            </AnimationWrapper>
-
-            <AnimationWrapper type="fade" direction="left" delay={400}>
-              <p className="text-base md:text-lg leading-relaxed text-foreground">
-                When I'm not coding, I enjoy contributing to open-source projects, mentoring aspiring
-                developers, and exploring the latest trends in artificial intelligence and cloud
-                computing.
-              </p>
-            </AnimationWrapper>
-
-            <AnimationWrapper type="fade" direction="up" delay={600}>
-              <div className="grid grid-cols-2 gap-6 pt-8">
-                {stats.map((stat, index) => (
-                  <Card
-                    key={index}
-                    className="p-6 text-center hover-elevate transition-all duration-300"
-                    data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    <stat.icon className="h-8 w-8 mx-auto mb-3 text-primary" />
-                    <div className="text-4xl md:text-5xl font-bold text-primary mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </Card>
+          <div className="space-y-8">
+            {/* Experience Section */}
+            <div>
+              <h3 className="text-2xl font-heading font-bold mb-6 flex items-center gap-2">
+                <Briefcase className="w-6 h-6 text-primary" />
+                Professional Experience
+              </h3>
+              <div className="space-y-4">
+                {experiences.map((exp, index) => (
+                  <AnimationWrapper key={index} type="slide" direction="up" delay={index * 100} duration={500}>
+                    <Card className="p-4 border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate transition-all">
+                      <div className="flex items-start gap-3">
+                        <div className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full whitespace-nowrap">
+                          {exp.year}
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-semibold text-primary text-sm">{exp.role}</p>
+                          <p className="font-heading font-bold text-foreground">{exp.title}</p>
+                          <p className="text-sm text-muted-foreground mt-1">{exp.description}</p>
+                        </div>
+                      </div>
+                    </Card>
+                  </AnimationWrapper>
                 ))}
               </div>
-            </AnimationWrapper>
+            </div>
+
+            {/* Certifications Section */}
+            <div>
+              <h3 className="text-2xl font-heading font-bold mb-6 flex items-center gap-2">
+                <Award className="w-6 h-6 text-primary" />
+                Training & Certifications
+              </h3>
+              <div className="grid grid-cols-1 gap-3">
+                {certifications.map((cert, index) => (
+                  <AnimationWrapper key={index} type="slide" direction="up" delay={index * 100} duration={500}>
+                    <Card className="p-3 border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate transition-all">
+                      <p className="text-sm font-medium text-foreground">{cert}</p>
+                    </Card>
+                  </AnimationWrapper>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
