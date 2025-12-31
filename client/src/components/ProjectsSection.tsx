@@ -1,94 +1,13 @@
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { ExternalLink, Github, CheckCircle2 } from 'lucide-react';
+import { Github, CheckCircle2 } from 'lucide-react';
 import { SiGitlab } from 'react-icons/si';
-import { useState } from 'react';
 import AnimationWrapper from './AnimationWrapper';
 import webtrackerImage from '@assets/Screenshot 2025-10-29 01.25.41_1761673713445.png';
 import buddydashImage from '@assets/Screenshot 2025-10-29 01.24.11_1761673731499.png';
 import libraryImage from '@assets/Screenshot 2025-10-29 01.20.09_1761673748927.png';
 import aiFaceImage from '@assets/Screenshot 2025-10-29 01.16.19_1761673779384.png';
-
-const repositoryRequirements = [
-  {
-    title: 'Complete Code',
-    items: [
-      'Kumpletong code ng app (frontend, backend, o pareho)',
-      'Maayos ang folder structure (hal. src/, lib/, assets/)',
-    ],
-  },
-  {
-    title: 'README.md',
-    items: [
-      'Pangalan ng app',
-      'Ano ang ginagawa ng app',
-      'Features list',
-      'Requirements (Node, Python version, etc.)',
-      'Paano i-install at patakbuhin',
-      'Screenshots (optional pero maganda)',
-    ],
-  },
-  {
-    title: 'Configuration Files',
-    items: [
-      'package.json (Node.js)',
-      'requirements.txt (Python)',
-      'pubspec.yaml (Flutter)',
-      '.env.example (sample environment variables)',
-      '⚠️ Huwag i-upload ang totoong .env na may passwords',
-    ],
-  },
-  {
-    title: '.gitignore',
-    items: [
-      'Compiled files',
-      'node_modules',
-      'Cache files',
-      'Secret files',
-    ],
-  },
-  {
-    title: 'Documentation',
-    items: [
-      'docs/ folder o markdown files',
-      'API documentation (kung meron)',
-      'Simple explanation ng flow ng app',
-    ],
-  },
-  {
-    title: 'License',
-    items: [
-      'MIT, Apache 2.0, o iba',
-      'Para malinaw kung paano pwedeng gamitin ang app',
-    ],
-  },
-  {
-    title: 'Issues & Milestones (GitLab Features)',
-    items: [
-      'Issues – para sa bugs at tasks',
-      'Milestones – para sa project progress',
-      'Labels – para maayos ang tracking',
-    ],
-  },
-  {
-    title: 'CI/CD (.gitlab-ci.yml)',
-    items: [
-      'Automatic testing',
-      'Automatic build/deploy',
-      'Lalo na kung school project o professional app',
-    ],
-  },
-  {
-    title: 'Tests',
-    items: [
-      'Unit tests',
-      'Integration tests',
-      'Testing folder (hal. tests/)',
-    ],
-  },
-];
 
 const projects = [
   {
@@ -99,6 +18,15 @@ const projects = [
     tags: ['HTML5', 'Python', 'PostgreSQL'],
     github: 'https://github.com/bukosalad123/Webtracker.git',
     gitlab: 'https://gitlab.com/veronqueandrei/Webtracker.git',
+    requirements: {
+      'Complete Code': ['Kumpletong code ng app (frontend, backend, o pareho)', 'Maayos ang folder structure (hal. src/, lib/, assets/)'],
+      'README.md': ['Pangalan ng app', 'Ano ang ginagawa ng app', 'Features list', 'Requirements (Node, Python version, etc.)', 'Paano i-install at patakbuhin'],
+      'Configuration Files': ['package.json (Node.js)', 'requirements.txt (Python)', '.env.example (sample environment variables)'],
+      '.gitignore': ['Compiled files', 'node_modules', 'Cache files', 'Secret files'],
+      'Documentation': ['docs/ folder o markdown files', 'API documentation', 'Simple explanation ng flow ng app'],
+      'License': ['MIT, Apache 2.0, o iba'],
+      'Tests': ['Unit tests', 'Integration tests', 'Testing folder (hal. tests/)'],
+    },
   },
   {
     id: 2,
@@ -108,6 +36,15 @@ const projects = [
     tags: ['Dart', 'Java', 'MongoDB'],
     github: 'https://github.com/bukosalad123/BuddyDash.git',
     gitlab: 'https://gitlab.com/veronqueandrei/BuddyDash.git',
+    requirements: {
+      'Complete Code': ['Kumpletong code ng app (frontend, backend, o pareho)', 'Maayos ang folder structure (hal. src/, lib/, assets/)'],
+      'README.md': ['Pangalan ng app', 'Ano ang ginagawa ng app', 'Features list', 'Requirements (Node, Python version, etc.)', 'Paano i-install at patakbuhin'],
+      'Configuration Files': ['pubspec.yaml (Flutter)', 'package.json (Node.js)', '.env.example (sample environment variables)'],
+      '.gitignore': ['Compiled files', 'node_modules', 'Cache files', 'Secret files'],
+      'Documentation': ['docs/ folder o markdown files', 'API documentation', 'Simple explanation ng flow ng app'],
+      'License': ['MIT, Apache 2.0, o iba'],
+      'Issues & Milestones': ['Issues – para sa bugs at tasks', 'Milestones – para sa project progress', 'Labels – para maayos ang tracking'],
+    },
   },
   {
     id: 3,
@@ -117,6 +54,15 @@ const projects = [
     tags: ['Python', 'PostgreSQL', 'HTML5'],
     github: 'https://github.com/bukosalad123/LIbrayManagement-System.git',
     gitlab: 'https://gitlab.com/veronqueandrei/LIbrayManagement-System.git',
+    requirements: {
+      'Complete Code': ['Kumpletong code ng app (frontend, backend, o pareho)', 'Maayos ang folder structure (hal. src/, lib/, assets/)'],
+      'README.md': ['Pangalan ng app', 'Ano ang ginagawa ng app', 'Features list', 'Requirements (Node, Python version, etc.)', 'Paano i-install at patakbuhin', 'Screenshots'],
+      'Configuration Files': ['requirements.txt (Python)', 'package.json (Node.js)', '.env.example (sample environment variables)'],
+      '.gitignore': ['Compiled files', 'node_modules', 'Cache files', 'Secret files'],
+      'Documentation': ['docs/ folder o markdown files', 'API documentation', 'Simple explanation ng flow ng app'],
+      'License': ['MIT, Apache 2.0, o iba'],
+      'Tests': ['Unit tests', 'Integration tests', 'Testing folder (hal. tests/)'],
+    },
   },
   {
     id: 4,
@@ -126,12 +72,20 @@ const projects = [
     tags: ['Python', 'C++', 'MongoDB'],
     github: 'https://github.com/bukosalad123/facial-recognition.git',
     gitlab: 'https://github.com/bukosalad123/facial-recognition.git',
+    requirements: {
+      'Complete Code': ['Kumpletong code ng app (frontend, backend, o pareho)', 'Maayos ang folder structure (hal. src/, lib/, assets/)'],
+      'README.md': ['Pangalan ng app', 'Ano ang ginagawa ng app', 'Features list', 'Requirements (Node, Python version, etc.)', 'Paano i-install at patakbuhin'],
+      'Configuration Files': ['requirements.txt (Python)', '.env.example (sample environment variables)', 'package.json (Node.js)'],
+      '.gitignore': ['Compiled files', 'node_modules', 'Cache files', 'Secret files'],
+      'Documentation': ['docs/ folder o markdown files', 'API documentation', 'Simple explanation ng flow ng app'],
+      'License': ['MIT, Apache 2.0, o iba'],
+      'CI/CD': ['Automatic testing', 'Automatic build/deploy'],
+      'Tests': ['Unit tests', 'Integration tests', 'Testing folder (hal. tests/)'],
+    },
   },
 ];
 
 export default function ProjectsSection() {
-  const [showRequirements, setShowRequirements] = useState(false);
-
   return (
     <section id="projects" className="relative py-20 md:py-32 bg-card/30">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -142,7 +96,7 @@ export default function ProjectsSection() {
           Explore my recent projects and technical work
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8">
           {projects.map((project, projectIndex) => (
             <AnimationWrapper 
               key={project.id}
@@ -152,105 +106,87 @@ export default function ProjectsSection() {
               duration={700}
             >
               <Card
-                className="group overflow-hidden hover-elevate transition-all duration-300 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm"
+                className="overflow-hidden hover-elevate transition-all duration-300 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm"
                 data-testid={`project-card-${project.id}`}
               >
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6 gap-3">
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    className="rounded-full hover-elevate active-elevate-2"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowRequirements(true);
-                    }}
-                    data-testid={`button-github-${project.id}`}
-                  >
-                    <Github className="h-4 w-4 mr-2" />
-                    GitHub
-                  </Button>
-                  <Button
-                    size="sm"
-                    className="rounded-full hover-elevate active-elevate-2"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowRequirements(true);
-                    }}
-                    data-testid={`button-gitlab-${project.id}`}
-                  >
-                    <SiGitlab className="h-4 w-4 mr-2" />
-                    GitLab
-                  </Button>
-                </div>
-              </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+                  {/* Project Image & Info */}
+                  <div className="md:col-span-1 space-y-4">
+                    <div className="relative aspect-video overflow-hidden rounded-lg">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-bold mb-2">{project.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                        {project.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tags.map((tag, index) => (
+                          <Badge key={index} variant="secondary" className="text-xs px-2.5 py-1">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          className="rounded-full hover-elevate active-elevate-2 flex-1"
+                          asChild
+                          data-testid={`button-github-${project.id}`}
+                        >
+                          <a href={project.github} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-4 w-4 mr-2" />
+                            GitHub
+                          </a>
+                        </Button>
+                        <Button
+                          size="sm"
+                          className="rounded-full hover-elevate active-elevate-2 flex-1"
+                          asChild
+                          data-testid={`button-gitlab-${project.id}`}
+                        >
+                          <a href={project.gitlab} target="_blank" rel="noopener noreferrer">
+                            <SiGitlab className="h-4 w-4 mr-2" />
+                            GitLab
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
 
-              <CardContent className="p-6">
-                <h3 className="text-xl md:text-2xl font-bold mb-3">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-2">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs px-2.5 py-1">
-                      {tag}
-                    </Badge>
-                  ))}
+                  {/* Requirements Checklist */}
+                  <div className="md:col-span-2">
+                    <h4 className="text-lg font-heading font-bold mb-4 text-primary">Source Code Includes:</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {Object.entries(project.requirements).map(([category, items], index) => (
+                        <div key={index} className="space-y-2">
+                          <h5 className="text-sm font-semibold text-primary flex items-center gap-2">
+                            <CheckCircle2 className="w-4 h-4" />
+                            {category}
+                          </h5>
+                          <ul className="space-y-1 ml-6">
+                            {items.map((item: string, itemIndex: number) => (
+                              <li key={itemIndex} className="text-xs text-foreground flex items-start gap-2">
+                                <span className="text-primary mt-0.5">•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </CardContent>
               </Card>
             </AnimationWrapper>
           ))}
         </div>
       </div>
-
-      <Dialog open={showRequirements} onOpenChange={setShowRequirements}>
-        <DialogContent className="max-h-[80vh] overflow-y-auto max-w-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-2xl">Repository Best Practices</DialogTitle>
-            <DialogDescription>
-              Ano dapat tingnan sa GitHub/GitLab projects
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-6 py-4">
-            {repositoryRequirements.map((section, index) => (
-              <div key={index} className="space-y-3">
-                <h3 className="text-lg font-heading font-bold text-primary flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5" />
-                  {section.title}
-                </h3>
-                <ul className="space-y-2 ml-7">
-                  {section.items.map((item, itemIndex) => (
-                    <li 
-                      key={itemIndex} 
-                      className="text-sm text-foreground flex items-start gap-2"
-                    >
-                      <span className="text-primary mt-1">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex gap-3 pt-4">
-            <Button 
-              variant="secondary" 
-              onClick={() => setShowRequirements(false)}
-              className="flex-1"
-            >
-              Intindi na
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </section>
   );
 }
