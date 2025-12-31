@@ -1,13 +1,94 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Github } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { ExternalLink, Github, CheckCircle2 } from 'lucide-react';
 import { SiGitlab } from 'react-icons/si';
+import { useState } from 'react';
 import AnimationWrapper from './AnimationWrapper';
 import webtrackerImage from '@assets/Screenshot 2025-10-29 01.25.41_1761673713445.png';
 import buddydashImage from '@assets/Screenshot 2025-10-29 01.24.11_1761673731499.png';
 import libraryImage from '@assets/Screenshot 2025-10-29 01.20.09_1761673748927.png';
 import aiFaceImage from '@assets/Screenshot 2025-10-29 01.16.19_1761673779384.png';
+
+const repositoryRequirements = [
+  {
+    title: 'Complete Code',
+    items: [
+      'Kumpletong code ng app (frontend, backend, o pareho)',
+      'Maayos ang folder structure (hal. src/, lib/, assets/)',
+    ],
+  },
+  {
+    title: 'README.md',
+    items: [
+      'Pangalan ng app',
+      'Ano ang ginagawa ng app',
+      'Features list',
+      'Requirements (Node, Python version, etc.)',
+      'Paano i-install at patakbuhin',
+      'Screenshots (optional pero maganda)',
+    ],
+  },
+  {
+    title: 'Configuration Files',
+    items: [
+      'package.json (Node.js)',
+      'requirements.txt (Python)',
+      'pubspec.yaml (Flutter)',
+      '.env.example (sample environment variables)',
+      '⚠️ Huwag i-upload ang totoong .env na may passwords',
+    ],
+  },
+  {
+    title: '.gitignore',
+    items: [
+      'Compiled files',
+      'node_modules',
+      'Cache files',
+      'Secret files',
+    ],
+  },
+  {
+    title: 'Documentation',
+    items: [
+      'docs/ folder o markdown files',
+      'API documentation (kung meron)',
+      'Simple explanation ng flow ng app',
+    ],
+  },
+  {
+    title: 'License',
+    items: [
+      'MIT, Apache 2.0, o iba',
+      'Para malinaw kung paano pwedeng gamitin ang app',
+    ],
+  },
+  {
+    title: 'Issues & Milestones (GitLab Features)',
+    items: [
+      'Issues – para sa bugs at tasks',
+      'Milestones – para sa project progress',
+      'Labels – para maayos ang tracking',
+    ],
+  },
+  {
+    title: 'CI/CD (.gitlab-ci.yml)',
+    items: [
+      'Automatic testing',
+      'Automatic build/deploy',
+      'Lalo na kung school project o professional app',
+    ],
+  },
+  {
+    title: 'Tests',
+    items: [
+      'Unit tests',
+      'Integration tests',
+      'Testing folder (hal. tests/)',
+    ],
+  },
+];
 
 const projects = [
   {
@@ -49,6 +130,8 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
+  const [showRequirements, setShowRequirements] = useState(false);
+
   return (
     <section id="projects" className="relative py-20 md:py-32 bg-card/30">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -83,24 +166,26 @@ export default function ProjectsSection() {
                     size="sm"
                     variant="secondary"
                     className="rounded-full hover-elevate active-elevate-2"
-                    asChild
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowRequirements(true);
+                    }}
                     data-testid={`button-github-${project.id}`}
                   >
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-4 w-4 mr-2" />
-                      GitHub
-                    </a>
+                    <Github className="h-4 w-4 mr-2" />
+                    GitHub
                   </Button>
                   <Button
                     size="sm"
                     className="rounded-full hover-elevate active-elevate-2"
-                    asChild
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowRequirements(true);
+                    }}
                     data-testid={`button-gitlab-${project.id}`}
                   >
-                    <a href={project.gitlab} target="_blank" rel="noopener noreferrer">
-                      <SiGitlab className="h-4 w-4 mr-2" />
-                      GitLab
-                    </a>
+                    <SiGitlab className="h-4 w-4 mr-2" />
+                    GitLab
                   </Button>
                 </div>
               </div>
@@ -123,6 +208,49 @@ export default function ProjectsSection() {
           ))}
         </div>
       </div>
+
+      <Dialog open={showRequirements} onOpenChange={setShowRequirements}>
+        <DialogContent className="max-h-[80vh] overflow-y-auto max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Repository Best Practices</DialogTitle>
+            <DialogDescription>
+              Ano dapat tingnan sa GitHub/GitLab projects
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-6 py-4">
+            {repositoryRequirements.map((section, index) => (
+              <div key={index} className="space-y-3">
+                <h3 className="text-lg font-heading font-bold text-primary flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5" />
+                  {section.title}
+                </h3>
+                <ul className="space-y-2 ml-7">
+                  {section.items.map((item, itemIndex) => (
+                    <li 
+                      key={itemIndex} 
+                      className="text-sm text-foreground flex items-start gap-2"
+                    >
+                      <span className="text-primary mt-1">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex gap-3 pt-4">
+            <Button 
+              variant="secondary" 
+              onClick={() => setShowRequirements(false)}
+              className="flex-1"
+            >
+              Intindi na
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
