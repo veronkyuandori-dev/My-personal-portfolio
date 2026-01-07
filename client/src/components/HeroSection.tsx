@@ -22,158 +22,135 @@ export default function HeroSection() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veronque Andrie - CV</title>
     <style>
-        * { margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 850px; margin: 0 auto; padding: 40px; background: #fff; }
-        .header { border-bottom: 3px solid #22C55E; padding-bottom: 20px; margin-bottom: 30px; }
-        .header h1 { font-size: 32px; color: #1a1a1a; margin-bottom: 5px; }
-        .header p { color: #666; font-size: 14px; }
-        .contact-info { display: flex; gap: 20px; font-size: 13px; color: #666; flex-wrap: wrap; margin-top: 10px; }
-        .section { margin-bottom: 25px; }
-        .section-title { font-size: 16px; font-weight: 700; color: #22C55E; border-bottom: 2px solid #22C55E; padding-bottom: 8px; margin-bottom: 12px; }
-        .entry { margin-bottom: 15px; }
-        .entry-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 5px; }
-        .entry-title { font-weight: 600; color: #1a1a1a; }
-        .entry-subtitle { color: #666; font-size: 14px; }
-        .entry-date { color: #22C55E; font-size: 13px; font-weight: 500; }
-        .entry-description { color: #555; font-size: 14px; margin-top: 5px; line-height: 1.5; }
-        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .skill-item { padding: 10px; background: #f8f8f8; border-left: 3px solid #22C55E; }
-        .skill-category { font-weight: 600; color: #22C55E; font-size: 13px; margin-bottom: 5px; }
-        .skill-list { font-size: 13px; color: #555; }
-        .certifications-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .cert-item { padding: 8px; background: #f8f8f8; border-left: 3px solid #22C55E; font-size: 13px; }
-        .cert-name { font-weight: 600; color: #1a1a1a; }
-        .cert-org { color: #666; font-size: 12px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; line-height: 1.5; color: #1a1a1a; background: #f4f4f4; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; }
+        .header { border-bottom: 2px solid #22C55E; padding-bottom: 20px; margin-bottom: 30px; }
+        .header h1 { font-size: 32px; font-weight: 800; color: #111; margin-bottom: 8px; letter-spacing: -0.02em; }
+        .header p { color: #22C55E; font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+        .contact-info { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 13px; color: #4b5563; }
+        .section { margin-bottom: 30px; }
+        .section-title { font-size: 14px; font-weight: 800; color: #22C55E; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; margin-bottom: 16px; }
+        .experience-item { margin-bottom: 20px; }
+        .item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+        .item-title { font-size: 16px; font-weight: 700; color: #111; }
+        .item-org { font-size: 14px; font-weight: 600; color: #4b5563; }
+        .item-date { font-size: 13px; color: #6b7280; font-weight: 500; }
+        .item-desc { font-size: 13px; color: #374151; margin-top: 6px; line-height: 1.6; }
+        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .skill-cat { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 6px; text-transform: uppercase; }
+        .skill-list { font-size: 13px; color: #4b5563; }
+        .project-item { margin-bottom: 15px; }
+        .project-title { font-size: 14px; font-weight: 700; color: #111; }
+        .project-desc { font-size: 13px; color: #4b5563; margin-top: 2px; }
+        @media print {
+            body { background: none; padding: 0; }
+            .container { box-shadow: none; max-width: 100%; padding: 0; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>Veronque Andrie</h1>
-            <p>Junior Developer | Software Engineer | Mechatronics & Robotics Enthusiast</p>
+            <p>Software Engineer | Mechatronics & Robotics Enthusiast</p>
             <div class="contact-info">
-                <span>📧 Email: veronqueandrie@email.com</span>
-                <span>📱 Phone: +63 (XXX) XXX-XXXX</span>
-                <span>📍 Location: Philippines</span>
-                <span>💼 <a href="#">GitHub</a> | <a href="#">LinkedIn</a></span>
+                <span>📧 veronqueandrie@email.com</span>
+                <span>📍 Philippines</span>
+                <span>🌐 GitHub: bukosalad123</span>
+                <span>💼 LinkedIn: veronqueandrei</span>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">PROFESSIONAL SUMMARY</div>
-            <p class="entry-description">Passionate and driven junior developer specializing in web development, mobile applications, and modern software architecture. Active member of Junior Mechatronics and Robotics Society of the Philippines (JMRSP). AWS Educate Member and GitHub Student Developer with strong foundation in full-stack development and emerging technologies.</p>
-        </div>
+            <div class="section-title">Professional Experience (2025)</div>
+            
+            <div class="experience-item">
+                <div class="item-header">
+                    <span class="item-title">Project Leader</span>
+                    <span class="item-date">2025</span>
+                </div>
+                <div class="item-org">Progressive Responsive Website (Vue.js Application)</div>
+                <div class="item-desc">Managed project repositories and version control using GitHub. Supervised collaboration, task assignments, and ensured smooth project progression from planning to deployment.</div>
+            </div>
 
-        <div class="section">
-            <div class="section-title">EDUCATION</div>
-            <div class="entry">
-                <div class="entry-header">
-                    <div>
-                        <div class="entry-title">Bachelor of Science in [Your Program]</div>
-                        <div class="entry-subtitle">[Your University Name]</div>
-                    </div>
-                    <div class="entry-date">2024 - Present</div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <span class="item-title">Programmer (Capstone Thesis)</span>
+                    <span class="item-date">2025–2026</span>
                 </div>
+                <div class="item-org">IoT-Enabled Smart Agriculture and Real-Time Monitoring</div>
+                <div class="item-desc">Contributed to design and implementation of IoT-based systems for environmental monitoring. Developed and maintained application modules ensuring reliability, scalability, and performance.</div>
             </div>
-            <div class="entry">
-                <div class="entry-header">
-                    <div>
-                        <div class="entry-title">JMRSP Student Chapter - PnC Member</div>
-                        <div class="entry-subtitle">Junior Mechatronics and Robotics Society of the Philippines</div>
-                    </div>
-                    <div class="entry-date">A.Y. 2025-2026</div>
-                </div>
-            </div>
-        </div>
 
-        <div class="section">
-            <div class="section-title">EXPERIENCE</div>
-            <div class="entry">
-                <div class="entry-header">
-                    <div>
-                        <div class="entry-title">AWS Educate Member</div>
-                        <div class="entry-subtitle">Amazon Web Services</div>
-                    </div>
-                    <div class="entry-date">2024 - Present</div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <span class="item-title">Web Designer</span>
+                    <span class="item-date">Mid 2025</span>
                 </div>
-                <div class="entry-description">• Access to AWS cloud services and educational resources • Hands-on experience with cloud infrastructure</div>
+                <div class="item-org">Simate Web Application (Filipino Web Development Peers)</div>
+                <div class="item-desc">Designed responsive, user-focused websites and collaborated with Filipino professionals on the Simate Web Application project.</div>
             </div>
-            <div class="entry">
-                <div class="entry-header">
-                    <div>
-                        <div class="entry-title">GitHub Student Developer</div>
-                        <div class="entry-subtitle">GitHub Education</div>
-                    </div>
-                    <div class="entry-date">2024 - Present</div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <span class="item-title">Project Leader</span>
+                    <span class="item-date">December 8, 2025</span>
                 </div>
-                <div class="entry-description">• Developer pack benefits and premium tools • Contributing to open-source projects</div>
+                <div class="item-org">Unicast Event Planning Management System</div>
+                <div class="item-desc">Led development and successful presentation with features for intelligent scheduling, smart recommendations, and automated event optimization.</div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">TECHNICAL SKILLS</div>
+            <div class="section-title">Technical Skills</div>
             <div class="skills-grid">
-                <div class="skill-item">
-                    <div class="skill-category">FRONTEND</div>
-                    <div class="skill-list">React, TypeScript, Tailwind CSS, HTML5, CSS3, JavaScript</div>
+                <div>
+                    <div class="skill-cat">Programming Languages</div>
+                    <div class="skill-list">Dart, HTML5, C++, Python, Java, JavaScript, TypeScript</div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-category">BACKEND</div>
-                    <div class="skill-list">Node.js, Express, PostgreSQL, REST APIs, Full-Stack</div>
+                <div>
+                    <div class="skill-cat">Databases & Tools</div>
+                    <div class="skill-list">PostgreSQL, MongoDB, Figma, Git, GitHub, GitLab</div>
                 </div>
-                <div class="skill-item">
-                    <div class="skill-category">TOOLS & PLATFORMS</div>
-                    <div class="skill-list">Git, GitHub, AWS, Docker, VS Code, Figma</div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-category">LANGUAGES</div>
-                    <div class="skill-list">JavaScript, TypeScript, Python, SQL</div>
+                <div>
+                    <div class="skill-cat">Featured Languages (GitHub)</div>
+                    <div class="skill-list">JavaScript (8), Node.js (7), TypeScript (6), React (5), Python (4)</div>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">CERTIFICATIONS</div>
-            <div class="certifications-list">
-                <div class="cert-item">
-                    <div class="cert-name">Google Cloud Associate Cloud Engineer</div>
-                    <div class="cert-org">Google Cloud</div>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-name">AWS Certified Cloud Practitioner</div>
-                    <div class="cert-org">Amazon Web Services</div>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-name">Microsoft Azure Fundamentals</div>
-                    <div class="cert-org">Microsoft</div>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-name">Cisco CCNA Routing & Switching</div>
-                    <div class="cert-org">Cisco</div>
-                </div>
-            </div>
+            <div class="section-title">Training & Certifications</div>
+            <div class="item-desc">• Microsoft Trainee - Cloud computing & productivity tools</div>
+            <div class="item-desc">• AWS Skill Builder Trainee - Cloud architecture & services</div>
+            <div class="item-desc">• AWS Educate Member - EC2, S3, IAM, serverless architecture</div>
+            <div class="item-desc">• GitHub Student Developer Pack - Real-world deployment experience</div>
+            <div class="item-desc">• JMRSP – PnC Student Chapter Member (A.Y. 2025–2026)</div>
         </div>
 
         <div class="section">
-            <div class="section-title">PROJECTS</div>
-            <div class="entry">
-                <div class="entry-title">Professional Portfolio Website</div>
-                <div class="entry-description">A futuristic cybersecurity-themed portfolio showcasing technical skills, projects, and achievements with animated components and responsive design.</div>
+            <div class="section-title">Featured Projects</div>
+            <div class="project-item">
+                <div class="project-title">Webtracker</div>
+                <div class="project-desc">Analytics application using Python, PostgreSQL, and HTML5.</div>
             </div>
-            <div class="entry">
-                <div class="entry-title">Full-Stack Web Applications</div>
-                <div class="entry-description">Developed multiple web applications using modern tech stack including React, Node.js, and PostgreSQL with focus on user experience and performance.</div>
+            <div class="project-item">
+                <div class="project-title">Buddydash</div>
+                <div class="project-desc">Educational platform built with Dart, Java, and MongoDB.</div>
             </div>
-        </div>
-
-        <div class="section" style="margin-bottom: 0; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #999;">
-            <p>Last updated: December 2025 | For more details, visit: [Your Portfolio URL]</p>
+            <div class="project-item">
+                <div class="project-title">Library Management System</div>
+                <div class="project-desc">Python-based solution for inventory and member records.</div>
+            </div>
+            <div class="project-item">
+                <div class="project-title">AI Facial Recognition</div>
+                <div class="project-desc">Secure identification system using Python, C++, and MongoDB.</div>
+            </div>
         </div>
     </div>
 </body>
-</html>
-    `;
+</html>`;
 
     // Create blob and download
     const blob = new Blob([cvContent], { type: 'text/html' });
