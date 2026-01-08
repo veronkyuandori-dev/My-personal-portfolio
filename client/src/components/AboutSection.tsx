@@ -50,15 +50,19 @@ export default function AboutSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <AnimationWrapper type="fade" direction="up">
-            <div className="relative">
-              <div className="aspect-square rounded-3xl overflow-hidden border-4 border-primary/20 shadow-2xl shadow-primary/10">
+            <div className="relative max-w-md mx-auto">
+              <div className="aspect-square rounded-[2rem] overflow-hidden border-8 border-primary/20 shadow-2xl shadow-primary/20 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
                 <img
                   src={profileImage}
                   alt="Professional"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover scale-110 hover:scale-100 transition-transform duration-700"
                 />
               </div>
-              <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-chart-2/20 rounded-3xl -z-10 blur-2xl" />
+              <div className="absolute -inset-6 bg-gradient-to-tr from-primary/30 to-chart-2/30 rounded-[3rem] -z-10 blur-3xl opacity-50 animate-pulse" />
+              <div className="absolute -bottom-6 -right-6 bg-card border-4 border-primary/30 p-4 rounded-2xl shadow-xl hidden md:block">
+                <p className="text-primary font-extrabold text-2xl">JMRSP</p>
+                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Member 2025</p>
+              </div>
             </div>
           </AnimationWrapper>
 
@@ -72,15 +76,15 @@ export default function AboutSection() {
               <div className="space-y-4">
                 {experiences.map((exp, index) => (
                   <AnimationWrapper key={index} type="slide" direction="up" delay={index * 100} duration={500}>
-                    <Card className="p-4 border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate transition-all">
-                      <div className="flex items-start gap-3">
-                        <div className="text-xs font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full whitespace-nowrap">
+                    <Card className="p-4 border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all group overflow-visible">
+                      <div className="flex items-start gap-4">
+                        <div className="text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-full whitespace-nowrap border border-primary/20 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                           {exp.year}
                         </div>
                         <div className="flex-1">
-                          <p className="font-semibold text-primary text-sm">{exp.role}</p>
-                          <p className="font-heading font-bold text-foreground">{exp.title}</p>
-                          <p className="text-sm text-muted-foreground mt-1">{exp.description}</p>
+                          <p className="font-bold text-primary text-sm tracking-tight">{exp.role}</p>
+                          <p className="font-heading font-extrabold text-foreground text-lg mb-1">{exp.title}</p>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
                         </div>
                       </div>
                     </Card>
@@ -95,11 +99,12 @@ export default function AboutSection() {
                 <Award className="w-6 h-6 text-primary" />
                 Training & Certifications
               </h3>
-              <div className="grid grid-cols-1 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {certifications.map((cert, index) => (
                   <AnimationWrapper key={index} type="slide" direction="up" delay={index * 100} duration={500}>
-                    <Card className="p-3 border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate transition-all">
-                      <p className="text-sm font-medium text-foreground">{cert}</p>
+                    <Card className="p-4 border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all flex items-center gap-3 overflow-visible">
+                      <div className="h-2 w-2 rounded-full bg-primary shrink-0" />
+                      <p className="text-sm font-semibold text-foreground leading-tight">{cert}</p>
                     </Card>
                   </AnimationWrapper>
                 ))}

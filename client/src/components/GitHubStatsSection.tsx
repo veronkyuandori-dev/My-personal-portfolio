@@ -91,89 +91,88 @@ export default function GitHubStatsSection() {
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <div className="animate-spin">
+            <div className="animate-spin p-4 rounded-full bg-primary/10 border border-primary/20 shadow-lg shadow-primary/20">
               <Github className="w-12 h-12 text-primary" />
             </div>
           </div>
         ) : error ? (
-          <div className="text-center py-20 text-destructive">
-            <p>Unable to load GitHub stats. Please try again later.</p>
+          <div className="text-center py-20 text-destructive bg-destructive/5 rounded-2xl border border-destructive/20 max-w-lg mx-auto">
+            <p className="font-bold">Unable to load GitHub stats. Please try again later.</p>
           </div>
         ) : userData ? (
           <>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
               {/* Main Profile Card */}
               <AnimationWrapper type="slide" direction="up" delay={200} duration={700}>
-                <Card className="lg:col-span-1 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
+                <Card className="lg:col-span-1 border border-primary/20 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all duration-500 overflow-visible group">
                   <CardHeader>
-                    <div className="flex flex-col items-center gap-4">
-                      <img
-                        src={userData.avatar_url}
-                        alt={userData.name}
-                        className="w-24 h-24 rounded-full border-2 border-primary/50"
-                      />
+                    <div className="flex flex-col items-center gap-6">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-110 animate-pulse" />
+                        <img
+                          src={userData.avatar_url}
+                          alt={userData.name}
+                          className="w-32 h-32 rounded-full border-4 border-primary/40 shadow-xl group-hover:scale-105 transition-transform duration-500 relative z-10"
+                        />
+                      </div>
                       <div className="text-center">
-                        <CardTitle className="text-xl font-heading">{userData.name || 'Developer'}</CardTitle>
-                        <p className="text-sm text-muted-foreground mt-1">@{GITHUB_USERNAME}</p>
-                        {userData.bio && <p className="text-xs text-foreground/70 mt-2">{userData.bio}</p>}
+                        <CardTitle className="text-2xl font-heading font-extrabold text-foreground tracking-tight">{userData.name || 'Developer'}</CardTitle>
+                        <p className="text-sm font-bold text-primary mt-1 tracking-wider uppercase opacity-80">@{GITHUB_USERNAME}</p>
+                        {userData.bio && <p className="text-sm text-muted-foreground mt-4 leading-relaxed font-medium">{userData.bio}</p>}
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="pt-2">
                     <Button
-                      className="w-full gap-2 rounded-full"
+                      className="w-full gap-3 rounded-full font-extrabold hover-elevate active-elevate-2 shadow-lg shadow-primary/20 py-6"
                       onClick={() => window.open(userData.html_url, '_blank')}
                       data-testid="button-visit-github"
                     >
-                      <Github className="w-4 h-4" />
-                      Visit GitHub
+                      <Github className="w-5 h-5" />
+                      Visit GitHub Profile
                     </Button>
                   </CardContent>
                 </Card>
               </AnimationWrapper>
 
               {/* Stats Grid */}
-              <AnimationWrapper type="slide" direction="up" delay={400} duration={700}>
-                <div className="lg:col-span-2 grid grid-cols-2 gap-4">
-                  {/* Repositories */}
-                  <Card className="border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
-                    <CardContent className="pt-6">
-                      <div className="flex items-center gap-3">
-                        <div className="p-3 rounded-lg bg-primary/15">
-                          <Code className="w-6 h-6 text-primary" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-muted-foreground">Public Repos</p>
-                          <p className="text-3xl font-bold text-primary">{userData.public_repos}</p>
-                        </div>
+              <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Repositories */}
+                <AnimationWrapper type="slide" direction="up" delay={400} duration={700}>
+                  <Card className="h-full border border-primary/20 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all duration-500 overflow-visible group">
+                    <CardContent className="pt-10 pb-10 flex flex-col items-center justify-center text-center">
+                      <div className="p-5 rounded-2xl bg-primary/10 border border-primary/20 mb-6 group-hover:scale-110 transition-transform shadow-inner">
+                        <Code className="w-10 h-10 text-primary" />
                       </div>
+                      <p className="text-base font-bold text-muted-foreground uppercase tracking-widest mb-2">Public Repositories</p>
+                      <p className="text-6xl font-extrabold text-primary tracking-tighter">{userData.public_repos}</p>
                     </CardContent>
                   </Card>
+                </AnimationWrapper>
 
-                  {/* Languages */}
-                  <Card className="border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate transition-all duration-300">
-                    <CardContent className="pt-6">
-                      <div>
-                        <p className="text-sm text-muted-foreground mb-3">Top Languages</p>
-                        <div className="flex flex-wrap gap-2">
-                          {topLanguages.length > 0 ? (
-                            topLanguages.map(([lang, count]) => (
-                              <span
-                                key={lang}
-                                className="px-2.5 py-1 text-xs font-medium rounded-full bg-primary/20 text-primary border border-primary/40"
-                              >
-                                {lang} ({count})
-                              </span>
-                            ))
-                          ) : (
-                            <span className="text-xs text-muted-foreground">No language data</span>
-                          )}
-                        </div>
+                {/* Languages */}
+                <AnimationWrapper type="slide" direction="up" delay={600} duration={700}>
+                  <Card className="h-full border border-primary/20 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/40 bg-background/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all duration-500 overflow-visible group">
+                    <CardContent className="pt-8 pb-8">
+                      <p className="text-base font-bold text-muted-foreground uppercase tracking-widest mb-6 text-center">Top Technologies</p>
+                      <div className="flex flex-wrap justify-center gap-3">
+                        {topLanguages.length > 0 ? (
+                          topLanguages.map(([lang, count]) => (
+                            <div
+                              key={lang}
+                              className="px-4 py-2 text-sm font-extrabold rounded-xl bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all cursor-default"
+                            >
+                              {lang} <span className="text-primary/60 ml-1">[{count}]</span>
+                            </div>
+                          ))
+                        ) : (
+                          <span className="text-sm text-muted-foreground">No technology data available</span>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
-                </div>
-              </AnimationWrapper>
+                </AnimationWrapper>
+              </div>
             </div>
           </>
         ) : null}

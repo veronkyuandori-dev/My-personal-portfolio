@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ThemeToggle from './ThemeToggle';
 
@@ -48,71 +48,92 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/60 backdrop-blur-xl border-b border-primary/40 shadow-lg shadow-primary/10' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'py-3 bg-background/80 backdrop-blur-xl border-b border-primary/10 shadow-lg shadow-primary/5' 
+          : 'py-6 bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="flex items-center justify-between h-20">
-          <button
-            onClick={() => scrollToSection('#home')}
-            className="text-xl md:text-2xl font-heading font-bold bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent hover-elevate active-elevate-2 px-2 py-1 rounded-md"
-            data-testid="link-logo"
-          >
-            Portfolio
-          </button>
-
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Button
-                key={item.href}
-                variant="ghost"
-                onClick={() => scrollToSection(item.href)}
-                className={`hover-elevate active-elevate-2 ${
-                  activeSection === item.href.substring(1) ? 'text-primary' : ''
-                }`}
-                data-testid={`link-${item.label.toLowerCase()}`}
-              >
-                {item.label}
-              </Button>
-            ))}
-            <ThemeToggle />
+      <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
+        <div 
+          className="flex items-center gap-3 cursor-pointer group"
+          onClick={() => scrollToSection('#home')}
+        >
+          <div className="p-2 rounded-xl bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-all duration-300">
+            <Shield className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
           </div>
+          <span className="font-heading font-extrabold text-xl tracking-tighter bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">
+            VERONQUE
+          </span>
+        </div>
 
-          <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
+        {/* Desktop Nav */}
+        <div className="hidden lg:flex items-center gap-1 bg-muted/20 p-1.5 rounded-full border border-border/40 backdrop-blur-md">
+          {navItems.map((item) => (
             <Button
+              key={item.href}
               variant="ghost"
-              size="icon"
-              className="hover-elevate active-elevate-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              data-testid="button-menu-toggle"
+              size="sm"
+              onClick={() => scrollToSection(item.href)}
+              className={`rounded-full px-5 font-bold transition-all duration-300 ${
+                activeSection === item.href.substring(1)
+                  ? 'bg-primary text-primary-foreground shadow-md shadow-primary/20 scale-105'
+                  : 'text-foreground/70 hover:text-primary hover:bg-primary/10'
+              }`}
             >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {item.label}
             </Button>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:block">
+            <ThemeToggle />
           </div>
+          
+          <Button
+            variant="ghost"
+            size="icon"
+            className="lg:hidden rounded-full hover:bg-primary/10"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
+
+          <Button 
+            className="hidden sm:flex rounded-full px-6 font-extrabold hover-elevate active-elevate-2 shadow-lg shadow-primary/20 border border-primary/20"
+            onClick={() => scrollToSection('#contact')}
+          >
+            Hire Me
+          </Button>
         </div>
       </div>
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border">
-          <div className="px-4 py-4 space-y-2">
-            {navItems.map((item) => (
-              <Button
-                key={item.href}
-                variant="ghost"
-                onClick={() => scrollToSection(item.href)}
-                className={`w-full justify-start hover-elevate active-elevate-2 ${
-                  activeSection === item.href.substring(1) ? 'text-primary' : ''
-                }`}
-                data-testid={`link-mobile-${item.label.toLowerCase()}`}
-              >
-                {item.label}
-              </Button>
-            ))}
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-2xl border-b border-primary/10 transition-all duration-500 overflow-hidden ${
+          isMobileMenuOpen ? 'max-h-screen opacity-100 py-6' : 'max-h-0 opacity-0 py-0'
+        }`}
+      >
+        <div className="flex flex-col gap-2 px-4">
+          {navItems.map((item) => (
+            <Button
+              key={item.href}
+              variant="ghost"
+              className={`w-full justify-start rounded-xl text-lg font-bold ${
+                activeSection === item.href.substring(1) ? 'text-primary bg-primary/10' : ''
+              }`}
+              onClick={() => scrollToSection(item.href)}
+            >
+              {item.label}
+            </Button>
+          ))}
+          <div className="flex items-center justify-between pt-4 mt-4 border-t border-border/40 px-2">
+            <span className="font-bold text-muted-foreground">Appearance</span>
+            <ThemeToggle />
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

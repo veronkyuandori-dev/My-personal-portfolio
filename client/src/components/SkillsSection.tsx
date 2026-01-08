@@ -43,7 +43,7 @@ export default function SkillsSection() {
           Technical expertise and proficiencies
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <AnimationWrapper 
               key={categoryIndex}
@@ -52,28 +52,28 @@ export default function SkillsSection() {
               duration={600}
             >
               <Card
-                className="hover-elevate transition-all duration-300 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/30 bg-background/50 backdrop-blur-sm"
+                className="hover-elevate active-elevate-2 transition-all duration-300 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/30 bg-background/50 backdrop-blur-sm overflow-visible"
                 data-testid={`skill-category-${category.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
               <CardHeader className="pb-4">
-                <CardTitle className="flex items-center gap-3 text-lg md:text-xl">
-                  <div className="p-2.5 rounded-md bg-primary/15 hover:bg-primary/20 transition-colors">
-                    <category.icon className="h-5 w-5 text-primary" />
+                <CardTitle className="flex items-center gap-3 text-xl md:text-2xl font-heading font-bold">
+                  <div className="p-3 rounded-xl bg-primary/15 border border-primary/20 shadow-inner">
+                    <category.icon className="h-6 w-6 text-primary" />
                   </div>
                   {category.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="grid grid-cols-1 gap-3 px-6 pb-8">
                 {category.skills.map((skill, skillIndex) => (
                   <div
                     key={skillIndex}
-                    className="flex items-center gap-4 p-4 rounded-lg bg-muted/40 hover:bg-muted/60 transition-all duration-250 hover:scale-105 cursor-default"
+                    className="flex items-center gap-4 p-4 rounded-xl bg-muted/30 border border-border/40 hover:bg-muted/60 hover:border-primary/30 hover:scale-[1.02] transition-all duration-300 cursor-default group"
                     data-testid={`skill-${skill.name.toLowerCase().replace(/\s+/g, '-')}`}
                   >
-                    <div className="flex-shrink-0">
-                      <skill.Icon className="h-7 w-7 transition-transform duration-250" style={{ color: skill.color }} />
+                    <div className="flex-shrink-0 p-2 rounded-lg bg-background/50 shadow-sm border border-border/20 group-hover:border-primary/40 transition-colors">
+                      <skill.Icon className="h-8 w-8 transition-transform duration-300 group-hover:scale-110" style={{ color: skill.color }} />
                     </div>
-                    <span className="text-sm md:text-base font-medium flex-1">{skill.name}</span>
+                    <span className="text-base font-bold flex-1 text-foreground/90 group-hover:text-primary transition-colors">{skill.name}</span>
                   </div>
                 ))}
               </CardContent>
