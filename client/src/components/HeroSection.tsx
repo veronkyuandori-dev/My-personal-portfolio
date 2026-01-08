@@ -1,6 +1,12 @@
-import { ArrowDown, Mail, Github, Linkedin, Download } from 'lucide-react';
+import { ArrowDown, Mail, Github, Linkedin, Download, Cpu, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import AnimationWrapper from '@/components/AnimationWrapper';
 import profileImage from '@assets/582753724_1129297252616841_7787531120170901253_n_1763775009180.jpg';
 
@@ -12,152 +18,142 @@ export default function HeroSection() {
     }
   };
 
-  const downloadCV = () => {
-    // Create a professional resume/CV in HTML format
+  const getCVStyles = () => `
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; line-height: 1.5; color: #1a1a1a; background: #0a0a0a; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 50px; border-radius: 12px; position: relative; overflow: hidden; }
+        .cyber-border { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #22C55E, #3B82F6); }
+        .header { border-bottom: 2px solid #e5e7eb; padding-bottom: 25px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: start; }
+        .header-info h1 { font-size: 36px; font-weight: 900; color: #111; margin-bottom: 4px; letter-spacing: -0.03em; text-transform: uppercase; }
+        .header-info p { color: #22C55E; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .contact-info { margin-top: 15px; font-size: 13px; color: #4b5563; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .section { margin-bottom: 35px; }
+        .section-title { font-size: 14px; font-weight: 900; color: #22C55E; text-transform: uppercase; letter-spacing: 0.15em; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: #e5e7eb; }
+        .experience-item { margin-bottom: 25px; position: relative; padding-left: 20px; }
+        .experience-item::before { content: ""; position: absolute; left: 0; top: 5px; bottom: 5px; width: 2px; background: #22C55E; opacity: 0.3; }
+        .item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+        .item-title { font-size: 17px; font-weight: 800; color: #111; }
+        .item-org { font-size: 14px; font-weight: 700; color: #22C55E; }
+        .item-date { font-size: 12px; color: #6b7280; font-weight: 600; background: #f3f4f6; padding: 2px 8px; rounded: 4px; }
+        .item-desc { font-size: 13.5px; color: #374151; margin-top: 8px; line-height: 1.6; font-weight: 500; }
+        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .skill-cat { font-size: 12px; font-weight: 900; color: #111; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .skill-list { font-size: 13px; color: #4b5563; line-height: 1.8; }
+        .skill-tag { display: inline-block; background: #f3f4f6; padding: 2px 10px; margin: 0 4px 4px 0; border-radius: 4px; border: 1px solid #e5e7eb; }
+        @media print {
+            body { background: none; padding: 0; }
+            .container { box-shadow: none; border-radius: 0; padding: 0; }
+        }
+    </style>
+  `;
+
+  const downloadCV = (type: 'software' | 'hardware') => {
+    const isHardware = type === 'hardware';
     const cvContent = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veronque Andrie - CV</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', -apple-system, sans-serif; line-height: 1.5; color: #1a1a1a; background: #f4f4f4; padding: 40px 20px; }
-        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; }
-        .header { border-bottom: 2px solid #22C55E; padding-bottom: 20px; margin-bottom: 30px; }
-        .header h1 { font-size: 32px; font-weight: 800; color: #111; margin-bottom: 8px; letter-spacing: -0.02em; }
-        .header p { color: #22C55E; font-size: 16px; font-weight: 600; margin-bottom: 12px; }
-        .contact-info { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 13px; color: #4b5563; }
-        .section { margin-bottom: 30px; }
-        .section-title { font-size: 14px; font-weight: 800; color: #22C55E; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; margin-bottom: 16px; }
-        .experience-item { margin-bottom: 20px; }
-        .item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
-        .item-title { font-size: 16px; font-weight: 700; color: #111; }
-        .item-org { font-size: 14px; font-weight: 600; color: #4b5563; }
-        .item-date { font-size: 13px; color: #6b7280; font-weight: 500; }
-        .item-desc { font-size: 13px; color: #374151; margin-top: 6px; line-height: 1.6; }
-        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .skill-cat { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 6px; text-transform: uppercase; }
-        .skill-list { font-size: 13px; color: #4b5563; }
-        .project-item { margin-bottom: 15px; }
-        .project-title { font-size: 14px; font-weight: 700; color: #111; }
-        .project-desc { font-size: 13px; color: #4b5563; margin-top: 2px; }
-        @media print {
-            body { background: none; padding: 0; }
-            .container { box-shadow: none; max-width: 100%; padding: 0; }
-        }
-    </style>
+    <title>Veronque Andrie - ${isHardware ? 'Hardware & Robotics' : 'Software Engineering'} CV</title>
+    ${getCVStyles()}
 </head>
 <body>
     <div class="container">
+        <div class="cyber-border"></div>
         <div class="header">
-            <h1>Veronque Andrie</h1>
-            <p>Software Engineer | Mechatronics & Robotics Enthusiast</p>
-            <div class="contact-info">
-                <span>📧 veronqueandrie@email.com</span>
-                <span>📍 Philippines</span>
-                <span>🌐 GitHub: bukosalad123</span>
-                <span>💼 LinkedIn: veronqueandrei</span>
+            <div class="header-info">
+                <h1>Veronque Andrie</h1>
+                <p>${isHardware ? 'Mechatronics & Robotics Engineer' : 'Full-Stack Software Engineer'}</p>
+                <div class="contact-info">
+                    <span>📧 veronqueandrie@email.com</span>
+                    <span>📍 Philippines</span>
+                    <span>🌐 GitHub: bukosalad123</span>
+                    <span>💼 LinkedIn: veronqueandrei</span>
+                </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">Professional Experience (2025)</div>
+            <div class="section-title">${isHardware ? 'Core Engineering Experience' : 'Professional Software Experience'}</div>
             
-            <div class="experience-item">
-                <div class="item-header">
-                    <span class="item-title">Project Leader</span>
-                    <span class="item-date">2025</span>
-                </div>
-                <div class="item-org">Progressive Responsive Website (Vue.js Application)</div>
-                <div class="item-desc">Managed project repositories and version control using GitHub. Supervised collaboration, task assignments, and ensured smooth project progression from planning to deployment.</div>
-            </div>
-
+            ${isHardware ? `
             <div class="experience-item">
                 <div class="item-header">
                     <span class="item-title">Programmer (Capstone Thesis)</span>
                     <span class="item-date">2025–2026</span>
                 </div>
-                <div class="item-org">IoT-Enabled Smart Agriculture and Real-Time Monitoring</div>
-                <div class="item-desc">Contributed to design and implementation of IoT-based systems for environmental monitoring. Developed and maintained application modules ensuring reliability, scalability, and performance.</div>
+                <div class="item-org">IoT-Enabled Smart Agriculture & Monitoring</div>
+                <div class="item-desc">Designing and implementing embedded systems for real-time environmental monitoring. Working with sensors, microcontrollers, and wireless communication protocols for precision agriculture.</div>
             </div>
-
             <div class="experience-item">
                 <div class="item-header">
-                    <span class="item-title">Web Designer</span>
-                    <span class="item-date">Mid 2025</span>
+                    <span class="item-title">AI Facial Recognition Developer</span>
+                    <span class="item-date">2025</span>
                 </div>
-                <div class="item-org">Simate Web Application (Filipino Web Development Peers)</div>
-                <div class="item-desc">Designed responsive, user-focused websites and collaborated with Filipino professionals on the Simate Web Application project.</div>
+                <div class="item-org">Hardware-Software Integration Project</div>
+                <div class="item-desc">Optimizing computer vision algorithms for hardware deployment. Integrated Python/C++ logic with secure authentication modules.</div>
             </div>
-
+            ` : `
             <div class="experience-item">
                 <div class="item-header">
                     <span class="item-title">Project Leader</span>
-                    <span class="item-date">December 8, 2025</span>
+                    <span class="item-date">2025</span>
                 </div>
-                <div class="item-org">Unicast Event Planning Management System</div>
-                <div class="item-desc">Led development and successful presentation with features for intelligent scheduling, smart recommendations, and automated event optimization.</div>
+                <div class="item-org">Progressive Vue.js Application</div>
+                <div class="item-desc">Full-cycle development from architecture to deployment. Implemented responsive frontend logic and secure state management systems.</div>
             </div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <span class="item-title">Lead Developer</span>
+                    <span class="item-date">Dec 2025</span>
+                </div>
+                <div class="item-org">Unicast Event Management System</div>
+                <div class="item-desc">Built intelligent scheduling algorithms and automated optimization features using modern web technologies. Focus on high-performance API design.</div>
+            </div>
+            `}
         </div>
 
         <div class="section">
-            <div class="section-title">Technical Skills</div>
+            <div class="section-title">Technical Expertise</div>
             <div class="skills-grid">
                 <div>
-                    <div class="skill-cat">Programming Languages</div>
-                    <div class="skill-list">Dart, HTML5, C++, Python, Java, JavaScript, TypeScript</div>
+                    <div class="skill-cat">${isHardware ? 'Hardware & Control' : 'Web & Mobile'}</div>
+                    <div class="skill-list">
+                        ${isHardware ? 
+                          'C++, Python, Arduino, Raspberry Pi, Sensors, Robotics Design, Control Systems' : 
+                          'React, Vue.js, Node.js, TypeScript, Dart, Flutter, Tailwind CSS'}
+                    </div>
                 </div>
                 <div>
-                    <div class="skill-cat">Databases & Tools</div>
-                    <div class="skill-list">PostgreSQL, MongoDB, Figma, Git, GitHub, GitLab</div>
-                </div>
-                <div>
-                    <div class="skill-cat">Featured Languages (GitHub)</div>
-                    <div class="skill-list">JavaScript (8), Node.js (7), TypeScript (6), React (5), Python (4)</div>
+                    <div class="skill-cat">Infrastructure & Tools</div>
+                    <div class="skill-list">
+                        ${isHardware ? 
+                          'Figma (CAD), AWS IoT, Git, MongoDB, PostgreSQL, System Integration' : 
+                          'PostgreSQL, MongoDB, AWS, Git, CI/CD, Figma, REST APIs'}
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">Training & Certifications</div>
-            <div class="item-desc">• Microsoft Trainee - Cloud computing & productivity tools</div>
-            <div class="item-desc">• AWS Skill Builder Trainee - Cloud architecture & services</div>
-            <div class="item-desc">• AWS Educate Member - EC2, S3, IAM, serverless architecture</div>
-            <div class="item-desc">• GitHub Student Developer Pack - Real-world deployment experience</div>
-            <div class="item-desc">• JMRSP – PnC Student Chapter Member (A.Y. 2025–2026)</div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Featured Projects</div>
-            <div class="project-item">
-                <div class="project-title">Webtracker</div>
-                <div class="project-desc">Analytics application using Python, PostgreSQL, and HTML5.</div>
+            <div class="section-title">Professional Affiliations</div>
+            <div class="item-desc" style="font-weight: 700; color: #111;">
+                • Member, Junior Mechatronics and Robotics Society of the Philippines (JMRSP) — A.Y. 2025–2026
             </div>
-            <div class="project-item">
-                <div class="project-title">Buddydash</div>
-                <div class="project-desc">Educational platform built with Dart, Java, and MongoDB.</div>
-            </div>
-            <div class="project-item">
-                <div class="project-title">Library Management System</div>
-                <div class="project-desc">Python-based solution for inventory and member records.</div>
-            </div>
-            <div class="project-item">
-                <div class="project-title">AI Facial Recognition</div>
-                <div class="project-desc">Secure identification system using Python, C++, and MongoDB.</div>
-            </div>
+            <div class="item-desc">• Microsoft Trainee (Cloud) • AWS Educate Member • GitHub Student Developer</div>
         </div>
     </div>
 </body>
 </html>`;
 
-    // Create blob and download
     const blob = new Blob([cvContent], { type: 'text/html' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'Veronque-Andrie-CV.html';
+    a.download = `Veronque-Andrie-${isHardware ? 'Hardware' : 'Software'}-CV.html`;
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);
@@ -228,16 +224,36 @@ export default function HeroSection() {
           >
             Contact Me
           </Button>
-          <Button
-            size="lg"
-            variant="secondary"
-            onClick={downloadCV}
-            className="rounded-full hover-elevate active-elevate-2 gap-2 border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary"
-            data-testid="button-download-cv"
-          >
-            <Download className="h-5 w-5" />
-            Download CV
-          </Button>
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="rounded-full hover-elevate active-elevate-2 gap-2 border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary"
+                data-testid="button-download-cv-dropdown"
+              >
+                <Download className="h-5 w-5" />
+                Download CV
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 bg-background/95 backdrop-blur-md border-primary/20 rounded-xl">
+              <DropdownMenuItem 
+                onClick={() => downloadCV('software')}
+                className="gap-2 cursor-pointer focus:bg-primary/10 focus:text-primary py-3"
+              >
+                <Code className="h-4 w-4" />
+                <span>Software Focused</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem 
+                onClick={() => downloadCV('hardware')}
+                className="gap-2 cursor-pointer focus:bg-primary/10 focus:text-primary py-3"
+              >
+                <Cpu className="h-4 w-4" />
+                <span>Hardware & Robotics</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
         </AnimationWrapper>
 
