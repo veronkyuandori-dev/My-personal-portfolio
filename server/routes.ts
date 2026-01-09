@@ -17,14 +17,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
           await resend.emails.send({
             from: "Portfolio Contact <onboarding@resend.dev>",
             to: "veronqueandrei@gmail.com",
-            subject: `New Portfolio Message: ${data.subject}`,
+            subject: `[${data.category}] New Project Inquiry: ${data.subject}`,
             html: `
-              <h3>New Message from Portfolio</h3>
+              <h3>New Project Inquiry from Portfolio</h3>
               <p><strong>Name:</strong> ${data.name}</p>
               <p><strong>Email:</strong> ${data.email}</p>
+              <p><strong>Category:</strong> ${data.category}</p>
               <p><strong>Subject:</strong> ${data.subject}</p>
+              <p><strong>File Reference:</strong> ${data.fileUrl || 'No file link provided'}</p>
               <p><strong>Message:</strong></p>
-              <p>${data.message}</p>
+              <p style="white-space: pre-wrap;">${data.message}</p>
             `,
           });
         } catch (emailError) {

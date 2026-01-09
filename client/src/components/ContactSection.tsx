@@ -6,11 +6,55 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send } from 'lucide-react';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Upload, Link as LinkIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
 import AnimationWrapper from './AnimationWrapper';
+
+const CATEGORIES = [
+  {
+    label: "Software Development",
+    items: ["Web Application", "Mobile App (Android / iOS)", "Desktop Application", "Custom Software", "API Development"]
+  },
+  {
+    label: "Web & Digital",
+    items: ["Website Development", "E-commerce Website", "Landing Page", "Website Redesign", "CMS (WordPress, Webflow, etc.)"]
+  },
+  {
+    label: "Mobile",
+    items: ["Android App", "iOS App", "Cross-platform App (Flutter / React Native)"]
+  },
+  {
+    label: "UI / UX & Design",
+    items: ["UI/UX Design", "Wireframing / Prototyping", "Graphic Design", "Branding"]
+  },
+  {
+    label: "Cloud & Infrastructure",
+    items: ["Cloud Setup (AWS, Azure, GCP)", "DevOps / CI-CD", "Server Setup & Maintenance", "System Architecture"]
+  },
+  {
+    label: "Cybersecurity",
+    items: ["Security Audit", "Penetration Testing", "Data Protection", "Compliance (ISO, GDPR, etc.)"]
+  },
+  {
+    label: "Data & AI",
+    items: ["Data Analytics", "Business Intelligence", "Machine Learning / AI", "Automation / Chatbots"]
+  },
+  {
+    label: "IT Support & Consulting",
+    items: ["IT Consultation", "System Integration", "Maintenance & Support", "ERP / CRM Implementation"]
+  },
+  {
+    label: "Testing & QA",
+    items: ["Software Testing", "QA Automation", "Bug Fixing"]
+  },
+  {
+    label: "Academic / Training",
+    items: ["Capstone / Thesis Project", "School System", "Training Platform / LMS"]
+  }
+];
 
 export default function ContactSection() {
   const { toast } = useToast();
@@ -21,7 +65,9 @@ export default function ContactSection() {
       name: '',
       email: '',
       subject: '',
+      category: '',
       message: '',
+      fileUrl: '',
     },
   });
 
@@ -129,58 +175,114 @@ export default function ContactSection() {
               <CardContent className="p-6 md:p-8">
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit((data) => mutation.mutate(data))} className="space-y-6">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="font-bold">Name</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Your name"
-                              className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
-                              {...field}
-                              data-testid="input-name"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="font-bold">Name</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Your name"
+                                className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
+                                {...field}
+                                data-testid="input-name"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="font-bold">Email</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="email"
+                                placeholder="your@email.com"
+                                className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
+                                {...field}
+                                data-testid="input-email"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="category"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="font-bold">Category</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger className="rounded-xl border-primary/20 bg-muted/20 focus:ring-primary">
+                                  <SelectValue placeholder="Select a category" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent className="max-h-[300px]">
+                                {CATEGORIES.map((group) => (
+                                  <SelectGroup key={group.label}>
+                                    <SelectLabel className="font-bold text-primary px-2 py-1.5">{group.label}</SelectLabel>
+                                    {group.items.map((item) => (
+                                      <SelectItem key={item} value={item}>
+                                        {item}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectGroup>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name="subject"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="font-bold">Subject</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Project inquiry"
+                                className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
+                                {...field}
+                                data-testid="input-subject"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
 
                     <FormField
                       control={form.control}
-                      name="email"
+                      name="fileUrl"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="font-bold">Email</FormLabel>
+                          <FormLabel className="font-bold">File Link / Reference</FormLabel>
                           <FormControl>
-                            <Input
-                              type="email"
-                              placeholder="your@email.com"
-                              className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
-                              {...field}
-                              data-testid="input-email"
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="subject"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="font-bold">Subject</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Project inquiry"
-                              className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
-                              {...field}
-                              data-testid="input-subject"
-                            />
+                            <div className="relative">
+                              <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                              <Input
+                                placeholder="Paste link to your files/photos (Google Drive, Dropbox, etc.)"
+                                className="pl-10 rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
+                                {...field}
+                                data-testid="input-file-url"
+                              />
+                            </div>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -195,8 +297,8 @@ export default function ContactSection() {
                           <FormLabel className="font-bold">Message</FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Tell me about your project..."
-                              className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary min-h-[150px]"
+                              placeholder="Tell me about your project details..."
+                              className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary min-h-[120px]"
                               {...field}
                               data-testid="input-message"
                             />

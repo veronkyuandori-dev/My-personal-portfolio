@@ -14,7 +14,9 @@ export const messages = pgTable("messages", {
   name: text("name").notNull(),
   email: text("email").notNull(),
   subject: text("subject").notNull(),
+  category: text("category").notNull(),
   message: text("message").notNull(),
+  fileUrl: text("file_url"),
 });
 
 export const insertUserSchema = createInsertSchema(users).pick({
