@@ -7,12 +7,12 @@ const experiences = [
   {
     year: '2025',
     role: 'Project Leader',
-    title: 'Progressive Responsive Website (Vue.js Application)',
+    title: 'Progressive Responsive Website (Academic Project)',
     description: 'Managed project repositories and version control using GitHub. Supervised collaboration, task assignments, and ensured smooth project progression from planning to deployment.',
   },
   {
     year: '2025–2026',
-    role: 'Programmer (Capstone Thesis)',
+    role: 'Programmer (Undergraduate Thesis)',
     title: 'IoT-Enabled Smart Agriculture and Real-Time Monitoring',
     description: 'Contributed to design and implementation of IoT-based systems for environmental monitoring. Developed and maintained application modules ensuring reliability, scalability, and performance.',
   },
