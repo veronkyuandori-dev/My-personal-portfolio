@@ -49,15 +49,14 @@ export default function HeroSection() {
     </style>
   `;
 
-  const downloadCV = (type: 'software' | 'hardware') => {
-    const isHardware = type === 'hardware';
+  const downloadCV = () => {
     const cvContent = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veronque Andrie - ${isHardware ? 'Hardware & Robotics' : 'Software Engineering'} CV</title>
+    <title>Veronque Andrie - Aspiring Engineer CV</title>
     ${getCVStyles()}
 </head>
 <body>
@@ -66,7 +65,7 @@ export default function HeroSection() {
         <div class="header">
             <div class="header-info">
                 <h1>Veronque Andrie</h1>
-                <p>${isHardware ? 'Aspiring Mechatronics & Robotics Engineer' : 'Aspiring Software Engineer'}</p>
+                <p>Aspiring Mechatronics & Software Engineer</p>
                 <div class="contact-info">
                     <span>📧 veronqueandrie@email.com</span>
                     <span>📍 Philippines</span>
@@ -77,9 +76,8 @@ export default function HeroSection() {
         </div>
 
         <div class="section">
-            <div class="section-title">${isHardware ? 'Academic & Personal Projects' : 'Software Development Projects'}</div>
+            <div class="section-title">Academic & Professional Projects</div>
             
-            ${isHardware ? `
             <div class="experience-item">
                 <div class="item-header">
                     <span class="item-title">Programmer (Undergraduate Thesis)</span>
@@ -88,15 +86,7 @@ export default function HeroSection() {
                 <div class="item-org">IoT-Enabled Smart Agriculture & Monitoring</div>
                 <div class="item-desc">Designing and implementing embedded systems for real-time environmental monitoring. Working with sensors, microcontrollers, and wireless communication protocols for precision agriculture.</div>
             </div>
-            <div class="experience-item">
-                <div class="item-header">
-                    <span class="item-title">AI Facial Recognition Developer</span>
-                    <span class="item-date">2025</span>
-                </div>
-                <div class="item-org">Academic Project</div>
-                <div class="item-desc">Optimizing computer vision algorithms for hardware deployment. Integrated Python/C++ logic with secure authentication modules.</div>
-            </div>
-            ` : `
+
             <div class="experience-item">
                 <div class="item-header">
                     <span class="item-title">Project Leader</span>
@@ -105,6 +95,7 @@ export default function HeroSection() {
                 <div class="item-org">Progressive Vue.js Application (Academic Project)</div>
                 <div class="item-desc">Full-cycle development from architecture to deployment. Implemented responsive frontend logic and secure state management systems.</div>
             </div>
+
             <div class="experience-item">
                 <div class="item-header">
                     <span class="item-title">Lead Developer</span>
@@ -113,27 +104,31 @@ export default function HeroSection() {
                 <div class="item-org">Unicast Event Management System</div>
                 <div class="item-desc">Built intelligent scheduling algorithms and automated optimization features using modern web technologies. Focus on high-performance API design.</div>
             </div>
-            `}
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <span class="item-title">AI Facial Recognition Developer</span>
+                    <span class="item-date">2025</span>
+                </div>
+                <div class="item-org">Academic Project</div>
+                <div class="item-desc">Optimizing computer vision algorithms for hardware deployment. Integrated Python/C++ logic with secure authentication modules.</div>
+            </div>
         </div>
 
         <div class="section">
             <div class="section-title">Technical Expertise</div>
             <div class="skills-grid">
                 <div>
-                    <div class="skill-cat">${isHardware ? 'Hardware & Control' : 'Web & Mobile'}</div>
-                    <div class="skill-list">
-                        ${isHardware ? 
-                          'C++, Python, Arduino, Raspberry Pi, Sensors, Robotics Design, Control Systems' : 
-                          'React, Vue.js, Node.js, TypeScript, Dart, Flutter, Tailwind CSS'}
-                    </div>
+                    <div class="skill-cat">Software & Web</div>
+                    <div class="skill-list">React, Vue.js, Node.js, TypeScript, Dart, Flutter, Tailwind CSS</div>
+                </div>
+                <div>
+                    <div class="skill-cat">Hardware & Systems</div>
+                    <div class="skill-list">C++, Python, Arduino, Raspberry Pi, Sensors, Robotics Design, Control Systems</div>
                 </div>
                 <div>
                     <div class="skill-cat">Infrastructure & Tools</div>
-                    <div class="skill-list">
-                        ${isHardware ? 
-                          'Figma (CAD), AWS IoT, Git, MongoDB, PostgreSQL, System Integration' : 
-                          'PostgreSQL, MongoDB, AWS, Git, CI/CD, Figma, REST APIs'}
-                    </div>
+                    <div class="skill-list">Figma (CAD), AWS IoT, Git, MongoDB, PostgreSQL, CI/CD, REST APIs</div>
                 </div>
             </div>
         </div>
@@ -153,7 +148,7 @@ export default function HeroSection() {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `Veronque-Andrie-${isHardware ? 'Hardware' : 'Software'}-CV.html`;
+    a.download = `Veronque-Andrie-CV.html`;
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);
@@ -225,35 +220,16 @@ export default function HeroSection() {
             Contact Me
           </Button>
           
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                size="lg"
-                variant="secondary"
-                className="rounded-full hover-elevate active-elevate-2 gap-2 border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary"
-                data-testid="button-download-cv-dropdown"
-              >
-                <Download className="h-5 w-5" />
-                Download CV
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 bg-background/95 backdrop-blur-md border-primary/20 rounded-xl">
-              <DropdownMenuItem 
-                onClick={() => downloadCV('software')}
-                className="gap-2 cursor-pointer focus:bg-primary/10 focus:text-primary py-3"
-              >
-                <Code className="h-4 w-4" />
-                <span>Software Focused</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem 
-                onClick={() => downloadCV('hardware')}
-                className="gap-2 cursor-pointer focus:bg-primary/10 focus:text-primary py-3"
-              >
-                <Cpu className="h-4 w-4" />
-                <span>Hardware & Robotics</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Button
+            size="lg"
+            variant="secondary"
+            onClick={() => downloadCV()}
+            className="rounded-full hover-elevate active-elevate-2 gap-2 border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary"
+            data-testid="button-download-cv"
+          >
+            <Download className="h-5 w-5" />
+            Download CV
+          </Button>
         </div>
         </AnimationWrapper>
 
