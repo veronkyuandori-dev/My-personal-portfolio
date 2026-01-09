@@ -66,7 +66,7 @@ export default function HeroSection() {
         <div class="header">
             <div class="header-info">
                 <h1>Veronque Andrie</h1>
-                <p>${isHardware ? 'Mechatronics & Robotics Engineer' : 'Full-Stack Software Engineer'}</p>
+                <p>${isHardware ? 'Aspiring Mechatronics & Robotics Engineer' : 'Aspiring Software Engineer'}</p>
                 <div class="contact-info">
                     <span>📧 veronqueandrie@email.com</span>
                     <span>📍 Philippines</span>
@@ -77,13 +77,13 @@ export default function HeroSection() {
         </div>
 
         <div class="section">
-            <div class="section-title">${isHardware ? 'Core Engineering Experience' : 'Professional Software Experience'}</div>
+            <div class="section-title">${isHardware ? 'Academic & Personal Projects' : 'Software Development Projects'}</div>
             
             ${isHardware ? `
             <div class="experience-item">
                 <div class="item-header">
-                    <span class="item-title">Programmer (Capstone Thesis)</span>
-                    <span class="item-date">2025–2026</span>
+                    <span class="item-title">Programmer (Undergraduate Thesis)</span>
+                    <span class="item-date">2025–2026 (In Progress)</span>
                 </div>
                 <div class="item-org">IoT-Enabled Smart Agriculture & Monitoring</div>
                 <div class="item-desc">Designing and implementing embedded systems for real-time environmental monitoring. Working with sensors, microcontrollers, and wireless communication protocols for precision agriculture.</div>
@@ -93,7 +93,7 @@ export default function HeroSection() {
                     <span class="item-title">AI Facial Recognition Developer</span>
                     <span class="item-date">2025</span>
                 </div>
-                <div class="item-org">Hardware-Software Integration Project</div>
+                <div class="item-org">Academic Project</div>
                 <div class="item-desc">Optimizing computer vision algorithms for hardware deployment. Integrated Python/C++ logic with secure authentication modules.</div>
             </div>
             ` : `
@@ -102,7 +102,7 @@ export default function HeroSection() {
                     <span class="item-title">Project Leader</span>
                     <span class="item-date">2025</span>
                 </div>
-                <div class="item-org">Progressive Vue.js Application</div>
+                <div class="item-org">Progressive Vue.js Application (Academic Project)</div>
                 <div class="item-desc">Full-cycle development from architecture to deployment. Implemented responsive frontend logic and secure state management systems.</div>
             </div>
             <div class="experience-item">
@@ -200,8 +200,8 @@ export default function HeroSection() {
 
         <AnimationWrapper type="fade" delay={600} duration={800}>
         <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-          Passionate about creating innovative solutions through code. Specializing in web development,
-          mobile applications, and modern software architecture.
+          Aspiring engineer passionate about creating innovative solutions through code. 
+          Specializing in web development, robotics, and modern software architecture.
         </p>
         </AnimationWrapper>
 
