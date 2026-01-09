@@ -1,36 +1,50 @@
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { insertMessageSchema, type InsertMessage } from '@shared/schema';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useMutation } from '@tanstack/react-query';
+import { apiRequest } from '@/lib/queryClient';
+import AnimationWrapper from './AnimationWrapper';
 
 export default function ContactSection() {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+  
+  const form = useForm<InsertMessage>({
+    resolver: zodResolver(insertMessageSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    toast({
-      title: 'Message Sent!',
-      description: 'Thank you for reaching out. I\'ll get back to you soon.',
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' });
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const mutation = useMutation({
+    mutationFn: async (data: InsertMessage) => {
+      const response = await apiRequest('POST', '/api/contact', data);
+      return await response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: 'Message Sent!',
+        description: 'Thank you for reaching out. I\'ll get back to you soon.',
+      });
+      form.reset();
+    },
+    onError: () => {
+      toast({
+        title: 'Error',
+        description: 'Failed to send message. Please try again.',
+        variant: 'destructive',
+      });
+    },
+  });
 
   const contactInfo = [
     { icon: Mail, label: 'Email', value: 'veronqueandrei@gmail.com' },
@@ -38,155 +52,178 @@ export default function ContactSection() {
     { icon: MapPin, label: 'Location', value: 'Cabuyao, Laguna, Philippines (Region 4-A CALABARZON)' },
   ];
 
-
   return (
     <section id="contact" className="relative py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4">
-          Get In Touch
-        </h2>
-        <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-          Have a project in mind? Let's work together to bring your ideas to life
-        </p>
+        <AnimationWrapper type="fade">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4 bg-gradient-to-r from-primary to-emerald-400 bg-clip-text text-transparent">
+            Get In Touch
+          </h2>
+          <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
+            Have a project in mind? Let's work together to bring your ideas to life
+          </p>
+        </AnimationWrapper>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="space-y-8">
-            <div>
-              <h3 className="text-3xl font-bold mb-4">Let's Work Together</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                I'm always interested in hearing about new projects and opportunities.
-                Whether you have a question or just want to say hi, feel free to reach out!
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <div key={index} className="flex items-start gap-4" data-testid={`contact-${info.label.toLowerCase()}`}>
-                  <div className="p-3 rounded-md bg-primary/10">
-                    <info.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium mb-1">{info.label}</p>
-                    {info.label === 'Email' ? (
-                      <a
-                        href={`mailto:${info.value}`}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {info.value}
-                      </a>
-                    ) : info.label === 'Phone' ? (
-                      <a
-                        href={`tel:${info.value.replace(/\D/g, '')}`}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {info.value}
-                      </a>
-                    ) : (
-                      <p className="text-muted-foreground">{info.value}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div>
-              <p className="font-medium mb-4">Follow Me</p>
-              <div className="flex gap-3">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="rounded-full hover-elevate active-elevate-2"
-                  data-testid="social-github"
-                >
-                  <Github className="h-5 w-5" />
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="rounded-full hover-elevate active-elevate-2"
-                  data-testid="social-linkedin"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="rounded-full hover-elevate active-elevate-2"
-                  data-testid="social-twitter"
-                >
-                  <Twitter className="h-5 w-5" />
-                </Button>
+            <AnimationWrapper type="slide" direction="right">
+              <div>
+                <h3 className="text-3xl font-bold mb-4">Let's Work Together</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  I'm always interested in hearing about new projects and opportunities.
+                  Whether you have a question or just want to say hi, feel free to reach out!
+                </p>
               </div>
-            </div>
+
+              <div className="space-y-6 mt-8">
+                {contactInfo.map((info, index) => (
+                  <div key={index} className="flex items-start gap-4 group" data-testid={`contact-${info.label.toLowerCase()}`}>
+                    <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-all">
+                      <info.icon className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-sm text-primary uppercase tracking-widest mb-1">{info.label}</p>
+                      {info.label === 'Email' ? (
+                        <a
+                          href={`mailto:${info.value}`}
+                          className="text-lg font-medium hover:text-primary transition-colors"
+                        >
+                          {info.value}
+                        </a>
+                      ) : info.label === 'Phone' ? (
+                        <a
+                          href={`tel:${info.value.replace(/\\D/g, '')}`}
+                          className="text-lg font-medium hover:text-primary transition-colors"
+                        >
+                          {info.value}
+                        </a>
+                      ) : (
+                        <p className="text-lg font-medium">{info.value}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-8">
+                <p className="font-bold text-sm text-muted-foreground uppercase tracking-widest mb-4">Social Presence</p>
+                <div className="flex gap-3">
+                  {[Github, Linkedin, Twitter].map((Icon, idx) => (
+                    <Button
+                      key={idx}
+                      variant="outline"
+                      size="icon"
+                      className="rounded-xl hover-elevate active-elevate-2 border-primary/20 bg-primary/5 text-primary hover:bg-primary/10"
+                      data-testid={`social-${idx}`}
+                    >
+                      <Icon className="h-5 w-5" />
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </AnimationWrapper>
           </div>
 
-          <Card className="hover-elevate">
-            <CardContent className="p-6 md:p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your name"
-                    required
-                    data-testid="input-name"
-                  />
-                </div>
+          <AnimationWrapper type="slide" direction="left">
+            <Card className="hover-elevate bg-background/40 backdrop-blur-xl border-primary/20 shadow-2xl shadow-primary/5 overflow-visible">
+              <CardContent className="p-6 md:p-8">
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit((data) => mutation.mutate(data))} className="space-y-6">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-bold">Name</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Your name"
+                              className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
+                              {...field}
+                              data-testid="input-name"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="your@email.com"
-                    required
-                    data-testid="input-email"
-                  />
-                </div>
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-bold">Email</FormLabel>
+                          <FormControl>
+                            <Input
+                              type="email"
+                              placeholder="your@email.com"
+                              className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
+                              {...field}
+                              data-testid="input-email"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Subject</Label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="Project inquiry"
-                    required
-                    data-testid="input-subject"
-                  />
-                </div>
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-bold">Subject</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Project inquiry"
+                              className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
+                              {...field}
+                              data-testid="input-subject"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell me about your project..."
-                    rows={6}
-                    required
-                    data-testid="input-message"
-                  />
-                </div>
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-bold">Message</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Tell me about your project..."
+                              className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary min-h-[150px]"
+                              {...field}
+                              data-testid="input-message"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                <Button
-                  type="submit"
-                  className="w-full hover-elevate active-elevate-2"
-                  data-testid="button-submit"
-                >
-                  Send Message
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+                    <Button
+                      type="submit"
+                      disabled={mutation.isPending}
+                      className="w-full rounded-xl py-6 font-extrabold text-lg hover-elevate active-elevate-2 shadow-lg shadow-primary/20"
+                      data-testid="button-submit"
+                    >
+                      {mutation.isPending ? 'Sending...' : (
+                        <>
+                          <Send className="h-5 w-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+          </AnimationWrapper>
         </div>
       </div>
     </section>

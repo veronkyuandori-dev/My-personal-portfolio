@@ -17,9 +17,16 @@ export const messages = pgTable("messages", {
   message: text("message").notNull(),
 });
 
+export const insertUserSchema = createInsertSchema(users).pick({
+  username: true,
+  password: true,
+});
+
 export const insertMessageSchema = createInsertSchema(messages).omit({
   id: true,
 });
 
+export type InsertUser = z.infer<typeof insertUserSchema>;
+export type User = typeof users.$inferSelect;
 export type InsertMessage = z.infer<typeof insertMessageSchema>;
 export type Message = typeof messages.$inferSelect;
