@@ -68,20 +68,23 @@ export default function Navigation() {
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-1 bg-muted/20 p-1.5 rounded-full border border-border/40 backdrop-blur-md">
+        <div className="hidden lg:flex items-center gap-1 bg-muted/20 p-1.5 rounded-full border border-border/40 backdrop-blur-md shadow-inner">
           {navItems.map((item) => (
             <Button
               key={item.href}
               variant="ghost"
               size="sm"
               onClick={() => scrollToSection(item.href)}
-              className={`rounded-full px-5 font-bold transition-all duration-300 ${
+              className={`rounded-full px-5 font-bold transition-all duration-300 relative overflow-visible ${
                 activeSection === item.href.substring(1)
-                  ? 'bg-primary text-primary-foreground shadow-md shadow-primary/20 scale-105'
-                  : 'text-foreground/70 hover:text-primary hover:bg-primary/10'
+                  ? 'text-primary'
+                  : 'text-foreground/70 hover:text-primary'
               }`}
             >
-              {item.label}
+              <span className="relative z-10">{item.label}</span>
+              {activeSection === item.href.substring(1) && (
+                <div className="absolute inset-0 bg-primary/10 rounded-full border border-primary/20 shadow-[0_0_10px_rgba(34,197,94,0.15)] animate-pulse" />
+              )}
             </Button>
           ))}
         </div>
