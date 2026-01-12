@@ -85,7 +85,7 @@ export default function AboutSection() {
             <div>
               <h3 className="text-2xl font-heading font-bold mb-6 flex items-center gap-2">
                 <Briefcase className="w-6 h-6 text-primary" />
-                Professional Experience
+                Academic & Project Experience
               </h3>
               <div className="space-y-4">
                 {experiences.map((exp, index) => (
