@@ -1,0 +1,194 @@
+import { useState, useRef, useEffect, useMemo } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Sphere, MeshDistortMaterial, Float, Text } from '@react-three/drei';
+import * as THREE from 'three';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { MessageSquare, Send, X, Bot } from 'lucide-react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { apiRequest, queryClient } from '@/lib/queryClient';
+import { ScrollArea } from '@/components/ui/scroll-area';
+
+function BotCore() {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.5;
+      meshRef.current.position.y = Math.sin(state.clock.getElapsedTime()) * 0.1;
+    }
+  });
+
+  return (
+    <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+      <Sphere ref={meshRef} args={[1, 64, 64]} scale={1.5}>
+        <MeshDistortMaterial
+          color="#22C55E"
+          attach="material"
+          distort={0.4}
+          speed={3}
+          roughness={0.2}
+          metalness={0.8}
+        />
+      </Sphere>
+      <Text
+        position={[0, 0, 1.6]}
+        fontSize={0.2}
+        color="white"
+        anchorX="center"
+        anchorY="middle"
+        font="https://fonts.gstatic.com/s/orbitron/v25/yYqxRnd6CQ7_p4S2F0P0LpOWO3_0.woff"
+      >
+        V-AI
+      </Text>
+    </Float>
+  );
+}
+
+export default function ChatBot3D() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [input, setInput] = useState('');
+  const [conversationId, setConversationId] = useState<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const { data: conversation } = useQuery({
+    queryKey: ['/api/conversations', conversationId],
+    enabled: !!conversationId,
+  });
+
+  const createConvMutation = useMutation({
+    mutationFn: async () => {
+      const res = await apiRequest('POST', '/api/conversations', { title: 'Visitor Chat' });
+      return res.json();
+    },
+    onSuccess: (data) => setConversationId(data.id),
+  });
+
+  const messageMutation = useMutation({
+    mutationFn: async (content: string) => {
+      if (!conversationId) return;
+      const res = await fetch(`/api/conversations/${conversationId}/messages`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content }),
+      });
+      
+      const reader = res.body?.getReader();
+      if (!reader) return;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        // Process stream if needed for real-time UI
+      }
+      
+      await queryClient.invalidateQueries({ queryKey: ['/api/conversations', conversationId] });
+    },
+  });
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [conversation?.messages]);
+
+  const handleSend = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+    
+    const content = input;
+    setInput('');
+
+    if (!conversationId) {
+      const conv = await createConvMutation.mutateAsync();
+      await messageMutation.mutateAsync(content);
+    } else {
+      await messageMutation.mutateAsync(content);
+    }
+  };
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50">
+      {!isOpen && (
+        <Button
+          size="icon"
+          className="h-14 w-14 rounded-full shadow-2xl shadow-primary/40 hover-elevate active-elevate-2 bg-primary"
+          onClick={() => setIsOpen(true)}
+        >
+          <Bot className="h-7 w-7" />
+        </Button>
+      )}
+
+      {isOpen && (
+        <Card className="w-[350px] sm:w-[400px] h-[500px] flex flex-col bg-background/80 backdrop-blur-2xl border-primary/20 shadow-2xl overflow-hidden rounded-2xl">
+          <div className="p-4 border-b border-primary/20 flex justify-between items-center bg-primary/10">
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center">
+                <Bot className="h-5 w-5 text-primary" />
+              </div>
+              <span className="font-heading font-bold">V-AI Assistant</span>
+            </div>
+            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
+
+          <div className="h-40 bg-black/40 relative">
+            <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+              <ambientLight intensity={0.5} />
+              <pointLight position={[10, 10, 10]} intensity={1} />
+              <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} />
+              <BotCore />
+              <OrbitControls enableZoom={false} enablePan={false} />
+            </Canvas>
+            <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent" />
+          </div>
+
+          <ScrollArea className="flex-1 p-4" viewportRef={scrollRef}>
+            <div className="space-y-4">
+              <div className="bg-primary/10 rounded-2xl rounded-tl-none p-3 max-w-[80%] text-sm">
+                Kamusta! Ako si V-AI. Paano kita matutulungan ngayong araw tungkol sa portfolio ni Veronque?
+              </div>
+              {conversation?.messages?.map((m: any, i: number) => (
+                <div
+                  key={i}
+                  className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`rounded-2xl p-3 max-w-[80%] text-sm ${
+                      m.role === 'user'
+                        ? 'bg-primary text-primary-foreground rounded-tr-none'
+                        : 'bg-primary/10 rounded-tl-none'
+                    }`}
+                  >
+                    {m.content}
+                  </div>
+                </div>
+              ))}
+              {(messageMutation.isPending || createConvMutation.isPending) && (
+                <div className="flex justify-start">
+                  <div className="bg-primary/10 rounded-2xl rounded-tl-none p-3 animate-pulse text-sm">
+                    Nagiisip...
+                  </div>
+                </div>
+              )}
+            </div>
+          </ScrollArea>
+
+          <form onSubmit={handleSend} className="p-4 border-t border-primary/20 bg-primary/5 flex gap-2">
+            <Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Magtanong dito..."
+              className="rounded-xl border-primary/20 bg-background/50"
+            />
+            <Button type="submit" size="icon" disabled={messageMutation.isPending} className="rounded-xl shrink-0">
+              <Send className="h-4 w-4" />
+            </Button>
+          </form>
+        </Card>
+      )}
+    </div>
+  );
+}

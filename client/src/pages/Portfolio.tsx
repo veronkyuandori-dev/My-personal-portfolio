@@ -8,6 +8,7 @@ import SkillsSection from '@/components/SkillsSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import ChatBot3D from '@/components/ChatBot3D';
 
 export default function Portfolio() {
   return (
@@ -24,6 +25,7 @@ export default function Portfolio() {
         <ContactSection />
       </main>
       <Footer />
+      <ChatBot3D />
     </div>
   );
 }

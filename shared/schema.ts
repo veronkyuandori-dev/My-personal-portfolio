@@ -19,6 +19,8 @@ export const messages = pgTable("messages", {
   fileUrl: text("file_url"),
 });
 
+export * from "./models/chat";
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
