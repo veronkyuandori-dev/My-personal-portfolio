@@ -67,10 +67,9 @@ export default function AboutSection() {
             
             <div className="grid grid-cols-2 gap-4 mt-12 px-4">
               {[
-                { label: 'Projects', value: '10+' },
+                { label: 'Projects', value: '7' },
                 { label: 'Certificates', value: '15+' },
-                { label: 'Skills', value: '20+' },
-                { label: 'Experience', value: '1yr+' }
+                { label: 'Skills', value: '20+' }
               ].map((stat, index) => (
                 <div key={index} className="p-4 rounded-xl bg-muted/30 border border-border/50 hover-elevate hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group">
                   <div className="text-2xl font-bold text-primary mb-0.5 group-hover:scale-110 transition-transform">{stat.value}</div>
