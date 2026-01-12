@@ -11,6 +11,26 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 export async function registerRoutes(app: Express): Promise<Server> {
   registerChatRoutes(app);
   registerImageRoutes(app);
+
+  app.get("/api/blogs", async (_req, res) => {
+    try {
+      const blogs = await storage.getBlogs();
+      res.json(blogs);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch blogs" });
+    }
+  });
+
+  app.get("/api/blogs/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const blog = await storage.getBlog(id);
+      if (!blog) return res.status(404).json({ error: "Blog not found" });
+      res.json(blog);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch blog" });
+    }
+  });
   app.post("/api/contact", async (req, res) => {
     try {
       const data = insertMessageSchema.parse(req.body);

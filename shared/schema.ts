@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, serial } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -19,7 +19,22 @@ export const messages = pgTable("messages", {
   fileUrl: text("file_url"),
 });
 
-export * from "./models/chat";
+export const blogs = pgTable("blogs", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  excerpt: text("excerpt").notNull(),
+  content: text("content").notNull(),
+  category: text("category").notNull(),
+  date: text("date").notNull(),
+  imageUrl: text("image_url"),
+});
+
+export const insertBlogSchema = createInsertSchema(blogs).omit({
+  id: true,
+});
+
+export type Blog = typeof blogs.$inferSelect;
+export type InsertBlog = z.infer<typeof insertBlogSchema>;
 
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
