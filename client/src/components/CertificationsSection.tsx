@@ -28,8 +28,32 @@ import wvsuDigitalTwinsCert from '@assets/Screenshot 2025-11-24 12.01.14_1763961
 import ciscoAIAtWorkCert from '@assets/Screenshot 2025-11-24 15.42.29_1763970250529.png';
 import ciscoGreenHouseGasCert from '@assets/588348165_861221569696072_8040529738883831105_n_1763970260154.png';
 import ciscoCppEssentialsCert from '@assets/588206646_811039185238147_600191988453529390_n_1763970271659.png';
+import ghActionsCert from '@assets/Screenshot_2026-01-13_21.23.40_1768311147683.png';
+import transformerCert from '@assets/Screenshot_2026-01-13_21.22.35_1768311158935.png';
+import azureMonitorCert from '@assets/Screenshot_2026-01-13_21.21.39_1768311168900.png';
 
 const certifications = [
+  {
+    name: 'Trigger GitHub Actions with feature-based development',
+    organization: 'Microsoft',
+    date: 'December 18, 2025',
+    description: 'Mastered the principles of triggering GitHub Actions based on feature development workflows, ensuring automated and reliable CI/CD pipelines.',
+    image: ghActionsCert,
+  },
+  {
+    name: 'Understand the Transformer architecture and explore large language models in Azure Machine Learning',
+    organization: 'Microsoft',
+    date: 'January 7, 2026',
+    description: 'Explored deep learning architectures including Transformers and Large Language Models (LLMs) within the Azure Machine Learning ecosystem.',
+    image: transformerCert,
+  },
+  {
+    name: 'Collect guest operating system monitoring data from Azure and hybrid virtual machines using Azure Monitor Agent',
+    organization: 'Microsoft',
+    date: 'January 13, 2026',
+    description: 'Expertise in configuring Azure Monitor Agent to collect guest OS metrics and logs from both cloud and hybrid environments.',
+    image: azureMonitorCert,
+  },
   {
     name: 'AWS Database Offerings',
     organization: 'AWS Training & Certification',
