@@ -31,6 +31,9 @@ const experiences = [
 ];
 
 const certifications = [
+  'Trigger GitHub Actions with feature-based development (Microsoft)',
+  'Transformer architecture and large language models in Azure Machine Learning (Microsoft)',
+  'Collect guest operating system monitoring data with Azure Monitor Agent (Microsoft)',
   'Microsoft Trainee - Cloud computing & productivity tools',
   'AWS Skill Builder Trainee - Cloud architecture & services',
   'AWS Educate Member - EC2, S3, IAM, serverless architecture',
