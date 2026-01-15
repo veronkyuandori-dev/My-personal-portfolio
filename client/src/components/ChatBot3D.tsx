@@ -135,8 +135,11 @@ export default function ChatBot3D() {
           </div>
 
           <div className="h-40 bg-black/40 relative">
-            <Suspense fallback={<div className="p-4 text-xs text-primary animate-pulse">Loading AI...</div>}>
-              <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <Bot className="h-12 w-12 text-primary/20 animate-pulse" />
+            </div>
+            <Suspense fallback={null}>
+              <Canvas camera={{ position: [0, 0, 5], fov: 45 }} gl={{ antialias: true }}>
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 10]} intensity={1} />
                 <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} />
@@ -144,7 +147,7 @@ export default function ChatBot3D() {
                 <OrbitControls enableZoom={false} enablePan={false} />
               </Canvas>
             </Suspense>
-            <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent pointer-events-none" />
           </div>
 
           <ScrollArea className="flex-1 p-4">
