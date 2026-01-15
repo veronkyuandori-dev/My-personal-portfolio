@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, MeshDistortMaterial, Float, Text } from '@react-three/drei';
 import * as THREE from 'three';
@@ -52,7 +52,7 @@ export default function ChatBot3D() {
   const [conversationId, setConversationId] = useState<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const { data: conversation } = useQuery({
+  const { data: conversation } = useQuery<any>({
     queryKey: ['/api/conversations', conversationId],
     enabled: !!conversationId,
   });
@@ -135,18 +135,20 @@ export default function ChatBot3D() {
           </div>
 
           <div className="h-40 bg-black/40 relative">
-            <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-              <ambientLight intensity={0.5} />
-              <pointLight position={[10, 10, 10]} intensity={1} />
-              <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} />
-              <BotCore />
-              <OrbitControls enableZoom={false} enablePan={false} />
-            </Canvas>
+            <Suspense fallback={<div className="p-4 text-xs text-primary animate-pulse">Loading AI...</div>}>
+              <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={1} />
+                <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} />
+                <BotCore />
+                <OrbitControls enableZoom={false} enablePan={false} />
+              </Canvas>
+            </Suspense>
             <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-background to-transparent" />
           </div>
 
-          <ScrollArea className="flex-1 p-4" viewportRef={scrollRef}>
-            <div className="space-y-4">
+          <ScrollArea className="flex-1 p-4">
+            <div ref={scrollRef} className="space-y-4">
               <div className="bg-primary/10 rounded-2xl rounded-tl-none p-3 max-w-[80%] text-sm">
                 Kamusta! Ako si V-AI. Paano kita matutulungan ngayong araw tungkol sa portfolio ni Veronque?
               </div>
