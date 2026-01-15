@@ -94,7 +94,7 @@ export default function ContactSection() {
 
   const contactInfo = [
     { icon: Mail, label: 'Email', value: 'veronqueandrei@gmail.com' },
-    { icon: Phone, label: 'Phone', value: '+63 XXX XXX XXXX' },
+    { icon: Phone, label: 'Phone', value: '+63 923 588 316' },
     { icon: MapPin, label: 'Location', value: 'Cabuyao, Laguna, Philippines (Region 4-A CALABARZON)' },
   ];
 
