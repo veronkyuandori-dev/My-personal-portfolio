@@ -39,23 +39,27 @@ export default function GitHubStatsSection() {
         const user = await userResponse.json();
         setUserData(user);
 
-        // Fetch repos with language data
+        // Fetch repos
         const reposResponse = await fetch(
           `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=pushed&order=desc`
         );
         if (!reposResponse.ok) throw new Error('Failed to fetch repos');
         const reposData = await reposResponse.json();
         
-        // Get detailed language data for repos
-        const reposWithLanguages = (reposData as any[]).map((repo: any) => ({
-          name: repo.name,
-          html_url: repo.html_url,
-          description: repo.description,
-          stargazers_count: repo.stargazers_count,
-          language: repo.language,
-        }));
+        // Calculate top languages from real data
+        const langMap: Record<string, number> = {};
+        reposData.forEach((repo: any) => {
+          if (repo.language) {
+            langMap[repo.language] = (langMap[repo.language] || 0) + 1;
+          }
+        });
+
+        const sortedLangs = Object.entries(langMap)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 5);
         
-        setRepos(reposWithLanguages);
+        setRepos(reposData);
+        setTopLanguagesFromData(sortedLangs);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch GitHub data');
       } finally {
@@ -66,14 +70,7 @@ export default function GitHubStatsSection() {
     fetchGitHubData();
   }, []);
 
-  // Calculate stats - show featured languages
-  const topLanguages: [string, number][] = [
-    ['JavaScript', 8],
-    ['TypeScript', 6],
-    ['Python', 4],
-    ['React', 5],
-    ['Node.js', 7],
-  ];
+  const [topLanguagesFromData, setTopLanguagesFromData] = useState<[string, number][]>([]);
 
   return (
     <section id="github" className="py-20 md:py-32 relative">
@@ -156,8 +153,8 @@ export default function GitHubStatsSection() {
                     <CardContent className="pt-8 pb-8">
                       <p className="text-base font-bold text-muted-foreground uppercase tracking-widest mb-6 text-center">Top Technologies</p>
                       <div className="flex flex-wrap justify-center gap-3">
-                        {topLanguages.length > 0 ? (
-                          topLanguages.map(([lang, count]) => (
+                        {topLanguagesFromData.length > 0 ? (
+                          topLanguagesFromData.map(([lang, count]) => (
                             <div
                               key={lang}
                               className="px-4 py-2 text-sm font-extrabold rounded-xl bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all cursor-default"
