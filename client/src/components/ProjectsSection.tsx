@@ -12,11 +12,11 @@ import aiFaceImage from '@assets/Screenshot 2025-10-29 01.16.19_1761673779384.pn
 const projects = [
   {
     id: 1,
-    title: 'Webtracker',
-    description: 'A comprehensive web tracking and analytics application for monitoring online activities and generating detailed reports.',
+    title: 'TaskTracker',
+    description: 'A comprehensive task tracking and management application for monitoring activities and generating detailed reports.',
     image: webtrackerImage,
     tags: ['HTML5', 'Python', 'PostgreSQL'],
-    github: 'https://github.com/andrieVerdev/Webtracker.git',
+    github: 'https://github.com/andrieVerdev/TaskTracker',
     gitlab: 'https://gitlab.com/veronqueandrei/Webtracker.git',
     requirements: {
       'Complete Code': ['Frontend (HTML5)', 'Backend (Python)', 'Database (PostgreSQL)'],
@@ -29,20 +29,19 @@ const projects = [
   },
   {
     id: 2,
-    title: 'Buddydash',
-    description: 'Educational platform connecting students with learning resources and collaborative study features.',
-    image: buddydashImage,
-    tags: ['Dart', 'Java', 'MongoDB'],
-    github: 'https://github.com/andrieVerdev/BuddyDash.git',
-    gitlab: 'https://gitlab.com/veronqueandrei/BuddyDash.git',
+    title: 'EVACS-SYSTEM',
+    description: 'Emergency Evacuation System designed for efficient coordination and management during critical situations.',
+    image: buddydashImage, // Using existing image as placeholder or if appropriate
+    tags: ['React', 'Node.js', 'PostgreSQL'],
+    github: 'https://github.com/andrieVerdev/EVACS-SYSTEM',
+    gitlab: 'https://gitlab.com/veronqueandrei/EVACS-SYSTEM.git',
     requirements: {
-      'Complete Code': ['Mobile app (Dart/Flutter)', 'Backend services (Java)', 'Database layer'],
-      'README.md': ['App features', 'Installation guide', 'Required SDKs & dependencies', 'Screenshots'],
-      'Configuration Files': ['pubspec.yaml (Flutter)', '.env.example', 'Backend configuration'],
-      '.gitignore': ['build/', 'dist/', '.gradle', 'node_modules'],
-      'Documentation': ['Architecture overview', 'API endpoints', 'Database schema'],
-      'License': ['MIT o Apache 2.0'],
-      'Issues & Milestones': ['Feature requests', 'Bug tracking', 'Release milestones'],
+      'Complete Code': ['Frontend (React)', 'Backend (Node.js)', 'Database (PostgreSQL)'],
+      'README.md': ['System overview', 'Deployment guide', 'User manual'],
+      'Configuration Files': ['package.json', '.env.example'],
+      '.gitignore': ['node_modules', '.env', 'dist'],
+      'Documentation': ['System architecture', 'API documentation'],
+      'License': ['MIT'],
     },
   },
   {
@@ -69,8 +68,8 @@ const projects = [
     description: 'Advanced facial recognition system using artificial intelligence for secure authentication and identification.',
     image: aiFaceImage,
     tags: ['Python', 'C++', 'MongoDB'],
-    github: 'https://github.com/andrieVerdev/facial-recognition.git',
-    gitlab: 'https://github.com/andrieVerdev/facial-recognition.git',
+    github: 'https://github.com/andrieVerdev/Facial-AI',
+    gitlab: 'https://github.com/andrieVerdev/Facial-AI.git',
     requirements: {
       'Complete Code': ['ML models (Python)', 'C++ optimizations', 'Backend services'],
       'README.md': ['Algorithm explanation', 'Model training guide', 'Installation steps', 'Performance metrics'],
