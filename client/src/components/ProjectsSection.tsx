@@ -16,7 +16,7 @@ const projects = [
     description: 'A comprehensive web tracking and analytics application for monitoring online activities and generating detailed reports.',
     image: webtrackerImage,
     tags: ['HTML5', 'Python', 'PostgreSQL'],
-    github: 'https://github.com/bukosalad123/Webtracker.git',
+    github: 'https://github.com/andrieVerdev/Webtracker.git',
     gitlab: 'https://gitlab.com/veronqueandrei/Webtracker.git',
     requirements: {
       'Complete Code': ['Frontend (HTML5)', 'Backend (Python)', 'Database (PostgreSQL)'],
@@ -33,7 +33,7 @@ const projects = [
     description: 'Educational platform connecting students with learning resources and collaborative study features.',
     image: buddydashImage,
     tags: ['Dart', 'Java', 'MongoDB'],
-    github: 'https://github.com/bukosalad123/BuddyDash.git',
+    github: 'https://github.com/andrieVerdev/BuddyDash.git',
     gitlab: 'https://gitlab.com/veronqueandrei/BuddyDash.git',
     requirements: {
       'Complete Code': ['Mobile app (Dart/Flutter)', 'Backend services (Java)', 'Database layer'],
@@ -51,7 +51,7 @@ const projects = [
     description: 'Complete library management solution for tracking books, managing inventory, and handling member records.',
     image: libraryImage,
     tags: ['Python', 'PostgreSQL', 'HTML5'],
-    github: 'https://github.com/bukosalad123/LIbrayManagement-System.git',
+    github: 'https://github.com/andrieVerdev/LIbrayManagement-System.git',
     gitlab: 'https://gitlab.com/veronqueandrei/LIbrayManagement-System.git',
     requirements: {
       'Complete Code': ['Backend (Python)', 'Frontend (HTML5)', 'Database scripts'],
@@ -69,8 +69,8 @@ const projects = [
     description: 'Advanced facial recognition system using artificial intelligence for secure authentication and identification.',
     image: aiFaceImage,
     tags: ['Python', 'C++', 'MongoDB'],
-    github: 'https://github.com/bukosalad123/facial-recognition.git',
-    gitlab: 'https://github.com/bukosalad123/facial-recognition.git',
+    github: 'https://github.com/andrieVerdev/facial-recognition.git',
+    gitlab: 'https://github.com/andrieVerdev/facial-recognition.git',
     requirements: {
       'Complete Code': ['ML models (Python)', 'C++ optimizations', 'Backend services'],
       'README.md': ['Algorithm explanation', 'Model training guide', 'Installation steps', 'Performance metrics'],

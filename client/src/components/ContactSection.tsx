@@ -154,13 +154,23 @@ export default function ContactSection() {
               <div className="pt-8">
                 <p className="font-bold text-sm text-muted-foreground uppercase tracking-widest mb-4">Social Presence</p>
                 <div className="flex gap-3">
-                  {[Github, Linkedin, Twitter].map((Icon, idx) => (
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="rounded-xl hover-elevate active-elevate-2 border-primary/20 bg-primary/5 text-primary hover:bg-primary/10"
+                    asChild
+                  >
+                    <a href="https://github.com/andrieVerdev" target="_blank" rel="noopener noreferrer">
+                      <Github className="h-5 w-5" />
+                    </a>
+                  </Button>
+                  {[Linkedin, Twitter].map((Icon, idx) => (
                     <Button
                       key={idx}
                       variant="outline"
                       size="icon"
                       className="rounded-xl hover-elevate active-elevate-2 border-primary/20 bg-primary/5 text-primary hover:bg-primary/10"
-                      data-testid={`social-${idx}`}
+                      data-testid={`social-${idx + 1}`}
                     >
                       <Icon className="h-5 w-5" />
                     </Button>

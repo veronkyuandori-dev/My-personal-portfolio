@@ -69,7 +69,7 @@ export default function HeroSection() {
                 <div class="contact-info">
                     <span>📧 veronqueandrie@email.com</span>
                     <span>📍 Philippines</span>
-                    <span>🌐 GitHub: bukosalad123</span>
+                    <span>🌐 GitHub: andrieVerdev</span>
                     <span>💼 LinkedIn: veronqueandrei</span>
                 </div>
             </div>
@@ -240,8 +240,11 @@ export default function HeroSection() {
             size="icon"
             className="rounded-full hover-elevate active-elevate-2"
             data-testid="link-github"
+            asChild
           >
-            <Github className="h-5 w-5" />
+            <a href="https://github.com/andrieVerdev" target="_blank" rel="noopener noreferrer">
+              <Github className="h-5 w-5" />
+            </a>
           </Button>
           <Button
             variant="ghost"

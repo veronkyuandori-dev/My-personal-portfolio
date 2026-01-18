@@ -46,8 +46,11 @@ export default function Footer() {
                 size="icon"
                 className="rounded-full hover-elevate active-elevate-2"
                 data-testid="footer-social-github"
+                asChild
               >
-                <Github className="h-4 w-4" />
+                <a href="https://github.com/andrieVerdev" target="_blank" rel="noopener noreferrer">
+                  <Github className="h-4 w-4" />
+                </a>
               </Button>
               <Button
                 variant="outline"
