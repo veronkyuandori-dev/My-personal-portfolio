@@ -28,16 +28,16 @@ const projects = [
   {
     id: 2,
     title: 'EVACS-SYSTEM',
-    description: 'Emergency Evacuation Coordination System utilizing IoT integration and real-time mapping for efficient disaster response and civilian safety management.',
+    description: 'A professional IT Solutions & Business Services Access Control System. Features real-time check-in/out tracking, visitor management, activity logging, and comprehensive employee data management with a premium futuristic UI.',
     image: buddydashImage,
-    tags: ['React.js', 'Node.js', 'Socket.io', 'Leaflet'],
+    tags: ['React.js', 'Node.js', 'PostgreSQL', 'Futuristic UI'],
     github: 'https://github.com/andrieVerdev/EVACS-SYSTEM',
     gitlab: 'https://gitlab.com/veronqueandrei/EVACS-SYSTEM.git',
     requirements: {
-      'System Core': ['Real-time WebSocket Communication', 'Dynamic Map Integration', 'Incident Reporting Engine'],
-      'Infrastructure': ['Node.js Microservices', 'GeoJSON Data Handling', 'Scalable Cloud Hosting'],
-      'Interface': ['Responsive Dashboard UI', 'Mobile-Friendly Alerts', 'Admin Control Panel'],
-      'Compliance': ['Data Privacy Protocols', 'Standardized Emergency Codes'],
+      'Enterprise Features': ['Real-time Check-in/Check-out', 'Visitor Management System', 'Comprehensive Activity Logging'],
+      'Data Management': ['Employee Database', 'Encrypted Data Storage', 'Administrative Control Panel'],
+      'UI/UX Design': ['Premium Futuristic Interface', 'Dark/Light Mode Support', 'Interactive Dashboards'],
+      'Infrastructure': ['Secure API Architecture', 'Real-time Event Handling', 'Audit Trail Generation'],
     },
   },
   {
