@@ -97,14 +97,21 @@ export default function ProjectsSection() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
                   {/* Project Image & Info */}
                   <div className="md:col-span-1 space-y-4">
-                    <div className="relative aspect-video overflow-hidden rounded-lg">
+                    <div className="group relative aspect-video overflow-hidden rounded-xl border-2 border-primary/20 bg-muted/20">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 z-10 opacity-60 group-hover:opacity-30 transition-opacity duration-500" />
+                      <div className="absolute inset-0 border-2 border-primary/40 z-20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 scale-105 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
                       />
+                      <div className="absolute bottom-2 right-2 z-30 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <Badge variant="outline" className="bg-background/80 backdrop-blur-md border-primary/50 text-[10px] uppercase tracking-widest px-2 py-0">
+                          Source View
+                        </Badge>
+                      </div>
                     </div>
-                    <div>
+                    <div className="pt-2">
                       <h3 className="text-xl md:text-2xl font-bold mb-2">{project.title}</h3>
                       <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                         {project.description}
