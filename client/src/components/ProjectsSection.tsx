@@ -4,18 +4,17 @@ import { Button } from '@/components/ui/button';
 import { Github, CheckCircle2 } from 'lucide-react';
 import { SiGitlab } from 'react-icons/si';
 import AnimationWrapper from './AnimationWrapper';
-import webtrackerImage from '@assets/Screenshot 2025-10-29 01.25.41_1761673713445.png';
-import buddydashImage from '@assets/Screenshot 2025-10-29 01.24.11_1761673731499.png';
-import evacsImage from '@assets/Screenshot_2026-01-19_16.46.43_1768812428887.png';
-import libraryImage from '@assets/Screenshot 2025-10-29 01.20.09_1761673748927.png';
-import aiFaceImage from '@assets/Screenshot 2025-10-29 01.16.19_1761673779384.png';
+import taskTrackerImage from '@assets/Screenshot_2026-01-19_17.27.17_1768815498741.png';
+import libraryImage from '@assets/Screenshot_2026-01-19_17.32.03_1768815472032.png';
+import aiFaceImage from '@assets/Screenshot_2026-01-19_17.36.51_1768815450667.png';
+import evacsImage from '@assets/Screenshot_2026-01-19_17.18.59_1768815530433.png';
 
 const projects = [
   {
     id: 1,
     title: 'TaskTracker',
     description: 'A robust task management system featuring categorized tracking, real-time status updates, and interactive data visualization for productivity monitoring.',
-    image: webtrackerImage,
+    image: taskTrackerImage,
     tags: ['Python', 'Flask', 'PostgreSQL', 'SQLAlchemy'],
     github: 'https://github.com/andrieVerdev/TaskTracker',
     gitlab: 'https://gitlab.com/veronqueandrei/Webtracker.git',
