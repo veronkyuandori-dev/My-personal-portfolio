@@ -6,6 +6,7 @@ import { SiGitlab } from 'react-icons/si';
 import AnimationWrapper from './AnimationWrapper';
 import webtrackerImage from '@assets/Screenshot 2025-10-29 01.25.41_1761673713445.png';
 import buddydashImage from '@assets/Screenshot 2025-10-29 01.24.11_1761673731499.png';
+import evacsImage from '@assets/Screenshot_2026-01-19_16.46.43_1768812428887.png';
 import libraryImage from '@assets/Screenshot 2025-10-29 01.20.09_1761673748927.png';
 import aiFaceImage from '@assets/Screenshot 2025-10-29 01.16.19_1761673779384.png';
 
@@ -29,7 +30,7 @@ const projects = [
     id: 2,
     title: 'EVACS-SYSTEM',
     description: 'A professional IT Solutions & Business Services Access Control System. Features real-time check-in/out tracking, visitor management, activity logging, and comprehensive employee data management with a premium futuristic UI.',
-    image: buddydashImage,
+    image: evacsImage,
     tags: ['React.js', 'Node.js', 'PostgreSQL', 'Futuristic UI'],
     github: 'https://github.com/andrieVerdev/EVACS-SYSTEM',
     gitlab: 'https://gitlab.com/veronqueandrei/EVACS-SYSTEM.git',
