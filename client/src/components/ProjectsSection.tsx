@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Github, CheckCircle2 } from 'lucide-react';
 import { SiGitlab } from 'react-icons/si';
 import AnimationWrapper from './AnimationWrapper';
-import taskTrackerImage from '@assets/Screenshot_2026-01-19_17.27.17_1768815498741.png';
+import taskTrackerImage from '@assets/Screenshot_2026-01-19_18.18.42_1768818467330.png';
 import libraryImage from '@assets/Screenshot_2026-01-19_17.32.03_1768815472032.png';
-import aiFaceImage from '@assets/Screenshot_2026-01-19_17.36.51_1768815450667.png';
-import evacsImage from '@assets/Screenshot_2026-01-19_17.18.59_1768815530433.png';
+import aiFaceImage from '@assets/Screenshot_2026-01-19_18.27.08_1768818443570.png';
+import evacsImage from '@assets/Screenshot_2026-01-19_18.12.39_1768818486570.png';
 
 const projects = [
   {
