@@ -91,86 +91,100 @@ export default function ProjectsSection() {
               duration={700}
             >
               <Card
-                className="overflow-hidden hover-elevate transition-all duration-300 border border-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/40 bg-background/50 backdrop-blur-sm"
+                className="group relative overflow-hidden transition-all duration-500 border-0 bg-transparent hover:shadow-2xl hover:shadow-primary/20"
                 data-testid={`project-card-${project.id}`}
               >
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-                  {/* Project Image & Info */}
-                  <div className="md:col-span-1 space-y-4">
-                    <div className="group relative aspect-video overflow-hidden rounded-xl border-2 border-primary/20 bg-muted/20">
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 z-10 opacity-60 group-hover:opacity-30 transition-opacity duration-500" />
-                      <div className="absolute inset-0 border-2 border-primary/40 z-20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-700 scale-105 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
-                      />
-                      <div className="absolute bottom-2 right-2 z-30 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                        <Badge variant="outline" className="bg-background/80 backdrop-blur-md border-primary/50 text-[10px] uppercase tracking-widest px-2 py-0">
-                          Source View
-                        </Badge>
-                      </div>
-                    </div>
-                    <div className="pt-2">
-                      <h3 className="text-xl md:text-2xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                        {project.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tags.map((tag, index) => (
-                          <Badge key={index} variant="secondary" className="text-xs px-2.5 py-1">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          variant="secondary"
-                          className="rounded-full hover-elevate active-elevate-2 flex-1"
-                          asChild
-                          data-testid={`button-github-${project.id}`}
-                        >
-                          <a href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-4 w-4 mr-2" />
-                            GitHub
-                          </a>
-                        </Button>
-                        <Button
-                          size="sm"
-                          className="rounded-full hover-elevate active-elevate-2 flex-1"
-                          asChild
-                          data-testid={`button-gitlab-${project.id}`}
-                        >
-                          <a href={project.gitlab} target="_blank" rel="noopener noreferrer">
-                            <SiGitlab className="h-4 w-4 mr-2" />
-                            GitLab
-                          </a>
-                        </Button>
+                <div className="absolute inset-0 bg-gradient-to-br from-card/80 via-card/40 to-card/60 backdrop-blur-xl border border-primary/20 rounded-2xl -z-10" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+                
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
+                  {/* Project Image Panel */}
+                  <div className="md:col-span-5 relative group/img overflow-hidden">
+                    <div className="absolute inset-0 bg-primary/10 z-10 opacity-40 group-hover/img:opacity-0 transition-opacity duration-500" />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full min-h-[300px] object-cover transition-transform duration-1000 scale-105 group-hover/img:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-card/90 md:block hidden z-20" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent md:hidden block z-20" />
+                    
+                    <div className="absolute top-4 left-4 z-30">
+                      <div className="p-2 bg-primary/20 backdrop-blur-md rounded-lg border border-primary/30">
+                        <CheckCircle2 className="w-5 h-5 text-primary shadow-glow" />
                       </div>
                     </div>
                   </div>
 
-                  {/* Requirements Checklist */}
-                  <div className="md:col-span-2">
-                    <h4 className="text-lg font-heading font-bold mb-4 text-primary">Source Code Includes:</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {Object.entries(project.requirements).map(([category, items], index) => (
-                        <div key={index} className="space-y-2">
-                          <h5 className="text-sm font-semibold text-primary flex items-center gap-2">
-                            <CheckCircle2 className="w-4 h-4" />
-                            {category}
-                          </h5>
-                          <ul className="space-y-1 ml-6">
-                            {items.map((item: string, itemIndex: number) => (
-                              <li key={itemIndex} className="text-xs text-foreground flex items-start gap-2">
-                                <span className="text-primary mt-0.5">•</span>
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
+                  {/* Project Info Panel */}
+                  <div className="md:col-span-7 p-8 flex flex-col justify-between">
+                    <div className="space-y-6">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-3">
+                          <span className="text-[10px] uppercase tracking-[0.3em] text-primary/70 font-bold">Project {project.id}</span>
+                          <div className="h-[1px] w-8 bg-primary/30" />
                         </div>
-                      ))}
+                        <h3 className="text-3xl md:text-4xl font-heading font-extrabold tracking-tight group-hover:text-primary transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                      </div>
+
+                      <p className="text-muted-foreground/90 text-sm md:text-base leading-relaxed font-medium">
+                        {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag, index) => (
+                          <Badge 
+                            key={index} 
+                            variant="outline" 
+                            className="bg-primary/5 border-primary/20 text-primary/80 hover:bg-primary/10 transition-colors"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {Object.entries(project.requirements).slice(0, 2).map(([category, items], index) => (
+                          <div key={index} className="space-y-3">
+                            <h4 className="text-xs uppercase tracking-widest text-primary/60 font-bold flex items-center gap-2">
+                              <div className="w-1 h-1 rounded-full bg-primary" />
+                              {category}
+                            </h4>
+                            <ul className="space-y-2">
+                              {items.slice(0, 3).map((item: string, itemIndex: number) => (
+                                <li key={itemIndex} className="text-xs text-muted-foreground flex items-center gap-2">
+                                  <div className="w-1 h-[1px] bg-primary/30" />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4 mt-8 pt-6 border-t border-primary/10">
+                      <Button
+                        variant="outline"
+                        className="rounded-xl border-primary/20 bg-primary/5 hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex-1"
+                        asChild
+                      >
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Source Code
+                        </a>
+                      </Button>
+                      <Button
+                        className="rounded-xl bg-primary text-primary-foreground hover-elevate transition-all duration-300 flex-1"
+                        asChild
+                      >
+                        <a href={project.gitlab} target="_blank" rel="noopener noreferrer">
+                          <SiGitlab className="h-4 w-4 mr-2" />
+                          Documentation
+                        </a>
+                      </Button>
                     </div>
                   </div>
                 </div>
