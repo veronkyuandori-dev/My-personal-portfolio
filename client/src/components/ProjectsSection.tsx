@@ -8,10 +8,24 @@ import taskTrackerImage from '@assets/Screenshot_2026-01-19_18.18.42_17688184673
 import libraryImage from '@assets/Screenshot_2026-01-19_17.32.03_1768815472032.png';
 import aiFaceImage from '@assets/Screenshot_2026-01-19_18.27.08_1768818443570.png';
 import evacsImage from '@assets/Screenshot_2026-01-19_18.12.39_1768818486570.png';
+import budwellImage from '@assets/generated_images/modern_smart_garden_logo_for_budwell_project..png';
 
 const projects = [
   {
     id: 1,
+    title: 'Budwell',
+    description: 'A cutting-edge Smart Garden monitoring system designed for precision plant care. Features real-time environmental data tracking, automated alerts, and intelligent growth analytics.',
+    image: budwellImage,
+    tags: ['IoT', 'React.js', 'Node.js', 'Embedded Systems'],
+    github: 'https://github.com/andrieVerdev/Budwell',
+    gitlab: 'https://github.com/andrieVerdev/Budwell',
+    requirements: {
+      'IoT Integration': ['Real-time Sensor Data Monitoring', 'Automated Plant Care Logic', 'Smart Environmental Tracking'],
+      'Dashboard & Analytics': ['Growth Performance Tracking', 'Moisture & Light Analytics', 'Mobile-Responsive Interface'],
+    },
+  },
+  {
+    id: 2,
     title: 'TaskTracker',
     description: 'A robust task management system featuring categorized tracking, real-time status updates, and interactive data visualization for productivity monitoring.',
     image: taskTrackerImage,
