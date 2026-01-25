@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Github, CheckCircle2 } from 'lucide-react';
 import { SiGitlab } from 'react-icons/si';
 import AnimationWrapper from './AnimationWrapper';
-import taskTrackerImage from '@assets/Screenshot_2026-01-19_18.18.42_1768818467330.png';
-import libraryImage from '@assets/Screenshot_2026-01-19_17.32.03_1768815472032.png';
+import taskTrackerImage from '@assets/ChatGPT_Image_Jan_26,_2026,_01_30_36_AM_1769362254256.png';
+import libraryImage from '@assets/ChatGPT_Image_Jan_26,_2026,_01_22_31_AM_1769362313579.png';
 import aiFaceImage from '@assets/Screenshot_2026-01-19_18.27.08_1768818443570.png';
-import evacsImage from '@assets/Screenshot_2026-01-19_18.12.39_1768818486570.png';
-import budwellImage from '@assets/generated_images/modern_smart_garden_logo_for_budwell_project..png';
+import evacsImage from '@assets/ChatGPT_Image_Jan_26,_2026,_01_30_30_AM_1769362286794.png';
+import budwellImage from '@assets/Screenshot_2026-01-26_01.15.44_1769362358268.png';
 
 const projects = [
   {
