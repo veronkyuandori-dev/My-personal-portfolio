@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Briefcase, Award } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
-import profileImage from '/favicon.png';
+import profileImage from '@assets/Screenshot_2026-01-29_21.05.10_1769697718567.png';
 
 const experiences = [
   {

@@ -11,26 +11,26 @@ import {
 } from '@/components/ui/dialog';
 import AnimationWrapper from './AnimationWrapper';
 
-import awsCert from '/favicon.png';
+import awsCert from '@assets/Screenshot_2026-01-29_22.05.46_1769697681575.png';
 import ciscoCert from '/favicon.png';
-import msAzureAICert from '/favicon.png';
-import msSRECert from '/favicon.png';
-import aseanCert from '/favicon.png';
-import aiGameDevCert from '/favicon.png';
-import googleCloudCert from '/favicon.png';
-import hourOfCodeCert from '/favicon.png';
+import msAzureAICert from '@assets/Screenshot_2026-01-29_21.23.02_1769697681578.png';
+import msSRECert from '@assets/Screenshot_2026-01-29_22.14.13_1769697681567.png';
+import aseanCert from '@assets/Screenshot_2026-01-29_22.39.10_1769697681529.png';
+import aiGameDevCert from '@assets/Screenshot_2026-01-29_22.10.08_1769697681573.png';
+import googleCloudCert from '@assets/Screenshot_2026-01-29_22.34.37_1769697681542.png';
+import hourOfCodeCert from '@assets/Screenshot_2026-01-29_22.38.38_1769697681539.png';
 import msDataAnalysisCert from '/favicon.png';
-import gcManagingChangeCert from '/favicon.png';
-import gcMLOpsCert from '/favicon.png';
-import gcResponsibleAICert from '/favicon.png';
-import wvsuBlockchainCert from '/favicon.png';
-import wvsuDigitalTwinsCert from '/favicon.png';
-import ciscoAIAtWorkCert from '/favicon.png';
-import ciscoGreenHouseGasCert from '/favicon.png';
-import ciscoCppEssentialsCert from '/favicon.png';
-import ghActionsCert from '/favicon.png';
-import transformerCert from '/favicon.png';
-import azureMonitorCert from '/favicon.png';
+import gcManagingChangeCert from '@assets/Screenshot_2026-01-29_22.34.37_1769697681542.png';
+import gcMLOpsCert from '@assets/Screenshot_2026-01-29_22.33.55_1769697681552.png';
+import gcResponsibleAICert from '@assets/Screenshot_2026-01-29_22.34.15_1769697681550.png';
+import wvsuBlockchainCert from '@assets/Screenshot_2026-01-29_22.20.52_1769697681563.png';
+import wvsuDigitalTwinsCert from '@assets/Screenshot_2026-01-29_22.13.23_1769697681568.png';
+import ciscoAIAtWorkCert from '@assets/Screenshot_2026-01-29_22.22.02_1769697681559.png';
+import ciscoGreenHouseGasCert from '@assets/Screenshot_2026-01-29_21.24.18_1769697681577.png';
+import ciscoCppEssentialsCert from '@assets/Screenshot_2026-01-29_22.22.53_1769697681557.png';
+import ghActionsCert from '@assets/614311453_1268615795324686_7714048154067654293_n_1769697681581.png';
+import transformerCert from '@assets/Screenshot_2026-01-29_21.05.10_1769697718567.png';
+import azureMonitorCert from '@assets/611974055_2053270672125756_6534229906902908588_n_1769697681580.png';
 
 const certifications = [
   {
