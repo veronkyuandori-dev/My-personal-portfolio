@@ -19,18 +19,19 @@ import aseanCert from '@assets/Screenshot_2026-01-29_22.39.10_1769697681529.png'
 import aiGameDevCert from '@assets/Screenshot_2026-01-29_22.10.08_1769697681573.png';
 import googleCloudCert from '@assets/Screenshot_2026-01-29_22.34.37_1769697681542.png';
 import hourOfCodeCert from '@assets/Screenshot_2026-01-29_22.38.38_1769697681539.png';
-import msDataAnalysisCert from '/favicon.png';
+import msDataAnalysisCert from '@assets/Screenshot_2026-01-29_23.49.50_1769701859675.png';
 import gcManagingChangeCert from '@assets/Screenshot_2026-01-29_22.34.37_1769697681542.png';
 import gcMLOpsCert from '@assets/Screenshot_2026-01-29_22.33.55_1769697681552.png';
 import gcResponsibleAICert from '@assets/Screenshot_2026-01-29_22.34.15_1769697681550.png';
 import wvsuBlockchainCert from '@assets/Screenshot_2026-01-29_22.20.52_1769697681563.png';
 import wvsuDigitalTwinsCert from '@assets/Screenshot_2026-01-29_22.13.23_1769697681568.png';
 import ciscoAIAtWorkCert from '@assets/Screenshot_2026-01-29_22.22.02_1769697681559.png';
-import ciscoGreenHouseGasCert from '@assets/Screenshot_2026-01-29_21.24.18_1769697681577.png';
+import ciscoGreenHouseGasCert from '@assets/Screenshot_2026-01-29_21.24.18_1769702343730.png';
 import ciscoCppEssentialsCert from '@assets/Screenshot_2026-01-29_22.22.53_1769697681557.png';
 import ghActionsCert from '@assets/614311453_1268615795324686_7714048154067654293_n_1769697681581.png';
-import transformerCert from '@assets/Screenshot_2026-01-29_21.05.10_1769697718567.png';
+import transformerCert from '@assets/Screenshot_2026-01-29_23.50.20_1769701844006.png';
 import azureMonitorCert from '@assets/611974055_2053270672125756_6534229906902908588_n_1769697681580.png';
+import awsDataEngineeringCert from '@assets/Screenshot_2026-01-29_23.56.06_1769702307268.png';
 
 const certifications = [
   {
@@ -53,6 +54,13 @@ const certifications = [
     date: 'January 13, 2026',
     description: 'Expertise in configuring Azure Monitor Agent to collect guest OS metrics and logs from both cloud and hybrid environments.',
     image: azureMonitorCert,
+  },
+  {
+    name: 'Data Engineering on AWS - Foundations',
+    organization: 'AWS Training & Certification',
+    date: 'January 29, 2026',
+    description: 'Foundational certification in data engineering on AWS, covering core concepts and services for data processing and analysis.',
+    image: awsDataEngineeringCert,
   },
   {
     name: 'AWS Database Offerings',
