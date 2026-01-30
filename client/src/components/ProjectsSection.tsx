@@ -41,7 +41,7 @@ const projects = [
     },
   },
   {
-    id: 2,
+    id: 3,
     title: 'EVACS-SYSTEM',
     description: 'A professional IT Solutions & Business Services Access Control System. Features real-time check-in/out tracking, visitor management, activity logging, and comprehensive employee data management with a premium futuristic UI.',
     image: evacsImage,
@@ -56,7 +56,7 @@ const projects = [
     },
   },
   {
-    id: 3,
+    id: 4,
     title: 'Library Management System',
     description: 'A sophisticated digital library solution with automated inventory tracking, member portal, and intelligent search capabilities.',
     image: libraryImage,
@@ -70,7 +70,7 @@ const projects = [
     },
   },
   {
-    id: 4,
+    id: 5,
     title: 'Facial Recognition AI',
     description: 'State-of-the-art computer vision system implementing deep learning models for high-accuracy face detection and biometric authentication.',
     image: aiFaceImage,
