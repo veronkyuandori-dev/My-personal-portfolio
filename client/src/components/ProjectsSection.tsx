@@ -1,3 +1,4 @@
+import { useState, useMemo } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -85,20 +86,52 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
+  const [filter, setFilter] = useState('All');
+
+  const categories = useMemo(() => {
+    const allTags = projects.flatMap(p => p.tags);
+    return ['All', ...new Set(allTags)];
+  }, []);
+
+  const filteredProjects = useMemo(() => {
+    if (filter === 'All') return projects;
+    return projects.filter(p => p.tags.includes(filter));
+  }, [filter]);
+
   return (
     <section id="projects" className="relative py-20 md:py-32 bg-card/30">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4">
           Projects
         </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
           Explore my recent projects and technical work
         </p>
 
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {categories.map((cat) => (
+            <Button
+              key={cat}
+              variant={filter === cat ? "default" : "outline"}
+              size="sm"
+              onClick={() => setFilter(cat)}
+              className={`rounded-full transition-all duration-300 ${
+                filter === cat 
+                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" 
+                  : "hover:border-primary/50 hover:bg-primary/5"
+              }`}
+              data-testid={`filter-button-${cat.toLowerCase().replace(/\s+/g, '-')}`}
+            >
+              {cat}
+            </Button>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 gap-8">
-          {projects.map((project, projectIndex) => (
+          {filteredProjects.map((project, projectIndex) => (
             <AnimationWrapper 
-              key={project.id}
+              key={`${project.id}-${filter}`}
               type="fade"
               direction="up"
               delay={projectIndex * 150}
