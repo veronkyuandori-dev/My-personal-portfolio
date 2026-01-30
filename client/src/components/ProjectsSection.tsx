@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Github, CheckCircle2 } from 'lucide-react';
 import { SiGitlab } from 'react-icons/si';
 import AnimationWrapper from './AnimationWrapper';
-import taskTrackerImage from '/favicon.png';
-import libraryImage from '/favicon.png';
-import aiFaceImage from '/favicon.png';
-import evacsImage from '/favicon.png';
-import budwellImage from '/favicon.png';
+import taskTrackerImage from '@assets/Gemini_Generated_Image_b8akhob8akhob8ak_1769761724083.png';
+import libraryImage from '@assets/Screenshot_2026-01-29_23.21.52_1769762002287.png';
+import aiFaceImage from '@assets/Screenshot_2026-01-30_16.32.23_1769761975016.png';
+import evacsImage from '@assets/Gemini_Generated_Image_j018yfj018yfj018_1769761709598.png';
+import budwellImage from '@assets/Gemini_Generated_Image_b8akhob8akhob8ak_1769761724083.png';
 
 const projects = [
   {
