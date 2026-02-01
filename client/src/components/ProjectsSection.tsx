@@ -90,7 +90,7 @@ export default function ProjectsSection() {
 
   const categories = useMemo(() => {
     const allTags = projects.flatMap(p => p.tags);
-    return ['All', ...new Set(allTags)];
+    return ['All', ...Array.from(new Set(allTags))];
   }, []);
 
   const filteredProjects = useMemo(() => {
