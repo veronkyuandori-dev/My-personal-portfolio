@@ -144,17 +144,14 @@ export default function ProjectsSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-card/80 via-card/40 to-card/60 backdrop-blur-xl border border-primary/20 rounded-2xl -z-10" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
                 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
                   {/* Project Image Panel */}
-                  <div className="md:col-span-5 relative group/img overflow-hidden">
-                    <div className="absolute inset-0 bg-primary/10 z-10 opacity-40 group-hover/img:opacity-0 transition-opacity duration-500" />
+                  <div className="lg:col-span-6 relative group/img overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full min-h-[300px] object-cover transition-transform duration-1000 scale-105 group-hover/img:scale-110"
+                      className="w-full h-full min-h-[400px] object-contain bg-background/20 p-4 transition-transform duration-1000 group-hover/img:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-card/90 md:block hidden z-20" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent md:hidden block z-20" />
                     
                     <div className="absolute top-4 left-4 z-30">
                       <div className="p-2 bg-primary/20 backdrop-blur-md rounded-lg border border-primary/30">
@@ -164,7 +161,7 @@ export default function ProjectsSection() {
                   </div>
 
                   {/* Project Info Panel */}
-                  <div className="md:col-span-7 p-8 flex flex-col justify-between">
+                  <div className="lg:col-span-6 p-8 flex flex-col justify-between">
                     <div className="space-y-6">
                       <div className="space-y-2">
                         <div className="flex items-center gap-3">
