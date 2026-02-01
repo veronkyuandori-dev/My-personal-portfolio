@@ -14,10 +14,10 @@ import budwellImage from '@assets/Gemini_Generated_Image_b8akhob8akhob8ak_176976
 const projects = [
   {
     id: 1,
-    title: 'Budwell',
+    title: 'Study Buddy',
     description: 'A cutting-edge Smart Garden monitoring system designed for precision plant care. Features real-time environmental data tracking, automated alerts, and intelligent growth analytics.',
     image: budwellImage,
-    tags: ['IoT', 'Embedded Systems'],
+    tags: ['Web Development', 'IoT'],
     github: 'https://github.com/andrieVerdev/Budwell',
     gitlab: 'https://github.com/andrieVerdev/Budwell',
     requirements: {
