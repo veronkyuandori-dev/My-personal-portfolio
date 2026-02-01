@@ -17,7 +17,7 @@ const projects = [
     title: 'Budwell',
     description: 'A cutting-edge Smart Garden monitoring system designed for precision plant care. Features real-time environmental data tracking, automated alerts, and intelligent growth analytics.',
     image: budwellImage,
-    tags: ['IoT', 'React.js', 'Node.js', 'Embedded Systems'],
+    tags: ['IoT', 'Embedded Systems'],
     github: 'https://github.com/andrieVerdev/Budwell',
     gitlab: 'https://github.com/andrieVerdev/Budwell',
     requirements: {
@@ -30,7 +30,7 @@ const projects = [
     title: 'TaskTracker',
     description: 'A robust task management system featuring categorized tracking, real-time status updates, and interactive data visualization for productivity monitoring.',
     image: taskTrackerImage,
-    tags: ['Python', 'Flask', 'PostgreSQL', 'SQLAlchemy'],
+    tags: ['Web Development', 'Python'],
     github: 'https://github.com/andrieVerdev/TaskTracker',
     gitlab: 'https://gitlab.com/veronqueandrei/Webtracker.git',
     requirements: {
@@ -45,7 +45,7 @@ const projects = [
     title: 'EVACS-SYSTEM',
     description: 'A professional IT Solutions & Business Services Access Control System. Features real-time check-in/out tracking, visitor management, activity logging, and comprehensive employee data management with a premium futuristic UI.',
     image: evacsImage,
-    tags: ['React.js', 'Node.js', 'PostgreSQL', 'Futuristic UI'],
+    tags: ['Web Development', 'PostgreSQL'],
     github: 'https://github.com/andrieVerdev/EVACS-SYSTEM',
     gitlab: 'https://gitlab.com/veronqueandrei/EVACS-SYSTEM.git',
     requirements: {
@@ -60,7 +60,7 @@ const projects = [
     title: 'Library Management System',
     description: 'A sophisticated digital library solution with automated inventory tracking, member portal, and intelligent search capabilities.',
     image: libraryImage,
-    tags: ['Java', 'Spring Boot', 'MySQL', 'Hibernate'],
+    tags: ['Software Development', 'Java'],
     github: 'https://github.com/andrieVerdev/LIbrayManagement-System.git',
     gitlab: 'https://gitlab.com/veronqueandrei/LIbrayManagement-System.git',
     requirements: {
@@ -74,7 +74,7 @@ const projects = [
     title: 'Facial Recognition AI',
     description: 'State-of-the-art computer vision system implementing deep learning models for high-accuracy face detection and biometric authentication.',
     image: aiFaceImage,
-    tags: ['Python', 'OpenCV', 'TensorFlow', 'PyTorch'],
+    tags: ['Artificial Intelligence', 'Python'],
     github: 'https://github.com/andrieVerdev/Facial-AI',
     gitlab: 'https://github.com/andrieVerdev/Facial-AI.git',
     requirements: {
