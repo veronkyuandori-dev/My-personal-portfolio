@@ -15,14 +15,14 @@ const projects = [
   {
     id: 1,
     title: 'Study Buddy',
-    description: 'A cutting-edge Smart Garden monitoring system designed for precision plant care. Features real-time environmental data tracking, automated alerts, and intelligent growth analytics.',
+    description: 'A collaborative academic application designed to connect students for peer learning and study group management. Features interactive resource sharing, group scheduling, and real-time collaboration tools.',
     image: budwellImage,
-    tags: ['Web Development', 'IoT'],
+    tags: ['Web Development', 'Collaboration'],
     github: 'https://github.com/andrieVerdev/Budwell',
     gitlab: 'https://github.com/andrieVerdev/Budwell',
     requirements: {
-      'IoT Integration': ['Real-time Sensor Data Monitoring', 'Automated Plant Care Logic', 'Smart Environmental Tracking'],
-      'Dashboard & Analytics': ['Growth Performance Tracking', 'Moisture & Light Analytics', 'Mobile-Responsive Interface'],
+      'Collaboration Features': ['Real-time Peer-to-Peer Learning', 'Study Group Management', 'Academic Resource Sharing'],
+      'User Experience': ['Interactive Group Scheduling', 'Mobile-Responsive Portal', 'Student Networking Tools'],
     },
   },
   {
