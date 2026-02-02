@@ -139,10 +139,10 @@ export default function ChatBot3D() {
               <Bot className="h-12 w-12 text-primary/20 animate-pulse" />
             </div>
             <Suspense fallback={null}>
-              <Canvas camera={{ position: [0, 0, 5], fov: 45 }} gl={{ antialias: true }}>
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={1} />
-                <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} />
+              <Canvas camera={{ position: [0, 0, 5], fov: 45 }} gl={{ antialias: true, alpha: true }}>
+                <ambientLight intensity={1.5} />
+                <pointLight position={[10, 10, 10]} intensity={2} />
+                <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={2} />
                 <BotCore />
                 <OrbitControls enableZoom={false} enablePan={false} />
               </Canvas>
