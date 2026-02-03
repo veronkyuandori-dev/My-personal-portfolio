@@ -1,0 +1,13 @@
+run = "npm start"
+language = "nodejs"
+
+[workflows]
+
+[[workflows.workflow]]
+name = "start"
+mode = "parallel"
+author = 49116020
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
