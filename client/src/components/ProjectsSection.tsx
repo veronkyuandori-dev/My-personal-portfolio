@@ -138,69 +138,69 @@ export default function ProjectsSection() {
               duration={700}
             >
               <Card
-                className="group relative overflow-hidden transition-all duration-500 border-0 bg-transparent hover:shadow-2xl hover:shadow-primary/20"
+                className="group relative overflow-hidden transition-all duration-500 border-0 bg-transparent hover:shadow-2xl hover:shadow-primary/10 rounded-2xl"
                 data-testid={`project-card-${project.id}`}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-card/80 via-card/40 to-card/60 backdrop-blur-xl border border-primary/20 rounded-2xl -z-10" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-card/40 via-card/20 to-card/30 backdrop-blur-2xl border border-white/10 rounded-2xl -z-10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
                 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
                   {/* Project Image Panel */}
-                  <div className="lg:col-span-6 relative group/img overflow-hidden">
+                  <div className="lg:col-span-5 relative group/img overflow-hidden bg-black/40 border-r border-white/5">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full min-h-[400px] object-contain bg-background/20 p-4 transition-transform duration-1000 group-hover/img:scale-105"
+                      className="w-full h-full min-h-[350px] object-contain p-6 transition-transform duration-1000 group-hover/img:scale-105 filter drop-shadow-[0_0_15px_rgba(34,197,94,0.3)]"
                     />
                     
-                    <div className="absolute top-4 left-4 z-30">
-                      <div className="p-2 bg-primary/20 backdrop-blur-md rounded-lg border border-primary/30">
+                    <div className="absolute top-6 left-6 z-30">
+                      <div className="p-2.5 bg-primary/20 backdrop-blur-xl rounded-xl border border-primary/40 shadow-lg shadow-primary/20">
                         <CheckCircle2 className="w-5 h-5 text-primary shadow-glow" />
                       </div>
                     </div>
                   </div>
 
                   {/* Project Info Panel */}
-                  <div className="lg:col-span-6 p-8 flex flex-col justify-between">
+                  <div className="lg:col-span-7 p-10 flex flex-col justify-between bg-gradient-to-b from-transparent to-black/20">
                     <div className="space-y-6">
-                      <div className="space-y-2">
+                      <div className="space-y-3">
                         <div className="flex items-center gap-3">
-                          <span className="text-[10px] uppercase tracking-[0.3em] text-primary/70 font-bold">Project {project.id}</span>
-                          <div className="h-[1px] w-8 bg-primary/30" />
+                          <span className="text-[10px] uppercase tracking-[0.4em] text-primary font-bold opacity-80">Phase {project.id}</span>
+                          <div className="h-[1px] w-12 bg-primary/40" />
                         </div>
-                        <h3 className="text-3xl md:text-4xl font-heading font-extrabold tracking-tight group-hover:text-primary transition-colors duration-300">
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-heading font-black tracking-tight group-hover:text-primary transition-colors duration-300 drop-shadow-sm">
                           {project.title}
                         </h3>
                       </div>
 
-                      <p className="text-muted-foreground/90 text-sm md:text-base leading-relaxed font-medium">
+                      <p className="text-muted-foreground/95 text-base md:text-lg leading-relaxed font-medium max-w-2xl">
                         {project.description}
                       </p>
 
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2.5">
                         {project.tags.map((tag, index) => (
                           <Badge 
                             key={index} 
-                            variant="outline" 
-                            className="bg-primary/5 border-primary/20 text-primary/80 hover:bg-primary/10 transition-colors"
+                            variant="secondary" 
+                            className="bg-primary/10 border-primary/30 text-primary font-semibold hover:bg-primary/20 transition-all rounded-lg px-3 py-1"
                           >
                             {tag}
                           </Badge>
                         ))}
                       </div>
 
-                      <div className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="pt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
                         {Object.entries(project.requirements).slice(0, 2).map(([category, items], index) => (
-                          <div key={index} className="space-y-3">
-                            <h4 className="text-xs uppercase tracking-widest text-primary/60 font-bold flex items-center gap-2">
-                              <div className="w-1 h-1 rounded-full bg-primary" />
+                          <div key={index} className="space-y-4">
+                            <h4 className="text-[11px] uppercase tracking-widest text-primary font-black flex items-center gap-2.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                               {category}
                             </h4>
-                            <ul className="space-y-2">
+                            <ul className="space-y-3">
                               {items.slice(0, 3).map((item: string, itemIndex: number) => (
-                                <li key={itemIndex} className="text-xs text-muted-foreground flex items-center gap-2">
-                                  <div className="w-1 h-[1px] bg-primary/30" />
-                                  {item}
+                                <li key={itemIndex} className="text-sm text-muted-foreground/80 flex items-start gap-3 group/item">
+                                  <div className="mt-2 w-1.5 h-[1px] bg-primary/50 group-hover/item:w-3 transition-all duration-300" />
+                                  <span className="group-hover:text-muted-foreground transition-colors">{item}</span>
                                 </li>
                               ))}
                             </ul>
@@ -209,24 +209,24 @@ export default function ProjectsSection() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-4 mt-8 pt-6 border-t border-primary/10">
+                    <div className="flex items-center gap-5 mt-10 pt-8 border-t border-white/10">
                       <Button
                         variant="outline"
-                        className="rounded-xl border-primary/20 bg-primary/5 hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex-1"
+                        className="h-12 rounded-xl border-primary/30 bg-primary/5 hover:bg-primary/20 hover:border-primary/60 transition-all duration-500 flex-1 font-bold group/btn"
                         asChild
                       >
                         <a href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4 mr-2" />
-                          Source Code
+                          <Github className="h-5 w-5 mr-2.5 transition-transform group-hover/btn:-translate-y-0.5" />
+                          Repository
                         </a>
                       </Button>
                       <Button
-                        className="rounded-xl bg-primary text-primary-foreground hover-elevate transition-all duration-300 flex-1"
+                        className="h-12 rounded-xl bg-primary text-primary-foreground hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] transition-all duration-500 flex-1 font-bold group/btn"
                         asChild
                       >
                         <a href={project.gitlab} target="_blank" rel="noopener noreferrer">
-                          <SiGitlab className="h-4 w-4 mr-2" />
-                          Documentation
+                          <SiGitlab className="h-5 w-5 mr-2.5 transition-transform group-hover/btn:-translate-y-0.5" />
+                          View Project
                         </a>
                       </Button>
                     </div>
