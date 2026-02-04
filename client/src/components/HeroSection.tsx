@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import AnimationWrapper from '@/components/AnimationWrapper';
-import profileImage from '@assets/622611152_1195276066007945_4689188665214127611_n_1769761424971.jpg';
+import profileImage from '@assets/620596780_1628434715138394_8814569979901153268_n_1770169644240.jpg';
 
 export default function HeroSection() {
   const scrollToSection = (href: string) => {
