@@ -69,10 +69,10 @@ export default function EnhancedCosmicBackground() {
     }
 
     const animate = () => {
-      time += 0.01;
+      time += 0.005; // Slower time for smoother movement
       
-      // Clear background with deep dark base
-      ctx.fillStyle = '#050a10';
+      // Clear background with deep dark base and slight trail effect
+      ctx.fillStyle = 'rgba(5, 10, 16, 0.15)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       // Draw morphing blobs with blur effect
@@ -80,11 +80,9 @@ export default function EnhancedCosmicBackground() {
         blob.x += blob.speedX;
         blob.y += blob.speedY;
 
-        // Bounce off edges
         if (blob.x < 0 || blob.x > canvas.width) blob.speedX *= -1;
         if (blob.y < 0 || blob.y > canvas.height) blob.speedY *= -1;
 
-        // Morphing radius
         const morphRadius = blob.radius + Math.sin(time * 2 + blob.x) * 20;
 
         const blobGradient = ctx.createRadialGradient(
@@ -95,8 +93,8 @@ export default function EnhancedCosmicBackground() {
           blob.y,
           morphRadius
         );
-        blobGradient.addColorStop(0, `hsla(${blob.hue}, 80%, 60%, 0.1)`);
-        blobGradient.addColorStop(0.5, `hsla(${blob.hue}, 80%, 50%, 0.05)`);
+        blobGradient.addColorStop(0, `hsla(${blob.hue}, 80%, 60%, 0.08)`);
+        blobGradient.addColorStop(0.5, `hsla(${blob.hue}, 80%, 50%, 0.04)`);
         blobGradient.addColorStop(1, `hsla(${blob.hue}, 80%, 40%, 0)`);
 
         ctx.fillStyle = blobGradient;
@@ -105,17 +103,28 @@ export default function EnhancedCosmicBackground() {
         ctx.fill();
       });
 
-      // Draw connections first for depth
+      // Draw connections with gradient opacity based on distance
       particles.forEach((particle, i) => {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[j].x - particle.x;
           const dy = particles[j].y - particle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
+          if (distance < 180) { // Increased distance
+            const opacity = (1 - distance / 180) * 0.2;
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(135, 206, 235, ${0.15 * (1 - distance / 150)})`;
-            ctx.lineWidth = 0.5;
+            
+            // Create a small gradient between nodes for the line
+            const lineGradient = ctx.createLinearGradient(
+              particle.x, particle.y, 
+              particles[j].x, particles[j].y
+            );
+            lineGradient.addColorStop(0, `rgba(135, 206, 235, ${opacity})`);
+            lineGradient.addColorStop(0.5, `rgba(34, 197, 94, ${opacity * 0.5})`); // Blend with primary green
+            lineGradient.addColorStop(1, `rgba(135, 206, 235, ${opacity})`);
+            
+            ctx.strokeStyle = lineGradient;
+            ctx.lineWidth = 0.8;
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
@@ -123,7 +132,7 @@ export default function EnhancedCosmicBackground() {
         }
       });
 
-      // Draw glowing particles
+      // Draw glowing particles with mouse interaction (simulated with time here)
       particles.forEach((particle) => {
         particle.x += particle.speedX;
         particle.y += particle.speedY;
@@ -131,18 +140,17 @@ export default function EnhancedCosmicBackground() {
         if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
         if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
 
-        // Pulsing opacity
         const pulseOpacity = particle.opacity + Math.sin(time * particle.pulseSpeed * 100) * 0.2;
+        const sizeShift = Math.sin(time * 3 + particle.x) * 0.5;
 
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.arc(particle.x, particle.y, particle.size + sizeShift, 0, Math.PI * 2);
         
-        // Glow effect
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'skyblue';
-        ctx.fillStyle = `hsla(${particle.hue}, 100%, 70%, ${Math.max(0, pulseOpacity)})`;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = 'rgba(135, 206, 235, 0.8)';
+        ctx.fillStyle = `hsla(${particle.hue}, 100%, 75%, ${Math.max(0, pulseOpacity)})`;
         ctx.fill();
-        ctx.shadowBlur = 0; // Reset for next draw
+        ctx.shadowBlur = 0;
       });
 
       animationFrameId = requestAnimationFrame(animate);
