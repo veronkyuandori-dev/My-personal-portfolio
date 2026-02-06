@@ -10,10 +10,24 @@ import libraryImage from '@assets/Screenshot_2026-01-29_23.21.52_1769762002287.p
 import aiFaceImage from '@assets/Screenshot_2026-01-30_16.32.23_1769761975016.png';
 import evacsImage from '@assets/Gemini_Generated_Image_j018yfj018yfj018_1769761709598.png';
 import budwellImage from '@assets/Gemini_Generated_Image_b8akhob8akhob8ak_1769761724083.png';
+import fluppyBirdImage from '@assets/Gemini_Generated_Image_p4dnkip4dnkip4dn_1770347828961.png';
 
 const projects = [
   {
     id: 1,
+    title: 'Fluppy Bird',
+    description: 'A charming and addictive side-scrolling game featuring "Fluppy", a bird navigating through a series of challenging obstacles. Developed with a focus on smooth physics-based movement and responsive controls.',
+    image: fluppyBirdImage,
+    tags: ['Game Development', 'Python', 'Pygame'],
+    github: 'https://github.com/andrieVerdev/FLUPPYBIRD',
+    gitlab: 'https://github.com/andrieVerdev/FLUPPYBIRD',
+    requirements: {
+      'Game Mechanics': ['Physics-based movement', 'Collision detection', 'Score tracking system'],
+      'Development': ['Pygame implementation', 'Asset management', 'Game state handling'],
+    },
+  },
+  {
+    id: 2,
     title: 'Study Buddy',
     description: 'A collaborative academic application designed to connect students for peer learning and study group management. Features interactive resource sharing, group scheduling, and real-time collaboration tools.',
     image: budwellImage,
