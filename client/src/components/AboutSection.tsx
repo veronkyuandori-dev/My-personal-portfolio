@@ -65,8 +65,8 @@ export default function AboutSection() {
               <div className="absolute -inset-6 bg-gradient-to-tr from-primary/30 to-chart-2/30 rounded-[3rem] -z-10 blur-3xl opacity-50 animate-pulse" />
               
               {/* School Logo Overlay */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 p-2 bg-white rounded-2xl border-4 border-primary/30 shadow-2xl transform rotate-6 group-hover:rotate-0 transition-all duration-500 z-20">
-                <img src={schoolLogo} alt="University of Cabuyao" className="w-full h-full object-contain" />
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 p-0 bg-transparent rounded-full border-4 border-primary/30 shadow-2xl transform rotate-6 group-hover:rotate-0 transition-all duration-500 z-20 overflow-hidden flex items-center justify-center">
+                <img src={schoolLogo} alt="University of Cabuyao" className="w-full h-full object-cover" />
               </div>
 
               <div className="absolute -top-6 -left-6 bg-card border-4 border-primary/30 p-4 rounded-2xl shadow-xl hidden md:block backdrop-blur-md">

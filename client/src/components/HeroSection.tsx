@@ -178,8 +178,8 @@ export default function HeroSection() {
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/30 to-chart-2/30 animate-pulse z-0" />
             
             {/* School Logo Overlay */}
-            <div className="absolute -bottom-2 -right-2 z-20 w-16 h-16 md:w-24 md:h-24 p-1 bg-white rounded-full border-4 border-primary shadow-xl">
-              <img src={schoolLogo} alt="University of Cabuyao" className="w-full h-full object-contain" />
+            <div className="absolute -bottom-2 -right-2 z-20 w-16 h-16 md:w-24 md:h-24 p-0 bg-transparent rounded-full border-4 border-primary shadow-xl overflow-hidden flex items-center justify-center">
+              <img src={schoolLogo} alt="University of Cabuyao" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
