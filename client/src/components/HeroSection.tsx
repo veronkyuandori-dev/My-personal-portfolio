@@ -194,7 +194,7 @@ export default function HeroSection() {
         <AnimationWrapper type="blur-fade" delay={400} duration={800}>
         <div className="text-lg md:text-xl text-foreground/80 mb-8 space-y-1.5 max-w-2xl mx-auto">
           <p>Junior Mechatronics and Robotics Society of the Philippines</p>
-          <p className="text-sm md:text-base text-foreground/70">(JMRSP – PnC Student Chapter) Member — A.Y. 2025–2026</p>
+          <p className="text-sm md:text-base text-foreground/70">(JMRSP – PnC Student Chapter) Member A.Y. 2025–2026</p>
           <p className="text-sm md:text-base text-foreground/70">AWS Educate Member GitHub Student Developer</p>
         </div>
         </AnimationWrapper>
