@@ -54,16 +54,22 @@ export default function AboutSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <AnimationWrapper type="fade" direction="up">
-            <div className="relative max-w-md mx-auto">
-              <div className="aspect-square rounded-[2rem] overflow-hidden border-8 border-primary/20 shadow-2xl shadow-primary/20 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+            <div className="relative max-w-md mx-auto group">
+              <div className="aspect-square rounded-[2rem] overflow-hidden border-8 border-primary/20 shadow-2xl shadow-primary/20 transform -rotate-2 group-hover:rotate-0 transition-all duration-700">
                 <img
                   src={profileImage}
                   alt="Professional"
-                  className="w-full h-full object-cover scale-110 hover:scale-100 transition-transform duration-700"
+                  className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
                 />
               </div>
               <div className="absolute -inset-6 bg-gradient-to-tr from-primary/30 to-chart-2/30 rounded-[3rem] -z-10 blur-3xl opacity-50 animate-pulse" />
-              <div className="absolute -bottom-6 -right-6 bg-card border-4 border-primary/30 p-4 rounded-2xl shadow-xl hidden md:block">
+              
+              {/* School Logo Overlay */}
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 p-2 bg-white rounded-2xl border-4 border-primary/30 shadow-2xl transform rotate-6 group-hover:rotate-0 transition-all duration-500 z-20">
+                <img src={schoolLogo} alt="University of Cabuyao" className="w-full h-full object-contain" />
+              </div>
+
+              <div className="absolute -top-6 -left-6 bg-card border-4 border-primary/30 p-4 rounded-2xl shadow-xl hidden md:block backdrop-blur-md">
                 <p className="text-primary font-extrabold text-2xl">JMRSP</p>
                 <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Member 2025</p>
               </div>
