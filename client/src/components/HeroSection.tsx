@@ -8,7 +8,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import AnimationWrapper from '@/components/AnimationWrapper';
-import profileImage from '@assets/620596780_1628434715138394_8814569979901153268_n_1770169644240.jpg';
+import profileImage from '@assets/609514811_4229493440650186_5683063432825698184_n_1770459470018.png';
+import schoolLogo from '@assets/Screenshot_2026-02-07_18.19.37_1770459637453.png';
 
 export default function HeroSection() {
   const scrollToSection = (href: string) => {
@@ -167,7 +168,7 @@ export default function HeroSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-20 text-center">
         <AnimationWrapper type="zoom" duration={1000}>
-        <div className="mb-8 flex justify-center">
+        <div className="mb-8 flex justify-center items-end gap-4">
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-chart-2 to-primary opacity-75 blur-2xl scale-125 animate-pulse" />
             <Avatar className="w-56 h-56 md:w-72 md:h-72 border-4 border-primary/70 shadow-2xl shadow-primary/60 relative z-10 animate-glow-pulse">
@@ -175,6 +176,11 @@ export default function HeroSection() {
               <AvatarFallback className="text-6xl">VA</AvatarFallback>
             </Avatar>
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/30 to-chart-2/30 animate-pulse z-0" />
+            
+            {/* School Logo Overlay */}
+            <div className="absolute -bottom-2 -right-2 z-20 w-16 h-16 md:w-24 md:h-24 p-1 bg-white rounded-full border-4 border-primary shadow-xl">
+              <img src={schoolLogo} alt="University of Cabuyao" className="w-full h-full object-contain" />
+            </div>
           </div>
         </div>
         </AnimationWrapper>
