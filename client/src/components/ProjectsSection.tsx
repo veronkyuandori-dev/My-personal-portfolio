@@ -25,6 +25,7 @@ const projects = [
       'Game Mechanics': ['Physics-based movement', 'Collision detection', 'Score tracking system'],
       'Development': ['Pygame implementation', 'Asset management', 'Game state handling'],
     },
+    techStack: ['Python', 'Pygame', 'Physics Engine', 'Game Loop'],
   },
   {
     id: 2,
@@ -38,9 +39,10 @@ const projects = [
       'Collaboration Features': ['Real-time Peer-to-Peer Learning', 'Study Group Management', 'Academic Resource Sharing'],
       'User Experience': ['Interactive Group Scheduling', 'Mobile-Responsive Portal', 'Student Networking Tools'],
     },
+    techStack: ['React', 'Firebase', 'Tailwind CSS', 'Real-time Sync'],
   },
   {
-    id: 2,
+    id: 3,
     title: 'TaskTracker',
     description: 'A robust task management system featuring categorized tracking, real-time status updates, and interactive data visualization for productivity monitoring.',
     image: taskTrackerImage,
@@ -84,6 +86,7 @@ const projects = [
       'Frontend': ['Thymeleaf Templates', 'Interactive Search Filters', 'User Profile Management'],
       'Persistence': ['Relational Database Design', 'Automated Backup Scripts', 'Data Integrity Constraints'],
     },
+    techStack: ['Java', 'Spring Boot', 'Hibernate', 'MySQL', 'Thymeleaf'],
   },
   {
     id: 5,
@@ -98,6 +101,7 @@ const projects = [
       'Implementation': ['Real-time Video Processing', 'Biometric Database Integration', 'GPU Acceleration Support'],
       'Validation': ['Accuracy Benchmarking', 'Anti-Spoofing Protocols', 'Performance Optimization'],
     },
+    techStack: ['Python', 'TensorFlow', 'OpenCV', 'Deep Learning', 'Biometrics'],
   },
 ];
 

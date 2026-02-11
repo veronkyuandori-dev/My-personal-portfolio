@@ -7,11 +7,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Upload, Link as LinkIcon } from 'lucide-react';
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Link as LinkIcon, Copy, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
 import AnimationWrapper from './AnimationWrapper';
+import { useState } from 'react';
 
 const CATEGORIES = [
   {
@@ -58,6 +59,17 @@ const CATEGORIES = [
 
 export default function ContactSection() {
   const { toast } = useToast();
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    toast({
+      title: "Copied!",
+      description: "Email address copied to clipboard.",
+    });
+    setTimeout(() => setCopied(false), 2000);
+  };
   
   const form = useForm<InsertMessage>({
     resolver: zodResolver(insertMessageSchema),
@@ -301,6 +313,7 @@ export default function ContactSection() {
                                 placeholder="Paste link to your files/photos (Google Drive, Dropbox, etc.)"
                                 className="pl-10 rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
                                 {...field}
+                                value={field.value ?? ''}
                                 data-testid="input-file-url"
                               />
                             </div>
