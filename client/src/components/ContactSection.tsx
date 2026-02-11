@@ -7,7 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Link as LinkIcon, Copy, Check } from 'lucide-react';
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Link as LinkIcon, Copy, Check, PlayCircle } from 'lucide-react';
+import demoVideo from '@/assets/videos/demo-guide.mp4';
 import { useToast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
@@ -172,6 +173,25 @@ export default function ContactSection() {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              <div className="pt-8">
+                <p className="font-bold text-sm text-muted-foreground uppercase tracking-widest mb-4">Demo Guide</p>
+                <div className="relative rounded-2xl overflow-hidden border border-primary/20 bg-black/40 group/video">
+                  <video 
+                    src={demoVideo} 
+                    className="w-full aspect-video object-cover opacity-60 group-hover/video:opacity-100 transition-opacity duration-500"
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                  />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 group-hover/video:opacity-0 transition-opacity duration-500 pointer-events-none">
+                    <PlayCircle className="h-12 w-12 text-primary mb-3 animate-pulse" />
+                    <p className="text-sm font-bold text-white tracking-widest uppercase">Quick Demo Guide</p>
+                    <p className="text-xs text-white/60 mt-1">See how to use the contact form</p>
+                  </div>
+                </div>
               </div>
 
               <div className="pt-8">
