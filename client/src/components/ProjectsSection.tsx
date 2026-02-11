@@ -53,6 +53,7 @@ const projects = [
       'Security & Optimization': ['Password Hashing', 'Session Management', 'Query Optimization'],
       'Development Tools': ['CI/CD Workflow Scripts', 'Unit Testing Suite', 'Migration Management'],
     },
+    techStack: ['Flask', 'PostgreSQL', 'Python', 'REST API', 'CI/CD'],
   },
   {
     id: 3,
@@ -68,6 +69,7 @@ const projects = [
       'UI/UX Design': ['Premium Futuristic Interface', 'Dark/Light Mode Support', 'Interactive Dashboards'],
       'Infrastructure': ['Secure API Architecture', 'Real-time Event Handling', 'Audit Trail Generation'],
     },
+    techStack: ['PostgreSQL', 'Node.js', 'Express', 'Futuristic UI', 'Real-time'],
   },
   {
     id: 4,
@@ -205,6 +207,20 @@ export default function ProjectsSection() {
                           </Badge>
                         ))}
                       </div>
+
+                      {/* Tech Stack Badges */}
+                      {'techStack' in project && (
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {(project as any).techStack.map((tech: string, idx: number) => (
+                            <span 
+                              key={idx} 
+                              className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] text-muted-foreground font-semibold uppercase tracking-tighter"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      )}
 
                       {/* Requirements with Icons */}
                       <div className="pt-8 grid grid-cols-1 md:grid-cols-2 gap-10">

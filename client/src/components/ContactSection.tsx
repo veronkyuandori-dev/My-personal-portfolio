@@ -130,12 +130,23 @@ export default function ContactSection() {
                     <div>
                       <p className="font-bold text-sm text-primary uppercase tracking-widest mb-1">{info.label}</p>
                       {info.label === 'Email' ? (
-                        <a
-                          href={`mailto:${info.value}`}
-                          className="text-lg font-medium hover:text-primary transition-colors"
-                        >
-                          {info.value}
-                        </a>
+                        <div className="flex items-center gap-2">
+                          <a
+                            href={`mailto:${info.value}`}
+                            className="text-lg font-medium hover:text-primary transition-colors"
+                          >
+                            {info.value}
+                          </a>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8 rounded-lg hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all"
+                            onClick={() => copyToClipboard(info.value)}
+                            data-testid="button-copy-email"
+                          >
+                            {copied ? <Check className="h-4 w-4 text-primary" /> : <Copy className="h-4 w-4" />}
+                          </Button>
+                        </div>
                       ) : info.label === 'Phone' ? (
                         <a
                           href={`tel:${info.value.replace(/\\D/g, '')}`}
