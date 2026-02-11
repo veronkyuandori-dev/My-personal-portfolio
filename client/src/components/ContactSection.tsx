@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Link as LinkIcon, Copy, Check, PlayCircle } from 'lucide-react';
-import demoVideo from '@/assets/videos/demo-guide.mp4';
+import demoVideo from '@/assets/videos/demo-guide-v2.mp4';
 import { useToast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
@@ -176,8 +176,8 @@ export default function ContactSection() {
               </div>
 
               <div className="pt-8">
-                <p className="font-bold text-sm text-muted-foreground uppercase tracking-widest mb-4">Demo Guide</p>
-                <div className="relative rounded-2xl overflow-hidden border border-primary/20 bg-black/40 group/video">
+                <p className="font-bold text-sm text-muted-foreground uppercase tracking-widest mb-4">How it Works</p>
+                <div className="relative rounded-2xl overflow-hidden border border-primary/20 bg-black/40 group/video mb-4">
                   <video 
                     src={demoVideo} 
                     className="w-full aspect-video object-cover opacity-60 group-hover/video:opacity-100 transition-opacity duration-500"
@@ -186,11 +186,16 @@ export default function ContactSection() {
                     muted 
                     playsInline
                   />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 group-hover/video:opacity-0 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 group-hover/video:opacity-0 transition-opacity duration-500 pointer-events-none text-center">
                     <PlayCircle className="h-12 w-12 text-primary mb-3 animate-pulse" />
-                    <p className="text-sm font-bold text-white tracking-widest uppercase">Quick Demo Guide</p>
-                    <p className="text-xs text-white/60 mt-1">See how to use the contact form</p>
+                    <p className="text-sm font-bold text-white tracking-widest uppercase">Form & Delivery Guide</p>
+                    <p className="text-xs text-white/60 mt-1">See kung paano narereceive ang inquiries sa Gmail via Resend API</p>
                   </div>
+                </div>
+                <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    <span className="text-primary font-bold">Delivery Info:</span> Ang bawat submission ay dumadaan sa <span className="font-bold text-foreground">Resend API</span> para sa mabilis at siguradong pag-send ng email diretso sa iyong inbox.
+                  </p>
                 </div>
               </div>
 
@@ -234,10 +239,13 @@ export default function ContactSection() {
                         name="name"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="font-bold">Name</FormLabel>
+                            <FormLabel className="font-bold flex justify-between">
+                              Name
+                              <span className="text-[10px] text-muted-foreground font-normal italic">Ilagay ang iyong buong pangalan</span>
+                            </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="Your name"
+                                placeholder="Juan Dela Cruz"
                                 className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
                                 {...field}
                                 data-testid="input-name"
@@ -253,11 +261,14 @@ export default function ContactSection() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="font-bold">Email</FormLabel>
+                            <FormLabel className="font-bold flex justify-between">
+                              Email
+                              <span className="text-[10px] text-muted-foreground font-normal italic">Saan kita pwedeng kontakin?</span>
+                            </FormLabel>
                             <FormControl>
                               <Input
                                 type="email"
-                                placeholder="your@email.com"
+                                placeholder="juan@example.com"
                                 className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
                                 {...field}
                                 data-testid="input-email"
@@ -305,10 +316,13 @@ export default function ContactSection() {
                         name="subject"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="font-bold">Subject</FormLabel>
+                            <FormLabel className="font-bold flex justify-between">
+                              Subject
+                              <span className="text-[10px] text-muted-foreground font-normal italic">Ano ang pakay ng mensahe?</span>
+                            </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="Project inquiry"
+                                placeholder="Project inquiry / Internship"
                                 className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
                                 {...field}
                                 data-testid="input-subject"
@@ -348,10 +362,13 @@ export default function ContactSection() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="font-bold">Message</FormLabel>
+                          <FormLabel className="font-bold flex justify-between">
+                            Message
+                            <span className="text-[10px] text-muted-foreground font-normal italic">I-detalye ang iyong mensahe</span>
+                          </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Tell me about your project details..."
+                              placeholder="Dito mo ilagay ang detalye ng iyong project o katanungan..."
                               className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary min-h-[120px]"
                               {...field}
                               data-testid="input-message"
