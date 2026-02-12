@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Link as LinkIcon, Copy, Check, PlayCircle } from 'lucide-react';
-import demoVideo from '@/assets/videos/demo-guide-v2.mp4';
+import demoVideo from '@/assets/videos/screen-record-demo.mp4';
 import { useToast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
@@ -188,8 +188,8 @@ export default function ContactSection() {
                   />
                   <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 group-hover/video:opacity-0 transition-opacity duration-500 pointer-events-none text-center">
                     <PlayCircle className="h-12 w-12 text-primary mb-3 animate-pulse" />
-                    <p className="text-sm font-bold text-white tracking-widest uppercase">Form & Delivery Guide</p>
-                    <p className="text-xs text-white/60 mt-1">See kung paano narereceive ang inquiries sa Gmail via Resend API</p>
+                    <p className="text-sm font-bold text-white tracking-widest uppercase">System Demo Guide</p>
+                    <p className="text-xs text-white/60 mt-1">Full walkthrough of the inquiry & delivery system</p>
                   </div>
                 </div>
                 <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
