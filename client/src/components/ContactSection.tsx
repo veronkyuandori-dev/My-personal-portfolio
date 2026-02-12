@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Link as LinkIcon, Copy, Check, PlayCircle } from 'lucide-react';
-import demoVideo from '@/assets/videos/screen-record-demo.mp4';
+import demoVideo from '@/assets/Screen_recording_2026-02-12_23.36.20_1770910707651.webm';
 import { useToast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
@@ -177,19 +177,32 @@ export default function ContactSection() {
 
               <div className="pt-8">
                 <p className="font-bold text-sm text-muted-foreground uppercase tracking-widest mb-4">How it Works</p>
-                <div className="relative rounded-2xl overflow-hidden border border-primary/20 bg-black/40 group/video mb-4">
+                <div className="relative rounded-2xl overflow-hidden border border-primary/20 bg-black/40 group/video mb-4 aspect-video">
                   <video 
                     src={demoVideo} 
-                    className="w-full aspect-video object-cover opacity-60 group-hover/video:opacity-100 transition-opacity duration-500"
+                    className="w-full h-full object-cover opacity-80 group-hover/video:opacity-100 transition-opacity duration-500"
                     autoPlay 
                     loop 
                     muted 
                     playsInline
                   />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 group-hover/video:opacity-0 transition-opacity duration-500 pointer-events-none text-center">
-                    <PlayCircle className="h-12 w-12 text-primary mb-3 animate-pulse" />
-                    <p className="text-sm font-bold text-white tracking-widest uppercase">System Demo Guide</p>
-                    <p className="text-xs text-white/60 mt-1">Full walkthrough of the inquiry & delivery system</p>
+                  <div className="absolute inset-0 flex flex-col items-center justify-end p-8 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none">
+                    <div className="w-full space-y-3 transform translate-y-4 group-hover/video:translate-y-0 transition-transform duration-500">
+                      <div className="flex items-center gap-3 bg-primary/20 backdrop-blur-md border border-primary/30 p-3 rounded-xl">
+                        <PlayCircle className="h-5 w-5 text-primary animate-pulse" />
+                        <div>
+                          <p className="text-xs font-black text-white uppercase tracking-widest">Full Walkthrough Demo</p>
+                          <p className="text-[10px] text-primary font-bold">Step-by-step System Guide</p>
+                        </div>
+                      </div>
+                      
+                      {/* Subtitles / Narration Simulation */}
+                      <div className="bg-black/60 backdrop-blur-sm p-4 rounded-xl border border-white/5">
+                        <p className="text-xs text-white/90 leading-relaxed font-medium">
+                          "I-fill up ang <span className="text-primary">Contact Form</span>, piliin ang tamang category, at i-click ang send. Matatanggap ko ang iyong inquiry sa aking <span className="text-primary">Gmail</span> sa pamamagitan ng Resend API system."
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
