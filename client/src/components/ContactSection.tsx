@@ -186,10 +186,14 @@ export default function ContactSection() {
                     muted 
                     playsInline
                   />
-                  <div className="absolute inset-0 flex flex-col items-center justify-end p-4 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/video:opacity-100 transition-opacity duration-500 pointer-events-none">
-                    <div className="w-full max-w-md bg-black/40 backdrop-blur-md p-3 rounded-xl border border-white/10 mb-4">
-                      <p className="text-[10px] text-white/90 leading-tight font-medium text-center">
-                        "I-fill up ang <span className="text-primary">Contact Form</span>, piliin ang category, at i-click ang send. Matatanggap ko ang iyong inquiry sa aking <span className="text-primary">Gmail</span>."
+                  <div className="absolute inset-0 flex flex-col items-center justify-end p-4 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover/video:opacity-100 transition-opacity duration-500 pointer-events-none">
+                    <div className="w-full max-w-md bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/10 mb-4 shadow-2xl">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                        <span className="text-[10px] font-bold text-primary uppercase tracking-tighter">Voice Narration & Subtitles</span>
+                      </div>
+                      <p className="text-[11px] text-white/90 leading-relaxed font-medium">
+                        "I-fill up ang <span className="text-primary font-bold">Contact Form</span>, piliin ang tamang category, at i-click ang send. Matatanggap ko agad ang iyong inquiry sa aking <span className="text-primary font-bold">Gmail</span> sa pamamagitan ng Resend API system."
                       </p>
                     </div>
                   </div>
@@ -247,7 +251,7 @@ export default function ContactSection() {
                             </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="Juan Dela Cruz"
+                                placeholder="Your full name"
                                 className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
                                 {...field}
                                 data-testid="input-name"
@@ -270,7 +274,7 @@ export default function ContactSection() {
                             <FormControl>
                               <Input
                                 type="email"
-                                placeholder="juan@example.com"
+                                placeholder="your@email.com"
                                 className="rounded-xl border-primary/20 bg-muted/20 focus-visible:ring-primary"
                                 {...field}
                                 data-testid="input-email"
