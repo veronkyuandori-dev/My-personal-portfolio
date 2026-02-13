@@ -186,22 +186,11 @@ export default function ContactSection() {
                     muted 
                     playsInline
                   />
-                  <div className="absolute inset-0 flex flex-col items-center justify-end p-8 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none">
-                    <div className="w-full space-y-3 transform translate-y-4 group-hover/video:translate-y-0 transition-transform duration-500">
-                      <div className="flex items-center gap-3 bg-primary/20 backdrop-blur-md border border-primary/30 p-3 rounded-xl">
-                        <PlayCircle className="h-5 w-5 text-primary animate-pulse" />
-                        <div>
-                          <p className="text-xs font-black text-white uppercase tracking-widest">Full Walkthrough Demo</p>
-                          <p className="text-[10px] text-primary font-bold">Step-by-step System Guide</p>
-                        </div>
-                      </div>
-                      
-                      {/* Subtitles / Narration Simulation */}
-                      <div className="bg-black/60 backdrop-blur-sm p-4 rounded-xl border border-white/5">
-                        <p className="text-xs text-white/90 leading-relaxed font-medium">
-                          "I-fill up ang <span className="text-primary">Contact Form</span>, piliin ang tamang category, at i-click ang send. Matatanggap ko ang iyong inquiry sa aking <span className="text-primary">Gmail</span> sa pamamagitan ng Resend API system."
-                        </p>
-                      </div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-end p-4 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/video:opacity-100 transition-opacity duration-500 pointer-events-none">
+                    <div className="w-full max-w-md bg-black/40 backdrop-blur-md p-3 rounded-xl border border-white/10 mb-4">
+                      <p className="text-[10px] text-white/90 leading-tight font-medium text-center">
+                        "I-fill up ang <span className="text-primary">Contact Form</span>, piliin ang category, at i-click ang send. Matatanggap ko ang iyong inquiry sa aking <span className="text-primary">Gmail</span>."
+                      </p>
                     </div>
                   </div>
                 </div>
