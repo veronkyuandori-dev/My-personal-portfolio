@@ -28,8 +28,8 @@ import wvsuDigitalTwinsCert from '@assets/Screenshot_2026-01-29_22.13.23_1769697
 import ciscoAIAtWorkCert from '@assets/Screenshot_2026-01-29_22.22.02_1769697681559.png';
 import ciscoGreenHouseGasCert from '@assets/Screenshot_2026-01-29_21.24.18_1769702343730.png';
 import ciscoCppEssentialsCert from '@assets/Screenshot_2026-01-29_22.22.53_1769697681557.png';
-import ghActionsCert from '@assets/614311453_1268615795324686_7714048154067654293_n_1769697681581.png';
-import transformerCert from '@assets/Screenshot_2026-01-29_23.50.20_1769701844006.png';
+import ghActionsCert from '@assets/Screenshot_2026-02-14_16.35.08_1771058417077.png';
+import transformerCert from '@assets/Screenshot_2026-02-14_16.35.29_1771058401613.png';
 import azureMonitorCert from '@assets/611974055_2053270672125756_6534229906902908588_n_1769697681580.png';
 import awsDataEngineeringCert from '@assets/Screenshot_2026-01-29_23.56.06_1769702307268.png';
 

@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Briefcase, Award } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
-import profileImage from '@assets/609514811_4229493440650186_5683063432825698184_n_1770459470018.png';
+import profileImage from '@assets/634394059_1242178994020299_5344193652637051401_n_1772062888470.jpg';
 import schoolLogo from '@assets/Screenshot_2026-02-07_18.19.37_1770459637453.png';
 
 const experiences = [
@@ -55,11 +55,11 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <AnimationWrapper type="fade" direction="up">
             <div className="relative max-w-md mx-auto group">
-              <div className="aspect-square rounded-[2rem] overflow-hidden border-8 border-primary/20 shadow-2xl shadow-primary/20 transform -rotate-2 group-hover:rotate-0 transition-all duration-700">
+              <div className="aspect-square rounded-[2rem] overflow-hidden border-8 border-primary/20 shadow-2xl shadow-primary/20 transform -rotate-2 group-hover:rotate-0 transition-all duration-700 bg-muted/20">
                 <img
                   src={profileImage}
                   alt="Professional"
-                  className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
+                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="absolute -inset-6 bg-gradient-to-tr from-primary/30 to-chart-2/30 rounded-[3rem] -z-10 blur-3xl opacity-50 animate-pulse" />
