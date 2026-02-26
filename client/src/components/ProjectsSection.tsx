@@ -58,7 +58,7 @@ const projects = [
     techStack: ['Flask', 'PostgreSQL', 'Python', 'REST API', 'CI/CD'],
   },
   {
-    id: 3,
+    id: 4,
     title: 'EVACS-SYSTEM',
     description: 'A professional IT Solutions & Business Services Access Control System. Features real-time check-in/out tracking, visitor management, activity logging, and comprehensive employee data management with a premium futuristic UI.',
     image: evacsImage,
@@ -74,7 +74,7 @@ const projects = [
     techStack: ['PostgreSQL', 'Node.js', 'Express', 'Futuristic UI', 'Real-time'],
   },
   {
-    id: 4,
+    id: 5,
     title: 'Library Management System',
     description: 'A sophisticated digital library solution with automated inventory tracking, member portal, and intelligent search capabilities.',
     image: libraryImage,
@@ -89,7 +89,7 @@ const projects = [
     techStack: ['Java', 'Spring Boot', 'Hibernate', 'MySQL', 'Thymeleaf'],
   },
   {
-    id: 5,
+    id: 6,
     title: 'Facial Recognition AI',
     description: 'State-of-the-art computer vision system implementing deep learning models for high-accuracy face detection and biometric authentication.',
     image: aiFaceImage,
