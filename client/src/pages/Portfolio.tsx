@@ -8,7 +8,6 @@ import SkillsSection from '@/components/SkillsSection';
 import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-import BlogSection from '@/components/BlogSection';
 import ChatBot3D from '@/components/ChatBot3D';
 
 export default function Portfolio() {
@@ -23,7 +22,6 @@ export default function Portfolio() {
         <GitHubStatsSection />
         <SkillsSection />
         <CertificationsSection />
-        <BlogSection />
         <ContactSection />
       </main>
       <Footer />
