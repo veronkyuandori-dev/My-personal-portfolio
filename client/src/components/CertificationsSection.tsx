@@ -35,20 +35,6 @@ import awsDataEngineeringCert from '@assets/Screenshot_2026-01-29_23.56.06_17697
 
 const certifications = [
   {
-    name: 'Trigger GitHub Actions with feature-based development',
-    organization: 'Microsoft',
-    date: 'December 18, 2025',
-    description: 'Mastered the principles of triggering GitHub Actions based on feature development workflows, ensuring automated and reliable CI/CD pipelines.',
-    image: ghActionsCert,
-  },
-  {
-    name: 'Understand the Transformer architecture and explore large language models in Azure Machine Learning',
-    organization: 'Microsoft',
-    date: 'January 7, 2026',
-    description: 'Explored deep learning architectures including Transformers and Large Language Models (LLMs) within the Azure Machine Learning ecosystem.',
-    image: transformerCert,
-  },
-  {
     name: 'Collect guest operating system monitoring data from Azure and hybrid virtual machines using Azure Monitor Agent',
     organization: 'Microsoft',
     date: 'January 13, 2026',
@@ -68,13 +54,6 @@ const certifications = [
     date: 'October 11, 2025',
     description: 'Completed comprehensive training on AWS Database services and offerings, demonstrating proficiency in cloud database solutions.',
     image: awsCert,
-  },
-  {
-    name: 'Introduction to Greenhouse Gas Accounting for IT',
-    organization: 'Cisco Networking Academy',
-    date: 'September 21, 2025',
-    description: 'Successfully completed training on greenhouse gas accounting principles for IT infrastructure and networking systems.',
-    image: ciscoCert,
   },
   {
     name: 'Plan and Prepare to Develop AI Solutions on Azure',
@@ -166,13 +145,6 @@ const certifications = [
     date: 'September 9, 2025',
     description: 'Successfully completed training on AI applications for analyzing customer reviews through the DICT-ITU DTC Initiative.',
     image: ciscoAIAtWorkCert,
-  },
-  {
-    name: 'Introduction to Greenhouse Gas Accounting for IT',
-    organization: 'Cisco Networking Academy',
-    date: 'September 21, 2025',
-    description: 'Earned certification for completing advanced training on greenhouse gas accounting principles for IT infrastructure.',
-    image: ciscoGreenHouseGasCert,
   },
   {
     name: 'C++ Essentials 1',
