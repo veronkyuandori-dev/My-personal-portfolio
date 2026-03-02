@@ -35,6 +35,9 @@ import awsDataEngineeringCert from '@assets/Screenshot_2026-01-29_23.56.06_17697
 import awsCloudPractitionerCert from '@assets/Screenshot_2026-03-02_09.17.30_1772414264829.png';
 import awsMLAICert from '@assets/Screenshot_2026-03-02_09.35.56_1772415368173.png';
 
+import awsDatabaseCert from '@assets/Screenshot_2026-03-02_16.33.41_1772440506732.png';
+import awsDataEngFoundationsCert from '@assets/Screenshot_2026-03-02_16.34.27_1772440481687.png';
+
 const certifications = [
   {
     name: 'Fundamentals of Machine Learning and Artificial Intelligence',
@@ -62,14 +65,14 @@ const certifications = [
     organization: 'AWS Training & Certification',
     date: 'January 29, 2026',
     description: 'Foundational certification in data engineering on AWS, covering core concepts and services for data processing and analysis.',
-    image: awsDataEngineeringCert,
+    image: awsDataEngFoundationsCert,
   },
   {
     name: 'AWS Database Offerings',
     organization: 'AWS Training & Certification',
     date: 'October 11, 2025',
     description: 'Completed comprehensive training on AWS Database services and offerings, demonstrating proficiency in cloud database solutions.',
-    image: awsCert,
+    image: awsDatabaseCert,
   },
   {
     name: 'Plan and Prepare to Develop AI Solutions on Azure',
