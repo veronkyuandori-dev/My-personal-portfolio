@@ -54,27 +54,6 @@ const certifications = [
     image: awsCloudPractitionerCert,
   },
   {
-    name: 'Collect guest operating system monitoring data from Azure and hybrid virtual machines using Azure Monitor Agent',
-    organization: 'Microsoft',
-    date: 'January 13, 2026',
-    description: 'Expertise in configuring Azure Monitor Agent to collect guest OS metrics and logs from both cloud and hybrid environments.',
-    image: azureMonitorCert,
-  },
-  {
-    name: 'Data Engineering on AWS - Foundations',
-    organization: 'AWS Training & Certification',
-    date: 'January 29, 2026',
-    description: 'Foundational certification in data engineering on AWS, covering core concepts and services for data processing and analysis.',
-    image: awsDataEngFoundationsCert,
-  },
-  {
-    name: 'AWS Database Offerings',
-    organization: 'AWS Training & Certification',
-    date: 'October 11, 2025',
-    description: 'Completed comprehensive training on AWS Database services and offerings, demonstrating proficiency in cloud database solutions.',
-    image: awsDatabaseCert,
-  },
-  {
     name: 'Plan and Prepare to Develop AI Solutions on Azure',
     organization: 'Microsoft',
     date: 'September 16, 2025',
