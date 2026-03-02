@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type Message, type InsertMessage, type Conversation, type InsertConversation, type Message as ChatMessage, type InsertMessage as InsertChatMessage, conversations, messages as chatMessages, type Blog, type InsertBlog, blogs } from "@shared/schema";
+import { type User, type InsertUser, type Message, type InsertMessage, type Conversation, type InsertConversation, type ChatMessage, type InsertChatMessage, type Blog, type InsertBlog } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -81,7 +81,7 @@ export class MemStorage implements IStorage {
 
   async createMessage(insertMessage: InsertMessage): Promise<Message> {
     const id = randomUUID();
-    const message: Message = { ...insertMessage, id };
+    const message: Message = { ...insertMessage, id, fileUrl: insertMessage.fileUrl ?? null };
     this.messages.set(id, message);
     return message;
   }
@@ -134,7 +134,7 @@ export class MemStorage implements IStorage {
 
   async createBlog(insertBlog: InsertBlog): Promise<Blog> {
     const id = this.currentBlogId++;
-    const blog: Blog = { ...insertBlog, id };
+    const blog: Blog = { ...insertBlog, id, imageUrl: insertBlog.imageUrl ?? null };
     this.blogs.set(id, blog);
     return blog;
   }

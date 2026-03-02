@@ -32,8 +32,24 @@ import ghActionsCert from '@assets/Screenshot_2026-02-14_16.35.08_1771058417077.
 import transformerCert from '@assets/Screenshot_2026-02-14_16.35.29_1771058401613.png';
 import azureMonitorCert from '@assets/611974055_2053270672125756_6534229906902908588_n_1769697681580.png';
 import awsDataEngineeringCert from '@assets/Screenshot_2026-01-29_23.56.06_1769702307268.png';
+import awsCloudPractitionerCert from '@assets/Screenshot_2026-03-02_09.17.30_1772414264829.png';
+import awsMLAICert from '@assets/Screenshot_2026-03-02_09.35.56_1772415368173.png';
 
 const certifications = [
+  {
+    name: 'Fundamentals of Machine Learning and Artificial Intelligence',
+    organization: 'AWS Training & Certification',
+    date: 'March 02, 2026',
+    description: 'Advanced certification covering the core principles of machine learning and artificial intelligence on the AWS platform.',
+    image: awsMLAICert,
+  },
+  {
+    name: 'Domain 1 Review: AWS Certified Cloud Practitioner (CLF-C02)',
+    organization: 'AWS Training & Certification',
+    date: 'November 02, 2025',
+    description: 'Comprehensive review and certification of AWS Cloud fundamentals, security, compliance, and core services.',
+    image: awsCloudPractitionerCert,
+  },
   {
     name: 'Collect guest operating system monitoring data from Azure and hybrid virtual machines using Azure Monitor Agent',
     organization: 'Microsoft',
