@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import AnimationWrapper from '@/components/AnimationWrapper';
-import profileImage from '@assets/Screenshot_2026-03-04_22.49.43_1772636406952.png';
+import profileImage from '@assets/639776252_1644422550043671_7419334472409174878_n_1772636531491.jpg';
 
 export default function HeroSection() {
   const scrollToSection = (href: string) => {
@@ -171,7 +171,7 @@ export default function HeroSection() {
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-chart-2 to-primary opacity-75 blur-2xl scale-125 animate-pulse" />
             <Avatar className="w-56 h-56 md:w-72 md:h-72 border-4 border-primary/70 shadow-2xl shadow-primary/60 relative z-10 animate-glow-pulse">
-              <AvatarImage src={profileImage} alt="Profile" />
+              <AvatarImage src={profileImage} alt="Profile" className="object-cover" />
               <AvatarFallback className="text-6xl">VA</AvatarFallback>
             </Avatar>
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/30 to-chart-2/30 animate-pulse z-0" />
