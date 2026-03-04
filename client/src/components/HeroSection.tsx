@@ -8,8 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import AnimationWrapper from '@/components/AnimationWrapper';
-import profileImage from '@assets/609514811_4229493440650186_5683063432825698184_n_1770459470018.png';
-import schoolLogo from '@assets/Screenshot_2026-02-07_18.19.37_1770459637453.png';
+import profileImage from '@assets/Screenshot_2026-03-04_22.49.43_1772636406952.png';
 
 export default function HeroSection() {
   const scrollToSection = (href: string) => {
@@ -176,11 +175,6 @@ export default function HeroSection() {
               <AvatarFallback className="text-6xl">VA</AvatarFallback>
             </Avatar>
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/30 to-chart-2/30 animate-pulse z-0" />
-            
-            {/* School Logo Overlay */}
-            <div className="absolute -bottom-2 -right-2 z-20 w-16 h-16 md:w-24 md:h-24 p-0 bg-transparent rounded-full border-4 border-primary shadow-xl overflow-hidden flex items-center justify-center">
-              <img src={schoolLogo} alt="University of Cabuyao" className="w-full h-full object-cover" />
-            </div>
           </div>
         </div>
         </AnimationWrapper>
