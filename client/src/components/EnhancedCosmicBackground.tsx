@@ -22,135 +22,252 @@ export default function EnhancedCosmicBackground() {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Particles with enhanced properties
-    const particles: Array<{
+    // Network nodes with 3D depth perception
+    const nodes: Array<{
       x: number;
       y: number;
+      z: number; // Depth value for 3D perspective
       size: number;
       speedX: number;
       speedY: number;
+      speedZ: number;
       opacity: number;
       hue: number;
       pulseSpeed: number;
     }> = [];
 
-    for (let i = 0; i < 150; i++) {
-      particles.push({
+    for (let i = 0; i < 80; i++) {
+      nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 2 + 1,
-        speedX: (Math.random() - 0.5) * 0.3,
-        speedY: (Math.random() - 0.5) * 0.3,
-        opacity: Math.random() * 0.5 + 0.2,
-        hue: 200, // Skyblue hue
-        pulseSpeed: Math.random() * 0.02 + 0.01,
+        z: Math.random() * 100,
+        size: Math.random() * 2.5 + 1,
+        speedX: (Math.random() - 0.5) * 0.2,
+        speedY: (Math.random() - 0.5) * 0.2,
+        speedZ: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.6 + 0.3,
+        hue: Math.random() > 0.5 ? 260 : 190, // Blue-purple or blue-green
+        pulseSpeed: Math.random() * 0.03 + 0.01,
       });
     }
 
-    // Morphing gradient blobs
-    const blobs: Array<{
-      x: number;
-      y: number;
-      radius: number;
-      speedX: number;
-      speedY: number;
+    // Floating particles that travel along connection lines
+    const floatingParticles: Array<{
+      nodeA: number;
+      nodeB: number;
+      progress: number;
+      speed: number;
+      size: number;
       hue: number;
     }> = [];
 
-    for (let i = 0; i < 3; i++) {
-      blobs.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 150 + 50,
-        speedX: (Math.random() - 0.5) * 0.2,
-        speedY: (Math.random() - 0.5) * 0.2,
-        hue: 200,
+    for (let i = 0; i < 40; i++) {
+      const nodeA = Math.floor(Math.random() * nodes.length);
+      let nodeB = Math.floor(Math.random() * nodes.length);
+      while (nodeB === nodeA) {
+        nodeB = Math.floor(Math.random() * nodes.length);
+      }
+      floatingParticles.push({
+        nodeA,
+        nodeB,
+        progress: Math.random(),
+        speed: Math.random() * 0.003 + 0.001,
+        size: Math.random() * 1.5 + 0.5,
+        hue: Math.random() > 0.5 ? 260 : 190,
       });
     }
 
+    // Tech icons setup
+    const icons = [
+      { name: 'computer', x: 0.15, y: 0.2 },
+      { name: 'robot', x: 0.85, y: 0.3 },
+      { name: 'cloud', x: 0.2, y: 0.8 },
+      { name: 'server', x: 0.8, y: 0.75 },
+    ];
+
+    const drawTechIcon = (type: string, x: number, y: number, size: number, opacity: number) => {
+      ctx.save();
+      ctx.globalAlpha = opacity;
+      ctx.strokeStyle = `hsla(190, 100%, 70%, ${opacity})`;
+      ctx.fillStyle = `hsla(260, 100%, 50%, ${opacity * 0.3})`;
+      ctx.lineWidth = 1.5;
+
+      switch (type) {
+        case 'computer':
+          // Monitor frame
+          ctx.strokeRect(x - size, y - size * 0.7, size * 2, size * 1.4);
+          ctx.fillRect(x - size, y - size * 0.7, size * 2, size * 1.4);
+          // Base
+          ctx.fillRect(x - size * 0.3, y + size * 0.7, size * 0.6, size * 0.3);
+          break;
+        case 'robot':
+          // Head
+          ctx.fillRect(x - size * 0.4, y - size * 0.8, size * 0.8, size * 0.8);
+          // Body
+          ctx.fillRect(x - size * 0.5, y, size, size * 0.8);
+          // Arms
+          ctx.fillRect(x - size * 0.8, y + size * 0.2, size * 0.3, size * 0.4);
+          ctx.fillRect(x + size * 0.5, y + size * 0.2, size * 0.3, size * 0.4);
+          // Eyes
+          ctx.fillStyle = `hsla(190, 100%, 80%, ${opacity})`;
+          ctx.beginPath();
+          ctx.arc(x - size * 0.15, y - size * 0.4, size * 0.1, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.beginPath();
+          ctx.arc(x + size * 0.15, y - size * 0.4, size * 0.1, 0, Math.PI * 2);
+          ctx.fill();
+          break;
+        case 'cloud':
+          // Cloud shape
+          ctx.beginPath();
+          ctx.arc(x - size * 0.4, y, size * 0.5, 0, Math.PI * 2);
+          ctx.arc(x, y, size * 0.6, 0, Math.PI * 2);
+          ctx.arc(x + size * 0.4, y, size * 0.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+          break;
+        case 'server':
+          // Server stack
+          for (let i = 0; i < 3; i++) {
+            ctx.fillRect(x - size * 0.4, y - size * 0.4 + i * size * 0.5, size * 0.8, size * 0.3);
+            ctx.strokeRect(x - size * 0.4, y - size * 0.4 + i * size * 0.5, size * 0.8, size * 0.3);
+          }
+          break;
+      }
+      ctx.restore();
+    };
+
     const animate = () => {
-      time += 0.005; // Slower time for smoother movement
-      
-      // Clear background with deep dark base and slight trail effect
-      ctx.fillStyle = 'rgba(5, 10, 16, 0.15)';
+      time += 0.005;
+
+      // Dark gradient background with subtle depth
+      const bgGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      bgGradient.addColorStop(0, 'rgba(5, 10, 25, 0.95)');
+      bgGradient.addColorStop(0.5, 'rgba(8, 15, 35, 0.95)');
+      bgGradient.addColorStop(1, 'rgba(5, 10, 25, 0.95)');
+
+      ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw morphing blobs with blur effect
-      blobs.forEach((blob) => {
-        blob.x += blob.speedX;
-        blob.y += blob.speedY;
+      // Draw subtle background glow gradient
+      const glowGradient = ctx.createRadialGradient(
+        canvas.width / 2,
+        canvas.height / 2,
+        0,
+        canvas.width / 2,
+        canvas.height / 2,
+        canvas.width
+      );
+      glowGradient.addColorStop(0, 'rgba(100, 200, 255, 0.03)');
+      glowGradient.addColorStop(1, 'rgba(100, 150, 255, 0)');
+      ctx.fillStyle = glowGradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        if (blob.x < 0 || blob.x > canvas.width) blob.speedX *= -1;
-        if (blob.y < 0 || blob.y > canvas.height) blob.speedY *= -1;
-
-        const morphRadius = blob.radius + Math.sin(time * 2 + blob.x) * 20;
-
-        const blobGradient = ctx.createRadialGradient(
-          blob.x,
-          blob.y,
-          0,
-          blob.x,
-          blob.y,
-          morphRadius
-        );
-        blobGradient.addColorStop(0, `hsla(${blob.hue}, 80%, 60%, 0.08)`);
-        blobGradient.addColorStop(0.5, `hsla(${blob.hue}, 80%, 50%, 0.04)`);
-        blobGradient.addColorStop(1, `hsla(${blob.hue}, 80%, 40%, 0)`);
-
-        ctx.fillStyle = blobGradient;
-        ctx.beginPath();
-        ctx.arc(blob.x, blob.y, morphRadius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      // Draw connections with gradient opacity based on distance
-      particles.forEach((particle, i) => {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[j].x - particle.x;
-          const dy = particles[j].y - particle.y;
+      // Draw connections with neon gradients
+      nodes.forEach((node, i) => {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const other = nodes[j];
+          const dx = other.x - node.x;
+          const dy = other.y - node.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 180) { // Increased distance
-            const opacity = (1 - distance / 180) * 0.2;
-            ctx.beginPath();
+          if (distance < 200) {
+            const opacity = (1 - distance / 200) * 0.25;
             
-            // Create a small gradient between nodes for the line
             const lineGradient = ctx.createLinearGradient(
-              particle.x, particle.y, 
-              particles[j].x, particles[j].y
+              node.x, node.y,
+              other.x, other.y
             );
-            lineGradient.addColorStop(0, `rgba(135, 206, 235, ${opacity})`);
-            lineGradient.addColorStop(0.5, `rgba(34, 197, 94, ${opacity * 0.5})`); // Blend with primary green
-            lineGradient.addColorStop(1, `rgba(135, 206, 235, ${opacity})`);
             
+            // Blue-purple to green-blue neon gradient
+            lineGradient.addColorStop(0, `rgba(100, 200, 255, ${opacity})`);
+            lineGradient.addColorStop(0.5, `rgba(150, 100, 255, ${opacity * 0.8})`);
+            lineGradient.addColorStop(1, `rgba(100, 200, 255, ${opacity})`);
+
+            ctx.beginPath();
             ctx.strokeStyle = lineGradient;
-            ctx.lineWidth = 0.8;
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.lineWidth = 1.2;
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.stroke();
+
+            // Add glow effect to lines
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(150, 100, 255, ${opacity * 0.3})`;
+            ctx.lineWidth = 3;
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(other.x, other.y);
             ctx.stroke();
           }
         }
       });
 
-      // Draw glowing particles with mouse interaction (simulated with time here)
-      particles.forEach((particle) => {
-        particle.x += particle.speedX;
-        particle.y += particle.speedY;
+      // Draw glowing nodes
+      nodes.forEach((node) => {
+        node.x += node.speedX;
+        node.y += node.speedY;
+        node.z += node.speedZ;
 
-        if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+        // Boundary conditions with depth wrapping
+        if (node.x < 0 || node.x > canvas.width) node.speedX *= -1;
+        if (node.y < 0 || node.y > canvas.height) node.speedY *= -1;
+        if (node.z < 0 || node.z > 100) node.speedZ *= -1;
 
-        const pulseOpacity = particle.opacity + Math.sin(time * particle.pulseSpeed * 100) * 0.2;
-        const sizeShift = Math.sin(time * 3 + particle.x) * 0.5;
+        // 3D perspective scaling
+        const perspective = 1 + node.z / 150;
+        const displaySize = node.size * (0.5 + perspective * 0.3);
+
+        const pulseOpacity = node.opacity + Math.sin(time * node.pulseSpeed * 100) * 0.3;
+
+        // Main glow
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, displaySize, 0, Math.PI * 2);
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = `hsla(${node.hue}, 100%, 70%, ${Math.max(0, pulseOpacity) * 0.8})`;
+        ctx.fillStyle = `hsla(${node.hue}, 100%, 75%, ${Math.max(0, pulseOpacity)})`;
+        ctx.fill();
+
+        // Outer glow ring
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, displaySize * 1.5, 0, Math.PI * 2);
+        ctx.strokeStyle = `hsla(${node.hue}, 100%, 70%, ${Math.max(0, pulseOpacity) * 0.3})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.shadowBlur = 0;
+      });
+
+      // Animate and draw floating particles along connections
+      floatingParticles.forEach((particle) => {
+        particle.progress += particle.speed;
+        if (particle.progress > 1) {
+          particle.progress = 0;
+          particle.nodeA = Math.floor(Math.random() * nodes.length);
+          particle.nodeB = Math.floor(Math.random() * nodes.length);
+        }
+
+        const start = nodes[particle.nodeA];
+        const end = nodes[particle.nodeB];
+
+        const x = start.x + (end.x - start.x) * particle.progress;
+        const y = start.y + (end.y - start.y) * particle.progress;
 
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size + sizeShift, 0, Math.PI * 2);
-        
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = 'rgba(135, 206, 235, 0.8)';
-        ctx.fillStyle = `hsla(${particle.hue}, 100%, 75%, ${Math.max(0, pulseOpacity)})`;
+        ctx.arc(x, y, particle.size, 0, Math.PI * 2);
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = `hsla(${particle.hue}, 100%, 70%, 0.8)`;
+        ctx.fillStyle = `hsla(${particle.hue}, 100%, 80%, 0.8)`;
         ctx.fill();
         ctx.shadowBlur = 0;
+      });
+
+      // Draw floating tech icons with cinematic lighting
+      icons.forEach((icon, idx) => {
+        const iconX = canvas.width * icon.x;
+        const iconY = canvas.height * icon.y;
+        const float = Math.sin(time * 0.5 + idx) * 20;
+        const opacity = 0.3 + Math.sin(time * 0.3 + idx * Math.PI) * 0.2;
+        drawTechIcon(icon.name, iconX, iconY + float, 30, opacity);
       });
 
       animationFrameId = requestAnimationFrame(animate);
