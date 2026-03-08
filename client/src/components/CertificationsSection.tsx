@@ -47,6 +47,20 @@ const certifications = [
     image: awsMLAICert,
   },
   {
+    name: 'AWS Certified Database - Specialty',
+    organization: 'AWS Training & Certification',
+    date: 'March 02, 2026',
+    description: 'Professional certification demonstrating expertise in AWS database services, architecture, and implementation.',
+    image: awsDatabaseCert,
+  },
+  {
+    name: 'AWS Data Engineering Foundations',
+    organization: 'AWS Training & Certification',
+    date: 'March 02, 2026',
+    description: 'Foundation-level certification covering data engineering principles and AWS data services.',
+    image: awsDataEngFoundationsCert,
+  },
+  {
     name: 'Domain 1 Review: AWS Certified Cloud Practitioner (CLF-C02)',
     organization: 'AWS Training & Certification',
     date: 'November 02, 2025',

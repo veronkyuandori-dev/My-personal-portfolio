@@ -7,13 +7,68 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Link as LinkIcon, Copy, Check, PlayCircle } from 'lucide-react';
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Link as LinkIcon, Copy, Check, PlayCircle, Shield } from 'lucide-react';
 import demoVideo from '@/assets/Screen_recording_2026-02-12_23.36.20_1770910707651.webm';
 import { useToast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
 import AnimationWrapper from './AnimationWrapper';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// CAPTCHA Component
+function CAPTCHAField() {
+  const [captcha, setCaptcha] = useState<{ num1: number; num2: number; operator: '+' | '-' | '*'; answer: string } | null>(null);
+  const [userAnswer, setUserAnswer] = useState('');
+  const [isValid, setIsValid] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    generateCaptcha();
+  }, []);
+
+  const generateCaptcha = () => {
+    const num1 = Math.floor(Math.random() * 50) + 1;
+    const num2 = Math.floor(Math.random() * 50) + 1;
+    const operators: ('+' | '-' | '*')[] = ['+', '-', '*'];
+    const operator = operators[Math.floor(Math.random() * operators.length)];
+
+    let answer: number;
+    switch (operator) {
+      case '+':
+        answer = num1 + num2;
+        break;
+      case '-':
+        answer = num1 - num2;
+        break;
+      case '*':
+        answer = num1 * num2;
+        break;
+    }
+
+    setCaptcha({ num1, num2, operator, answer: answer.toString() });
+    setUserAnswer('');
+    setIsValid(null);
+  };
+
+  const validateCaptcha = (value: string) => {
+    setUserAnswer(value);
+    if (captcha && value === captcha.answer) {
+      setIsValid(true);
+    } else if (value.length > 0) {
+      setIsValid(false);
+    } else {
+      setIsValid(null);
+    }
+  };
+
+  return {
+    question: captcha ? `${captcha.num1} ${captcha.operator} ${captcha.num2}` : '',
+    userAnswer,
+    setUserAnswer: validateCaptcha,
+    isValid,
+    regenerate: generateCaptcha,
+  };
+}
+
 
 const CATEGORIES = [
   {
@@ -61,6 +116,7 @@ const CATEGORIES = [
 export default function ContactSection() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
+  const captcha = CAPTCHAField();
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -86,6 +142,10 @@ export default function ContactSection() {
 
   const mutation = useMutation({
     mutationFn: async (data: InsertMessage) => {
+      // Verify CAPTCHA before sending
+      if (captcha.isValid !== true) {
+        throw new Error('Please solve the CAPTCHA correctly');
+      }
       const response = await apiRequest('POST', '/api/contact', data);
       return await response.json();
     },
@@ -95,11 +155,12 @@ export default function ContactSection() {
         description: 'Thank you for reaching out. I\'ll get back to you soon.',
       });
       form.reset();
+      captcha.regenerate();
     },
-    onError: () => {
+    onError: (error: any) => {
       toast({
         title: 'Error',
-        description: 'Failed to send message. Please try again.',
+        description: error.message || 'Failed to send message. Please try again.',
         variant: 'destructive',
       });
     },
@@ -385,9 +446,53 @@ export default function ContactSection() {
                       )}
                     />
 
+                    {/* CAPTCHA Section */}
+                    <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Shield className="h-4 w-4 text-primary" />
+                        <p className="text-xs font-bold text-primary uppercase tracking-widest">Anti-Spam Verification</p>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2 justify-between">
+                          <p className="text-sm font-semibold text-foreground">
+                            Solve: <span className="text-primary font-mono text-lg">{captcha.question} = ?</span>
+                          </p>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={captcha.regenerate}
+                            className="text-xs h-7 text-muted-foreground hover:text-primary"
+                            data-testid="button-refresh-captcha"
+                          >
+                            Refresh
+                          </Button>
+                        </div>
+                        <Input
+                          type="text"
+                          placeholder="Your answer"
+                          value={captcha.userAnswer}
+                          onChange={(e) => captcha.setUserAnswer(e.target.value)}
+                          className={`rounded-lg border-primary/20 bg-muted/30 focus-visible:ring-primary text-center font-mono text-lg ${
+                            captcha.isValid === true ? 'border-green-500/50 bg-green-500/10' :
+                            captcha.isValid === false ? 'border-red-500/50 bg-red-500/10' : ''
+                          }`}
+                          data-testid="input-captcha"
+                        />
+                        {captcha.isValid === true && (
+                          <p className="text-xs text-green-500 flex items-center gap-1">
+                            <Check className="h-3 w-3" /> Correct!
+                          </p>
+                        )}
+                        {captcha.isValid === false && (
+                          <p className="text-xs text-red-500">Incorrect. Please try again.</p>
+                        )}
+                      </div>
+                    </div>
+
                     <Button
                       type="submit"
-                      disabled={mutation.isPending}
+                      disabled={mutation.isPending || captcha.isValid !== true}
                       className="w-full rounded-xl py-6 font-extrabold text-lg hover-elevate active-elevate-2 shadow-lg shadow-primary/20"
                       data-testid="button-submit"
                     >
