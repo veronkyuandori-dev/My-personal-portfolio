@@ -7,8 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Link as LinkIcon, Copy, Check, PlayCircle, Shield } from 'lucide-react';
-import demoVideo from '@/assets/Screen_recording_2026-02-12_23.36.20_1770910707651.webm';
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, Send, Link as LinkIcon, Copy, Check, Shield } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
@@ -234,36 +233,6 @@ export default function ContactSection() {
                     </div>
                   </div>
                 ))}
-              </div>
-
-              <div className="pt-8">
-                <p className="font-bold text-sm text-muted-foreground uppercase tracking-widest mb-4">How it Works</p>
-                <div className="relative rounded-2xl overflow-hidden border border-primary/20 bg-black/40 group/video mb-4 aspect-video">
-                  <video 
-                    src={demoVideo} 
-                    className="w-full h-full object-cover opacity-80 group-hover/video:opacity-100 transition-opacity duration-500"
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                  />
-                  <div className="absolute inset-0 flex flex-col items-center justify-end p-4 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover/video:opacity-100 transition-opacity duration-500 pointer-events-none">
-                    <div className="w-full max-w-md bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/10 mb-4 shadow-2xl">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                        <span className="text-[10px] font-bold text-primary uppercase tracking-tighter">Voice Narration & Subtitles</span>
-                      </div>
-                      <p className="text-[11px] text-white/90 leading-relaxed font-medium">
-                        "I-fill up ang <span className="text-primary font-bold">Contact Form</span>, piliin ang tamang category, at i-click ang send. Matatanggap ko agad ang iyong inquiry sa aking <span className="text-primary font-bold">Gmail</span> sa pamamagitan ng Resend API system."
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    <span className="text-primary font-bold">Delivery Info:</span> Ang bawat submission ay dumadaan sa <span className="font-bold text-foreground">Resend API</span> para sa mabilis at siguradong pag-send ng email diretso sa iyong inbox.
-                  </p>
-                </div>
               </div>
 
               <div className="pt-8">
