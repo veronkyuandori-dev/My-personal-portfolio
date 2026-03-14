@@ -35,9 +35,6 @@ import awsDataEngineeringCert from '@assets/Screenshot_2026-01-29_23.56.06_17697
 import awsCloudPractitionerCert from '@assets/Screenshot_2026-03-02_09.17.30_1772414264829.png';
 import awsMLAICert from '@assets/Screenshot_2026-03-02_09.35.56_1772415368173.png';
 
-import awsDatabaseCert from '@assets/Screenshot_2026-03-02_16.33.41_1772440506732.png';
-import awsDataEngFoundationsCert from '@assets/Screenshot_2026-03-02_16.34.27_1772440481687.png';
-
 const certifications = [
   {
     name: 'Fundamentals of Machine Learning and Artificial Intelligence',
@@ -45,20 +42,6 @@ const certifications = [
     date: 'March 02, 2026',
     description: 'Advanced certification covering the core principles of machine learning and artificial intelligence on the AWS platform.',
     image: awsMLAICert,
-  },
-  {
-    name: 'AWS Certified Database - Specialty',
-    organization: 'AWS Training & Certification',
-    date: 'March 02, 2026',
-    description: 'Professional certification demonstrating expertise in AWS database services, architecture, and implementation.',
-    image: awsDatabaseCert,
-  },
-  {
-    name: 'AWS Data Engineering Foundations',
-    organization: 'AWS Training & Certification',
-    date: 'March 02, 2026',
-    description: 'Foundation-level certification covering data engineering principles and AWS data services.',
-    image: awsDataEngFoundationsCert,
   },
   {
     name: 'Domain 1 Review: AWS Certified Cloud Practitioner (CLF-C02)',
