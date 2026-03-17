@@ -180,9 +180,12 @@ export default function HeroSection() {
         </AnimationWrapper>
 
         <AnimationWrapper type="slide" direction="up" delay={200} duration={900}>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 bg-gradient-to-r from-primary via-chart-2 to-chart-3 bg-clip-text text-transparent">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-3 bg-gradient-to-r from-primary via-chart-2 to-chart-3 bg-clip-text text-transparent">
           Veronque Andrie
         </h1>
+        <p className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary/80 mb-6 tracking-wide">
+          Freelance Web Developer
+        </p>
         </AnimationWrapper>
 
         <AnimationWrapper type="blur-fade" delay={400} duration={800}>
