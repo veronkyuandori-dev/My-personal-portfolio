@@ -1227,8 +1227,45 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('openCameraBtn')?.addEventListener('click', openCamera);
   document.getElementById('closeCameraBtn')?.addEventListener('click', closeCamera);
 
-  // QR image upload — wire to any element with id="uploadQrBtn"
-  document.getElementById('uploadQrBtn')?.addEventListener('click', scanUploadedQR);
+  // QR image upload — from fix_1773921153400.js
+  // Wires uploadQrBtn → qrFileInput click, decodes with full jsQR pipeline,
+  // then calls onScanSuccess so attendance is properly recorded.
+  const _uploadBtn  = document.getElementById('uploadQrBtn');
+  const _fileInput  = document.getElementById('qrFileInput');
+  const _statusEl   = document.getElementById('uploadScanStatus');
+
+  if (_uploadBtn && _fileInput) {
+    _uploadBtn.addEventListener('click', () => _fileInput.click());
+
+    _fileInput.addEventListener('change', async (e) => {
+      const file = e.target.files?.[0];
+      _fileInput.value = ''; // reset so the same file can be re-selected
+      if (!file) return;
+
+      if (_statusEl) {
+        _statusEl.textContent   = '⏳ Reading QR code from image…';
+        _statusEl.className     = 'scan-result info';
+        _statusEl.style.display = 'block';
+      }
+
+      try {
+        // Use the full multi-method decoder (jsQR + scale fixes + BarcodeDetector)
+        const decoded = await decodeQRFromFile(file);
+        if (_statusEl) _statusEl.style.display = 'none';
+        onScanSuccess(decoded); // records attendance + shows student card
+      } catch (_) {
+        if (_statusEl) {
+          _statusEl.textContent   = '⚠ No QR code detected. Make sure the image is clear and unobstructed.';
+          _statusEl.className     = 'scan-result error';
+          _statusEl.style.display = 'block';
+        }
+        showToast('No QR code found in image.', 'error');
+      }
+    });
+  } else {
+    // Fallback: dynamic input approach if qrFileInput is not in the HTML
+    document.getElementById('uploadQrBtn')?.addEventListener('click', scanUploadedQR);
+  }
 
   // Manual entry
   document.getElementById('recordManualBtn')?.addEventListener('click', recordManual);
