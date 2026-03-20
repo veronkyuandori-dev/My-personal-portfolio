@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Sphere, MeshDistortMaterial, Float, Text } from '@react-three/drei';
+import { OrbitControls, Sphere, MeshDistortMaterial, Float } from '@react-three/drei';
 import * as THREE from 'three';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -12,36 +12,40 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 function BotCore() {
   const meshRef = useRef<THREE.Mesh>(null);
-  
+  const ringRef = useRef<THREE.Mesh>(null);
+
   useFrame((state) => {
+    const t = state.clock.getElapsedTime();
     if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.5;
-      meshRef.current.position.y = Math.sin(state.clock.getElapsedTime()) * 0.1;
+      meshRef.current.rotation.y = t * 0.5;
+      meshRef.current.rotation.x = Math.sin(t * 0.3) * 0.15;
+      meshRef.current.position.y = Math.sin(t * 0.8) * 0.12;
+    }
+    if (ringRef.current) {
+      ringRef.current.rotation.z = t * 0.4;
+      ringRef.current.rotation.x = t * 0.2;
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={1} floatIntensity={1}>
-      <Sphere ref={meshRef} args={[1, 64, 64]} scale={1.5}>
+    <Float speed={1.5} rotationIntensity={0.5} floatIntensity={0.8}>
+      {/* Core sphere — no attach prop to avoid applyProps bug */}
+      <Sphere ref={meshRef} args={[1, 64, 64]} scale={1.4}>
         <MeshDistortMaterial
           color="#22C55E"
-          attach="material"
-          distort={0.4}
-          speed={3}
-          roughness={0.2}
-          metalness={0.8}
+          distort={0.35}
+          speed={2.5}
+          roughness={0.15}
+          metalness={0.9}
+          emissive="#0a3a1a"
+          emissiveIntensity={0.4}
         />
       </Sphere>
-      <Text
-        position={[0, 0, 1.6]}
-        fontSize={0.2}
-        color="white"
-        anchorX="center"
-        anchorY="middle"
-        font="https://fonts.gstatic.com/s/orbitron/v25/yYqxRnd6CQ7_p4S2F0P0LpOWO3_0.woff"
-      >
-        V-AI
-      </Text>
+      {/* Orbital ring */}
+      <mesh ref={ringRef} scale={[1.9, 1.9, 1.9]}>
+        <torusGeometry args={[1, 0.04, 16, 80]} />
+        <meshStandardMaterial color="#22C55E" emissive="#22C55E" emissiveIntensity={0.6} transparent opacity={0.6} />
+      </mesh>
     </Float>
   );
 }
