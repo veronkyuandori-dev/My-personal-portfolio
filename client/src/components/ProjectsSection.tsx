@@ -11,8 +11,8 @@ import aiFaceImage from '@assets/Screenshot_2026-01-30_16.32.23_1769761975016.pn
 import evacsImage from '@assets/Gemini_Generated_Image_j018yfj018yfj018_1769761709598.png';
 import budwellImage from '@assets/Gemini_Generated_Image_b8akhob8akhob8ak_1769761724083.png';
 import fluppyBirdImage from '@assets/Gemini_Generated_Image_p4dnkip4dnkip4dn_1770347828961.png';
-import qrAttendanceImage from '@assets/qr_attendance_cover.png';
-import lagunaTouristImage from '@assets/laguna_tourist_cover.png';
+import qrAttendanceImage from '@assets/ChatGPT_Image_Mar_28,_2026,_09_29_04_PM_1774704759357.png';
+import lagunaTouristImage from '@assets/ChatGPT_Image_Mar_28,_2026,_09_31_59_PM_1774704734722.png';
 
 const projects = [
   {
