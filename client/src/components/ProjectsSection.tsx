@@ -11,6 +11,8 @@ import aiFaceImage from '@assets/Screenshot_2026-01-30_16.32.23_1769761975016.pn
 import evacsImage from '@assets/Gemini_Generated_Image_j018yfj018yfj018_1769761709598.png';
 import budwellImage from '@assets/Gemini_Generated_Image_b8akhob8akhob8ak_1769761724083.png';
 import fluppyBirdImage from '@assets/Gemini_Generated_Image_p4dnkip4dnkip4dn_1770347828961.png';
+import qrAttendanceImage from '@assets/qr_attendance_cover.png';
+import lagunaTouristImage from '@assets/laguna_tourist_cover.png';
 
 const projects = [
   {
@@ -102,6 +104,34 @@ const projects = [
       'Validation': ['Accuracy Benchmarking', 'Anti-Spoofing Protocols', 'Performance Optimization'],
     },
     techStack: ['Python', 'TensorFlow', 'OpenCV', 'Deep Learning', 'Biometrics'],
+  },
+  {
+    id: 7,
+    title: 'QR Attendance System',
+    description: 'A modern QR-code-based attendance tracking system that enables fast and contactless check-ins. Features QR code generation per student, real-time scan decoding via camera or image upload, attendance dashboard, and CSV export for records management.',
+    image: qrAttendanceImage,
+    tags: ['Web Development', 'JavaScript'],
+    github: 'https://github.com/andrieVerdev/QR-Attendance-System',
+    gitlab: 'https://github.com/andrieVerdev/QR-Attendance-System',
+    requirements: {
+      'Core Features': ['QR Code Generation per Student', 'Camera & Image-Upload Scanning', 'Real-time Attendance Logging'],
+      'Data & Export': ['Attendance Dashboard', 'CSV Export for Records', 'Search & Filter by Date/Name'],
+    },
+    techStack: ['JavaScript', 'HTML5', 'CSS3', 'jsQR', 'Canvas API', 'LocalStorage'],
+  },
+  {
+    id: 8,
+    title: 'Laguna Tourist Spot Guide',
+    description: 'An interactive web-based travel guide for exploring tourist destinations in Laguna, Philippines. Showcases local landmarks, natural wonders, and cultural sites with rich photo galleries, location maps, and travel tips for visitors.',
+    image: lagunaTouristImage,
+    tags: ['Web Development', 'JavaScript'],
+    github: 'https://github.com/andrieVerdev/Laguna-Tourist-Spot',
+    gitlab: 'https://github.com/andrieVerdev/Laguna-Tourist-Spot',
+    requirements: {
+      'Content & Discovery': ['Interactive Tourist Spot Listings', 'Photo Gallery per Destination', 'Location & Map Integration'],
+      'User Experience': ['Mobile-Responsive Layout', 'Category Filter by Attraction Type', 'Travel Tips & Local Info'],
+    },
+    techStack: ['HTML5', 'CSS3', 'JavaScript', 'Google Maps API', 'Responsive Design'],
   },
 ];
 
