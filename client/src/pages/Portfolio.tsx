@@ -9,8 +9,11 @@ import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ChatBot3D from '@/components/ChatBot3D';
+import useGSAPScrollAnimations from '@/hooks/useGSAPScrollAnimations';
 
 export default function Portfolio() {
+  useGSAPScrollAnimations();
+
   return (
     <div className="relative min-h-screen">
       <EnhancedCosmicBackground />
