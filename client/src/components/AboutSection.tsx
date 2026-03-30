@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Briefcase, Award } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
-import profileImage from '@assets/639776252_1644422550043671_7419334472409174878_n_1772636385061.jpg';
+import NetworkHead3D from '@/components/NetworkHead3D';
 
 const experiences = [
   {
@@ -53,29 +53,46 @@ export default function AboutSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <AnimationWrapper type="fade" direction="up">
-            <div className="relative max-w-md mx-auto group">
-              <div className="aspect-square rounded-[2rem] overflow-hidden border-8 border-primary/20 shadow-2xl shadow-primary/20 transform -rotate-2 group-hover:rotate-0 transition-all duration-700 bg-muted/20">
-                <img
-                  src={profileImage}
-                  alt="Professional"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+            {/* Interactive 3D Network Head */}
+            <div className="relative max-w-md mx-auto">
+              <div className="relative rounded-2xl overflow-hidden border border-primary/20 bg-black/40 backdrop-blur-sm shadow-2xl shadow-primary/20"
+                style={{ height: 420 }}>
+                <NetworkHead3D />
+                {/* Scan label overlays */}
+                <div className="absolute top-3 left-3 text-[10px] font-mono text-primary/60 uppercase tracking-widest select-none">
+                  Neural · Scan v2.4
+                </div>
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 select-none">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  <span className="text-[10px] font-mono text-primary/60 uppercase tracking-widest">Live</span>
+                </div>
+                <div className="absolute bottom-3 left-3 right-3 text-[9px] font-mono text-primary/40 uppercase tracking-widest select-none text-center">
+                  Drag to rotate · Network analysis active
+                </div>
+                {/* Corner brackets */}
+                <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-primary/50 rounded-tl" />
+                <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-primary/50 rounded-tr" />
+                <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-primary/50 rounded-bl" />
+                <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-primary/50 rounded-br" />
               </div>
-              <div className="absolute -inset-6 bg-gradient-to-tr from-primary/30 to-chart-2/30 rounded-[3rem] -z-10 blur-3xl opacity-50 animate-pulse" />
-              
-              <div className="absolute -top-6 -left-6 bg-card border-4 border-primary/30 p-4 rounded-2xl shadow-xl hidden md:block backdrop-blur-md">
-                <p className="text-primary font-extrabold text-2xl">JMRSP</p>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Member 2025</p>
+              {/* Glow behind */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-chart-2/10 rounded-3xl -z-10 blur-3xl opacity-60 animate-pulse" />
+
+              {/* JMRSP badge */}
+              <div className="absolute -top-4 -left-4 bg-card border-2 border-primary/30 p-3 rounded-xl shadow-xl hidden md:block backdrop-blur-md">
+                <p className="text-primary font-extrabold text-lg leading-none">JMRSP</p>
+                <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Member 2025</p>
               </div>
             </div>
-            
-            <div className="grid grid-cols-2 gap-4 mt-12 px-4">
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-3 mt-8 px-2">
               {[
-                { label: 'Projects', value: '7' },
-                { label: 'Certificates', value: '15+' },
-                { label: 'Skills', value: '20+' }
+                { label: 'Projects', value: '8' },
+                { label: 'Certificates', value: '16+' },
+                { label: 'Skills', value: '20+' },
               ].map((stat, index) => (
-                <div key={index} className="p-4 rounded-xl bg-muted/30 border border-border/50 hover-elevate hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group">
+                <div key={index} className="p-4 rounded-xl bg-muted/30 border border-border/50 hover-elevate hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group text-center">
                   <div className="text-2xl font-bold text-primary mb-0.5 group-hover:scale-110 transition-transform">{stat.value}</div>
                   <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-tighter">{stat.label}</div>
                 </div>
