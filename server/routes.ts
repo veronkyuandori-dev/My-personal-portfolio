@@ -64,6 +64,90 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // GitHub Stats — proxied through backend so token stays secret
+  app.get("/api/github-stats", async (_req, res) => {
+    const token = process.env.GITHUB_TOKEN;
+    if (!token) {
+      return res.status(503).json({ error: "GITHUB_TOKEN not configured" });
+    }
+
+    const query = `
+      query($login: String!) {
+        user(login: $login) {
+          name
+          avatarUrl
+          bio
+          followers { totalCount }
+          following { totalCount }
+          repositories(privacy: PUBLIC) { totalCount }
+          contributionsCollection {
+            totalCommitContributions
+            totalPullRequestContributions
+            totalIssueContributions
+            restrictedContributionsCount
+            contributionCalendar {
+              totalContributions
+              weeks {
+                contributionDays {
+                  contributionCount
+                  date
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    try {
+      const response = await fetch("https://api.github.com/graphql", {
+        method: "POST",
+        headers: {
+          Authorization: `bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query, variables: { login: "andrieVerdev" } }),
+      });
+
+      const json = await response.json() as any;
+      if (json.errors) {
+        return res.status(400).json({ error: json.errors[0]?.message ?? "GraphQL error" });
+      }
+
+      const user = json.data?.user;
+      const col = user?.contributionsCollection;
+      const calendar = col?.contributionCalendar;
+
+      // Calculate current streak from calendar days
+      const days = (calendar?.weeks ?? [])
+        .flatMap((w: any) => w.contributionDays)
+        .sort((a: any, b: any) => b.date.localeCompare(a.date));
+
+      let streak = 0;
+      for (const day of days) {
+        if (day.contributionCount > 0) streak++;
+        else break;
+      }
+
+      res.json({
+        name: user?.name,
+        avatarUrl: user?.avatarUrl,
+        bio: user?.bio,
+        followers: user?.followers?.totalCount ?? 0,
+        following: user?.following?.totalCount ?? 0,
+        publicRepos: user?.repositories?.totalCount ?? 0,
+        totalContributions: calendar?.totalContributions ?? 0,
+        totalCommits: col?.totalCommitContributions ?? 0,
+        totalPRs: col?.totalPullRequestContributions ?? 0,
+        totalIssues: col?.totalIssueContributions ?? 0,
+        streak,
+        weeks: calendar?.weeks ?? [],
+      });
+    } catch (err) {
+      res.status(500).json({ error: "Failed to fetch GitHub data" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
