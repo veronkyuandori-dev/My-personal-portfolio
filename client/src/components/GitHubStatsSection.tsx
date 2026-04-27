@@ -340,8 +340,8 @@ export default function GitHubStatsSection() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {repos.slice(0, 12).map((repo, i) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
+            {repos.slice(0, 9).map((repo, i) => {
               const color = repo.languageColor ?? langColor[repo.language ?? ''] ?? langColor['Other'];
               const desc  = repo.description?.trim()
                 || repoDescriptions[repo.name.toLowerCase()]
@@ -349,50 +349,53 @@ export default function GitHubStatsSection() {
               return (
                 <Card
                   key={repo.name}
-                  className="border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all cursor-pointer group h-full overflow-visible"
+                  className="border border-primary/20 bg-background/60 backdrop-blur-sm hover-elevate active-elevate-2 transition-all cursor-pointer group overflow-visible flex flex-col"
                   onClick={() => window.open(repo.url, '_blank')}
                   data-testid={`card-repo-${i}`}
                 >
-                  <CardContent className="pt-5 pb-5 flex flex-col gap-3 h-full">
+                  <CardContent className="p-5 flex flex-col gap-3 flex-1">
+                    {/* Header: name + privacy badge */}
                     <div className="flex items-start justify-between gap-2">
-                      <div className="flex items-center gap-2 min-w-0">
+                      <div className="flex items-center gap-2 min-w-0 flex-1">
                         <BookOpen className="w-4 h-4 text-primary shrink-0" />
                         <p className="text-sm font-bold text-primary leading-snug group-hover:underline truncate" title={repo.name}>
                           {repo.name}
                         </p>
                       </div>
-                      <div className="flex items-center gap-1 shrink-0">
-                        {repo.isPrivate ? (
-                          <span className="text-[9px] font-bold text-muted-foreground/80 bg-muted/40 border border-border/40 px-1.5 py-0.5 rounded uppercase tracking-wider">
-                            Private
-                          </span>
-                        ) : (
-                          <span className="text-[9px] font-bold text-primary/80 bg-primary/10 border border-primary/30 px-1.5 py-0.5 rounded uppercase tracking-wider">
-                            Public
-                          </span>
-                        )}
-                        <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </div>
+                      {repo.isPrivate ? (
+                        <span className="text-[9px] font-bold text-muted-foreground/80 bg-muted/40 border border-border/40 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">
+                          Private
+                        </span>
+                      ) : (
+                        <span className="text-[9px] font-bold text-primary bg-primary/10 border border-primary/30 px-1.5 py-0.5 rounded uppercase tracking-wider shrink-0">
+                          Public
+                        </span>
+                      )}
                     </div>
 
-                    <p className="text-xs text-muted-foreground leading-relaxed flex-1 line-clamp-3">
+                    {/* Description: fixed 2-line clamp for uniform height */}
+                    <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 min-h-[2.4rem] flex-1">
                       {desc}
                     </p>
 
-                    <div className="flex items-center gap-3 mt-auto pt-2 border-t border-border/40">
-                      {repo.language && (
-                        <div className="flex items-center gap-1">
-                          <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: color }} />
-                          <span className="text-[11px] font-semibold text-muted-foreground">{repo.language}</span>
+                    {/* Footer: language + stars/forks */}
+                    <div className="flex items-center gap-3 pt-2.5 border-t border-border/40">
+                      {repo.language ? (
+                        <div className="flex items-center gap-1.5 min-w-0">
+                          <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: color }} />
+                          <span className="text-[11px] font-semibold text-muted-foreground truncate">{repo.language}</span>
                         </div>
-                      )}
-                      <div className="flex items-center gap-1 text-muted-foreground ml-auto">
-                        <Star className="w-3 h-3" />
-                        <span className="text-[11px] font-semibold">{repo.stars}</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-muted-foreground">
-                        <GitFork className="w-3 h-3" />
-                        <span className="text-[11px] font-semibold">{repo.forks}</span>
+                      ) : <div className="flex-1" />}
+                      <div className="flex items-center gap-3 ml-auto shrink-0">
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <Star className="w-3 h-3" />
+                          <span className="text-[11px] font-semibold">{repo.stars}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-muted-foreground">
+                          <GitFork className="w-3 h-3" />
+                          <span className="text-[11px] font-semibold">{repo.forks}</span>
+                        </div>
+                        <ExternalLink className="w-3 h-3 text-muted-foreground/60 group-hover:text-primary transition-colors" />
                       </div>
                     </div>
                   </CardContent>
