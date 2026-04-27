@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
-  Github, Code2, Flame, TrendingUp,
-  ExternalLink, Users, BookOpen, GitPullRequest, CircleDot, Star, GitFork,
+  Github, Code2, Flame, TrendingUp, ExternalLink, Users, BookOpen,
+  GitPullRequest, CircleDot, Star, GitFork, GitCommit, MapPin, Calendar,
 } from 'lucide-react';
 
 const GITHUB_USERNAME = 'andrieVerdev';
@@ -42,51 +42,72 @@ const langColor: Record<string, string> = {
 };
 
 const languages = [
-  { name: 'Python',     pct: 30, color: '#3B82F6' },
-  { name: 'JavaScript', pct: 27, color: '#22C55E' },
-  { name: 'TypeScript', pct: 22, color: '#06B6D4' },
-  { name: 'Java',       pct: 12, color: '#F59E0B' },
-  { name: 'C++',        pct:  6, color: '#EC4899' },
-  { name: 'Other',      pct:  3, color: '#6B7280' },
+  { name: 'TypeScript', pct: 38, color: '#06B6D4' },
+  { name: 'JavaScript', pct: 22, color: '#22C55E' },
+  { name: 'Python',     pct: 18, color: '#3B82F6' },
+  { name: 'HTML',       pct: 10, color: '#F97316' },
+  { name: 'Java',       pct:  6, color: '#F59E0B' },
+  { name: 'CSS',        pct:  4, color: '#8B5CF6' },
+  { name: 'Other',      pct:  2, color: '#6B7280' },
 ];
 
-// Always-visible fallback repos shown before live data loads
+// Curated descriptions for repos (matched case-insensitively against repo name)
+const repoDescriptions: Record<string, string> = {
+  'my-portfolio':                  'Personal portfolio website built with React, TypeScript, Three.js and a cybersecurity-themed glassmorphism UI.',
+  'qr-attendance':                 'QR code-based attendance system with real-time dashboard, role-based login, and CSV export.',
+  'qr-attendanc':                  'Earlier prototype of the QR attendance system — HTML/JS proof-of-concept.',
+  'schoolattendace':               'Modern school attendance management with student profiles, class scheduling, and reports.',
+  'library-management-syste_lms':  'Full library management system: book CRUD, member registration, borrow/return tracking, fines.',
+  'facial-ai':                     'Facial recognition AI prototype using TensorFlow.js for real-time identification.',
+  'laguna-tourist-spot':           'Interactive tourist guide for Laguna province with maps, recommendations, and reviews.',
+  'fluppybird':                    'Flappy Bird remake — pure HTML/CSS/JS browser game with custom assets.',
+  'evacs-system':                  'Emergency evacuation system: routing, capacity management, and real-time alerts.',
+  'tasktracker':                   'Productivity task tracker with Kanban board, due dates, and progress analytics.',
+  'buddwell':                      'Wellness companion app — habit tracking, mood logging, and personalized insights.',
+  'nextjs-ai-chatbot':             'AI chatbot built on Next.js with streaming responses and conversation history.',
+  'evalue':                        'Course evaluation web app for students and faculty.',
+};
+
 const fallbackRepos: GHRepo[] = [
-  { name: 'My-Portfolio',            description: 'Personal portfolio website (this site).',                                         url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'TypeScript', languageColor: '#06B6D4' },
-  { name: 'qr-attendance',           description: 'QR code-based attendance tracking with real-time dashboard.',                     url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'JavaScript', languageColor: '#22C55E' },
-  { name: 'schoolattendace',         description: 'School attendance management system.',                                            url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'TypeScript', languageColor: '#06B6D4' },
-  { name: 'Library-Management-Syste_LMS', description: 'Library management system with full CRUD and search.',                       url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'TypeScript', languageColor: '#06B6D4' },
+  { name: 'My-Portfolio',                description: repoDescriptions['my-portfolio'],                 url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'TypeScript', languageColor: '#06B6D4' },
+  { name: 'qr-attendance',               description: repoDescriptions['qr-attendance'],                url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'JavaScript', languageColor: '#22C55E' },
+  { name: 'schoolattendace',             description: repoDescriptions['schoolattendace'],              url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'TypeScript', languageColor: '#06B6D4' },
+  { name: 'Library-Management-Syste_LMS',description: repoDescriptions['library-management-syste_lms'], url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'TypeScript', languageColor: '#06B6D4' },
 ];
 
 const levelColor = ['bg-muted/30', 'bg-primary/25', 'bg-primary/50', 'bg-primary/75', 'bg-primary'];
 const lvl = (n: number) => n === 0 ? 0 : n <= 2 ? 1 : n <= 5 ? 2 : n <= 9 ? 3 : 4;
 
+const enrichDescriptions = (rs: GHRepo[]): GHRepo[] =>
+  rs.map(r => ({
+    ...r,
+    description: r.description?.trim() || repoDescriptions[r.name.toLowerCase()] || null,
+  }));
+
 export default function GitHubStatsSection() {
   const [stats, setStats] = useState<GHStats | null>(null);
-  const [repos, setRepos] = useState<GHRepo[]>(fallbackRepos);   // start with fallback
+  const [repos, setRepos] = useState<GHRepo[]>(fallbackRepos);
   const [statsLoading, setStatsLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
-
-    // Fetch everything (stats + repos including private) via our secure backend
     fetch('/api/github-stats')
       .then(r => r.ok ? r.json() : null)
       .then((data: GHStats | null) => {
         if (cancelled || !data || (data as any).error) return;
         setStats(data);
         if (Array.isArray(data.repos) && data.repos.length > 0) {
-          setRepos(data.repos);
+          setRepos(enrichDescriptions(data.repos));
         }
       })
       .catch(() => {})
       .finally(() => { if (!cancelled) setStatsLoading(false); });
-
     return () => { cancelled = true; };
   }, []);
 
-  const weeks = stats?.weeks ?? [];
-  const repoCount = stats?.totalRepos ?? stats?.publicRepos ?? repos.length;
+  const weeks      = stats?.weeks ?? [];
+  const repoCount  = stats?.totalRepos ?? stats?.publicRepos ?? repos.length;
+  const totalCommitsAll = stats?.totalCommits ?? 0;
 
   return (
     <section id="github" className="py-20 md:py-32 relative">
@@ -96,100 +117,152 @@ export default function GitHubStatsSection() {
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
 
-        {/* Heading */}
-        <div className="text-center mb-16">
+        {/* ── Heading ── */}
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-4">
+            <Github className="w-3.5 h-3.5" />
+            Live Synced
+          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4">GitHub Stats</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Live data pulled directly from my GitHub account
+            Live data pulled directly from my GitHub account — including private repositories.
           </p>
         </div>
 
-        {/* ── Row 1: Profile + 4 stat cards ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-
-          {/* Profile Card */}
-          <Card className="border border-primary/20 bg-background/50 backdrop-blur-sm overflow-visible group hover-elevate transition-all duration-500 h-full">
-            <CardContent className="pt-8 pb-8 flex flex-col items-center gap-5 text-center h-full">
-              <div className="relative">
-                <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-125 animate-pulse" />
+        {/* ── HERO PROFILE BANNER ── */}
+        <Card className="border border-primary/30 bg-background/60 backdrop-blur-sm overflow-visible mb-6 group hover-elevate transition-all">
+          <CardContent className="pt-8 pb-8 md:pt-10 md:pb-10">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+              {/* Avatar */}
+              <div className="relative shrink-0">
+                <div className="absolute inset-0 bg-primary/30 blur-3xl rounded-full scale-125 animate-pulse" />
                 <img
                   src={stats?.avatarUrl ?? `https://avatars.githubusercontent.com/u/174735721?v=4`}
                   alt="Andrie Veronque"
-                  className="w-28 h-28 rounded-full border-4 border-primary/40 shadow-xl object-cover relative z-10 group-hover:scale-105 transition-transform duration-500"
+                  className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-primary/50 shadow-2xl object-cover relative z-10 group-hover:scale-105 transition-transform duration-500"
+                  data-testid="img-github-avatar"
                 />
+                <div className="absolute -bottom-1 -right-1 z-20 w-8 h-8 rounded-full bg-primary border-4 border-background flex items-center justify-center">
+                  <Github className="w-3.5 h-3.5 text-primary-foreground" />
+                </div>
               </div>
-              <div>
-                <p className="text-xl font-heading font-extrabold tracking-tight">
-                  {stats?.name ?? 'Andrie Veronque'}
-                </p>
-                <p className="text-sm font-bold text-primary mt-0.5 tracking-wider">@{GITHUB_USERNAME}</p>
-                <p className="text-sm text-muted-foreground mt-3 leading-relaxed max-w-[220px] mx-auto">
+
+              {/* Profile info */}
+              <div className="flex-1 text-center md:text-left">
+                <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-1">
+                  <h3 className="text-2xl md:text-3xl font-heading font-extrabold tracking-tight" data-testid="text-github-name">
+                    {stats?.name ?? 'Andrie Veronque'}
+                  </h3>
+                  <a
+                    href={GITHUB_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm md:text-base font-bold text-primary hover:underline"
+                    data-testid="link-github-username"
+                  >
+                    @{GITHUB_USERNAME}
+                  </a>
+                </div>
+
+                <p className="text-sm md:text-base text-muted-foreground mb-4 max-w-xl">
                   {stats?.bio ?? 'Aspiring Mechatronics & Software Engineer · IoT · Robotics · Cloud'}
                 </p>
-              </div>
-              {stats && (
-                <div className="flex gap-2 flex-wrap justify-center">
+
+                {/* Quick badges */}
+                <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-4">
                   <span className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/40">
-                    <TrendingUp className="w-3.5 h-3.5 text-primary" />{stats.totalCommits} commits
+                    <MapPin className="w-3.5 h-3.5 text-primary" /> Cabuyao, Laguna
                   </span>
                   <span className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/40">
-                    <GitPullRequest className="w-3.5 h-3.5 text-primary" />{stats.totalPRs} PRs
+                    <Calendar className="w-3.5 h-3.5 text-primary" /> Active developer
                   </span>
                   <span className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/40">
-                    <CircleDot className="w-3.5 h-3.5 text-primary" />{stats.totalIssues} issues
+                    <BookOpen className="w-3.5 h-3.5 text-primary" /> {repoCount} repos
                   </span>
                 </div>
-              )}
-              <Button
-                className="w-full gap-2 mt-auto"
-                onClick={() => window.open(GITHUB_URL, '_blank')}
-                data-testid="button-visit-github"
-              >
-                <Github className="w-4 h-4" />
-                View Profile
-                <ExternalLink className="w-3 h-3 ml-auto opacity-60" />
-              </Button>
-            </CardContent>
-          </Card>
 
-          {/* 4 stat cards */}
-          <div className="lg:col-span-2 grid grid-cols-2 gap-6">
-            {[
-              { label: 'Repositories',   value: stats ? String(stats.totalRepos ?? stats.publicRepos) : '—', icon: BookOpen },
-              { label: 'Followers',      value: stats ? String(stats.followers)          : '—', icon: Users },
-              { label: 'Contributions',  value: stats ? String(stats.totalContributions) : '—', icon: TrendingUp },
-              { label: 'Current Streak', value: stats ? `${stats.streak}d`              : '—', icon: Flame },
-            ].map(({ label, value, icon: Icon }) => (
-              <Card key={label} className="border border-primary/20 bg-background/50 backdrop-blur-sm overflow-visible group hover-elevate transition-all duration-500">
-                <CardContent className="pt-7 pb-7 flex flex-col items-center justify-center text-center gap-3">
-                  <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 group-hover:scale-110 transition-transform">
-                    <Icon className="w-6 h-6 text-primary" />
+                {/* Inline activity numbers */}
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 justify-center md:justify-start text-sm">
+                  <div className="flex items-center gap-1.5">
+                    <GitCommit className="w-4 h-4 text-primary" />
+                    <span className="font-bold text-foreground" data-testid="text-total-commits">{totalCommitsAll}</span>
+                    <span className="text-muted-foreground">commits</span>
                   </div>
-                  <p className={`text-5xl font-extrabold text-primary tracking-tighter leading-none ${statsLoading ? 'animate-pulse opacity-30' : ''}`}>
-                    {value}
-                  </p>
-                  <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{label}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  <div className="flex items-center gap-1.5">
+                    <GitPullRequest className="w-4 h-4 text-primary" />
+                    <span className="font-bold text-foreground">{stats?.totalPRs ?? 0}</span>
+                    <span className="text-muted-foreground">PRs</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CircleDot className="w-4 h-4 text-primary" />
+                    <span className="font-bold text-foreground">{stats?.totalIssues ?? 0}</span>
+                    <span className="text-muted-foreground">issues</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Users className="w-4 h-4 text-primary" />
+                    <span className="font-bold text-foreground">{stats?.followers ?? 0}</span>
+                    <span className="text-muted-foreground">followers</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div className="shrink-0">
+                <Button
+                  size="lg"
+                  className="gap-2"
+                  onClick={() => window.open(GITHUB_URL, '_blank')}
+                  data-testid="button-visit-github"
+                >
+                  <Github className="w-4 h-4" />
+                  View Profile
+                  <ExternalLink className="w-3 h-3 opacity-60" />
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* ── 4 BIG STAT CARDS ── */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-6">
+          {[
+            { label: 'Total Repos',     value: stats ? String(repoCount)                 : '—', icon: BookOpen,    sub: 'public + private' },
+            { label: 'Contributions',   value: stats ? String(stats.totalContributions)  : '—', icon: TrendingUp,  sub: 'past 12 months' },
+            { label: 'Total Commits',   value: stats ? String(totalCommitsAll)           : '—', icon: GitCommit,   sub: 'this year' },
+            { label: 'Current Streak',  value: stats ? `${stats.streak}d`                : '—', icon: Flame,       sub: 'days in a row' },
+          ].map(({ label, value, icon: Icon, sub }) => (
+            <Card key={label} className="border border-primary/20 bg-background/50 backdrop-blur-sm overflow-visible group hover-elevate transition-all duration-500">
+              <CardContent className="pt-6 pb-6 flex flex-col items-center justify-center text-center gap-2">
+                <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 group-hover:scale-110 transition-transform">
+                  <Icon className="w-5 h-5 text-primary" />
+                </div>
+                <p className={`text-3xl md:text-4xl font-extrabold text-primary tracking-tighter leading-none ${statsLoading ? 'animate-pulse opacity-30' : ''}`}>
+                  {value}
+                </p>
+                <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">{label}</p>
+                <p className="text-[10px] text-muted-foreground/70">{sub}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
-        {/* ── Row 2: Heatmap + Languages ── */}
+        {/* ── Heatmap + Languages ── */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
 
           {/* Contribution heatmap */}
           <Card className="lg:col-span-2 border border-primary/20 bg-background/50 backdrop-blur-sm overflow-visible hover-elevate transition-all">
             <CardContent className="pt-6 pb-6">
-              <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4 flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-primary" />
-                Contribution Calendar
+              <div className="flex items-center justify-between gap-2 mb-4 flex-wrap">
+                <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-primary" />
+                  Contribution Calendar
+                </p>
                 {stats && (
-                  <span className="text-[11px] font-normal normal-case tracking-normal text-primary/60 ml-1">
-                    · {stats.totalContributions} this year
+                  <span className="text-xs font-bold text-primary">
+                    {stats.totalContributions} contributions this year
                   </span>
                 )}
-              </p>
+              </div>
               {statsLoading ? (
                 <div className="h-24 rounded-lg bg-muted/20 animate-pulse" />
               ) : weeks.length > 0 ? (
@@ -224,7 +297,7 @@ export default function GitHubStatsSection() {
             <CardContent className="pt-6 pb-6">
               <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-5 flex items-center gap-2">
                 <Code2 className="w-4 h-4 text-primary" />
-                Languages
+                Languages Used
               </p>
               <div className="flex rounded-full overflow-hidden h-3 mb-5 gap-[2px]">
                 {languages.map(l => (
@@ -244,18 +317,35 @@ export default function GitHubStatsSection() {
           </Card>
         </div>
 
-        {/* ── Row 3: Repositories ── */}
+        {/* ── Repositories ── */}
         <div>
-          <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4 flex items-center gap-2">
-            <Github className="w-4 h-4 text-primary" />
-            Repositories
-            <span className="text-[10px] font-normal normal-case tracking-normal text-muted-foreground/60 ml-1">
-              ({repoCount} total · public + private)
-            </span>
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="flex items-end justify-between gap-3 mb-5 flex-wrap">
+            <div>
+              <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest flex items-center gap-2">
+                <Github className="w-4 h-4 text-primary" />
+                All Repositories
+              </p>
+              <p className="text-xs text-muted-foreground/70 mt-1">
+                {repoCount} total — public &amp; private synced from GitHub
+              </p>
+            </div>
+            <a
+              href={GITHUB_URL + '?tab=repositories'}
+              target="_blank"
+              rel="noreferrer"
+              className="text-xs font-semibold text-primary hover:underline flex items-center gap-1"
+              data-testid="link-all-repos"
+            >
+              View all on GitHub <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {repos.slice(0, 12).map((repo, i) => {
               const color = repo.languageColor ?? langColor[repo.language ?? ''] ?? langColor['Other'];
+              const desc  = repo.description?.trim()
+                || repoDescriptions[repo.name.toLowerCase()]
+                || 'No description provided.';
               return (
                 <Card
                   key={repo.name}
@@ -265,17 +355,30 @@ export default function GitHubStatsSection() {
                 >
                   <CardContent className="pt-5 pb-5 flex flex-col gap-3 h-full">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-sm font-bold text-primary leading-snug group-hover:underline break-all">{repo.name}</p>
+                      <div className="flex items-center gap-2 min-w-0">
+                        <BookOpen className="w-4 h-4 text-primary shrink-0" />
+                        <p className="text-sm font-bold text-primary leading-snug group-hover:underline truncate" title={repo.name}>
+                          {repo.name}
+                        </p>
+                      </div>
                       <div className="flex items-center gap-1 shrink-0">
-                        {repo.isPrivate && (
-                          <span className="text-[9px] font-bold text-muted-foreground/80 bg-muted/40 border border-border/40 px-1.5 py-0.5 rounded">private</span>
+                        {repo.isPrivate ? (
+                          <span className="text-[9px] font-bold text-muted-foreground/80 bg-muted/40 border border-border/40 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                            Private
+                          </span>
+                        ) : (
+                          <span className="text-[9px] font-bold text-primary/80 bg-primary/10 border border-primary/30 px-1.5 py-0.5 rounded uppercase tracking-wider">
+                            Public
+                          </span>
                         )}
                         <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                     </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed flex-1">
-                      {repo.description ?? 'No description provided.'}
+
+                    <p className="text-xs text-muted-foreground leading-relaxed flex-1 line-clamp-3">
+                      {desc}
                     </p>
+
                     <div className="flex items-center gap-3 mt-auto pt-2 border-t border-border/40">
                       {repo.language && (
                         <div className="flex items-center gap-1">
@@ -284,10 +387,12 @@ export default function GitHubStatsSection() {
                         </div>
                       )}
                       <div className="flex items-center gap-1 text-muted-foreground ml-auto">
-                        <Star className="w-3 h-3" /><span className="text-[11px] font-semibold">{repo.stars}</span>
+                        <Star className="w-3 h-3" />
+                        <span className="text-[11px] font-semibold">{repo.stars}</span>
                       </div>
                       <div className="flex items-center gap-1 text-muted-foreground">
-                        <GitFork className="w-3 h-3" /><span className="text-[11px] font-semibold">{repo.forks}</span>
+                        <GitFork className="w-3 h-3" />
+                        <span className="text-[11px] font-semibold">{repo.forks}</span>
                       </div>
                     </div>
                   </CardContent>
