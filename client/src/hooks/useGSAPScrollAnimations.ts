@@ -85,26 +85,9 @@ export default function useGSAPScrollAnimations() {
           });
         }
 
-        // ── GitHub stats section ──────────────────────────────────────────
-        const githubSection = document.getElementById('github') ?? document.querySelector('[id*="github"]');
-        if (githubSection) {
-          const stats = gsap.utils.toArray<HTMLElement>(
-            githubSection.querySelectorAll('.card, [class*="card"], [class*="stat"]')
-          );
-          if (stats.length) {
-            gsap.from(stats, {
-              scale: 0.6,
-              opacity: 0,
-              duration: 0.5,
-              stagger: 0.1,
-              ease: 'back.out(2)',
-              scrollTrigger: {
-                trigger: githubSection,
-                start: 'top 80%',
-              },
-            });
-          }
-        }
+        // GitHub stats section animations removed — they conflicted with React's
+        // re-renders when live data replaced fallback repos, leaving cards stuck
+        // at opacity:0. The section uses its own CSS hover-elevate transitions.
 
         // ── Contact form elements ─────────────────────────────────────────
         const contactSection = document.getElementById('contact');

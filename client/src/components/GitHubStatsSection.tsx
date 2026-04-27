@@ -341,7 +341,7 @@ export default function GitHubStatsSection() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr">
-            {repos.slice(0, 9).map((repo, i) => {
+            {repos.map((repo, i) => {
               const color = repo.languageColor ?? langColor[repo.language ?? ''] ?? langColor['Other'];
               const desc  = repo.description?.trim()
                 || repoDescriptions[repo.name.toLowerCase()]
