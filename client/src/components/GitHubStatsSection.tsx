@@ -9,27 +9,31 @@ import {
 const GITHUB_USERNAME = 'andrieVerdev';
 const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
 
+interface GHRepo {
+  name: string;
+  description: string | null;
+  url: string;
+  isPrivate: boolean;
+  stars: number;
+  forks: number;
+  language: string | null;
+  languageColor: string | null;
+}
+
 interface GHStats {
   name: string;
   avatarUrl: string;
   bio: string | null;
   followers: number;
   publicRepos: number;
+  totalRepos: number;
   totalContributions: number;
   totalCommits: number;
   totalPRs: number;
   totalIssues: number;
   streak: number;
   weeks: Array<{ contributionDays: Array<{ contributionCount: number; date: string }> }>;
-}
-
-interface GHRepo {
-  name: string;
-  description: string | null;
-  html_url: string;
-  stargazers_count: number;
-  forks_count: number;
-  language: string | null;
+  repos: GHRepo[];
 }
 
 const langColor: Record<string, string> = {
@@ -48,14 +52,11 @@ const languages = [
 
 // Always-visible fallback repos shown before live data loads
 const fallbackRepos: GHRepo[] = [
-  { name: 'qr-attendance',        description: 'QR code-based attendance tracking with real-time dashboard and export.',           html_url: `${GITHUB_URL}/qr-attendance`,        stargazers_count: 0, forks_count: 0, language: 'JavaScript' },
-  { name: 'schoolattendace',       description: 'School attendance management system with web interface.',                         html_url: `${GITHUB_URL}/schoolattendace`,       stargazers_count: 0, forks_count: 0, language: 'TypeScript' },
-  { name: 'iot-smart-agriculture', description: 'IoT-enabled real-time environmental monitoring system (Undergraduate Thesis).',   html_url: GITHUB_URL,                            stargazers_count: 0, forks_count: 0, language: 'Python' },
-  { name: 'unicast-event-system',  description: 'Event planning management with intelligent scheduling and smart recommendations.', html_url: GITHUB_URL,                            stargazers_count: 0, forks_count: 0, language: 'TypeScript' },
-  { name: 'laguna-tourist-guide',  description: 'Interactive tourist spot guide for Laguna province with maps and recommendations.',html_url: GITHUB_URL,                            stargazers_count: 0, forks_count: 0, language: 'JavaScript' },
+  { name: 'My-Portfolio',            description: 'Personal portfolio website (this site).',                                         url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'TypeScript', languageColor: '#06B6D4' },
+  { name: 'qr-attendance',           description: 'QR code-based attendance tracking with real-time dashboard.',                     url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'JavaScript', languageColor: '#22C55E' },
+  { name: 'schoolattendace',         description: 'School attendance management system.',                                            url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'TypeScript', languageColor: '#06B6D4' },
+  { name: 'Library-Management-Syste_LMS', description: 'Library management system with full CRUD and search.',                       url: GITHUB_URL, isPrivate: true, stars: 0, forks: 0, language: 'TypeScript', languageColor: '#06B6D4' },
 ];
-
-const privateNames = new Set(['iot-smart-agriculture', 'unicast-event-system', 'laguna-tourist-guide']);
 
 const levelColor = ['bg-muted/30', 'bg-primary/25', 'bg-primary/50', 'bg-primary/75', 'bg-primary'];
 const lvl = (n: number) => n === 0 ? 0 : n <= 2 ? 1 : n <= 5 ? 2 : n <= 9 ? 3 : 4;
@@ -68,30 +69,24 @@ export default function GitHubStatsSection() {
   useEffect(() => {
     let cancelled = false;
 
-    // Fetch stats via our secure backend endpoint
+    // Fetch everything (stats + repos including private) via our secure backend
     fetch('/api/github-stats')
       .then(r => r.ok ? r.json() : null)
-      .then(data => { if (!cancelled && data && !data.error) setStats(data); })
-      .catch(() => {})
-      .finally(() => { if (!cancelled) setStatsLoading(false); });
-
-    // Try to enrich repo list with live data; fall back gracefully
-    fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`)
-      .then(r => r.ok ? r.json() : null)
-      .then(data => {
-        if (!cancelled && Array.isArray(data) && data.length > 0) {
-          // Merge: live public repos + private highlights (deduped)
-          const publicNames = new Set<string>(data.map((r: GHRepo) => r.name));
-          const extras = fallbackRepos.filter(p => privateNames.has(p.name) && !publicNames.has(p.name));
-          setRepos([...data, ...extras]);
+      .then((data: GHStats | null) => {
+        if (cancelled || !data || (data as any).error) return;
+        setStats(data);
+        if (Array.isArray(data.repos) && data.repos.length > 0) {
+          setRepos(data.repos);
         }
       })
-      .catch(() => {}); // keep fallbackRepos on error
+      .catch(() => {})
+      .finally(() => { if (!cancelled) setStatsLoading(false); });
 
     return () => { cancelled = true; };
   }, []);
 
   const weeks = stats?.weeks ?? [];
+  const repoCount = stats?.totalRepos ?? stats?.publicRepos ?? repos.length;
 
   return (
     <section id="github" className="py-20 md:py-32 relative">
@@ -160,7 +155,7 @@ export default function GitHubStatsSection() {
           {/* 4 stat cards */}
           <div className="lg:col-span-2 grid grid-cols-2 gap-6">
             {[
-              { label: 'Public Repos',   value: stats ? String(stats.publicRepos)       : '—', icon: BookOpen },
+              { label: 'Repositories',   value: stats ? String(stats.totalRepos ?? stats.publicRepos) : '—', icon: BookOpen },
               { label: 'Followers',      value: stats ? String(stats.followers)          : '—', icon: Users },
               { label: 'Contributions',  value: stats ? String(stats.totalContributions) : '—', icon: TrendingUp },
               { label: 'Current Streak', value: stats ? `${stats.streak}d`              : '—', icon: Flame },
@@ -255,26 +250,25 @@ export default function GitHubStatsSection() {
             <Github className="w-4 h-4 text-primary" />
             Repositories
             <span className="text-[10px] font-normal normal-case tracking-normal text-muted-foreground/60 ml-1">
-              (public + featured private)
+              ({repoCount} total · public + private)
             </span>
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {repos.slice(0, 8).map((repo, i) => {
-              const color     = langColor[repo.language ?? ''] ?? langColor['Other'];
-              const isPrivate = privateNames.has(repo.name);
+            {repos.slice(0, 12).map((repo, i) => {
+              const color = repo.languageColor ?? langColor[repo.language ?? ''] ?? langColor['Other'];
               return (
                 <Card
                   key={repo.name}
                   className="border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all cursor-pointer group h-full overflow-visible"
-                  onClick={() => window.open(repo.html_url, '_blank')}
+                  onClick={() => window.open(repo.url, '_blank')}
                   data-testid={`card-repo-${i}`}
                 >
                   <CardContent className="pt-5 pb-5 flex flex-col gap-3 h-full">
                     <div className="flex items-start justify-between gap-2">
                       <p className="text-sm font-bold text-primary leading-snug group-hover:underline break-all">{repo.name}</p>
                       <div className="flex items-center gap-1 shrink-0">
-                        {isPrivate && (
-                          <span className="text-[9px] font-bold text-muted-foreground/60 bg-muted/40 px-1.5 py-0.5 rounded">private</span>
+                        {repo.isPrivate && (
+                          <span className="text-[9px] font-bold text-muted-foreground/80 bg-muted/40 border border-border/40 px-1.5 py-0.5 rounded">private</span>
                         )}
                         <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
@@ -290,10 +284,10 @@ export default function GitHubStatsSection() {
                         </div>
                       )}
                       <div className="flex items-center gap-1 text-muted-foreground ml-auto">
-                        <Star className="w-3 h-3" /><span className="text-[11px] font-semibold">{repo.stargazers_count}</span>
+                        <Star className="w-3 h-3" /><span className="text-[11px] font-semibold">{repo.stars}</span>
                       </div>
                       <div className="flex items-center gap-1 text-muted-foreground">
-                        <GitFork className="w-3 h-3" /><span className="text-[11px] font-semibold">{repo.forks_count}</span>
+                        <GitFork className="w-3 h-3" /><span className="text-[11px] font-semibold">{repo.forks}</span>
                       </div>
                     </div>
                   </CardContent>

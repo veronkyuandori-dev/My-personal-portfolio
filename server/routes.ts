@@ -79,7 +79,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
           bio
           followers { totalCount }
           following { totalCount }
-          repositories(privacy: PUBLIC) { totalCount }
+          publicRepoCount: repositories(privacy: PUBLIC) { totalCount }
+          totalRepoCount: repositories(ownerAffiliations: OWNER) { totalCount }
+          repositories(first: 30, ownerAffiliations: OWNER, orderBy: {field: UPDATED_AT, direction: DESC}) {
+            nodes {
+              name
+              description
+              url
+              isPrivate
+              stargazerCount
+              forkCount
+              primaryLanguage { name color }
+              updatedAt
+            }
+          }
           contributionsCollection {
             totalCommitContributions
             totalPullRequestContributions
@@ -129,19 +142,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
         else break;
       }
 
+      const repoNodes = user?.repositories?.nodes ?? [];
+      const repos = repoNodes.map((r: any) => ({
+        name: r.name,
+        description: r.description,
+        url: r.url,
+        isPrivate: r.isPrivate,
+        stars: r.stargazerCount ?? 0,
+        forks: r.forkCount ?? 0,
+        language: r.primaryLanguage?.name ?? null,
+        languageColor: r.primaryLanguage?.color ?? null,
+        updatedAt: r.updatedAt,
+      }));
+
       res.json({
         name: user?.name,
         avatarUrl: user?.avatarUrl,
         bio: user?.bio,
         followers: user?.followers?.totalCount ?? 0,
         following: user?.following?.totalCount ?? 0,
-        publicRepos: user?.repositories?.totalCount ?? 0,
+        publicRepos: user?.publicRepoCount?.totalCount ?? 0,
+        totalRepos: user?.totalRepoCount?.totalCount ?? 0,
         totalContributions: calendar?.totalContributions ?? 0,
         totalCommits: col?.totalCommitContributions ?? 0,
         totalPRs: col?.totalPullRequestContributions ?? 0,
         totalIssues: col?.totalIssueContributions ?? 0,
         streak,
         weeks: calendar?.weeks ?? [],
+        repos,
       });
     } catch (err) {
       res.status(500).json({ error: "Failed to fetch GitHub data" });
