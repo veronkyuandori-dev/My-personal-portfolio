@@ -69,8 +69,9 @@ export default function CertificationsSection() {
         <CoverflowCarousel
           items={carouselItems}
           onSelect={setSelectedCert}
-          cardWidth={280}
-          cardHeight={390}
+          cardWidth={420}
+          cardHeight={560}
+          imageFit="contain"
           autoPlayInterval={3200}
         />
       </div>

@@ -164,8 +164,8 @@ export default function ProjectsSection() {
         <CoverflowCarousel
           items={carouselItems}
           onSelect={handleSelect}
-          cardWidth={300}
-          cardHeight={400}
+          cardWidth={440}
+          cardHeight={580}
           autoPlayInterval={4000}
         />
       </div>
