@@ -146,9 +146,9 @@ export default function CoverflowCarousel({
             >
               {/* Card */}
               <div
-                className={`w-full h-full rounded-2xl overflow-hidden shadow-2xl relative bg-black/40 ${
+                className={`w-full h-full rounded-2xl overflow-hidden shadow-2xl relative bg-black/40 transition-transform duration-300 ease-out hover:scale-[1.04] ${
                   isCenter
-                    ? 'ring-2 ring-primary/70 shadow-[0_0_40px_rgba(34,197,94,0.4)]'
+                    ? 'ring-2 ring-primary/70 shadow-[0_0_40px_rgba(34,197,94,0.4)] hover:shadow-[0_0_60px_rgba(34,197,94,0.6)]'
                     : 'shadow-[0_8px_32px_rgba(0,0,0,0.6)]'
                 }`}
               >

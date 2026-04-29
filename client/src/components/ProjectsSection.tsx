@@ -154,7 +154,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="relative py-20 md:py-32 bg-card/30 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4 animate-section-rise">
           Projects
         </h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">

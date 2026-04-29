@@ -36,7 +36,7 @@ export default function SkillsSection() {
   return (
     <section id="skills" className="relative py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4 animate-section-rise">
           Skills
         </h2>
         <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
@@ -67,7 +67,8 @@ export default function SkillsSection() {
                 {category.skills.map((skill, skillIndex) => (
                   <div
                     key={skillIndex}
-                    className="space-y-2 group"
+                    className="space-y-2 group stagger-item"
+                    style={{ animationDelay: `${categoryIndex * 150 + skillIndex * 100 + 200}ms` }}
                     data-testid={`skill-${skill.name.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     <div className="flex items-center gap-4">

@@ -320,9 +320,72 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
+}
+
+/* Section slide-up + fade entrance */
+@keyframes section-rise {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+.animate-section-rise {
+  animation: section-rise 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Hero blur fade-in */
+@keyframes hero-blur-fade {
+  from {
+    opacity: 0;
+    filter: blur(20px);
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+.animate-hero-blur-fade {
+  animation: hero-blur-fade 1400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Stagger fade-up for list items */
+@keyframes stagger-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.stagger-item {
+  opacity: 0;
+  animation: stagger-rise 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Smooth nav indicator slide */
+@keyframes nav-indicator {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+.animate-nav-indicator {
+  animation: nav-indicator 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /**

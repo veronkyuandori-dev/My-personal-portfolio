@@ -17,7 +17,13 @@ export default function NetworkHead3D() {
     camera.position.set(0, 0.3, 6.5);
     camera.lookAt(0, 0.2, 0);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (e) {
+      console.warn('WebGL not available — skipping 3D head');
+      return;
+    }
     renderer.setSize(W, H);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);

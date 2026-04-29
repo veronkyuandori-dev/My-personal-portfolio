@@ -83,7 +83,10 @@ export default function Navigation() {
             >
               <span className="relative z-10">{item.label}</span>
               {activeSection === item.href.substring(1) && (
-                <div className="absolute inset-0 bg-primary/10 rounded-full border border-primary/20 shadow-[0_0_10px_rgba(34,197,94,0.15)] animate-pulse" />
+                <div
+                  key={`indicator-${item.href}`}
+                  className="absolute inset-0 bg-primary/10 rounded-full border border-primary/20 shadow-[0_0_10px_rgba(34,197,94,0.15)] animate-nav-indicator"
+                />
               )}
             </Button>
           ))}

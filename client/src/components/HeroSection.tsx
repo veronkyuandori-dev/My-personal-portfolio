@@ -169,8 +169,8 @@ export default function HeroSection() {
       {/* Radial Pulse Effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-radial-pulse" />
 
-      <div id="hero-content" className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-20 text-center">
-        <AnimationWrapper type="zoom" duration={1000}>
+      <div id="hero-content" className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-20 text-center animate-hero-blur-fade">
+        <AnimationWrapper type="blur-fade" duration={1000}>
         <div className="mb-8 flex justify-center items-end gap-4">
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-chart-2 to-primary opacity-75 blur-2xl scale-125 animate-pulse" />

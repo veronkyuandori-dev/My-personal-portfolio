@@ -17,8 +17,14 @@ export default function HeroThreeCanvas() {
     const camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 1000);
     camera.position.z = 28;
 
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    // Renderer (gracefully bail if WebGL unavailable)
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (e) {
+      console.warn('WebGL not available — skipping 3D hero background');
+      return;
+    }
     renderer.setSize(w, h);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
