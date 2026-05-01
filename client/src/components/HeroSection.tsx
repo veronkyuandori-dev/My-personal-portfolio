@@ -68,10 +68,16 @@ export default function HeroSection() {
 
             {/* Info row */}
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground font-medium">
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-primary/70" />
+              <a
+                href="https://web.facebook.com/ucpncofficial"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 hover:text-primary transition-colors duration-200 group"
+                data-testid="link-university"
+              >
+                <MapPin className="w-3.5 h-3.5 text-primary/70 group-hover:text-primary transition-colors" />
                 University of Cabuyao, Philippines
-              </span>
+              </a>
               <span className="w-1 h-1 rounded-full bg-border" />
               <span>4th Year BS Mechatronics Engineering</span>
             </div>
