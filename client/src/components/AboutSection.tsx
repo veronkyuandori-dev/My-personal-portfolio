@@ -2,6 +2,12 @@ import { Card } from '@/components/ui/card';
 import { Briefcase, Award } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
 import NetworkHead3D from '@/components/NetworkHead3D';
+import {
+  SiAmazonwebservices,
+  SiGooglecloud,
+  SiGithub,
+  SiCisco,
+} from 'react-icons/si';
 
 const experiences = [
   {
@@ -38,6 +44,25 @@ const certifications = [
   'AWS Skill Builder Trainee - Cloud architecture & services',
   'AWS Educate Member - EC2, S3, IAM, serverless architecture',
   'GitHub Student Developer Pack - Real-world deployment experience',
+];
+
+function MicrosoftIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 21 21" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="10" height="10" fill="#F25022" />
+      <rect x="11" y="0" width="10" height="10" fill="#7FBA00" />
+      <rect x="0" y="11" width="10" height="10" fill="#00A4EF" />
+      <rect x="11" y="11" width="10" height="10" fill="#FFB900" />
+    </svg>
+  );
+}
+
+const platforms = [
+  { name: 'Microsoft', Icon: MicrosoftIcon, color: 'text-[#00A4EF]' },
+  { name: 'AWS', Icon: SiAmazonwebservices, color: 'text-[#FF9900]' },
+  { name: 'Google Cloud', Icon: SiGooglecloud, color: 'text-[#4285F4]' },
+  { name: 'GitHub', Icon: SiGithub, color: 'text-foreground' },
+  { name: 'Cisco', Icon: SiCisco, color: 'text-[#1BA0D7]' },
 ];
 
 export default function AboutSection() {
@@ -136,15 +161,31 @@ export default function AboutSection() {
                 <Award className="w-6 h-6 text-primary" />
                 Training & Certifications
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {certifications.map((cert, index) => (
-                  <AnimationWrapper key={index} type="slide" direction="up" delay={index * 100} duration={500}>
-                    <Card className="p-4 border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all flex items-center gap-3 overflow-visible">
-                      <div className="h-2 w-2 rounded-full bg-primary shrink-0" />
-                      <p className="text-sm font-semibold text-foreground leading-tight">{cert}</p>
-                    </Card>
-                  </AnimationWrapper>
-                ))}
+              <div className="flex gap-5 items-start">
+                {/* Platform logos — left column */}
+                <div className="shrink-0 flex flex-col gap-3">
+                  {platforms.map((p) => (
+                    <div
+                      key={p.name}
+                      className="flex flex-col items-center gap-1.5 p-3 rounded-xl border border-primary/20 bg-background/50 backdrop-blur-sm w-[68px] hover-elevate transition-all"
+                    >
+                      <p.Icon className={`w-7 h-7 ${p.color} shrink-0`} />
+                      <span className="text-[9px] font-mono text-muted-foreground text-center leading-tight">{p.name}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Cert list — right */}
+                <div className="flex-1 flex flex-col gap-3">
+                  {certifications.map((cert, index) => (
+                    <AnimationWrapper key={index} type="slide" direction="up" delay={index * 80} duration={500}>
+                      <Card className="p-4 border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all flex items-center gap-3 overflow-visible">
+                        <div className="h-2 w-2 rounded-full bg-primary shrink-0" />
+                        <p className="text-sm font-semibold text-foreground leading-tight">{cert}</p>
+                      </Card>
+                    </AnimationWrapper>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

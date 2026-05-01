@@ -209,7 +209,7 @@ export default function ProjectsSection() {
                         {cat}
                       </h4>
                       <ul className="space-y-2">
-                        {items.map((item, j) => (
+                        {(items as string[]).map((item: string, j: number) => (
                           <li key={j} className="flex items-start gap-3 text-sm text-muted-foreground">
                             <CheckCircle2 className="h-4 w-4 text-primary/60 mt-0.5 shrink-0" />
                             {item}
