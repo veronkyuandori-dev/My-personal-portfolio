@@ -123,9 +123,8 @@ export default function GitHubStatsSection() {
             <Github className="w-3.5 h-3.5" />
             Live Synced
           </div>
-          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">03 / GITHUB</p>
-          <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight animate-section-rise">GitHub Stats</h2>
-          <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4 animate-section-rise">GitHub Stats</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Live data pulled directly from my GitHub account — including private repositories.
           </p>
         </div>
