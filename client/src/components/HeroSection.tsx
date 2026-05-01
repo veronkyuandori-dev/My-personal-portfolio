@@ -61,9 +61,6 @@ export default function HeroSection() {
                 {displayText}
                 <span className={`inline-block w-[4px] h-[0.85em] ml-1 bg-primary align-middle transition-opacity duration-100 ${cursorVisible ? 'opacity-100' : 'opacity-0'}`} />
               </h1>
-              <p className="mt-4 text-lg md:text-xl font-mono text-primary font-semibold tracking-wide">
-                {'< '}Mechatronics & Software Engineer{' />'}
-              </p>
             </div>
 
             {/* Info row */}
@@ -79,7 +76,7 @@ export default function HeroSection() {
                 University of Cabuyao, Philippines
               </a>
               <span className="w-1 h-1 rounded-full bg-border" />
-              <span>4th Year BS Mechatronics Engineering</span>
+              <span>BS Information Technology</span>
             </div>
 
             {/* Bio */}
