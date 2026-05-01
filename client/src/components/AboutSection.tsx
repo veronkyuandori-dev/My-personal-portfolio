@@ -42,14 +42,17 @@ const certifications = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-20 md:py-32">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4 animate-section-rise">
-          About Me
-        </h2>
-        <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-          Passionate developer with experience in full-stack development, IoT systems, and cloud technologies
-        </p>
+    <section id="about" className="relative py-24 md:py-32">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="mb-16 animate-section-rise">
+          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">01 / ABOUT</p>
+          <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
+            About Me
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-xl">
+            Passionate developer with experience in full-stack development, IoT systems, and cloud technologies
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <AnimationWrapper type="fade" direction="up">

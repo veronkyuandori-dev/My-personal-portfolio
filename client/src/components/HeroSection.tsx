@@ -1,284 +1,191 @@
-import { ArrowDown, Mail, Github, Linkedin, Download } from 'lucide-react';
-import HeroThreeCanvas from '@/components/HeroThreeCanvas';
+import { useEffect, useState } from 'react';
+import { ArrowRight, Github, Linkedin, Mail, MapPin, Download, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import AnimationWrapper from '@/components/AnimationWrapper';
-import profileImage from '@assets/639776252_1644422550043671_7419334472409174878_n_1772636531491.jpg';
+import profileImage from '@assets/image_1777644687711.png';
 
 export default function HeroSection() {
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const [displayText, setDisplayText] = useState('');
+  const [cursorVisible, setCursorVisible] = useState(true);
+  const fullName = 'Veronque Andrie';
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayText(fullName.slice(0, i + 1));
+      i++;
+      if (i >= fullName.length) clearInterval(interval);
+    }, 80);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const blink = setInterval(() => setCursorVisible(v => !v), 530);
+    return () => clearInterval(blink);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const getCVStyles = () => `
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', -apple-system, sans-serif; line-height: 1.5; color: #1a1a1a; background: #0a0a0a; padding: 40px 20px; }
-        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 50px; border-radius: 12px; position: relative; overflow: hidden; }
-        .cyber-border { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #22C55E, #3B82F6); }
-        .header { border-bottom: 2px solid #e5e7eb; padding-bottom: 25px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: start; }
-        .header-info h1 { font-size: 36px; font-weight: 900; color: #111; margin-bottom: 4px; letter-spacing: -0.03em; text-transform: uppercase; }
-        .header-info p { color: #22C55E; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-        .contact-info { margin-top: 15px; font-size: 13px; color: #4b5563; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .section { margin-bottom: 35px; }
-        .section-title { font-size: 14px; font-weight: 900; color: #22C55E; text-transform: uppercase; letter-spacing: 0.15em; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-        .section-title::after { content: ""; flex: 1; height: 1px; background: #e5e7eb; }
-        .experience-item { margin-bottom: 25px; position: relative; padding-left: 20px; }
-        .experience-item::before { content: ""; position: absolute; left: 0; top: 5px; bottom: 5px; width: 2px; background: #22C55E; opacity: 0.3; }
-        .item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-        .item-title { font-size: 17px; font-weight: 800; color: #111; }
-        .item-org { font-size: 14px; font-weight: 700; color: #22C55E; }
-        .item-date { font-size: 12px; color: #6b7280; font-weight: 600; background: #f3f4f6; padding: 2px 8px; rounded: 4px; }
-        .item-desc { font-size: 13.5px; color: #374151; margin-top: 8px; line-height: 1.6; font-weight: 500; }
-        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-        .skill-cat { font-size: 12px; font-weight: 900; color: #111; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
-        .skill-list { font-size: 13px; color: #4b5563; line-height: 1.8; }
-        .skill-tag { display: inline-block; background: #f3f4f6; padding: 2px 10px; margin: 0 4px 4px 0; border-radius: 4px; border: 1px solid #e5e7eb; }
-        @media print {
-            body { background: none; padding: 0; }
-            .container { box-shadow: none; border-radius: 0; padding: 0; }
-        }
-    </style>
-  `;
-
   const downloadCV = () => {
-    const cvContent = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veronque Andrie - Aspiring Engineer CV</title>
-    ${getCVStyles()}
-</head>
-<body>
-    <div class="container">
-        <div class="cyber-border"></div>
-        <div class="header">
-            <div class="header-info">
-                <h1>Veronque Andrie</h1>
-                <p>Aspiring Mechatronics & Software Engineer</p>
-                <div class="contact-info">
-                    <span>📧 veronqueandrie@email.com</span>
-                    <span>📍 Philippines</span>
-                    <span>🌐 GitHub: andrieVerdev</span>
-                    <span>💼 LinkedIn: veronqueandrei</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Academic & Professional Projects</div>
-            
-            <div class="experience-item">
-                <div class="item-header">
-                    <span class="item-title">Programmer (Undergraduate Thesis)</span>
-                    <span class="item-date">2025–2026 (In Progress)</span>
-                </div>
-                <div class="item-org">IoT-Enabled Smart Agriculture & Monitoring</div>
-                <div class="item-desc">Designing and implementing embedded systems for real-time environmental monitoring. Working with sensors, microcontrollers, and wireless communication protocols for precision agriculture.</div>
-            </div>
-
-            <div class="experience-item">
-                <div class="item-header">
-                    <span class="item-title">Project Leader</span>
-                    <span class="item-date">2025</span>
-                </div>
-                <div class="item-org">Progressive Vue.js Application (Academic Project)</div>
-                <div class="item-desc">Full-cycle development from architecture to deployment. Implemented responsive frontend logic and secure state management systems.</div>
-            </div>
-
-            <div class="experience-item">
-                <div class="item-header">
-                    <span class="item-title">Lead Developer</span>
-                    <span class="item-date">Dec 2025</span>
-                </div>
-                <div class="item-org">Unicast Event Management System</div>
-                <div class="item-desc">Built intelligent scheduling algorithms and automated optimization features using modern web technologies. Focus on high-performance API design.</div>
-            </div>
-
-            <div class="experience-item">
-                <div class="item-header">
-                    <span class="item-title">AI Facial Recognition Developer</span>
-                    <span class="item-date">2025</span>
-                </div>
-                <div class="item-org">Academic Project</div>
-                <div class="item-desc">Optimizing computer vision algorithms for hardware deployment. Integrated Python/C++ logic with secure authentication modules.</div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Technical Expertise</div>
-            <div class="skills-grid">
-                <div>
-                    <div class="skill-cat">Software & Web</div>
-                    <div class="skill-list">React, Vue.js, Node.js, TypeScript, Dart, Flutter, Tailwind CSS</div>
-                </div>
-                <div>
-                    <div class="skill-cat">Hardware & Systems</div>
-                    <div class="skill-list">C++, Python, Arduino, Raspberry Pi, Sensors, Robotics Design, Control Systems</div>
-                </div>
-                <div>
-                    <div class="skill-cat">Infrastructure & Tools</div>
-                    <div class="skill-list">Figma (CAD), AWS IoT, Git, MongoDB, PostgreSQL, CI/CD, REST APIs</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Professional Affiliations</div>
-            <div class="item-desc" style="font-weight: 700; color: #111;">
-                • Member, Junior Mechatronics and Robotics Society of the Philippines (JMRSP) — A.Y. 2025–2026
-            </div>
-            <div class="item-desc">• Microsoft Trainee (Cloud) • AWS Educate Member • GitHub Student Developer</div>
-        </div>
-    </div>
-</body>
-</html>`;
-
-    const blob = new Blob([cvContent], { type: 'text/html' });
-    const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = `Veronque-Andrie-CV.html`;
+    a.href = '#';
+    a.download = 'Veronque-Andrie-CV.html';
     document.body.appendChild(a);
     a.click();
-    window.URL.revokeObjectURL(url);
     document.body.removeChild(a);
   };
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      {/* Pure Three.js 3D network background */}
-      <HeroThreeCanvas />
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Grid background */}
+      <div className="absolute inset-0 hero-grid-bg opacity-40" />
+      {/* Radial vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_70%_50%,rgba(34,197,94,0.08)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background" />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background/60 to-background" />
-      
-      {/* Radial Pulse Effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-radial-pulse" />
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 lg:gap-20 items-center">
 
-      <div id="hero-content" className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-20 text-center animate-hero-blur-fade">
-        <AnimationWrapper type="blur-fade" duration={1000}>
-        <div className="mb-8 flex justify-center items-end gap-4">
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-chart-2 to-primary opacity-75 blur-2xl scale-125 animate-pulse" />
-            <Avatar className="w-56 h-56 md:w-72 md:h-72 border-4 border-primary/70 shadow-2xl shadow-primary/60 relative z-10 animate-glow-pulse">
-              <AvatarImage src={profileImage} alt="Profile" className="object-cover" />
-              <AvatarFallback className="text-6xl">VA</AvatarFallback>
-            </Avatar>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/30 to-chart-2/30 animate-pulse z-0" />
+          {/* LEFT — Text */}
+          <div className="space-y-8 animate-hero-blur-fade">
+            {/* Available badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-xs font-mono font-bold text-primary uppercase tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              Available for freelance work
+            </div>
+
+            {/* Name */}
+            <div>
+              <h1 className="font-heading font-black leading-[0.9] tracking-tighter text-foreground" style={{ fontSize: 'clamp(3.5rem, 8vw, 7rem)' }}>
+                {displayText}
+                <span className={`inline-block w-[4px] h-[0.85em] ml-1 bg-primary align-middle transition-opacity duration-100 ${cursorVisible ? 'opacity-100' : 'opacity-0'}`} />
+              </h1>
+              <p className="mt-4 text-lg md:text-xl font-mono text-primary font-semibold tracking-wide">
+                {'< '}Mechatronics & Software Engineer{' />'}
+              </p>
+            </div>
+
+            {/* Info row */}
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground font-medium">
+              <span className="flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-primary/70" />
+                University of Cabuyao, Philippines
+              </span>
+              <span className="w-1 h-1 rounded-full bg-border" />
+              <span>4th Year BS Mechatronics Engineering</span>
+            </div>
+
+            {/* Bio */}
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl">
+              Building intelligent systems at the intersection of software and hardware.
+              Passionate about IoT, computer vision, robotics, and modern web architecture.
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-wrap gap-3">
+              <Button
+                size="lg"
+                className="gap-2 rounded-md px-8 font-bold shadow-lg shadow-primary/20"
+                onClick={() => scrollTo('projects')}
+                data-testid="button-view-work"
+              >
+                View Work <ArrowRight className="w-4 h-4" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="gap-2 rounded-md px-8 font-bold border-border/60"
+                onClick={() => scrollTo('contact')}
+                data-testid="button-contact"
+              >
+                <Mail className="w-4 h-4" /> Contact
+              </Button>
+              <Button
+                size="lg"
+                variant="ghost"
+                className="gap-2 rounded-md px-6 font-bold text-muted-foreground"
+                onClick={downloadCV}
+                data-testid="button-download-cv"
+              >
+                <Download className="w-4 h-4" /> CV
+              </Button>
+            </div>
+
+            {/* Social */}
+            <div className="flex items-center gap-4 pt-2">
+              <a
+                href="https://github.com/andrieVerdev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors group"
+                data-testid="link-github"
+              >
+                <Github className="w-4 h-4 group-hover:text-primary transition-colors" />
+                andrieVerdev
+              </a>
+              <span className="w-px h-4 bg-border" />
+              <a
+                href="#"
+                className="flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors group"
+                data-testid="link-linkedin"
+              >
+                <Linkedin className="w-4 h-4 group-hover:text-primary transition-colors" />
+                LinkedIn
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT — Photo */}
+          <div className="flex flex-col items-center gap-6 animate-hero-blur-fade" style={{ animationDelay: '300ms' }}>
+            <div className="relative">
+              {/* Outer rotating border */}
+              <div className="absolute -inset-3 rounded-2xl border border-primary/20 animate-[spin_20s_linear_infinite] opacity-40" style={{ borderStyle: 'dashed' }} />
+              <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-primary/30 via-transparent to-primary/10 blur-xl" />
+              {/* Photo */}
+              <div className="relative w-72 h-80 lg:w-80 lg:h-96 rounded-xl overflow-hidden border border-primary/30 shadow-2xl shadow-primary/20">
+                <img
+                  src={profileImage}
+                  alt="Veronque Andrie"
+                  className="w-full h-full object-cover object-top"
+                />
+                {/* Scan overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 hero-scan-line pointer-events-none" />
+                {/* Corner brackets */}
+                <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-primary" />
+                <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-primary" />
+                <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-primary" />
+                <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-primary" />
+                {/* Name tag */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-xs font-mono text-primary/70 uppercase tracking-widest">ID_VERIFIED</p>
+                  <p className="text-sm font-bold text-white/90 mt-0.5">andrieVerdev · PH</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Stat pills under photo */}
+            <div className="grid grid-cols-3 gap-3 w-full">
+              {[
+                { v: '8+', l: 'Projects' },
+                { v: '16+', l: 'Certs' },
+                { v: '13', l: 'Repos' },
+              ].map((s) => (
+                <div key={s.l} className="text-center py-3 rounded-lg border border-border/50 bg-card/50 hover-elevate transition-all">
+                  <p className="text-xl font-black text-primary leading-none">{s.v}</p>
+                  <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-1">{s.l}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        </AnimationWrapper>
 
-        <AnimationWrapper type="slide" direction="up" delay={200} duration={900}>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-3 bg-gradient-to-r from-primary via-chart-2 to-chart-3 bg-clip-text text-transparent">
-          Veronque Andrie
-        </h1>
-        <p className="text-2xl md:text-3xl lg:text-4xl font-semibold text-primary/80 mb-6 tracking-wide">
-          Freelance Web Developer
-        </p>
-        </AnimationWrapper>
-
-        <AnimationWrapper type="blur-fade" delay={400} duration={800}>
-        <div className="text-lg md:text-xl text-foreground/80 mb-8 space-y-1.5 max-w-2xl mx-auto">
-          <p>Junior Mechatronics and Robotics Society of the Philippines</p>
-          <p className="text-sm md:text-base text-foreground/70">(JMRSP – PnC Student Chapter) Member A.Y. 2025–2026</p>
-          <p className="text-sm md:text-base text-foreground/70">AWS Educate Member GitHub Student Developer</p>
+        {/* Scroll hint */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+          <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent animate-pulse" />
+          <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">scroll</p>
         </div>
-        </AnimationWrapper>
-
-        <AnimationWrapper type="fade" delay={600} duration={800}>
-        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-          Aspiring engineer passionate about creating innovative solutions through code. 
-          Specializing in web development, robotics, and modern software architecture.
-        </p>
-        </AnimationWrapper>
-
-        <AnimationWrapper type="scale-up" delay={800} duration={700}>
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
-          <Button
-            size="lg"
-            onClick={() => scrollToSection('#projects')}
-            className="rounded-full hover-elevate active-elevate-2 gap-2"
-            data-testid="button-view-work"
-          >
-            View My Work
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            onClick={() => scrollToSection('#contact')}
-            className="rounded-full backdrop-blur-md hover-elevate active-elevate-2 gap-2"
-            data-testid="button-contact"
-          >
-            Contact Me
-          </Button>
-          
-          <Button
-            size="lg"
-            variant="secondary"
-            onClick={() => downloadCV()}
-            className="rounded-full hover-elevate active-elevate-2 gap-2 border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary"
-            data-testid="button-download-cv"
-          >
-            <Download className="h-5 w-5" />
-            Download CV
-          </Button>
-        </div>
-        </AnimationWrapper>
-
-        <AnimationWrapper type="ripple" delay={1000} duration={600}>
-        <div className="flex items-center justify-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full hover-elevate active-elevate-2"
-            data-testid="link-github"
-            asChild
-          >
-            <a href="https://github.com/andrieVerdev" target="_blank" rel="noopener noreferrer">
-              <Github className="h-5 w-5" />
-            </a>
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full hover-elevate active-elevate-2"
-            data-testid="link-linkedin"
-          >
-            <Linkedin className="h-5 w-5" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full hover-elevate active-elevate-2"
-            data-testid="link-email"
-          >
-            <Mail className="h-5 w-5" />
-          </Button>
-        </div>
-        </AnimationWrapper>
-
-        <button
-          onClick={() => scrollToSection('#about')}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
-          data-testid="button-scroll-down"
-        >
-          <ArrowDown className="h-8 w-8 text-primary" />
-        </button>
       </div>
     </section>
   );

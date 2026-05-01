@@ -175,10 +175,11 @@ export default function ContactSection() {
     <section id="contact" className="relative py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <AnimationWrapper type="fade">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4 bg-gradient-to-r from-primary to-emerald-400 bg-clip-text text-transparent animate-section-rise">
+          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">06 / CONTACT</p>
+          <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight animate-section-rise">
             Get In Touch
           </h2>
-          <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
+          <p className="mt-4 text-muted-foreground mb-16 max-w-xl">
             Have a project in mind? Let's work together to bring your ideas to life
           </p>
         </AnimationWrapper>

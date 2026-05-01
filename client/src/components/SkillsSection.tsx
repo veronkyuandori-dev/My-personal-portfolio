@@ -36,12 +36,15 @@ export default function SkillsSection() {
   return (
     <section id="skills" className="relative py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4 animate-section-rise">
-          Skills
-        </h2>
-        <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-          Technical expertise and proficiencies
-        </p>
+        <div className="mb-16 animate-section-rise">
+          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">04 / SKILLS</p>
+          <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
+            Skills
+          </h2>
+          <p className="mt-4 text-muted-foreground max-w-xl">
+            Technical expertise and proficiencies across software, hardware, and databases
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (

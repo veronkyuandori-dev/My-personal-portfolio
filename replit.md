@@ -2,7 +2,7 @@
 
 ## Overview
 
-A modern, cosmic-themed professional portfolio website built as a single-page application (SPA) using React and TypeScript. The portfolio showcases personal information, projects, skills, certifications, and contact details for an aspiring software engineer. Features include an animated cosmic background with particle effects, smooth section navigation, a 3D AI chatbot integration, light/dark theme support, and a contact form with email notifications via Resend.
+A modern, "Void Terminal" dark editorial professional portfolio website built as a single-page application (SPA) using React and TypeScript. The portfolio showcases personal information, projects, skills, certifications, and contact details for an aspiring software engineer. Features include an animated cosmic background with particle effects, smooth section navigation, a 3D AI chatbot integration, light/dark theme support, and a contact form with email notifications via Resend.
 
 ## User Preferences
 

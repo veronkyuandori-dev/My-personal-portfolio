@@ -59,10 +59,13 @@ export default function CertificationsSection() {
   return (
     <section id="certifications" className="relative py-20 md:py-32 bg-card/30 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4 animate-section-rise">
-          Certifications
-        </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+        <div className="mb-12 animate-section-rise">
+          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">05 / CERTS</p>
+          <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
+            Certifications
+          </h2>
+        </div>
+        <p className="text-muted-foreground mb-12 max-w-2xl">
           Drag or tap to explore — click the center card to view full certificate
         </p>
 
