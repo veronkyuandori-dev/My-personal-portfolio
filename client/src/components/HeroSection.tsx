@@ -139,47 +139,121 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* RIGHT — Photo */}
-          <div className="flex flex-col items-center gap-6 animate-hero-blur-fade" style={{ animationDelay: '300ms' }}>
-            <div className="relative">
-              {/* Outer rotating border */}
-              <div className="absolute -inset-3 rounded-2xl border border-primary/20 animate-[spin_20s_linear_infinite] opacity-40" style={{ borderStyle: 'dashed' }} />
-              <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-primary/30 via-transparent to-primary/10 blur-xl" />
-              {/* Photo */}
-              <div className="relative w-72 h-80 lg:w-80 lg:h-96 rounded-xl overflow-hidden border border-primary/30 shadow-2xl shadow-primary/20">
-                <img
-                  src={profileImage}
-                  alt="Veronque Andrie"
-                  className="w-full h-full object-cover object-top"
-                />
-                {/* Scan overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-                <div className="absolute inset-0 hero-scan-line pointer-events-none" />
-                {/* Corner brackets */}
-                <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-primary" />
-                <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-primary" />
-                <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-primary" />
-                <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-primary" />
-                {/* Name tag */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-xs font-mono text-primary/70 uppercase tracking-widest">ID_VERIFIED</p>
-                  <p className="text-sm font-bold text-white/90 mt-0.5">andrieVerdev · PH</p>
+          {/* RIGHT — ID Terminal Card */}
+          <div className="flex justify-center animate-hero-blur-fade" style={{ animationDelay: '300ms' }}>
+            <div className="relative w-[320px]">
+
+              {/* Ambient glow behind card */}
+              <div className="absolute -inset-6 bg-primary/10 rounded-3xl blur-3xl opacity-60 animate-pulse" />
+
+              {/* Main card */}
+              <div className="relative rounded-2xl border border-primary/30 bg-background/80 backdrop-blur-md shadow-2xl shadow-primary/10 overflow-hidden">
+
+                {/* Top HUD bar */}
+                <div className="flex items-center justify-between px-4 py-2.5 border-b border-primary/20 bg-primary/5">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                    <span className="font-mono text-[10px] text-primary uppercase tracking-[0.2em] font-bold">SYS_IDENT</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-mono text-[9px] text-primary/60 uppercase tracking-widest">STATUS:</span>
+                    <span className="font-mono text-[9px] text-primary font-bold uppercase tracking-widest">LIVE</span>
+                  </div>
+                </div>
+
+                {/* Photo area */}
+                <div className="relative flex justify-center pt-6 pb-4 px-6">
+                  {/* Outer rotating segmented ring */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <svg className="absolute w-[220px] h-[220px] animate-[spin_12s_linear_infinite]" viewBox="0 0 220 220">
+                      <circle cx="110" cy="110" r="104" fill="none" stroke="currentColor" strokeWidth="1.5"
+                        strokeDasharray="8 6" className="text-primary/30" />
+                    </svg>
+                    <svg className="absolute w-[200px] h-[200px] animate-[spin_8s_linear_infinite_reverse]" viewBox="0 0 200 200">
+                      <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" strokeWidth="1"
+                        strokeDasharray="4 12" className="text-primary/20" />
+                    </svg>
+                  </div>
+
+                  {/* Photo circle */}
+                  <div className="relative w-44 h-44 rounded-full overflow-hidden border-2 border-primary/50 shadow-lg shadow-primary/30">
+                    <img
+                      src={profileImage}
+                      alt="Veronque Andrie"
+                      className="w-full h-full object-cover object-top"
+                    />
+                    {/* Scan line */}
+                    <div className="absolute inset-0 hero-scan-line pointer-events-none" />
+                    {/* Bottom gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
+                  </div>
+
+                  {/* Corner HUD brackets on the photo container */}
+                  <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-primary/70" />
+                  <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-primary/70" />
+                  <div className="absolute bottom-2 left-4 w-6 h-6 border-b-2 border-l-2 border-primary/70" />
+                  <div className="absolute bottom-2 right-4 w-6 h-6 border-b-2 border-r-2 border-primary/70" />
+                </div>
+
+                {/* Data rows */}
+                <div className="px-5 pb-2 space-y-1.5">
+                  {[
+                    { key: 'NAME', val: 'Veronque Andrie' },
+                    { key: 'ALIAS', val: 'andrieVerdev' },
+                    { key: 'DEGREE', val: 'BS Information Technology' },
+                    { key: 'ORIGIN', val: 'Philippines · UC' },
+                  ].map((row) => (
+                    <div key={row.key} className="flex items-baseline gap-3">
+                      <span className="font-mono text-[9px] text-primary/50 uppercase tracking-[0.2em] w-14 shrink-0">{row.key}</span>
+                      <span className="w-full h-px bg-primary/10 shrink" />
+                      <span className="font-mono text-[11px] text-foreground/80 font-semibold whitespace-nowrap">{row.val}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Access bar */}
+                <div className="mx-5 my-4 p-3 rounded-lg bg-primary/5 border border-primary/20">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="font-mono text-[9px] text-primary/60 uppercase tracking-widest">CLEARANCE</span>
+                    <span className="font-mono text-[9px] text-primary font-bold">LVL 04 · FULL</span>
+                  </div>
+                  <div className="flex gap-1">
+                    {Array.from({ length: 12 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className={`h-1.5 flex-1 rounded-sm ${i < 10 ? 'bg-primary' : 'bg-primary/20'}`}
+                        style={{ opacity: i < 10 ? 0.4 + i * 0.06 : 1 }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bottom strip */}
+                <div className="flex items-center justify-between px-5 py-2.5 border-t border-primary/10 bg-primary/[0.03]">
+                  <span className="font-mono text-[9px] text-primary/40 tracking-widest">ID_VERIFIED</span>
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 20 }).map((_, i) => (
+                      <div key={i} className={`w-0.5 rounded-full bg-primary/30`}
+                        style={{ height: Math.random() > 0.5 ? '12px' : '6px' }} />
+                    ))}
+                  </div>
+                  <span className="font-mono text-[9px] text-primary/40 tracking-widest">PH · 2025</span>
                 </div>
               </div>
-            </div>
 
-            {/* Stat pills under photo */}
-            <div className="grid grid-cols-3 gap-3 w-full">
-              {[
-                { v: '8+', l: 'Projects' },
-                { v: '16+', l: 'Certs' },
-                { v: '13', l: 'Repos' },
-              ].map((s) => (
-                <div key={s.l} className="text-center py-3 rounded-lg border border-border/50 bg-card/50 hover-elevate transition-all">
-                  <p className="text-xl font-black text-primary leading-none">{s.v}</p>
-                  <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-1">{s.l}</p>
-                </div>
-              ))}
+              {/* Stat pills beside card */}
+              <div className="grid grid-cols-3 gap-2 mt-4">
+                {[
+                  { v: '8+', l: 'Projects' },
+                  { v: '16+', l: 'Certs' },
+                  { v: '13', l: 'Repos' },
+                ].map((s) => (
+                  <div key={s.l} className="text-center py-3 rounded-lg border border-border/50 bg-card/50 hover-elevate transition-all">
+                    <p className="text-xl font-black text-primary leading-none">{s.v}</p>
+                    <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-1">{s.l}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
