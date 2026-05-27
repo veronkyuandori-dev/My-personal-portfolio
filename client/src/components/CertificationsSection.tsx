@@ -24,8 +24,10 @@ import wvsuDigitalTwinsCert from '@assets/Screenshot_2026-01-29_22.13.23_1769697
 import ciscoAIAtWorkCert from '@assets/Screenshot_2026-01-29_22.22.02_1769697681559.png';
 import ciscoCppEssentialsCert from '@assets/Screenshot_2026-01-29_22.22.53_1769697681557.png';
 import ghActionsCert from '@assets/Screenshot_2026-02-14_16.35.08_1771058417077.png';
+import msAzureFundamentalsCert from '@assets/image_1779899343958.png';
 
 const certifications = [
+  { name: 'Microsoft Certified: Azure Fundamentals', organization: 'Microsoft', date: 'May 15, 2025', description: 'Officially certified by Microsoft on cloud concepts, Azure architecture, and core Azure services. Credential ID: 4B8E9F23D6A71C9E.', image: msAzureFundamentalsCert },
   { name: 'Fundamentals of Machine Learning and AI', organization: 'AWS Training & Certification', date: 'March 02, 2026', description: 'Advanced certification covering core principles of machine learning and AI on the AWS platform.', image: awsMLAICert },
   { name: 'AWS Certified Cloud Practitioner (CLF-C02)', organization: 'AWS Training & Certification', date: 'November 02, 2025', description: 'Comprehensive review of AWS Cloud fundamentals, security, compliance, and core services.', image: awsCloudPractitionerCert },
   { name: 'Plan and Prepare to Develop AI Solutions on Azure', organization: 'Microsoft', date: 'September 16, 2025', description: 'Completed Microsoft certification on planning and developing AI solutions using Azure cloud platform.', image: msAzureAICert },
