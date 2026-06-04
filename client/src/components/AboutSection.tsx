@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Briefcase, Award } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
-import aboutPhoto from '@assets/image_1780577599804.png';
+import aboutPhoto from '@assets/image_1780578013237.png';
 import {
   SiAmazonwebservices,
   SiGooglecloud,
@@ -81,46 +81,94 @@ export default function AboutSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <AnimationWrapper type="fade" direction="up">
-            <div className="relative max-w-md mx-auto">
-              {/* Glow behind */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-chart-2/10 rounded-3xl -z-10 blur-3xl opacity-60 animate-pulse" />
+            <div className="relative max-w-sm mx-auto">
 
-              <div className="relative rounded-2xl overflow-hidden border border-primary/30 bg-black/40 backdrop-blur-sm shadow-2xl shadow-primary/20" style={{ height: 420 }}>
+              {/* === Deep glow layers === */}
+              <div className="absolute -inset-8 bg-primary/15 rounded-full blur-3xl opacity-50 animate-pulse -z-10" />
+              <div className="absolute -inset-4 bg-primary/10 rounded-2xl blur-xl opacity-70 -z-10" />
+
+              {/* === Outer decorative ring (SVG circuit traces) === */}
+              <svg className="absolute -inset-6 w-[calc(100%+48px)] h-[calc(100%+48px)] pointer-events-none -z-0" viewBox="0 0 340 460" fill="none">
+                {/* Animated corner traces — top-left */}
+                <path d="M24 8 L8 8 L8 24" stroke="currentColor" strokeWidth="1.5" className="text-primary/60" strokeLinecap="round"/>
+                <circle cx="8" cy="8" r="3" fill="currentColor" className="text-primary/80"/>
+                <path d="M8 40 L8 56" stroke="currentColor" strokeWidth="1" className="text-primary/30" strokeDasharray="4 4"/>
+                {/* top-right */}
+                <path d="M316 8 L332 8 L332 24" stroke="currentColor" strokeWidth="1.5" className="text-primary/60" strokeLinecap="round"/>
+                <circle cx="332" cy="8" r="3" fill="currentColor" className="text-primary/80"/>
+                <path d="M332 40 L332 56" stroke="currentColor" strokeWidth="1" className="text-primary/30" strokeDasharray="4 4"/>
+                {/* bottom-left */}
+                <path d="M24 452 L8 452 L8 436" stroke="currentColor" strokeWidth="1.5" className="text-primary/60" strokeLinecap="round"/>
+                <circle cx="8" cy="452" r="3" fill="currentColor" className="text-primary/80"/>
+                {/* bottom-right */}
+                <path d="M316 452 L332 452 L332 436" stroke="currentColor" strokeWidth="1.5" className="text-primary/60" strokeLinecap="round"/>
+                <circle cx="332" cy="452" r="3" fill="currentColor" className="text-primary/80"/>
+                {/* Side tick marks */}
+                <path d="M0 120 L6 120" stroke="currentColor" strokeWidth="1" className="text-primary/40"/>
+                <path d="M0 180 L10 180" stroke="currentColor" strokeWidth="1.5" className="text-primary/60"/>
+                <path d="M0 240 L6 240" stroke="currentColor" strokeWidth="1" className="text-primary/40"/>
+                <path d="M0 300 L10 300" stroke="currentColor" strokeWidth="1.5" className="text-primary/60"/>
+                <path d="M340 120 L334 120" stroke="currentColor" strokeWidth="1" className="text-primary/40"/>
+                <path d="M340 180 L330 180" stroke="currentColor" strokeWidth="1.5" className="text-primary/60"/>
+                <path d="M340 240 L334 240" stroke="currentColor" strokeWidth="1" className="text-primary/40"/>
+                <path d="M340 300 L330 300" stroke="currentColor" strokeWidth="1.5" className="text-primary/60"/>
+              </svg>
+
+              {/* === Main photo card with clipped corners === */}
+              <div
+                className="relative overflow-hidden border border-primary/40 bg-background/20 shadow-2xl shadow-primary/30"
+                style={{ clipPath: 'polygon(18px 0%, calc(100% - 18px) 0%, 100% 18px, 100% calc(100% - 18px), calc(100% - 18px) 100%, 18px 100%, 0% calc(100% - 18px), 0% 18px)' }}
+              >
+                {/* Photo — full size, no crop */}
                 <img
                   src={aboutPhoto}
                   alt="Veronque Andrie"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-auto block"
+                  style={{ display: 'block' }}
                 />
-                {/* Scan overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
+
+                {/* Scan line */}
                 <div className="absolute inset-0 hero-scan-line pointer-events-none" />
+                {/* Bottom gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent pointer-events-none" />
 
-                {/* HUD overlays */}
-                <div className="absolute top-3 left-3 text-[10px] font-mono text-primary/70 uppercase tracking-widest select-none">
-                  ID · Verified
+                {/* Top HUD bar */}
+                <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-3 py-2 bg-background/40 backdrop-blur-sm border-b border-primary/20">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                    <span className="font-mono text-[9px] text-primary uppercase tracking-[0.2em]">ID_VERIFIED</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[9px] text-primary/50 uppercase tracking-widest">UC · PH</span>
+                    <span className="font-mono text-[9px] text-primary uppercase tracking-widest">● LIVE</span>
+                  </div>
                 </div>
-                <div className="absolute top-3 right-3 flex items-center gap-1.5 select-none">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                  <span className="text-[10px] font-mono text-primary/70 uppercase tracking-widest">Live</span>
-                </div>
 
-                {/* Corner brackets */}
-                <div className="absolute top-2 left-2 w-5 h-5 border-t-2 border-l-2 border-primary/70" />
-                <div className="absolute top-2 right-2 w-5 h-5 border-t-2 border-r-2 border-primary/70" />
-                <div className="absolute bottom-2 left-2 w-5 h-5 border-b-2 border-l-2 border-primary/70" />
-                <div className="absolute bottom-2 right-2 w-5 h-5 border-b-2 border-r-2 border-primary/70" />
+                {/* Corner brackets inside */}
+                <div className="absolute top-9 left-2 w-6 h-6 border-t-2 border-l-2 border-primary/80" />
+                <div className="absolute top-9 right-2 w-6 h-6 border-t-2 border-r-2 border-primary/80" />
+                <div className="absolute bottom-12 left-2 w-6 h-6 border-b-2 border-l-2 border-primary/80" />
+                <div className="absolute bottom-12 right-2 w-6 h-6 border-b-2 border-r-2 border-primary/80" />
 
-                {/* Name tag */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-xs font-mono text-primary/70 uppercase tracking-widest">andrieVerdev · PH</p>
-                  <p className="text-sm font-bold text-white/90 mt-0.5">BS Information Technology</p>
+                {/* Bottom info bar */}
+                <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-background/60 backdrop-blur-sm border-t border-primary/20">
+                  <p className="font-mono text-[10px] text-primary/60 uppercase tracking-widest mb-0.5">andrieVerdev · PH</p>
+                  <p className="font-bold text-sm text-foreground/90">BS Information Technology</p>
                 </div>
               </div>
 
-              {/* JMRSP badge */}
-              <div className="absolute -top-4 -left-4 bg-card border-2 border-primary/30 p-3 rounded-xl shadow-xl hidden md:block backdrop-blur-md">
-                <p className="text-primary font-extrabold text-lg leading-none">JMRSP</p>
+              {/* === JMRSP floating badge === */}
+              <div className="absolute -top-3 -right-3 z-10 bg-card border border-primary/40 px-3 py-2 shadow-xl backdrop-blur-md"
+                style={{ clipPath: 'polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px)' }}>
+                <p className="text-primary font-extrabold text-sm leading-none">JMRSP</p>
                 <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mt-0.5">Member 2025</p>
+              </div>
+
+              {/* === Floating data chip === */}
+              <div className="absolute -bottom-3 -left-3 z-10 bg-card border border-primary/30 px-3 py-2 shadow-xl backdrop-blur-md"
+                style={{ clipPath: 'polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px)' }}>
+                <p className="font-mono text-[9px] text-primary/60 uppercase tracking-widest">Status</p>
+                <p className="font-bold text-xs text-primary">Available · 2025</p>
               </div>
             </div>
 
