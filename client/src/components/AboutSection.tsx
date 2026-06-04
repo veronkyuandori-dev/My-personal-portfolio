@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Briefcase, Award } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
-import NetworkHead3D from '@/components/NetworkHead3D';
+import aboutPhoto from '@assets/image_1780577599804.png';
 import {
   SiAmazonwebservices,
   SiGooglecloud,
@@ -81,30 +81,41 @@ export default function AboutSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <AnimationWrapper type="fade" direction="up">
-            {/* Interactive 3D Network Head */}
             <div className="relative max-w-md mx-auto">
-              <div className="relative rounded-2xl overflow-hidden border border-primary/20 bg-black/40 backdrop-blur-sm shadow-2xl shadow-primary/20"
-                style={{ height: 420 }}>
-                <NetworkHead3D />
-                {/* Scan label overlays */}
-                <div className="absolute top-3 left-3 text-[10px] font-mono text-primary/60 uppercase tracking-widest select-none">
-                  Neural · Scan v2.4
+              {/* Glow behind */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-chart-2/10 rounded-3xl -z-10 blur-3xl opacity-60 animate-pulse" />
+
+              <div className="relative rounded-2xl overflow-hidden border border-primary/30 bg-black/40 backdrop-blur-sm shadow-2xl shadow-primary/20" style={{ height: 420 }}>
+                <img
+                  src={aboutPhoto}
+                  alt="Veronque Andrie"
+                  className="w-full h-full object-cover object-top"
+                />
+                {/* Scan overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 hero-scan-line pointer-events-none" />
+
+                {/* HUD overlays */}
+                <div className="absolute top-3 left-3 text-[10px] font-mono text-primary/70 uppercase tracking-widest select-none">
+                  ID · Verified
                 </div>
                 <div className="absolute top-3 right-3 flex items-center gap-1.5 select-none">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                  <span className="text-[10px] font-mono text-primary/60 uppercase tracking-widest">Live</span>
+                  <span className="text-[10px] font-mono text-primary/70 uppercase tracking-widest">Live</span>
                 </div>
-                <div className="absolute bottom-3 left-3 right-3 text-[9px] font-mono text-primary/40 uppercase tracking-widest select-none text-center">
-                  Drag to rotate · Network analysis active
-                </div>
+
                 {/* Corner brackets */}
-                <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-primary/50 rounded-tl" />
-                <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-primary/50 rounded-tr" />
-                <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-primary/50 rounded-bl" />
-                <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-primary/50 rounded-br" />
+                <div className="absolute top-2 left-2 w-5 h-5 border-t-2 border-l-2 border-primary/70" />
+                <div className="absolute top-2 right-2 w-5 h-5 border-t-2 border-r-2 border-primary/70" />
+                <div className="absolute bottom-2 left-2 w-5 h-5 border-b-2 border-l-2 border-primary/70" />
+                <div className="absolute bottom-2 right-2 w-5 h-5 border-b-2 border-r-2 border-primary/70" />
+
+                {/* Name tag */}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-xs font-mono text-primary/70 uppercase tracking-widest">andrieVerdev · PH</p>
+                  <p className="text-sm font-bold text-white/90 mt-0.5">BS Information Technology</p>
+                </div>
               </div>
-              {/* Glow behind */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-chart-2/10 rounded-3xl -z-10 blur-3xl opacity-60 animate-pulse" />
 
               {/* JMRSP badge */}
               <div className="absolute -top-4 -left-4 bg-card border-2 border-primary/30 p-3 rounded-xl shadow-xl hidden md:block backdrop-blur-md">
