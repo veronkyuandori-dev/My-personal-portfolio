@@ -4,9 +4,7 @@ import AnimationWrapper from '@/components/AnimationWrapper';
 import aboutPhoto from '@assets/image_1780578013237.png';
 import {
   SiAmazonwebservices,
-  SiGooglecloud,
   SiGithub,
-  SiCisco,
 } from 'react-icons/si';
 
 const experiences = [
@@ -60,9 +58,7 @@ function MicrosoftIcon({ className }: { className?: string }) {
 const platforms = [
   { name: 'Microsoft', Icon: MicrosoftIcon, color: 'text-[#00A4EF]' },
   { name: 'AWS', Icon: SiAmazonwebservices, color: 'text-[#FF9900]' },
-  { name: 'Google Cloud', Icon: SiGooglecloud, color: 'text-[#4285F4]' },
   { name: 'GitHub', Icon: SiGithub, color: 'text-foreground' },
-  { name: 'Cisco', Icon: SiCisco, color: 'text-[#1BA0D7]' },
 ];
 
 export default function AboutSection() {
