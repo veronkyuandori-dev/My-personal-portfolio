@@ -4,7 +4,12 @@ import { Button } from '@/components/ui/button';
 import {
   Github, Code2, Flame, TrendingUp, ExternalLink, Users, BookOpen,
   GitPullRequest, CircleDot, Star, GitFork, GitCommit, MapPin, Calendar,
+  Lock, ShieldOff,
 } from 'lucide-react';
+
+// ─── Toggle this to show/hide GitHub stats ───────────────────────────────────
+const GITHUB_ENABLED = false;
+// ─────────────────────────────────────────────────────────────────────────────
 
 const GITHUB_USERNAME = 'andrieVerdev';
 const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
@@ -108,6 +113,91 @@ export default function GitHubStatsSection() {
   const weeks      = stats?.weeks ?? [];
   const repoCount  = stats?.totalRepos ?? stats?.publicRepos ?? repos.length;
   const totalCommitsAll = stats?.totalCommits ?? 0;
+
+  if (!GITHUB_ENABLED) {
+    return (
+      <section id="github" className="py-20 md:py-32 relative">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
+          {/* Heading */}
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-4">
+              <Github className="w-3.5 h-3.5" />
+              GitHub Stats
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-4">GitHub Stats</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Real-time data pulled directly from my GitHub account.
+            </p>
+          </div>
+
+          {/* Notice card */}
+          <div className="max-w-2xl mx-auto">
+            <Card className="border border-primary/30 bg-background/60 backdrop-blur-sm overflow-visible">
+              <CardContent className="py-16 flex flex-col items-center text-center gap-6">
+                {/* Icon with glow */}
+                <div className="relative">
+                  <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-150" />
+                  <div className="relative w-20 h-20 rounded-2xl bg-primary/10 border border-primary/30 flex items-center justify-center"
+                    style={{ clipPath: 'polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px)' }}>
+                    <Lock className="w-9 h-9 text-primary" />
+                  </div>
+                </div>
+
+                {/* Terminal-style label */}
+                <div className="font-mono text-xs text-primary/60 uppercase tracking-[0.25em] flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" />
+                  ACCESS_RESTRICTED
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" />
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-heading font-bold mb-3">Section Not Yet Enabled</h3>
+                  <p className="text-muted-foreground leading-relaxed max-w-md">
+                    The owner of this portfolio has not yet enabled public access to their GitHub stats section.
+                    This section will be available once access is granted.
+                  </p>
+                </div>
+
+                {/* Dashed separator */}
+                <div className="w-full border-t border-dashed border-primary/20" />
+
+                {/* Status row */}
+                <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono">
+                  <span className="flex items-center gap-1.5 text-muted-foreground">
+                    <ShieldOff className="w-3.5 h-3.5 text-primary/50" />
+                    STATUS: PENDING
+                  </span>
+                  <span className="text-primary/30">|</span>
+                  <span className="flex items-center gap-1.5 text-muted-foreground">
+                    <Github className="w-3.5 h-3.5 text-primary/50" />
+                    USER: {GITHUB_USERNAME}
+                  </span>
+                  <span className="text-primary/30">|</span>
+                  <span className="flex items-center gap-1.5 text-muted-foreground">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                    AWAITING AUTHORIZATION
+                  </span>
+                </div>
+
+                <Button
+                  variant="outline"
+                  className="gap-2"
+                  onClick={() => window.open(`https://github.com/${GITHUB_USERNAME}`, '_blank')}
+                >
+                  <Github className="w-4 h-4" />
+                  View GitHub Profile
+                  <ExternalLink className="w-3 h-3 opacity-60" />
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="github" className="py-20 md:py-32 relative">
