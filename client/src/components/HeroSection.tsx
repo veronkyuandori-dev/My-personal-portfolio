@@ -10,12 +10,47 @@ export default function HeroSection() {
 
   useEffect(() => {
     let i = 0;
-    const interval = setInterval(() => {
-      setDisplayText(fullName.slice(0, i + 1));
-      i++;
-      if (i >= fullName.length) clearInterval(interval);
-    }, 80);
-    return () => clearInterval(interval);
+    let deleting = false;
+    let pauseTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const tick = () => {
+      if (!deleting) {
+        i++;
+        setDisplayText(fullName.slice(0, i));
+        if (i >= fullName.length) {
+          deleting = false;
+          pauseTimer = setTimeout(() => {
+            deleting = true;
+            loop();
+          }, 1800);
+          return;
+        }
+      } else {
+        i--;
+        setDisplayText(fullName.slice(0, i));
+        if (i <= 0) {
+          deleting = false;
+          pauseTimer = setTimeout(() => {
+            loop();
+          }, 600);
+          return;
+        }
+      }
+      loop();
+    };
+
+    let rafId: ReturnType<typeof setTimeout>;
+    const loop = () => {
+      const delay = deleting ? 45 : 80;
+      rafId = setTimeout(tick, delay);
+    };
+
+    loop();
+
+    return () => {
+      clearTimeout(rafId);
+      if (pauseTimer) clearTimeout(pauseTimer);
+    };
   }, []);
 
   useEffect(() => {
