@@ -182,15 +182,6 @@ export default function GitHubStatsSection() {
                   </span>
                 </div>
 
-                <Button
-                  variant="outline"
-                  className="gap-2"
-                  onClick={() => window.open(`https://github.com/${GITHUB_USERNAME}`, '_blank')}
-                >
-                  <Github className="w-4 h-4" />
-                  View GitHub Profile
-                  <ExternalLink className="w-3 h-3 opacity-60" />
-                </Button>
               </CardContent>
             </Card>
           </div>
