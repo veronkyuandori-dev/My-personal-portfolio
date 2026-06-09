@@ -35,13 +35,13 @@ const experiences = [
 ];
 
 const certifications = [
-  'Trigger GitHub Actions with feature-based development (Microsoft)',
-  'Transformer architecture and large language models in Azure Machine Learning (Microsoft)',
-  'Collect guest operating system monitoring data with Azure Monitor Agent (Microsoft)',
-  'Microsoft Trainee - Cloud computing & productivity tools',
-  'AWS Skill Builder Trainee - Cloud architecture & services',
-  'AWS Educate Member - EC2, S3, IAM, serverless architecture',
-  'GitHub Student Developer Pack - Real-world deployment experience',
+  { text: 'Trigger GitHub Actions with feature-based development', platform: 'microsoft' },
+  { text: 'Transformer architecture and large language models in Azure Machine Learning', platform: 'microsoft' },
+  { text: 'Collect guest operating system monitoring data with Azure Monitor Agent', platform: 'microsoft' },
+  { text: 'Microsoft Trainee – Cloud computing & productivity tools', platform: 'microsoft' },
+  { text: 'AWS Skill Builder Trainee – Cloud architecture & services', platform: 'aws' },
+  { text: 'AWS Educate Member – EC2, S3, IAM, serverless architecture', platform: 'aws' },
+  { text: 'GitHub Student Developer Pack – Real-world deployment experience', platform: 'github' },
 ];
 
 function MicrosoftIcon({ className }: { className?: string }) {
@@ -235,8 +235,19 @@ export default function AboutSection() {
                   {certifications.map((cert, index) => (
                     <AnimationWrapper key={index} type="slide" direction="up" delay={index * 80} duration={500}>
                       <Card className="p-4 border border-primary/20 bg-background/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all flex items-center gap-3 overflow-visible">
-                        <div className="h-2 w-2 rounded-full bg-primary shrink-0" />
-                        <p className="text-sm font-semibold text-foreground leading-tight">{cert}</p>
+                        {/* Platform logo inline */}
+                        <div className="shrink-0">
+                          {cert.platform === 'microsoft' && (
+                            <MicrosoftIcon className="w-5 h-5" />
+                          )}
+                          {cert.platform === 'aws' && (
+                            <SiAmazonwebservices className="w-5 h-5 text-[#FF9900]" />
+                          )}
+                          {cert.platform === 'github' && (
+                            <SiGithub className="w-5 h-5 text-foreground" />
+                          )}
+                        </div>
+                        <p className="text-sm font-semibold text-foreground leading-tight">{cert.text}</p>
                       </Card>
                     </AnimationWrapper>
                   ))}
