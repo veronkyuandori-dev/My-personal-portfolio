@@ -5,12 +5,92 @@ import { insertMessageSchema } from "@shared/schema";
 import { Resend } from "resend";
 import { registerChatRoutes } from "./replit_integrations/chat";
 import { registerImageRoutes } from "./replit_integrations/image";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+const gemini = process.env.GEMINI_API_KEY
+  ? new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+  : null;
+
+const VERONQUE_CONTEXT = `Ikaw si V-AI, ang AI assistant ni Veronque Andrie (andrieVerdev). 
+Sumasagot ka tungkol sa portfolio ni Veronque. Maging helpful, friendly, at concise. 
+Sumasagot ka sa Filipino/Tagalog kung mag-Tagalog ang user, English kung English sila.
+
+Tungkol kay Veronque Andrie:
+- BS Information Technology student sa University of Cabuyao, Laguna, Philippines
+- Available para sa freelance work
+- Email: veronqueandrei@gmail.com
+- GitHub: github.com/andrieVerdev
+- Handle: andrieVerdev
+
+Mga Skills:
+- Frontend: React, TypeScript, HTML/CSS, Tailwind CSS
+- Backend: Node.js, Express, Python
+- Cloud: Microsoft Azure (AZ-900 certified), AWS, Google Cloud
+- Tools: Git, GitHub, Docker, VS Code
+- Interests: IoT, Computer Vision, Robotics, Full-stack development, Cybersecurity
+
+Mga Projects:
+- QR Attendance System — real-time dashboard, role-based login
+- Library Management System — book CRUD, borrow/return tracking
+- School Attendance System — student profiles, class scheduling
+- Facial Recognition AI — TensorFlow.js, real-time identification
+- Laguna Tourist Guide — interactive maps at reviews
+- Flappy Bird Clone — pure HTML/CSS/JS browser game
+
+Mga Certifications (16+):
+- Microsoft Certified: Azure Fundamentals (AZ-900) — May 2025
+- AWS: Fundamentals of Machine Learning and AI — March 2026
+- AWS: Domain 1 Review, Cloud Practitioner (CLF-C02) — Nov 2025
+- Microsoft: Plan and Prepare to Develop AI Solutions on Azure — Sept 2025
+- Microsoft: Introduction to Site Reliability Engineering (SRE) — Oct 2025
+- Microsoft: Discover Data Analysis — Sept 2025
+- Google Cloud: Managing Change when Moving to Google Cloud
+- Google Cloud: MLOps for Generative AI — Nov 2025
+- Google Cloud: Introduction to Responsible AI — Nov 2025
+- AI Ready ASEAN: Hour of Code Training — ASEAN Foundation & Google.org
+- AI Ready ASEAN: Hour of Code Campaign — June 2025
+- WVSU: Beyond the Black Box — Explainable AI in Game Dev — Oct 2025
+- WVSU: A Beginner's Journey into Blockchain and Cryptocurrency — Nov 2025
+- WVSU: Digital Twins — Nov 2025
+- Cisco: AI at Work: Analyze Customer Reviews — Sept 2025
+- Cisco: C++ Essentials 1 — Sept 2025
+- GitHub: Trigger GitHub Actions with Feature-Based Development — Dec 2025
+
+Kung hindi mo alam ang sagot, sabihin mo lang at i-refer sa contact form o email.
+Huwag gumawa ng impormasyon na wala sa context na ito.`;
 
 export async function registerRoutes(app: Express): Promise<Server> {
   registerChatRoutes(app);
   registerImageRoutes(app);
+
+  // Gemini-powered V-AI chat endpoint
+  app.post("/api/chat", async (req, res) => {
+    if (!gemini) {
+      return res.status(503).json({ error: "GEMINI_API_KEY not configured" });
+    }
+    try {
+      const { message, history = [] } = req.body as {
+        message: string;
+        history: { role: string; parts: { text: string }[] }[];
+      };
+
+      const model = gemini.getGenerativeModel({
+        model: "gemini-2.5-flash",
+        systemInstruction: VERONQUE_CONTEXT,
+      });
+
+      const chat = model.startChat({ history });
+      const result = await chat.sendMessage(message);
+      const text = result.response.text();
+
+      res.json({ reply: text });
+    } catch (err: any) {
+      console.error("Gemini error:", err?.message ?? err);
+      res.status(500).json({ error: "Failed to get AI response" });
+    }
+  });
 
   app.get("/api/blogs", async (_req, res) => {
     try {

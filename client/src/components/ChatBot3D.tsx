@@ -72,63 +72,16 @@ function BotOrb() {
 
 interface Message { role: 'user' | 'assistant'; content: string; }
 
-const qa: { keywords: string[]; answer: string }[] = [
-  {
-    keywords: ['hi', 'hello', 'hey', 'kumusta', 'kamusta', 'musta', 'helo', 'oi', 'sup'],
-    answer: 'Kamusta! Ako si V-AI, ang assistant ni Veronque Andrie. Maaari kang magtanong tungkol sa kanyang skills, projects, certifications, o kung paano siya makontaka. Paano kita matutulungan?',
-  },
-  {
-    keywords: ['sino', 'who', 'about', 'tungkol', 'sarili', 'ikaw', 'veronque', 'andrie', 'va'],
-    answer: 'Si Veronque Andrie ay isang BS Information Technology student sa University of Cabuyao (Laguna, Philippines). Passionate siya sa full-stack development, IoT systems, cloud technologies, at cybersecurity. Available siya para sa freelance work.',
-  },
-  {
-    keywords: ['skill', 'technology', 'tech', 'alam', 'kaya', 'stack', 'programming', 'language', 'code'],
-    answer: 'Ang mga pangunahing skills ni Veronque:\n\n• Frontend: React, TypeScript, HTML/CSS, Tailwind\n• Backend: Node.js, Express, Python\n• Cloud: Microsoft Azure, AWS, Google Cloud\n• Tools: Git, GitHub, Docker, VS Code\n• Others: IoT, Computer Vision, Robotics',
-  },
-  {
-    keywords: ['project', 'gawa', 'portfolio', 'work', 'app', 'website', 'ginawa', 'nagawa'],
-    answer: 'Ilan sa mga projects ni Veronque:\n\n• QR Attendance System — real-time dashboard, role-based login\n• Library Management System — book CRUD, borrow/return tracking\n• School Attendance System — student profiles, class scheduling\n• Facial Recognition AI — TensorFlow.js, real-time identification\n• Laguna Tourist Guide — interactive maps at reviews\n• Flappy Bird Clone — pure HTML/CSS/JS browser game\n\nMakita ang lahat sa Projects section!',
-  },
-  {
-    keywords: ['cert', 'certification', 'azure', 'aws', 'microsoft', 'training', 'diploma', 'licensed'],
-    answer: 'Mga certifications ni Veronque:\n\n• Microsoft Azure Fundamentals (AZ-900)\n• Trigger GitHub Actions with feature-based development\n• Transformer architecture & LLMs in Azure ML\n• Azure Monitor Agent — guest OS monitoring\n• Microsoft Trainee — Cloud computing & productivity\n• AWS Skill Builder Trainee — Cloud architecture\n• AWS Educate Member — EC2, S3, IAM, serverless\n• GitHub Student Developer Pack',
-  },
-  {
-    keywords: ['school', 'university', 'college', 'estudyante', 'student', 'education', 'pag-aaral', 'cabuyao', 'uc'],
-    answer: 'Si Veronque ay nag-aaral ng BS Information Technology sa University of Cabuyao (UC) sa Cabuyao, Laguna, Philippines. Graduating student siya at aktibo sa iba\'t ibang tech organizations.',
-  },
-  {
-    keywords: ['contact', 'email', 'message', 'hire', 'work', 'freelance', 'available', 'tanggapin', 'offer'],
-    answer: 'Makakausap si Veronque sa pamamagitan ng:\n\n• Email: veronqueandrei@gmail.com\n• GitHub: github.com/andrieVerdev\n• LinkedIn: makita sa portfolio\n\nAvailable siya para sa freelance projects at collaboration. Mag-fill out ng contact form sa Contact section!',
-  },
-  {
-    keywords: ['github', 'repo', 'repository', 'open source', 'code'],
-    answer: 'Ang GitHub account ni Veronque ay @andrieVerdev. Marami siyang private at public repositories kasama na ang mga school projects at personal experiments. Bisitahin ang github.com/andrieVerdev para makita ang kanyang mga code!',
-  },
-  {
-    keywords: ['jmrsp', 'organization', 'club', 'org', 'member'],
-    answer: 'Si Veronque ay miyembro ng JMRSP noong 2025 — isang tech organization na nagbibigay ng oportunidad para sa mga estudyante sa IT field.',
-  },
-  {
-    keywords: ['iot', 'robotics', 'hardware', 'sensor', 'arduino', 'raspberry'],
-    answer: 'Passionate si Veronque sa IoT at Robotics! Pinag-aaralan niya ang integration ng sensors at cloud services para sa real-time monitoring systems. Isa ito sa kanyang core interests kasama ang computer vision at intelligent systems.',
-  },
-];
-
-function getResponse(input: string): string {
-  const lower = input.toLowerCase();
-  for (const item of qa) {
-    if (item.keywords.some(k => lower.includes(k))) {
-      return item.answer;
-    }
-  }
-  return 'Pasensya, hindi ko masagot ang tanong na iyon nang detalyado. Maaari kang magtanong tungkol sa skills, projects, certifications, education, o contact info ni Veronque. O kaya direkta siyang makausap sa contact form!';
+interface GeminiHistoryItem {
+  role: 'user' | 'model';
+  parts: { text: string }[];
 }
 
 export default function ChatBot3D() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
+  const [geminiHistory, setGeminiHistory] = useState<GeminiHistoryItem[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -141,18 +94,41 @@ export default function ChatBot3D() {
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     const content = input.trim();
-    if (!content) return;
+    if (!content || isTyping) return;
     setInput('');
 
     const userMsg: Message = { role: 'user', content };
     setMessages(prev => [...prev, userMsg]);
     setIsTyping(true);
 
-    await new Promise(r => setTimeout(r, 700 + Math.random() * 600));
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: content,
+          history: geminiHistory,
+        }),
+      });
 
-    const answer = getResponse(content);
-    setIsTyping(false);
-    setMessages(prev => [...prev, { role: 'assistant', content: answer }]);
+      const data = await res.json();
+      const reply: string = data.reply ?? 'Pasensya, may error sa sagot. Subukan ulit.';
+
+      setGeminiHistory(prev => [
+        ...prev,
+        { role: 'user', parts: [{ text: content }] },
+        { role: 'model', parts: [{ text: reply }] },
+      ]);
+
+      setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
+    } catch {
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: 'Pasensya, hindi ko ma-reach ang server. Subukan ulit maya-maya.',
+      }]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   return (
@@ -178,7 +154,7 @@ export default function ChatBot3D() {
               </div>
               <div>
                 <p className="font-heading font-bold text-sm leading-none">V-AI Assistant</p>
-                <p className="text-[10px] text-primary/60 font-mono mt-0.5">● Online</p>
+                <p className="text-[10px] text-primary/60 font-mono mt-0.5">● Gemini-Powered</p>
               </div>
             </div>
             <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} data-testid="button-close-chat">
@@ -197,7 +173,7 @@ export default function ChatBot3D() {
             <div ref={scrollRef} className="space-y-4">
               {/* Welcome message */}
               <div className="bg-primary/10 rounded-2xl rounded-tl-none p-3 max-w-[85%] text-sm leading-relaxed">
-                Kamusta! Ako si V-AI. Magtanong ka tungkol sa portfolio ni Veronque — skills, projects, certs, o contact info.
+                Kamusta! Ako si V-AI, powered by Gemini. Magtanong ka tungkol sa portfolio ni Veronque — skills, projects, certs, o contact info.
               </div>
 
               {messages.map((m, i) => (
