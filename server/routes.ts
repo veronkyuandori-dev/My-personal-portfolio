@@ -57,6 +57,7 @@ Mga Certifications (16+):
 - Cisco: AI at Work: Analyze Customer Reviews — Sept 2025
 - Cisco: C++ Essentials 1 — Sept 2025
 - GitHub: Trigger GitHub Actions with Feature-Based Development — Dec 2025
+- TESDA NITESD: Installing and Configuring Computer Systems — June 28, 2026
 
 Kung hindi mo alam ang sagot, sabihin mo lang at i-refer sa contact form o email.
 Huwag gumawa ng impormasyon na wala sa context na ito.`;

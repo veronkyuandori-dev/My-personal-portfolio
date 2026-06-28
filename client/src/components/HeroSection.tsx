@@ -280,7 +280,7 @@ export default function HeroSection() {
               <div className="grid grid-cols-3 gap-2 mt-4">
                 {[
                   { v: '8+', l: 'Projects' },
-                  { v: '16+', l: 'Certs' },
+                  { v: '17+', l: 'Certs' },
                   { v: '13', l: 'Repos' },
                 ].map((s) => (
                   <div key={s.l} className="text-center py-3 rounded-lg border border-border/50 bg-card/50 hover-elevate transition-all">
