@@ -1,7 +1,21 @@
+import { useRef } from 'react';
 import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function Footer() {
+  const clickCountRef = useRef(0);
+  const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleCopyrightClick = () => {
+    clickCountRef.current += 1;
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+    clickTimerRef.current = setTimeout(() => { clickCountRef.current = 0; }, 1500);
+    if (clickCountRef.current >= 5) {
+      clickCountRef.current = 0;
+      window.dispatchEvent(new CustomEvent('snake-unlock'));
+    }
+  };
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -84,7 +98,11 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground">
+          <p
+            className="text-sm text-muted-foreground cursor-default select-none"
+            onClick={handleCopyrightClick}
+            data-testid="footer-copyright"
+          >
             © {new Date().getFullYear()} Portfolio. All rights reserved.
           </p>
         </div>

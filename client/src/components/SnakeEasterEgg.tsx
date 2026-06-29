@@ -8,6 +8,12 @@ const KONAMI = [
   'b','a',
 ];
 
+const KONAMI_UPPER = [
+  'ArrowUp','ArrowUp','ArrowDown','ArrowDown',
+  'ArrowLeft','ArrowRight','ArrowLeft','ArrowRight',
+  'B','A',
+];
+
 const COLS = 20;
 const ROWS = 20;
 const CELL = 20;
@@ -61,17 +67,22 @@ export default function SnakeEasterEgg() {
     runningRef.current = true;
   }, []);
 
+  const openGame = useCallback(() => {
+    konamiRef.current = [];
+    setVisible(true);
+    setRunning(false);
+    runningRef.current = false;
+    setState(initState());
+    dirRef.current = { x: 1, y: 0 };
+  }, []);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const key = e.key;
       konamiRef.current = [...konamiRef.current, key].slice(-KONAMI.length);
-      if (konamiRef.current.join(',') === KONAMI.join(',')) {
-        konamiRef.current = [];
-        setVisible(true);
-        setRunning(false);
-        runningRef.current = false;
-        setState(initState());
-        dirRef.current = { x: 1, y: 0 };
+      const seq = konamiRef.current.join(',');
+      if (seq === KONAMI.join(',') || seq === KONAMI_UPPER.join(',')) {
+        openGame();
       }
 
       if (runningRef.current && DIRS[key]) {
@@ -84,9 +95,14 @@ export default function SnakeEasterEgg() {
       }
       if (key === 'Escape') close();
     };
+    const onUnlock = () => openGame();
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [close]);
+    window.addEventListener('snake-unlock', onUnlock);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      window.removeEventListener('snake-unlock', onUnlock);
+    };
+  }, [close, openGame]);
 
   useEffect(() => {
     if (!running) return;
