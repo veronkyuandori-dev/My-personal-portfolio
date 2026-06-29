@@ -9,6 +9,7 @@ import CertificationsSection from '@/components/CertificationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ChatBot3D from '@/components/ChatBot3D';
+import SnakeEasterEgg from '@/components/SnakeEasterEgg';
 import useGSAPScrollAnimations from '@/hooks/useGSAPScrollAnimations';
 
 export default function Portfolio() {
@@ -29,6 +30,7 @@ export default function Portfolio() {
       </main>
       <Footer />
       <ChatBot3D />
+      <SnakeEasterEgg />
     </div>
   );
 }
