@@ -63,12 +63,214 @@ export default function HeroSection() {
   };
 
   const downloadCV = () => {
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Veronque Andrie — CV</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{--green:#22c55e;--green-dim:#16a34a;--bg:#020d02;--surface:#071407;--surface2:#0a1f0a;--border:#1a3a1a;--text:#e2fce2;--muted:#6b9e6b;--accent:#f97316;}
+  body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:13px;line-height:1.6;padding:0;}
+  .page{max-width:860px;margin:0 auto;padding:40px 48px;min-height:100vh;}
+  /* HEADER */
+  .header{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:28px;position:relative;}
+  .header::before{content:'';position:absolute;bottom:-1px;left:0;width:120px;height:1px;background:var(--green);box-shadow:0 0 8px var(--green);}
+  .header-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;}
+  .name{font-size:38px;font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1.1;}
+  .name span{color:var(--green);}
+  .role{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);letter-spacing:.25em;text-transform:uppercase;margin-top:6px;}
+  .tagline{font-size:12px;color:var(--muted);margin-top:8px;max-width:420px;line-height:1.5;}
+  .contacts{text-align:right;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);line-height:1.9;}
+  .contacts a{color:var(--green);text-decoration:none;}
+  .badge-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .badge{background:var(--surface2);border:1px solid var(--border);color:var(--green);font-family:'JetBrains Mono',monospace;font-size:9.5px;padding:3px 10px;border-radius:3px;letter-spacing:.12em;text-transform:uppercase;}
+  /* SECTIONS */
+  .section{margin-bottom:26px;}
+  .section-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:.35em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  /* EXPERIENCE */
+  .exp-item{display:grid;grid-template-columns:90px 1fr;gap:12px;margin-bottom:16px;}
+  .exp-year{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);padding-top:2px;text-align:right;line-height:1.4;}
+  .exp-body{}
+  .exp-role{font-size:11px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;}
+  .exp-title{font-size:13px;font-weight:600;color:var(--text);margin:2px 0;}
+  .exp-desc{font-size:11.5px;color:var(--muted);line-height:1.55;}
+  /* PROJECTS */
+  .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .proj-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:11px 13px;}
+  .proj-name{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;}
+  .proj-desc{font-size:10.5px;color:var(--muted);line-height:1.5;}
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+  .skill-pill{background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:5px 9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-align:center;}
+  /* CERTS */
+  .certs-list{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  .cert-item{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:8px 11px;}
+  .cert-name{font-size:10.5px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:2px;}
+  .cert-org{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--green);letter-spacing:.05em;}
+  .cert-date{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);}
+  /* EDUCATION */
+  .edu-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .edu-deg{font-size:14px;font-weight:700;color:var(--text);}
+  .edu-school{font-size:12px;color:var(--muted);margin-top:3px;}
+  .edu-year{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);text-align:right;white-space:nowrap;padding-top:3px;}
+  /* FOOTER */
+  .cv-footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--border);}
+  .cv-footer span{color:var(--muted);}
+  /* SCAN LINE EFFECT */
+  .scan{position:fixed;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);pointer-events:none;z-index:9999;}
+  @media print{
+    body{background:#fff;color:#111;}
+    :root{--bg:#fff;--surface:#f5f5f5;--surface2:#efefef;--border:#ddd;--text:#111;--muted:#555;--green:#16a34a;--green-dim:#15803d;}
+    .page{padding:28px 36px;}
+    .scan{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="scan"></div>
+<div class="page">
+
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="name">Veronque <span>Andrie</span></div>
+        <div class="role">&lt; andrieVerdev /&gt; — Software Engineer</div>
+        <div class="tagline">BS Information Technology student at University of Cabuyao. Building intelligent systems at the intersection of software and hardware — passionate about IoT, computer vision, robotics, and modern web architecture.</div>
+        <div class="badge-row">
+          <span class="badge">IoT</span>
+          <span class="badge">Full-Stack</span>
+          <span class="badge">AI / ML</span>
+          <span class="badge">Computer Vision</span>
+          <span class="badge">Embedded Systems</span>
+        </div>
+      </div>
+      <div class="contacts">
+        <div>github.com/<a href="https://github.com/andrieVerdev">andrieVerdev</a></div>
+        <div>University of Cabuyao</div>
+        <div>Philippines</div>
+        <div style="margin-top:8px;color:var(--green);">Available for Freelance</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">01 / Education</div>
+    <div class="edu-row">
+      <div>
+        <div class="edu-deg">Bachelor of Science in Information Technology</div>
+        <div class="edu-school">University of Cabuyao · Cabuyao, Laguna, Philippines</div>
+      </div>
+      <div class="edu-year">2023 — Present</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">02 / Experience</div>
+    <div class="exp-item">
+      <div class="exp-year">2025–2026</div>
+      <div class="exp-body">
+        <div class="exp-role">Programmer — Undergraduate Thesis</div>
+        <div class="exp-title">IoT-Enabled Smart Agriculture and Real-Time Monitoring</div>
+        <div class="exp-desc">Contributed to design and implementation of IoT-based systems for environmental monitoring. Developed and maintained application modules ensuring reliability, scalability, and performance.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2025</div>
+      <div class="exp-body">
+        <div class="exp-role">Project Leader</div>
+        <div class="exp-title">Progressive Responsive Website (Academic Project)</div>
+        <div class="exp-desc">Managed project repositories and version control using GitHub. Supervised collaboration, task assignments, and ensured smooth project progression from planning to deployment.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">Mid 2025</div>
+      <div class="exp-body">
+        <div class="exp-role">Web Designer</div>
+        <div class="exp-title">Simate Web Application — Filipino Web Development Peers</div>
+        <div class="exp-desc">Designed responsive, user-focused websites and collaborated with Filipino professionals on the Simate Web Application project.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">2024</div>
+      <div class="exp-body">
+        <div class="exp-role">Project Leader</div>
+        <div class="exp-title">Unicast Event Planning Management System</div>
+        <div class="exp-desc">Led development and successful presentation with features for intelligent scheduling, smart recommendations, and automated event optimization.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">03 / Projects</div>
+    <div class="projects-grid">
+      <div class="proj-card"><div class="proj-name">EVACS-SYSTEM</div><div class="proj-desc">IT Solutions Access Control System with real-time check-in/out tracking, visitor management, and activity logging.</div></div>
+      <div class="proj-card"><div class="proj-name">QR Attendance System</div><div class="proj-desc">QR-code-based contactless attendance tracking with real-time scan decoding, dashboard, and CSV export.</div></div>
+      <div class="proj-card"><div class="proj-name">Facial Recognition AI</div><div class="proj-desc">Computer vision system using deep learning models for high-accuracy face detection and biometric authentication.</div></div>
+      <div class="proj-card"><div class="proj-name">Library Management System</div><div class="proj-desc">Digital library solution with automated inventory tracking, member portal, and intelligent search capabilities.</div></div>
+      <div class="proj-card"><div class="proj-name">TaskTracker</div><div class="proj-desc">Task management system with categorized tracking, real-time status updates, and data visualization.</div></div>
+      <div class="proj-card"><div class="proj-name">Study Buddy</div><div class="proj-desc">Collaborative academic app connecting students for peer learning, study groups, and resource sharing.</div></div>
+      <div class="proj-card"><div class="proj-name">Laguna Tourist Spot Guide</div><div class="proj-desc">Interactive web travel guide for Laguna showcasing landmarks and cultural sites with location maps.</div></div>
+      <div class="proj-card"><div class="proj-name">Fluppy Bird</div><div class="proj-desc">Side-scrolling game featuring physics-based movement, challenging obstacles, and responsive controls.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">04 / Skills</div>
+    <div class="skills-grid">
+      <div class="skill-pill">JavaScript</div><div class="skill-pill">TypeScript</div><div class="skill-pill">Python</div><div class="skill-pill">C++</div>
+      <div class="skill-pill">React</div><div class="skill-pill">Next.js</div><div class="skill-pill">Node.js</div><div class="skill-pill">Flutter</div>
+      <div class="skill-pill">Tailwind CSS</div><div class="skill-pill">HTML5 / CSS3</div><div class="skill-pill">Dart</div><div class="skill-pill">Vite</div>
+      <div class="skill-pill">PostgreSQL</div><div class="skill-pill">MongoDB</div><div class="skill-pill">MySQL</div><div class="skill-pill">Firebase</div>
+      <div class="skill-pill">Git / GitHub</div><div class="skill-pill">Docker</div><div class="skill-pill">Linux</div><div class="skill-pill">Arduino</div>
+      <div class="skill-pill">Raspberry Pi</div><div class="skill-pill">Figma</div><div class="skill-pill">AWS Cloud</div><div class="skill-pill">Azure</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">05 / Certifications (18)</div>
+    <div class="certs-list">
+      <div class="cert-item"><div class="cert-name">Microsoft Certified: Azure Fundamentals</div><div class="cert-org">Microsoft</div><div class="cert-date">May 2025</div></div>
+      <div class="cert-item"><div class="cert-name">Plan and Prepare to Develop AI Solutions on Azure</div><div class="cert-org">Microsoft</div><div class="cert-date">Sep 2025</div></div>
+      <div class="cert-item"><div class="cert-name">Introduction to Site Reliability Engineering</div><div class="cert-org">Microsoft</div><div class="cert-date">Oct 2025</div></div>
+      <div class="cert-item"><div class="cert-name">Discover Data Analysis</div><div class="cert-org">Microsoft</div><div class="cert-date">Sep 2025</div></div>
+      <div class="cert-item"><div class="cert-name">Fundamentals of Machine Learning and AI</div><div class="cert-org">AWS Training &amp; Certification</div><div class="cert-date">Mar 2026</div></div>
+      <div class="cert-item"><div class="cert-name">AWS Certified Cloud Practitioner Domain 1 Review</div><div class="cert-org">AWS Training &amp; Certification</div><div class="cert-date">Nov 2025</div></div>
+      <div class="cert-item"><div class="cert-name">Managing Change when Moving to Google Cloud</div><div class="cert-org">Google Cloud</div><div class="cert-date">2025</div></div>
+      <div class="cert-item"><div class="cert-name">MLOps for Generative AI</div><div class="cert-org">Google Cloud</div><div class="cert-date">Nov 2025</div></div>
+      <div class="cert-item"><div class="cert-name">Introduction to Responsible AI</div><div class="cert-org">Google Cloud</div><div class="cert-date">Nov 2025</div></div>
+      <div class="cert-item"><div class="cert-name">AI Ready ASEAN: Hour of Code Training</div><div class="cert-org">ASEAN Foundation &amp; Google.org</div><div class="cert-date">Oct 2025</div></div>
+      <div class="cert-item"><div class="cert-name">AI Ready ASEAN: Hour of Code Campaign</div><div class="cert-org">ASEAN Foundation &amp; Google.org</div><div class="cert-date">Jun 2025</div></div>
+      <div class="cert-item"><div class="cert-name">C++ Essentials 1</div><div class="cert-org">Cisco Networking Academy</div><div class="cert-date">Sep 2025</div></div>
+      <div class="cert-item"><div class="cert-name">AI at Work: Analyze Customer Reviews</div><div class="cert-org">Cisco Networking Academy</div><div class="cert-date">Sep 2025</div></div>
+      <div class="cert-item"><div class="cert-name">Trigger GitHub Actions with Feature-Based Development</div><div class="cert-org">GitHub</div><div class="cert-date">Dec 2025</div></div>
+      <div class="cert-item"><div class="cert-name">Beyond the Black Box: Explainable AI in Game Dev</div><div class="cert-org">West Visayas State University</div><div class="cert-date">Oct 2025</div></div>
+      <div class="cert-item"><div class="cert-name">Digital Twins: Modeling Reality for Smarter Systems</div><div class="cert-org">West Visayas State University</div><div class="cert-date">Nov 2025</div></div>
+      <div class="cert-item"><div class="cert-name">A Beginner's Journey into Blockchain &amp; Cryptocurrency</div><div class="cert-org">West Visayas State University</div><div class="cert-date">Nov 2025</div></div>
+      <div class="cert-item"><div class="cert-name">Installing and Configuring Computer Systems</div><div class="cert-org">TESDA — NITESD</div><div class="cert-date">Jun 2026</div></div>
+    </div>
+  </div>
+
+  <div class="cv-footer">
+    <span>Veronque Andrie · andrieVerdev · Philippines</span>
+    <span>Generated ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+  </div>
+
+</div>
+</body>
+</html>`;
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = '#';
+    a.href = url;
     a.download = 'Veronque-Andrie-CV.html';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
