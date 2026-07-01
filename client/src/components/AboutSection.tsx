@@ -190,7 +190,7 @@ export default function AboutSection() {
               <div className="flex items-start justify-between gap-2 flex-wrap">
                 <div>
                   <p className="font-heading font-extrabold text-lg text-foreground leading-tight">Veronque Andrie</p>
-                  <p className="font-mono text-[10px] text-primary uppercase tracking-[0.22em] mt-0.5">andrieVerdev · BS Information Technology · University of Cabuyao</p>
+                  <p className="font-mono text-[10px] text-primary uppercase tracking-[0.22em] mt-0.5">andrieVerdev · BS Information Technology</p>
                 </div>
                 <span className="font-mono text-[9px] text-primary/60 border border-primary/20 px-2 py-1 rounded bg-primary/5 whitespace-nowrap">CREDENTIAL SUMMARY</span>
               </div>
