@@ -184,6 +184,55 @@ export default function AboutSection() {
           </AnimationWrapper>
 
           <div className="space-y-8">
+
+            {/* Credential Bio Block */}
+            <div className="border border-primary/25 bg-background/40 backdrop-blur-sm rounded-xl p-5 space-y-4">
+              <div className="flex items-start justify-between gap-2 flex-wrap">
+                <div>
+                  <p className="font-heading font-extrabold text-lg text-foreground leading-tight">Veronque Andrie</p>
+                  <p className="font-mono text-[10px] text-primary uppercase tracking-[0.22em] mt-0.5">andrieVerdev · BS Information Technology · University of Cabuyao</p>
+                </div>
+                <span className="font-mono text-[9px] text-primary/60 border border-primary/20 px-2 py-1 rounded bg-primary/5 whitespace-nowrap">CREDENTIAL SUMMARY</span>
+              </div>
+
+              <div>
+                <p className="font-mono text-[9px] text-muted-foreground uppercase tracking-[0.25em] mb-2">Certifications &amp; Credentials</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    'Microsoft Certified: Azure Fundamentals',
+                    'AWS ML & Cloud Practitioner',
+                    'Google Cloud MLOps & Responsible AI',
+                    'GitHub Actions',
+                    'Cisco C++ Essentials',
+                    'TESDA — Computer Systems',
+                  ].map((c) => (
+                    <span key={c} className="font-mono text-[9.5px] text-primary bg-primary/8 border border-primary/20 px-2 py-0.5 rounded-sm">
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="font-mono text-[9px] text-muted-foreground uppercase tracking-[0.25em] mb-2">Specializations</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    'Multi-Cloud Architecture',
+                    'AI / ML & MLOps',
+                    'IoT Systems',
+                    'Full-Stack Engineering',
+                    'DevOps & SRE',
+                    'Blockchain & Digital Twins',
+                    'Embedded Systems',
+                  ].map((s) => (
+                    <span key={s} className="font-mono text-[9.5px] text-muted-foreground bg-muted/30 border border-border/60 px-2 py-0.5 rounded-sm">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {/* Experience Section */}
             <div>
               <h3 className="text-2xl font-heading font-bold mb-6 flex items-center gap-2">
