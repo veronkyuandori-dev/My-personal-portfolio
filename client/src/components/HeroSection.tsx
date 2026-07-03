@@ -72,7 +72,7 @@ export default function HeroSection() {
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
   *{margin:0;padding:0;box-sizing:border-box;}
-  :root{--green:#22c55e;--green-dim:#16a34a;--bg:#020d02;--surface:#071407;--surface2:#0a1f0a;--border:#1a3a1a;--text:#e2fce2;--muted:#6b9e6b;--accent:#f97316;}
+  :root{--green:#111;--green-dim:#333;--bg:#fff;--surface:#f7f7f7;--surface2:#efefef;--border:#d4d4d4;--text:#0a0a0a;--muted:#555;--accent:#111;}
   body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:13px;line-height:1.6;padding:0;}
   .page{max-width:860px;margin:0 auto;padding:40px 48px;min-height:100vh;}
   /* HEADER */
@@ -120,18 +120,10 @@ export default function HeroSection() {
   /* FOOTER */
   .cv-footer{margin-top:32px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--border);}
   .cv-footer span{color:var(--muted);}
-  /* SCAN LINE EFFECT */
-  .scan{position:fixed;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);pointer-events:none;z-index:9999;}
-  @media print{
-    body{background:#fff;color:#111;}
-    :root{--bg:#fff;--surface:#f5f5f5;--surface2:#efefef;--border:#ddd;--text:#111;--muted:#555;--green:#16a34a;--green-dim:#15803d;}
-    .page{padding:28px 36px;}
-    .scan{display:none;}
-  }
+  @media print{.page{padding:28px 36px;}}
 </style>
 </head>
 <body>
-<div class="scan"></div>
 <div class="page">
 
   <div class="header">
