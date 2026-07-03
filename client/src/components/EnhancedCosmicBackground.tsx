@@ -46,7 +46,7 @@ export default function EnhancedCosmicBackground() {
         speedY: (Math.random() - 0.5) * 0.2,
         speedZ: (Math.random() - 0.5) * 0.5,
         opacity: Math.random() * 0.6 + 0.3,
-        hue: Math.random() > 0.5 ? 260 : 190, // Blue-purple or blue-green
+        hue: 0, // Monochrome white
         pulseSpeed: Math.random() * 0.03 + 0.01,
       });
     }
