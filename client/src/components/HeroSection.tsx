@@ -131,7 +131,7 @@ export default function HeroSection() {
       <div>
         <div class="name">Veronque <span>Andrie</span></div>
         <div class="role">&lt; andrieVerdev /&gt; — Software Engineer</div>
-        <div class="tagline">BS Information Technology student at University of Cabuyao. Building intelligent systems at the intersection of software and hardware — passionate about IoT, computer vision, robotics, and modern web architecture.</div>
+        <div class="tagline">Full-stack developer specializing in React, Next.js, Node.js, and cloud technologies. Experienced in developing scalable web applications, IoT systems, and AI-powered solutions. Passionate about building reliable software and continuously learning modern technologies.</div>
         <div class="badge-row">
           <span class="badge">IoT</span>
           <span class="badge">Full-Stack</span>
@@ -147,6 +147,13 @@ export default function HeroSection() {
         <div style="margin-top:8px;color:var(--green);">Available for Freelance</div>
       </div>
     </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">00 / Professional Summary</div>
+    <p style="font-size:12.5px;color:#333;line-height:1.7;max-width:720px;">
+      Full-stack developer specializing in React, Next.js, Node.js, and cloud technologies (Azure · AWS · GCP). Developed and maintained 8+ academic and freelance software projects ranging from IoT-based monitoring systems to AI-powered web applications. Microsoft Azure Certified with hands-on experience in multi-cloud deployment, DevOps workflows, and hardware integration using Arduino and Raspberry Pi. Committed to writing scalable, maintainable code and continuously adopting modern technologies.
+    </p>
   </div>
 
   <div class="section">
@@ -167,7 +174,7 @@ export default function HeroSection() {
       <div class="exp-body">
         <div class="exp-role">Programmer — Undergraduate Thesis</div>
         <div class="exp-title">IoT-Enabled Smart Agriculture and Real-Time Monitoring</div>
-        <div class="exp-desc">Contributed to design and implementation of IoT-based systems for environmental monitoring. Developed and maintained application modules ensuring reliability, scalability, and performance.</div>
+        <div class="exp-desc">Designed and developed full-stack modules for an IoT-based smart agriculture system using React, Node.js, and Arduino sensors. Integrated real-time data monitoring dashboards with live sensor feeds, reducing manual data collection by replacing paper-based methods entirely.</div>
       </div>
     </div>
     <div class="exp-item">
@@ -175,7 +182,7 @@ export default function HeroSection() {
       <div class="exp-body">
         <div class="exp-role">Project Leader</div>
         <div class="exp-title">Progressive Responsive Website (Academic Project)</div>
-        <div class="exp-desc">Managed project repositories and version control using GitHub. Supervised collaboration, task assignments, and ensured smooth project progression from planning to deployment.</div>
+        <div class="exp-desc">Led a team of 4 in building a fully responsive multi-page website using HTML, CSS, and JavaScript. Managed Git workflow and code reviews on GitHub, delivering the project on schedule with zero merge conflicts across 50+ commits.</div>
       </div>
     </div>
     <div class="exp-item">
@@ -183,7 +190,7 @@ export default function HeroSection() {
       <div class="exp-body">
         <div class="exp-role">Web Designer</div>
         <div class="exp-title">Simate Web Application — Filipino Web Development Peers</div>
-        <div class="exp-desc">Designed responsive, user-focused websites and collaborated with Filipino professionals on the Simate Web Application project.</div>
+        <div class="exp-desc">Designed and delivered responsive UI components for a web application serving a Filipino developer community. Collaborated remotely with a cross-functional team, improving overall design consistency and mobile responsiveness across 10+ pages.</div>
       </div>
     </div>
     <div class="exp-item">
@@ -191,7 +198,7 @@ export default function HeroSection() {
       <div class="exp-body">
         <div class="exp-role">Project Leader</div>
         <div class="exp-title">Unicast Event Planning Management System</div>
-        <div class="exp-desc">Led development and successful presentation with features for intelligent scheduling, smart recommendations, and automated event optimization.</div>
+        <div class="exp-desc">Led a 5-member team in architecting and building a full event management system with intelligent scheduling algorithms and automated notifications. Presented to a panel of faculty evaluators and received commendation for system design and technical execution.</div>
       </div>
     </div>
   </div>
