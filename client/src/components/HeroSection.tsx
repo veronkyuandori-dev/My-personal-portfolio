@@ -130,7 +130,7 @@ export default function HeroSection() {
     <div class="header-top">
       <div>
         <div class="name">Veronque <span>Andrie</span></div>
-        <div class="role">&lt; andrieVerdev /&gt; — Software Engineer</div>
+        <div class="role">&lt; andrieVerdev /&gt;</div>
         <div class="tagline">Full-stack developer specializing in React, Next.js, Node.js, and cloud technologies. Experienced in developing scalable web applications, IoT systems, and AI-powered solutions. Passionate about building reliable software and continuously learning modern technologies.</div>
         <div class="badge-row">
           <span class="badge">IoT</span>
@@ -142,7 +142,6 @@ export default function HeroSection() {
       </div>
       <div class="contacts">
         <div>github.com/<a href="https://github.com/andrieVerdev">andrieVerdev</a></div>
-        <div>University of Cabuyao</div>
         <div>Philippines</div>
         <div style="margin-top:8px;color:var(--green);">Available for Freelance</div>
       </div>
@@ -161,7 +160,7 @@ export default function HeroSection() {
     <div class="edu-row">
       <div>
         <div class="edu-deg">Bachelor of Science in Information Technology</div>
-        <div class="edu-school">University of Cabuyao · Cabuyao, Laguna, Philippines</div>
+        <div class="edu-school">Cabuyao, Laguna, Philippines</div>
       </div>
       <div class="edu-year">2023 — Present</div>
     </div>
@@ -172,7 +171,7 @@ export default function HeroSection() {
     <div class="exp-item">
       <div class="exp-year">2025–2026</div>
       <div class="exp-body">
-        <div class="exp-role">Programmer — Undergraduate Thesis</div>
+        <div class="exp-role">Programmer — Thesis</div>
         <div class="exp-title">IoT-Enabled Smart Agriculture and Real-Time Monitoring</div>
         <div class="exp-desc">Designed and developed full-stack modules for an IoT-based smart agriculture system using React, Node.js, and Arduino sensors. Integrated real-time data monitoring dashboards with live sensor feeds, reducing manual data collection by replacing paper-based methods entirely.</div>
       </div>
