@@ -64,7 +64,7 @@ export default function CertificationsSection() {
     <section id="certifications" className="relative py-20 md:py-32 bg-card/30 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="mb-12 animate-section-rise">
-          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">05 / CERTS</p>
+          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">06 / CERTS</p>
           <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
             Certifications
           </h2>

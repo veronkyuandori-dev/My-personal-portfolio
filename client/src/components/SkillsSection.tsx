@@ -50,7 +50,7 @@ export default function SkillsSection() {
     <section id="skills" className="relative py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="mb-12 animate-section-rise">
-          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">04 / SKILLS</p>
+          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">05 / SKILLS</p>
           <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight">
             Skills
           </h2>

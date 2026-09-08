@@ -175,7 +175,7 @@ export default function ContactSection() {
     <section id="contact" className="relative py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <AnimationWrapper type="fade">
-          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">06 / CONTACT</p>
+          <p className="font-mono text-xs text-primary uppercase tracking-[0.3em] mb-3">07 / CONTACT</p>
           <h2 className="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-foreground tracking-tight animate-section-rise">
             Get In Touch
           </h2>
