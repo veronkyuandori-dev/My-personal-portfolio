@@ -84,7 +84,7 @@ export function registerChatRoutes(app: Express): void {
       const stream = await openai.chat.completions.create({
         model: "gpt-5",
         messages: [
-          { role: "system", content: "Ikaw si V-AI, isang AI assistant para sa portfolio ni Veronque Andrie, isang aspiring Mechatronics & Software Engineer. Sumagot sa Tagalog o English base sa user. Maging professional pero friendly." },
+          { role: "system", content: "Ikaw si V-AI, isang AI assistant para sa portfolio ni Veronque Andrie, isang Software Developer. Sumagot sa Tagalog o English base sa user. Maging professional pero friendly." },
           ...chatMessages
         ],
         stream: true,

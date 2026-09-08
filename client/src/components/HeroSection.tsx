@@ -130,7 +130,7 @@ export default function HeroSection() {
     <div class="header-top">
       <div>
         <div class="name">Veronque <span>Andrie</span></div>
-        <div class="role">&lt; andrieVerdev /&gt;</div>
+        <div class="role">&lt; andrieVerdev /&gt; — Software Developer</div>
         <div class="tagline">Full-stack developer specializing in React, Next.js, Node.js, and cloud technologies. Experienced in developing scalable web applications, IoT systems, and AI-powered solutions. Passionate about building reliable software and continuously learning modern technologies.</div>
         <div class="badge-row">
           <span class="badge">IoT</span>
@@ -296,6 +296,9 @@ export default function HeroSection() {
                 {displayText}
                 <span className={`inline-block w-[4px] h-[0.85em] ml-1 bg-primary align-middle transition-opacity duration-100 ${cursorVisible ? 'opacity-100' : 'opacity-0'}`} />
               </h1>
+              <p className="mt-4 font-mono text-sm md:text-base font-bold uppercase tracking-[0.28em] text-primary">
+                Software Developer
+              </p>
             </div>
 
             {/* Info row */}

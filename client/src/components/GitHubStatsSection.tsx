@@ -246,7 +246,7 @@ export default function GitHubStatsSection() {
                 </div>
 
                 <p className="text-sm md:text-base text-muted-foreground mb-4 max-w-xl">
-                  {stats?.bio ?? 'Aspiring Mechatronics & Software Engineer · IoT · Robotics · Cloud'}
+                  {stats?.bio ?? 'Software Developer · IoT · Robotics · Cloud'}
                 </p>
 
                 {/* Quick badges */}
