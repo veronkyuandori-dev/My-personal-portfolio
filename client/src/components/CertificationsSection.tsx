@@ -26,6 +26,7 @@ import ciscoCppEssentialsCert from '@assets/Screenshot_2026-01-29_22.22.53_17696
 import ghActionsCert from '@assets/Screenshot_2026-02-14_16.35.08_1771058417077.png';
 import msAzureFundamentalsCert from '@assets/image_1779899343958.png';
 import tesdaICSCert from '@assets/Screenshot_2026-06-28_7.11.31_PM_1782649386262.png';
+import readInTheCloudCert from '@assets/IMG_20260921_074545_1790003613861.png';
 
 const certifications = [
   { name: 'Microsoft Certified: Azure Fundamentals', organization: 'Microsoft', date: 'May 15, 2025', description: 'Officially certified by Microsoft on cloud concepts, Azure architecture, and core Azure services. Credential ID: 4B8E9F23D6A71C9E.', image: msAzureFundamentalsCert },
@@ -46,6 +47,7 @@ const certifications = [
   { name: 'C++ Essentials 1', organization: 'Cisco Networking Academy', date: 'September 15, 2025', description: 'Certificate for completing C++ Essentials 1 through the Cisco Networking Academy program.', image: ciscoCppEssentialsCert },
   { name: 'Trigger GitHub Actions with Feature-Based Development', organization: 'GitHub', date: 'December 18, 2025', description: 'GitHub Learning Path certificate for triggering and automating workflows using GitHub Actions with feature-based development.', image: ghActionsCert },
   { name: 'Installing and Configuring Computer Systems', organization: 'TESDA — NITESD', date: 'June 28, 2026', description: 'Certificate of Completion issued by the Technical Education and Skills Development Authority (TESDA) — National Institute for Technical Education and Skills Development for completing the course on Installing and Configuring Computer Systems.', image: tesdaICSCert },
+  { name: 'Head in the Cloud: Cloud Computing & Cloud-Based Information Systems', organization: 'Read in the Cloud Webinar', date: 'September 19, 2026', description: 'Certificate of Recognition for serving as a Resource Speaker during the webinar “Head in the Cloud: A Webinar on Cloud Computing & Cloud-Based Information Systems.”', image: readInTheCloudCert },
 ];
 
 export default function CertificationsSection() {
