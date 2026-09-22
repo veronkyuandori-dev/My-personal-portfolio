@@ -33,22 +33,22 @@ function BotOrb() {
         .orb-core {
           width: 70px; height: 70px;
           border-radius: 50%;
-          background: radial-gradient(circle at 35% 35%, #4ade80, #22c55e 40%, #15803d 80%, #052e16);
-          box-shadow: 0 0 30px rgba(34,197,94,0.7), 0 0 60px rgba(34,197,94,0.3), inset 0 0 20px rgba(255,255,255,0.15);
+          background: radial-gradient(circle at 35% 35%, #F5D0FE, #C026D3 40%, #7E22CE 80%, #1E1038);
+          box-shadow: 0 0 30px rgba(168,85,247,0.7), 0 0 60px rgba(217,70,239,0.3), inset 0 0 20px rgba(255,255,255,0.15);
           animation: orb-pulse 2.5s ease-in-out infinite;
           position: relative; z-index: 10;
         }
         .orb-ring {
           position: absolute; border-radius: 50%;
-          border: 1.5px solid rgba(34,197,94,0.55);
-          box-shadow: 0 0 8px rgba(34,197,94,0.4);
+          border: 1.5px solid rgba(168,85,247,0.55);
+          box-shadow: 0 0 8px rgba(168,85,247,0.4);
         }
         .orb-ring-1 { width: 100px; height: 100px; animation: ring-spin-1 3s linear infinite; }
-        .orb-ring-2 { width: 120px; height: 120px; border-color: rgba(34,197,94,0.35); animation: ring-spin-2 4.5s linear infinite; }
-        .orb-ring-3 { width: 90px; height: 90px; border-color: rgba(134,239,172,0.45); animation: ring-spin-3 2.8s linear infinite; }
+        .orb-ring-2 { width: 120px; height: 120px; border-color: rgba(217,70,239,0.35); animation: ring-spin-2 4.5s linear infinite; }
+        .orb-ring-3 { width: 90px; height: 90px; border-color: rgba(233,213,255,0.45); animation: ring-spin-3 2.8s linear infinite; }
         .orb-particle {
           position: absolute; width: 4px; height: 4px; border-radius: 50%;
-          background: #4ade80; box-shadow: 0 0 6px rgba(34,197,94,0.9);
+          background: #E879F9; box-shadow: 0 0 6px rgba(217,70,239,0.9);
         }
       `}</style>
       <div style={{ position: 'relative', width: 130, height: 130, display: 'flex', alignItems: 'center', justifyContent: 'center', perspective: '300px' }}>

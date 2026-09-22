@@ -276,7 +276,7 @@ export default function HeroSection() {
       {/* Grid background */}
       <div className="absolute inset-0 hero-grid-bg opacity-40" />
       {/* Radial vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_70%_50%,rgba(34,197,94,0.08)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_70%_50%,rgba(168,85,247,0.12)_0%,transparent_60%)]" />
       <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-24">

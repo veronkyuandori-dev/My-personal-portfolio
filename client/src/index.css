@@ -116,73 +116,73 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  --background: 240 4% 96%;
+  --background: 252 48% 6%;
 
-  --foreground: 240 6% 10%;
+  --foreground: 270 45% 97%;
 
-  --border: 240 4% 88%;
+  --border: 258 31% 21%;
 
-  --card: 240 4% 94%;
+  --card: 252 42% 10%;
 
-  --card-foreground: 240 6% 12%;
+  --card-foreground: 270 40% 95%;
 
-  --card-border: 240 4% 86%;
+  --card-border: 265 43% 24%;
 
-  --sidebar: 240 5% 92%;
+  --sidebar: 252 48% 7%;
 
-  --sidebar-foreground: 240 6% 14%;
+  --sidebar-foreground: 270 35% 92%;
 
-  --sidebar-border: 240 5% 84%;
+  --sidebar-border: 258 31% 21%;
 
-  --sidebar-primary: 0 0% 8%;
+  --sidebar-primary: 270 90% 70%;
 
-  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-primary-foreground: 252 50% 8%;
 
-  --sidebar-accent: 240 6% 88%;
+  --sidebar-accent: 263 34% 18%;
 
-  --sidebar-accent-foreground: 240 8% 16%;
+  --sidebar-accent-foreground: 270 75% 94%;
 
-  --sidebar-ring: 0 0% 30%;
+  --sidebar-ring: 270 90% 70%;
 
-  --popover: 240 5% 90%;
+  --popover: 252 43% 11%;
 
-  --popover-foreground: 240 7% 14%;
+  --popover-foreground: 270 40% 95%;
 
-  --popover-border: 240 5% 82%;
+  --popover-border: 265 43% 24%;
 
-  --primary: 0 0% 8%;
+  --primary: 270 90% 70%;
 
-  --primary-foreground: 0 0% 98%;
+  --primary-foreground: 252 50% 8%;
 
-  --secondary: 240 6% 86%;
+  --secondary: 263 34% 18%;
 
-  --secondary-foreground: 240 8% 16%;
+  --secondary-foreground: 270 75% 94%;
 
-  --muted: 240 8% 89%;
+  --muted: 256 31% 15%;
 
-  --muted-foreground: 240 6% 35%;
+  --muted-foreground: 258 20% 68%;
 
-  --accent: 240 12% 88%;
+  --accent: 285 48% 23%;
 
-  --accent-foreground: 240 8% 18%;
+  --accent-foreground: 280 82% 96%;
 
   --destructive: 0 84% 60%;
 
   --destructive-foreground: 0 86% 98%;
 
-  --input: 240 6% 72%;
-  --ring: 0 0% 8%;
-  --chart-1: 0 0% 30%;
-  --chart-2: 0 0% 45%;
-  --chart-3: 0 0% 55%;
-  --chart-4: 0 0% 65%;
-  --chart-5: 0 0% 20%;
+  --input: 258 31% 27%;
+  --ring: 270 90% 70%;
+  --chart-1: 270 90% 70%;
+  --chart-2: 285 82% 65%;
+  --chart-3: 245 85% 72%;
+  --chart-4: 320 80% 68%;
+  --chart-5: 190 80% 70%;
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: 'Inter', Georgia, serif;
   --font-mono: 'JetBrains Mono', Menlo, monospace;
   --font-heading: 'Space Grotesk', 'Inter', sans-serif;
-  --radius: .5rem;
+  --radius: .85rem;
   --shadow-2xs: 0px 1px 2px 0px hsl(240 6% 10% / 0.05);
   --shadow-xs: 0px 1px 3px 0px hsl(240 6% 10% / 0.08);
   --shadow-sm: 0px 2px 4px 0px hsl(240 6% 10% / 0.06), 0px 1px 2px -1px hsl(240 6% 10% / 0.04);
@@ -194,9 +194,9 @@
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
-  /* Monochrome theme colors */
-  --cyber-glow: 0 0% 15%;
-  --cyber-accent: 0 0% 40%;
+  /* Violet dashboard theme colors */
+  --cyber-glow: 270 95% 68%;
+  --cyber-accent: 285 90% 62%;
 
   /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
 
@@ -238,67 +238,67 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .08);
 
-  --background: 0 0% 4%;
+  --background: 252 55% 4.5%;
+ 
+  --foreground: 270 45% 97%;
+ 
+  --border: 258 31% 20%;
+ 
+  --card: 252 45% 9%;
+ 
+  --card-foreground: 270 40% 95%;
+ 
+  --card-border: 265 43% 23%;
 
-  --foreground: 0 0% 93%;
+  --sidebar: 252 55% 5.5%;
+ 
+  --sidebar-foreground: 270 35% 92%;
+ 
+  --sidebar-border: 258 31% 20%;
+ 
+  --sidebar-primary: 270 90% 70%;
+ 
+  --sidebar-primary-foreground: 252 50% 8%;
+ 
+  --sidebar-accent: 263 34% 17%;
+ 
+  --sidebar-accent-foreground: 270 75% 94%;
+ 
+  --sidebar-ring: 270 90% 70%;
+ 
+  --popover: 252 45% 10%;
+ 
+  --popover-foreground: 270 40% 95%;
+ 
+  --popover-border: 265 43% 23%;
 
-  --border: 0 0% 13%;
+  --primary: 270 90% 70%;
 
-  --card: 0 0% 8%;
+  --primary-foreground: 252 50% 8%;
 
-  --card-foreground: 0 0% 90%;
+  --secondary: 263 34% 17%;
 
-  --card-border: 0 0% 15%;
+  --secondary-foreground: 270 75% 94%;
 
-  --sidebar: 0 0% 6%;
+  --muted: 256 31% 14%;
 
-  --sidebar-foreground: 0 0% 87%;
+  --muted-foreground: 258 20% 67%;
 
-  --sidebar-border: 0 0% 17%;
+  --accent: 285 48% 22%;
 
-  --sidebar-primary: 0 0% 85%;
-
-  --sidebar-primary-foreground: 0 0% 6%;
-
-  --sidebar-accent: 0 0% 12%;
-
-  --sidebar-accent-foreground: 0 0% 78%;
-
-  --sidebar-ring: 0 0% 65%;
-
-  --popover: 0 0% 8%;
-
-  --popover-foreground: 0 0% 85%;
-
-  --popover-border: 0 0% 17%;
-
-  --primary: 0 0% 88%;
-
-  --primary-foreground: 0 0% 5%;
-
-  --secondary: 0 0% 13%;
-
-  --secondary-foreground: 0 0% 80%;
-
-  --muted: 0 0% 11%;
-
-  --muted-foreground: 0 0% 48%;
-
-  --accent: 0 0% 13%;
-
-  --accent-foreground: 0 0% 78%;
+  --accent-foreground: 280 82% 96%;
 
   --destructive: 0 84% 60%;
 
   --destructive-foreground: 0 86% 98%;
 
-  --input: 0 0% 20%;
-  --ring: 0 0% 65%;
-  --chart-1: 0 0% 75%;
-  --chart-2: 0 0% 62%;
-  --chart-3: 0 0% 50%;
-  --chart-4: 0 0% 38%;
-  --chart-5: 0 0% 85%;
+  --input: 258 31% 25%;
+  --ring: 270 90% 70%;
+  --chart-1: 270 90% 70%;
+  --chart-2: 285 82% 65%;
+  --chart-3: 245 85% 72%;
+  --chart-4: 320 80% 68%;
+  --chart-5: 190 80% 70%;
 
   --shadow-2xs: 0px 1px 2px 0px hsl(240 6% 4% / 0.20);
   --shadow-xs: 0px 1px 3px 0px hsl(240 6% 4% / 0.25);
@@ -309,9 +309,9 @@
   --shadow-xl: 0px 20px 30px -5px hsl(240 6% 4% / 0.42), 0px 8px 12px -6px hsl(240 6% 4% / 0.32);
   --shadow-2xl: 0px 25px 50px -12px hsl(240 6% 4% / 0.50);
 
-  /* Monochrome theme colors */
-  --cyber-glow: 0 0% 80%;
-  --cyber-accent: 0 0% 55%;
+  /* Violet dashboard theme colors */
+  --cyber-glow: 270 95% 68%;
+  --cyber-accent: 285 90% 62%;
 }
 
 @layer base {
@@ -325,13 +325,25 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 78% 18%, hsl(285 90% 62% / 0.12), transparent 26rem),
+      radial-gradient(circle at 12% 78%, hsl(270 95% 68% / 0.08), transparent 24rem),
+      linear-gradient(135deg, hsl(252 55% 4.5%), hsl(258 48% 8%));
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.35);
+    color: hsl(var(--foreground));
   }
 }
 
 /* Dot-grid hero background */
 .hero-grid-bg {
-  background-image: radial-gradient(circle, hsl(0 0% 100% / 0.07) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image:
+    linear-gradient(hsl(270 90% 70% / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(270 90% 70% / 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
 /* Scan line animation for photo */
@@ -345,8 +357,28 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.35), transparent);
+  background: linear-gradient(90deg, transparent, hsl(285 90% 72% / 0.55), transparent);
   animation: scan 3s linear infinite;
+}
+
+/* Violet glass panels inspired by the reference dashboard */
+[class~="bg-card/30"],
+[class~="bg-card/60"],
+[class~="bg-background/40"],
+[class~="bg-background/80"] {
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+[class~="bg-card/30"],
+[class~="bg-card/60"] {
+  box-shadow: inset 0 1px 0 hsl(270 90% 85% / 0.04), 0 20px 60px hsl(270 70% 4% / 0.18);
+}
+
+/* Make cards feel like layered dashboard modules */
+[class*="rounded-xl"],
+[class*="rounded-2xl"] {
+  border-color: hsl(var(--border) / 0.85);
 }
 
 /* Terminal cursor blink */

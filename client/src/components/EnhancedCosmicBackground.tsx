@@ -36,7 +36,7 @@ export default function EnhancedCosmicBackground() {
       pulseSpeed: number;
     }> = [];
 
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 58; i++) {
       nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -46,7 +46,7 @@ export default function EnhancedCosmicBackground() {
         speedY: (Math.random() - 0.5) * 0.2,
         speedZ: (Math.random() - 0.5) * 0.5,
         opacity: Math.random() * 0.6 + 0.3,
-        hue: 0, // Monochrome white
+        hue: Math.random() > 0.5 ? 270 : 285,
         pulseSpeed: Math.random() * 0.03 + 0.01,
       });
     }
@@ -61,7 +61,7 @@ export default function EnhancedCosmicBackground() {
       hue: number;
     }> = [];
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 24; i++) {
       const nodeA = Math.floor(Math.random() * nodes.length);
       let nodeB = Math.floor(Math.random() * nodes.length);
       while (nodeB === nodeA) {
@@ -73,7 +73,7 @@ export default function EnhancedCosmicBackground() {
         progress: Math.random(),
         speed: Math.random() * 0.003 + 0.001,
         size: Math.random() * 1.5 + 0.5,
-        hue: Math.random() > 0.5 ? 260 : 190,
+        hue: Math.random() > 0.5 ? 270 : 315,
       });
     }
 
@@ -88,8 +88,8 @@ export default function EnhancedCosmicBackground() {
     const drawTechIcon = (type: string, x: number, y: number, size: number, opacity: number) => {
       ctx.save();
       ctx.globalAlpha = opacity;
-      ctx.strokeStyle = `hsla(190, 100%, 70%, ${opacity})`;
-      ctx.fillStyle = `hsla(260, 100%, 50%, ${opacity * 0.3})`;
+      ctx.strokeStyle = `hsla(270, 100%, 76%, ${opacity})`;
+      ctx.fillStyle = `hsla(300, 100%, 62%, ${opacity * 0.3})`;
       ctx.lineWidth = 1.5;
 
       switch (type) {
@@ -109,7 +109,7 @@ export default function EnhancedCosmicBackground() {
           ctx.fillRect(x - size * 0.8, y + size * 0.2, size * 0.3, size * 0.4);
           ctx.fillRect(x + size * 0.5, y + size * 0.2, size * 0.3, size * 0.4);
           // Eyes
-          ctx.fillStyle = `hsla(190, 100%, 80%, ${opacity})`;
+          ctx.fillStyle = `hsla(285, 100%, 88%, ${opacity})`;
           ctx.beginPath();
           ctx.arc(x - size * 0.15, y - size * 0.4, size * 0.1, 0, Math.PI * 2);
           ctx.fill();
@@ -142,9 +142,9 @@ export default function EnhancedCosmicBackground() {
 
       // Dark gradient background with subtle depth
       const bgGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      bgGradient.addColorStop(0, 'rgba(5, 10, 25, 0.95)');
-      bgGradient.addColorStop(0.5, 'rgba(8, 15, 35, 0.95)');
-      bgGradient.addColorStop(1, 'rgba(5, 10, 25, 0.95)');
+      bgGradient.addColorStop(0, 'rgba(7, 3, 24, 0.97)');
+      bgGradient.addColorStop(0.5, 'rgba(16, 7, 40, 0.95)');
+      bgGradient.addColorStop(1, 'rgba(5, 3, 20, 0.97)');
 
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -158,8 +158,8 @@ export default function EnhancedCosmicBackground() {
         canvas.height / 2,
         canvas.width
       );
-      glowGradient.addColorStop(0, 'rgba(100, 200, 255, 0.03)');
-      glowGradient.addColorStop(1, 'rgba(100, 150, 255, 0)');
+      glowGradient.addColorStop(0, 'rgba(168, 85, 247, 0.08)');
+      glowGradient.addColorStop(1, 'rgba(217, 70, 239, 0)');
       ctx.fillStyle = glowGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -171,18 +171,18 @@ export default function EnhancedCosmicBackground() {
           const dy = other.y - node.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 200) {
-            const opacity = (1 - distance / 200) * 0.25;
+          if (distance < 180) {
+            const opacity = (1 - distance / 180) * 0.22;
             
             const lineGradient = ctx.createLinearGradient(
               node.x, node.y,
               other.x, other.y
             );
             
-            // Blue-purple to green-blue neon gradient
-            lineGradient.addColorStop(0, `rgba(100, 200, 255, ${opacity})`);
-            lineGradient.addColorStop(0.5, `rgba(150, 100, 255, ${opacity * 0.8})`);
-            lineGradient.addColorStop(1, `rgba(100, 200, 255, ${opacity})`);
+            // Violet to magenta neon gradient
+            lineGradient.addColorStop(0, `rgba(139, 92, 246, ${opacity})`);
+            lineGradient.addColorStop(0.5, `rgba(217, 70, 239, ${opacity * 0.8})`);
+            lineGradient.addColorStop(1, `rgba(139, 92, 246, ${opacity})`);
 
             ctx.beginPath();
             ctx.strokeStyle = lineGradient;
@@ -193,7 +193,7 @@ export default function EnhancedCosmicBackground() {
 
             // Add glow effect to lines
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(150, 100, 255, ${opacity * 0.3})`;
+            ctx.strokeStyle = `rgba(217, 70, 239, ${opacity * 0.28})`;
             ctx.lineWidth = 3;
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(other.x, other.y);
