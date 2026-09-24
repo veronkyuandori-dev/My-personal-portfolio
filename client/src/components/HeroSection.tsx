@@ -285,16 +285,20 @@ export default function HeroSection() {
           {/* LEFT — Text */}
           <div className="space-y-8 animate-hero-blur-fade flex flex-col items-center text-center">
             {/* Centered profile portrait from the existing portfolio identity */}
-            <div className="relative w-28 h-28 md:w-32 md:h-32">
-              <div className="absolute -inset-3 rounded-full bg-primary/20 blur-2xl" />
-              <div className="absolute inset-0 rounded-full border border-primary/50 shadow-[0_0_40px_rgba(168,85,247,0.35)]" />
-              <div className="absolute -inset-2 rounded-full border border-primary/20 border-dashed animate-[spin_18s_linear_infinite]" />
-              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-background">
+            <div className="hero-profile-orbit relative w-28 h-28 md:w-32 md:h-32" aria-label="Profile portrait">
+              <div className="hero-profile-halo" />
+              <div className="hero-profile-ring hero-profile-ring-outer" />
+              <div className="hero-profile-ring hero-profile-ring-inner" />
+              <div className="hero-profile-orbit-track hero-profile-orbit-track-one"><span /></div>
+              <div className="hero-profile-orbit-track hero-profile-orbit-track-two"><span /></div>
+              <div className="hero-profile-photo relative w-full h-full rounded-full overflow-hidden border-2 border-background">
                 <img
                   src={profileImage}
                   alt="Veronque Andrie"
                   className="w-full h-full object-cover object-top"
                 />
+                <div className="hero-profile-scan" />
+                <div className="hero-profile-glass" />
               </div>
             </div>
 
