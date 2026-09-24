@@ -1,6 +1,6 @@
 
 import { useEffect, useRef } from 'react';
-import neuralWallpaper from '@assets/IMG_20260924_083223_1790210097507.jpg';
+import neuralWallpaper from '@assets/IMG_20260924_083223_1790210406304.jpg';
 
 export default function EnhancedCosmicBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);

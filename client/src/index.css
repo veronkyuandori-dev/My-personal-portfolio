@@ -197,8 +197,8 @@
   /* Violet dashboard theme colors */
   --cyber-glow: 270 95% 68%;
   --cyber-accent: 285 90% 62%;
-  --wallpaper-image-opacity: 0.42;
-  --wallpaper-overlay: linear-gradient(180deg, rgba(250, 248, 255, 0.7), rgba(250, 248, 255, 0.88));
+  --wallpaper-image-opacity: 0.48;
+  --wallpaper-overlay: linear-gradient(180deg, rgba(250, 248, 255, 0.68), rgba(250, 248, 255, 0.86));
 
   /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
 
@@ -314,8 +314,8 @@
   /* Violet dashboard theme colors */
   --cyber-glow: 270 95% 68%;
   --cyber-accent: 285 90% 62%;
-  --wallpaper-image-opacity: 0.5;
-  --wallpaper-overlay: linear-gradient(180deg, rgba(5, 2, 18, 0.66), rgba(5, 2, 18, 0.9));
+  --wallpaper-image-opacity: 0.62;
+  --wallpaper-overlay: linear-gradient(180deg, rgba(5, 2, 18, 0.58), rgba(5, 2, 18, 0.86));
 }
 
 @layer base {
