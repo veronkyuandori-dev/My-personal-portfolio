@@ -272,18 +272,32 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-start overflow-hidden">
       {/* Grid background */}
       <div className="absolute inset-0 hero-grid-bg opacity-40" />
       {/* Radial vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_70%_50%,rgba(168,85,247,0.12)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_45%_at_50%_0%,rgba(139,92,246,0.18)_0%,transparent_68%)]" />
       <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-12 lg:gap-20 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-24">
+        <div className="flex flex-col items-center gap-14">
 
           {/* LEFT — Text */}
-          <div className="space-y-8 animate-hero-blur-fade">
+          <div className="space-y-8 animate-hero-blur-fade flex flex-col items-center text-center">
+            {/* Centered profile portrait from the existing portfolio identity */}
+            <div className="relative w-28 h-28 md:w-32 md:h-32">
+              <div className="absolute -inset-3 rounded-full bg-primary/20 blur-2xl" />
+              <div className="absolute inset-0 rounded-full border border-primary/50 shadow-[0_0_40px_rgba(168,85,247,0.35)]" />
+              <div className="absolute -inset-2 rounded-full border border-primary/20 border-dashed animate-[spin_18s_linear_infinite]" />
+              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-background">
+                <img
+                  src={profileImage}
+                  alt="Veronque Andrie"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            </div>
+
             {/* Available badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-xs font-mono font-bold text-primary uppercase tracking-widest">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
@@ -292,7 +306,7 @@ export default function HeroSection() {
 
             {/* Name */}
             <div>
-              <h1 className="font-heading font-black leading-[0.9] tracking-tighter text-foreground" style={{ fontSize: 'clamp(3.5rem, 8vw, 7rem)' }}>
+            <h1 className="font-serif font-normal leading-[0.92] tracking-tight text-foreground" style={{ fontSize: 'clamp(3.5rem, 10vw, 7.5rem)' }}>
                 {displayText}
                 <span className={`inline-block w-[4px] h-[0.85em] ml-1 bg-primary align-middle transition-opacity duration-100 ${cursorVisible ? 'opacity-100' : 'opacity-0'}`} />
               </h1>
@@ -302,7 +316,7 @@ export default function HeroSection() {
             </div>
 
             {/* Info row */}
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground font-medium">
+            <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-muted-foreground font-medium">
               <a
                 href="https://web.facebook.com/ucpncofficial"
                 target="_blank"
@@ -324,7 +338,7 @@ export default function HeroSection() {
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap justify-center gap-3">
               <Button
                 size="lg"
                 className="gap-2 rounded-md px-8 font-bold shadow-lg shadow-primary/20"
@@ -354,7 +368,7 @@ export default function HeroSection() {
             </div>
 
             {/* Social */}
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex items-center justify-center gap-4 pt-2">
               <a
                 href="https://github.com/andrieVerdev"
                 target="_blank"

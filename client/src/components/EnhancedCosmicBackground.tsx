@@ -284,7 +284,7 @@ export default function EnhancedCosmicBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none"
+      className="fixed inset-0 pointer-events-none opacity-40"
       style={{ zIndex: 0 }}
     />
   );

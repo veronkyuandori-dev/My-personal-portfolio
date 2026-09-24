@@ -43,13 +43,13 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-background/90 backdrop-blur-xl border-b border-border/50'
-          : 'bg-transparent'
+          ? 'bg-black/70 backdrop-blur-xl border-b border-white/10'
+          : 'bg-black/20 backdrop-blur-md'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
         {/* Logo */}
         <button
           onClick={() => scrollTo('home')}
@@ -61,12 +61,12 @@ export default function Navigation() {
         </button>
 
         {/* Desktop nav — underline style */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-7">
           {navItems.map((item) => (
             <button
               key={item.href}
               onClick={() => scrollTo(item.href)}
-              className={`relative text-sm font-semibold tracking-wide transition-colors duration-200 pb-0.5 ${
+              className={`relative text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors duration-200 pb-0.5 ${
                 activeSection === item.href
                   ? 'text-primary'
                   : 'text-muted-foreground hover:text-foreground'

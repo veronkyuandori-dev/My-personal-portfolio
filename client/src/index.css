@@ -116,53 +116,53 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  --background: 252 48% 6%;
+  --background: 260 18% 3.5%;
 
-  --foreground: 270 45% 97%;
+  --foreground: 270 18% 96%;
 
-  --border: 258 31% 21%;
+  --border: 260 14% 17%;
 
-  --card: 252 42% 10%;
+  --card: 260 16% 6%;
 
-  --card-foreground: 270 40% 95%;
+  --card-foreground: 270 18% 95%;
 
-  --card-border: 265 43% 24%;
+  --card-border: 260 20% 18%;
 
-  --sidebar: 252 48% 7%;
+  --sidebar: 260 20% 4.5%;
 
-  --sidebar-foreground: 270 35% 92%;
+  --sidebar-foreground: 270 15% 92%;
 
-  --sidebar-border: 258 31% 21%;
+  --sidebar-border: 260 14% 17%;
 
   --sidebar-primary: 270 90% 70%;
 
   --sidebar-primary-foreground: 252 50% 8%;
 
-  --sidebar-accent: 263 34% 18%;
+  --sidebar-accent: 270 24% 13%;
 
   --sidebar-accent-foreground: 270 75% 94%;
 
   --sidebar-ring: 270 90% 70%;
 
-  --popover: 252 43% 11%;
+  --popover: 260 18% 7%;
 
   --popover-foreground: 270 40% 95%;
 
-  --popover-border: 265 43% 24%;
+  --popover-border: 260 20% 18%;
 
   --primary: 270 90% 70%;
 
   --primary-foreground: 252 50% 8%;
 
-  --secondary: 263 34% 18%;
+  --secondary: 270 24% 13%;
 
   --secondary-foreground: 270 75% 94%;
 
-  --muted: 256 31% 15%;
+  --muted: 260 18% 11%;
 
-  --muted-foreground: 258 20% 68%;
+  --muted-foreground: 260 12% 63%;
 
-  --accent: 285 48% 23%;
+  --accent: 276 38% 19%;
 
   --accent-foreground: 280 82% 96%;
 
@@ -170,7 +170,7 @@
 
   --destructive-foreground: 0 86% 98%;
 
-  --input: 258 31% 27%;
+  --input: 260 18% 23%;
   --ring: 270 90% 70%;
   --chart-1: 270 90% 70%;
   --chart-2: 285 82% 65%;
@@ -179,7 +179,7 @@
   --chart-5: 190 80% 70%;
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-serif: 'Inter', Georgia, serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
   --font-mono: 'JetBrains Mono', Menlo, monospace;
   --font-heading: 'Space Grotesk', 'Inter', sans-serif;
   --radius: .85rem;
@@ -238,53 +238,53 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .08);
 
-  --background: 252 55% 4.5%;
+  --background: 260 18% 2.5%;
  
-  --foreground: 270 45% 97%;
+  --foreground: 270 18% 96%;
  
-  --border: 258 31% 20%;
+  --border: 260 14% 16%;
  
-  --card: 252 45% 9%;
+  --card: 260 16% 5.5%;
  
-  --card-foreground: 270 40% 95%;
+  --card-foreground: 270 18% 95%;
  
-  --card-border: 265 43% 23%;
+  --card-border: 260 20% 17%;
 
-  --sidebar: 252 55% 5.5%;
+  --sidebar: 260 20% 4%;
  
-  --sidebar-foreground: 270 35% 92%;
+  --sidebar-foreground: 270 15% 92%;
  
-  --sidebar-border: 258 31% 20%;
+  --sidebar-border: 260 14% 16%;
  
   --sidebar-primary: 270 90% 70%;
  
   --sidebar-primary-foreground: 252 50% 8%;
  
-  --sidebar-accent: 263 34% 17%;
+  --sidebar-accent: 270 24% 12%;
  
   --sidebar-accent-foreground: 270 75% 94%;
  
   --sidebar-ring: 270 90% 70%;
  
-  --popover: 252 45% 10%;
+  --popover: 260 18% 6%;
  
   --popover-foreground: 270 40% 95%;
  
-  --popover-border: 265 43% 23%;
+  --popover-border: 260 20% 17%;
 
   --primary: 270 90% 70%;
 
   --primary-foreground: 252 50% 8%;
 
-  --secondary: 263 34% 17%;
+  --secondary: 270 24% 12%;
 
   --secondary-foreground: 270 75% 94%;
 
-  --muted: 256 31% 14%;
+  --muted: 260 18% 10%;
 
-  --muted-foreground: 258 20% 67%;
+  --muted-foreground: 260 12% 62%;
 
-  --accent: 285 48% 22%;
+  --accent: 276 38% 18%;
 
   --accent-foreground: 280 82% 96%;
 
@@ -292,7 +292,7 @@
 
   --destructive-foreground: 0 86% 98%;
 
-  --input: 258 31% 25%;
+  --input: 260 18% 22%;
   --ring: 270 90% 70%;
   --chart-1: 270 90% 70%;
   --chart-2: 285 82% 65%;
@@ -326,9 +326,9 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
     background-image:
-      radial-gradient(circle at 78% 18%, hsl(285 90% 62% / 0.12), transparent 26rem),
-      radial-gradient(circle at 12% 78%, hsl(270 95% 68% / 0.08), transparent 24rem),
-      linear-gradient(135deg, hsl(252 55% 4.5%), hsl(258 48% 8%));
+      radial-gradient(ellipse 72% 34% at 50% -5%, hsl(276 90% 64% / 0.22), transparent 68%),
+      radial-gradient(circle at 96% 42%, hsl(285 85% 60% / 0.07), transparent 24rem),
+      linear-gradient(180deg, hsl(260 18% 3.5%), hsl(260 18% 2.5%) 70%);
     background-attachment: fixed;
   }
 
@@ -341,9 +341,8 @@
 /* Dot-grid hero background */
 .hero-grid-bg {
   background-image:
-    linear-gradient(hsl(270 90% 70% / 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(270 90% 70% / 0.05) 1px, transparent 1px);
-  background-size: 36px 36px;
+    radial-gradient(circle at 50% 0%, hsl(276 90% 70% / 0.13), transparent 42%),
+    linear-gradient(180deg, transparent 0%, hsl(260 18% 2.5% / 0.65) 78%);
 }
 
 /* Scan line animation for photo */

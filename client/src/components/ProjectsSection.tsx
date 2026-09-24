@@ -152,9 +152,9 @@ export default function ProjectsSection() {
   const project = selectedProject !== null ? projects[selectedProject] : null;
 
   return (
-    <section id="projects" className="relative py-20 md:py-32 bg-card/30 overflow-hidden">
+    <section id="projects" className="relative py-24 md:py-36 bg-card/20 border-y border-white/[0.04] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-center mb-4 animate-section-rise">
+        <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif font-normal text-center mb-4 animate-section-rise">
           Projects
         </h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
