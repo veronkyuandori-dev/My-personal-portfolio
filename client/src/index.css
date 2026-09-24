@@ -116,67 +116,67 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  --background: 260 18% 3.5%;
+  --background: 270 36% 97%;
 
-  --foreground: 270 18% 96%;
+  --foreground: 260 24% 13%;
 
-  --border: 260 14% 17%;
+  --border: 270 20% 84%;
 
-  --card: 260 16% 6%;
+  --card: 270 35% 99%;
 
-  --card-foreground: 270 18% 95%;
+  --card-foreground: 260 24% 14%;
 
-  --card-border: 260 20% 18%;
+  --card-border: 270 25% 86%;
 
-  --sidebar: 260 20% 4.5%;
+  --sidebar: 270 30% 96%;
 
-  --sidebar-foreground: 270 15% 92%;
+  --sidebar-foreground: 260 24% 16%;
 
-  --sidebar-border: 260 14% 17%;
+  --sidebar-border: 270 20% 84%;
 
-  --sidebar-primary: 270 90% 70%;
+  --sidebar-primary: 270 78% 52%;
 
-  --sidebar-primary-foreground: 252 50% 8%;
+  --sidebar-primary-foreground: 0 0% 100%;
 
-  --sidebar-accent: 270 24% 13%;
+  --sidebar-accent: 270 30% 91%;
 
-  --sidebar-accent-foreground: 270 75% 94%;
+  --sidebar-accent-foreground: 270 58% 32%;
 
-  --sidebar-ring: 270 90% 70%;
+  --sidebar-ring: 270 78% 52%;
 
-  --popover: 260 18% 7%;
+  --popover: 270 35% 99%;
 
-  --popover-foreground: 270 40% 95%;
+  --popover-foreground: 260 24% 14%;
 
-  --popover-border: 260 20% 18%;
+  --popover-border: 270 25% 86%;
 
-  --primary: 270 90% 70%;
+  --primary: 270 78% 52%;
 
-  --primary-foreground: 252 50% 8%;
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 270 24% 13%;
+  --secondary: 270 30% 91%;
 
-  --secondary-foreground: 270 75% 94%;
+  --secondary-foreground: 270 58% 32%;
 
-  --muted: 260 18% 11%;
+  --muted: 270 24% 92%;
 
-  --muted-foreground: 260 12% 63%;
+  --muted-foreground: 260 14% 40%;
 
-  --accent: 276 38% 19%;
+  --accent: 285 50% 90%;
 
-  --accent-foreground: 280 82% 96%;
+  --accent-foreground: 270 65% 32%;
 
   --destructive: 0 84% 60%;
 
   --destructive-foreground: 0 86% 98%;
 
-  --input: 260 18% 23%;
-  --ring: 270 90% 70%;
-  --chart-1: 270 90% 70%;
-  --chart-2: 285 82% 65%;
-  --chart-3: 245 85% 72%;
-  --chart-4: 320 80% 68%;
-  --chart-5: 190 80% 70%;
+  --input: 270 20% 78%;
+  --ring: 270 78% 52%;
+  --chart-1: 270 78% 52%;
+  --chart-2: 285 72% 56%;
+  --chart-3: 245 68% 58%;
+  --chart-4: 320 68% 55%;
+  --chart-5: 190 65% 45%;
 
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
@@ -197,6 +197,8 @@
   /* Violet dashboard theme colors */
   --cyber-glow: 270 95% 68%;
   --cyber-accent: 285 90% 62%;
+  --wallpaper-image-opacity: 0.42;
+  --wallpaper-overlay: linear-gradient(180deg, rgba(250, 248, 255, 0.7), rgba(250, 248, 255, 0.88));
 
   /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
 
@@ -312,6 +314,8 @@
   /* Violet dashboard theme colors */
   --cyber-glow: 270 95% 68%;
   --cyber-accent: 285 90% 62%;
+  --wallpaper-image-opacity: 0.5;
+  --wallpaper-overlay: linear-gradient(180deg, rgba(5, 2, 18, 0.66), rgba(5, 2, 18, 0.9));
 }
 
 @layer base {
@@ -325,10 +329,8 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    background-image:
-      radial-gradient(ellipse 72% 34% at 50% -5%, hsl(276 90% 64% / 0.22), transparent 68%),
-      radial-gradient(circle at 96% 42%, hsl(285 85% 60% / 0.07), transparent 24rem),
-      linear-gradient(180deg, hsl(260 18% 3.5%), hsl(260 18% 2.5%) 70%);
+    background-color: hsl(var(--background));
+    background-image: linear-gradient(180deg, hsl(var(--background) / 0.86), hsl(var(--background) / 0.96));
     background-attachment: fixed;
   }
 
@@ -336,6 +338,45 @@
     background: hsl(var(--primary) / 0.35);
     color: hsl(var(--foreground));
   }
+}
+
+/* Full-site neural portrait wallpaper */
+.portfolio-wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: hsl(var(--background));
+}
+
+.portfolio-wallpaper-image,
+.portfolio-wallpaper-vignette {
+  position: absolute;
+  inset: 0;
+}
+
+.portfolio-wallpaper-image {
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: var(--wallpaper-image-opacity);
+  filter: saturate(1.08) contrast(1.04);
+  transform: scale(1.03);
+}
+
+.portfolio-wallpaper-vignette {
+  background:
+    var(--wallpaper-overlay),
+    radial-gradient(ellipse 75% 55% at 50% 0%, hsl(285 90% 62% / 0.18), transparent 72%);
+}
+
+.portfolio-neural-canvas {
+  opacity: 0.2;
+}
+
+.dark .portfolio-neural-canvas {
+  opacity: 0.28;
 }
 
 /* Dot-grid hero background */

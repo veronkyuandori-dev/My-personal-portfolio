@@ -1,5 +1,6 @@
 
 import { useEffect, useRef } from 'react';
+import neuralWallpaper from '@assets/IMG_20260924_083223_1790210097507.jpg';
 
 export default function EnhancedCosmicBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -282,10 +283,19 @@ export default function EnhancedCosmicBackground() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none opacity-40"
-      style={{ zIndex: 0 }}
-    />
+    <>
+      <div className="portfolio-wallpaper" aria-hidden="true">
+        <div
+          className="portfolio-wallpaper-image"
+          style={{ backgroundImage: `url(${neuralWallpaper})` }}
+        />
+        <div className="portfolio-wallpaper-vignette" />
+      </div>
+      <canvas
+        ref={canvasRef}
+        className="portfolio-neural-canvas fixed inset-0 pointer-events-none"
+        style={{ zIndex: 1 }}
+      />
+    </>
   );
 }
