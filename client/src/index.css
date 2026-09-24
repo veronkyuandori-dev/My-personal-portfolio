@@ -433,7 +433,7 @@
   border: 2px solid transparent;
   border-top-color: hsl(270 95% 70% / 0.95);
   border-right-color: hsl(285 90% 68% / 0.7);
-  border-bottom-color: hsl(145 72% 54% / 0.8);
+  border-bottom-color: hsl(285 90% 64% / 0.8);
   filter: drop-shadow(0 0 5px hsl(270 95% 68% / 0.55));
   animation: profile-ring-spin-reverse 7s linear infinite;
 }
@@ -508,8 +508,8 @@
 }
 
 .hero-profile-orbit-track-one span {
-  background: hsl(145 72% 62%);
-  box-shadow: 0 0 8px hsl(145 72% 54%), 0 0 18px hsl(145 72% 54% / 0.65);
+  background: hsl(285 90% 72%);
+  box-shadow: 0 0 8px hsl(285 90% 64%), 0 0 18px hsl(285 90% 64% / 0.65);
 }
 
 .hero-profile-orbit-track-two {
