@@ -285,7 +285,7 @@ export default function HeroSection() {
           {/* LEFT — Text */}
           <div className="space-y-8 animate-hero-blur-fade flex flex-col items-center text-center">
             {/* Centered profile portrait from the existing portfolio identity */}
-            <div className="hero-profile-orbit relative w-28 h-28 md:w-32 md:h-32" aria-label="Profile portrait">
+            <div className="hero-profile-orbit relative w-32 h-32 md:w-36 md:h-36" aria-label="Profile portrait">
               <div className="hero-profile-halo" />
               <div className="hero-profile-ring hero-profile-ring-outer" />
               <div className="hero-profile-ring hero-profile-ring-inner" />
