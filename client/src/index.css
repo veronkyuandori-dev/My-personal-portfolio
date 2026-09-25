@@ -452,7 +452,6 @@
   background:
     radial-gradient(circle, hsl(270 95% 68% / 0.28) 0%, hsl(285 90% 62% / 0.12) 38%, transparent 70%);
   filter: blur(8px);
-  animation: profile-halo-pulse 3.8s ease-in-out infinite;
 }
 
 .hero-profile-ring {
@@ -466,7 +465,6 @@
   border: 1px dashed hsl(270 90% 72% / 0.38);
   border-left-color: hsl(285 90% 72% / 0.95);
   border-bottom-color: hsl(285 90% 72% / 0.08);
-  animation: profile-ring-spin 13s linear infinite;
 }
 
 .hero-profile-ring-inner {
@@ -475,7 +473,7 @@
   border-top-color: hsl(285 100% 78% / 1);
   border-right-color: hsl(270 95% 68% / 0.95);
   filter: drop-shadow(0 0 7px hsl(270 95% 68% / 0.75));
-  animation: profile-ring-spin-reverse 4.5s linear infinite;
+  animation: profile-ring-spin 8s linear infinite;
 }
 
 .hero-profile-photo {
@@ -544,7 +542,7 @@
 }
 
 .hero-profile-orbit-track-one {
-  animation: profile-orbit-one 8s linear infinite;
+  animation: none;
 }
 
 .hero-profile-orbit-track-one span {
@@ -554,7 +552,7 @@
 
 .hero-profile-orbit-track-two {
   inset: -24px;
-  animation: profile-orbit-two 12s linear infinite;
+  animation: none;
 }
 
 .hero-profile-orbit-track-two span {
@@ -568,16 +566,15 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-profile-halo,
-  .hero-profile-ring-outer,
   .hero-profile-orbit-track-one,
   .hero-profile-orbit-track-two,
   .hero-profile-scan {
     animation: none;
   }
 
-  /* Keep the user-requested rotating portrait ring while reducing other motion. */
+  /* Keep the single, slow rotating portrait ring while reducing other motion. */
   .hero-profile-ring-inner {
-    animation: profile-ring-spin-reverse 4.5s linear infinite;
+    animation: profile-ring-spin 8s linear infinite;
   }
 }
 
