@@ -470,13 +470,12 @@
 }
 
 .hero-profile-ring-inner {
-  inset: -4px;
-  border: 2px solid transparent;
-  border-top-color: hsl(270 95% 70% / 0.95);
-  border-right-color: hsl(285 90% 68% / 0.7);
-  border-bottom-color: hsl(285 90% 64% / 0.8);
-  filter: drop-shadow(0 0 5px hsl(270 95% 68% / 0.55));
-  animation: profile-ring-spin-reverse 7s linear infinite;
+  inset: -5px;
+  border: 3px solid transparent;
+  border-top-color: hsl(285 100% 78% / 1);
+  border-right-color: hsl(270 95% 68% / 0.95);
+  filter: drop-shadow(0 0 7px hsl(270 95% 68% / 0.75));
+  animation: profile-ring-spin-reverse 4.5s linear infinite;
 }
 
 .hero-profile-photo {
