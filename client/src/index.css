@@ -569,11 +569,15 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-profile-halo,
   .hero-profile-ring-outer,
-  .hero-profile-ring-inner,
   .hero-profile-orbit-track-one,
   .hero-profile-orbit-track-two,
   .hero-profile-scan {
     animation: none;
+  }
+
+  /* Keep the user-requested rotating portrait ring while reducing other motion. */
+  .hero-profile-ring-inner {
+    animation: profile-ring-spin-reverse 4.5s linear infinite;
   }
 }
 
