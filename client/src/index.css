@@ -351,7 +351,8 @@
 }
 
 .portfolio-wallpaper-image,
-.portfolio-wallpaper-vignette {
+.portfolio-wallpaper-vignette,
+.portfolio-wallpaper-webgl {
   position: absolute;
   inset: 0;
 }
@@ -362,10 +363,36 @@
   background-size: cover;
   opacity: var(--wallpaper-image-opacity);
   filter: saturate(1.08) contrast(1.04);
-  transform: scale(1.03);
+  transform:
+    translate3d(0, var(--wallpaper-fallback-y, 0px), 0)
+    rotate(var(--wallpaper-fallback-tilt, 0deg))
+    scale(1.03);
+  transition: opacity 450ms ease;
+}
+
+.portfolio-wallpaper-webgl {
+  z-index: 1;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 450ms ease;
+}
+
+.portfolio-wallpaper-webgl canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.portfolio-wallpaper[data-webgl-ready="true"] .portfolio-wallpaper-image {
+  opacity: 0;
+}
+
+.portfolio-wallpaper[data-webgl-ready="true"] .portfolio-wallpaper-webgl {
+  opacity: var(--wallpaper-image-opacity);
 }
 
 .portfolio-wallpaper-vignette {
+  z-index: 2;
   background:
     var(--wallpaper-overlay),
     radial-gradient(ellipse 75% 55% at 50% 0%, hsl(285 90% 62% / 0.18), transparent 72%);

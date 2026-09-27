@@ -1,9 +1,11 @@
 
 import { useEffect, useRef } from 'react';
 import neuralWallpaper from '@assets/IMG_20260924_083223_1790210406304.jpg';
+import ScrollReactiveWallpaper from './ScrollReactiveWallpaper';
 
 export default function EnhancedCosmicBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const wallpaperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -284,10 +286,13 @@ export default function EnhancedCosmicBackground() {
 
   return (
     <>
-      <div className="portfolio-wallpaper" aria-hidden="true">
+      <div ref={wallpaperRef} className="portfolio-wallpaper" aria-hidden="true">
         <div
           className="portfolio-wallpaper-image"
           style={{ backgroundImage: `url(${neuralWallpaper})` }}
+        />
+        <ScrollReactiveWallpaper
+          onReady={() => wallpaperRef.current?.setAttribute('data-webgl-ready', 'true')}
         />
         <div className="portfolio-wallpaper-vignette" />
       </div>
