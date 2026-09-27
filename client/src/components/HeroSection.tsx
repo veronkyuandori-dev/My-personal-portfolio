@@ -1,62 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ArrowRight, Github, Linkedin, Mail, MapPin, Download, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import profileImage from '@assets/image_1777644687711_violet.png';
 
 export default function HeroSection() {
-  const [displayText, setDisplayText] = useState('');
-  const [cursorVisible, setCursorVisible] = useState(true);
   const fullName = 'Veronque Andrie';
-
-  useEffect(() => {
-    let i = 0;
-    let deleting = false;
-    let pauseTimer: ReturnType<typeof setTimeout> | null = null;
-
-    const tick = () => {
-      if (!deleting) {
-        i++;
-        setDisplayText(fullName.slice(0, i));
-        if (i >= fullName.length) {
-          deleting = false;
-          pauseTimer = setTimeout(() => {
-            deleting = true;
-            loop();
-          }, 1800);
-          return;
-        }
-      } else {
-        i--;
-        setDisplayText(fullName.slice(0, i));
-        if (i <= 0) {
-          deleting = false;
-          pauseTimer = setTimeout(() => {
-            loop();
-          }, 600);
-          return;
-        }
-      }
-      loop();
-    };
-
-    let rafId: ReturnType<typeof setTimeout>;
-    const loop = () => {
-      const delay = deleting ? 45 : 80;
-      rafId = setTimeout(tick, delay);
-    };
-
-    loop();
-
-    return () => {
-      clearTimeout(rafId);
-      if (pauseTimer) clearTimeout(pauseTimer);
-    };
-  }, []);
-
-  useEffect(() => {
-    const blink = setInterval(() => setCursorVisible(v => !v), 530);
-    return () => clearInterval(blink);
-  }, []);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -310,9 +258,21 @@ export default function HeroSection() {
 
             {/* Name */}
             <div>
-            <h1 className="font-serif font-normal leading-[0.92] tracking-tight text-foreground" style={{ fontSize: 'clamp(3.5rem, 10vw, 7.5rem)' }}>
-                {displayText}
-                <span className={`inline-block w-[4px] h-[0.85em] ml-1 bg-primary align-middle transition-opacity duration-100 ${cursorVisible ? 'opacity-100' : 'opacity-0'}`} />
+              <h1
+                className="hero-name-reveal font-serif font-normal leading-[0.92] tracking-tight text-foreground"
+                style={{ fontSize: 'clamp(3.5rem, 10vw, 7.5rem)' }}
+                aria-label={fullName}
+              >
+                {fullName.split('').map((letter, index) => (
+                  <span
+                    key={`${letter}-${index}`}
+                    className={`hero-name-letter${letter === ' ' ? ' hero-name-space' : ''}`}
+                    style={{ animationDelay: `${index * 55}ms` }}
+                    aria-hidden="true"
+                  >
+                    {letter === ' ' ? '\u00a0' : letter}
+                  </span>
+                ))}
               </h1>
               <p className="mt-4 font-mono text-sm md:text-base font-bold uppercase tracking-[0.28em] text-primary">
                 Software Developer
