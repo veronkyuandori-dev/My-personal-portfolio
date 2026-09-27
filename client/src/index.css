@@ -402,6 +402,51 @@
     radial-gradient(ellipse 75% 55% at 50% 0%, hsl(285 90% 62% / 0.18), transparent 72%);
 }
 
+.portfolio-wallpaper-section-pulse .portfolio-wallpaper-image,
+.portfolio-wallpaper-section-pulse .portfolio-wallpaper-webgl {
+  animation: wallpaper-section-burst 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.portfolio-wallpaper-section-pulse .portfolio-wallpaper-vignette {
+  animation: wallpaper-vignette-burst 900ms ease-out both;
+}
+
+@keyframes wallpaper-section-burst {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1.03);
+    filter: saturate(1.08) contrast(1.04);
+  }
+  42% {
+    transform:
+      translate3d(var(--wallpaper-click-x, 0px), var(--wallpaper-click-y, 0px), 0)
+      rotate(var(--wallpaper-click-tilt, 0deg))
+      scale(1.08);
+    filter: saturate(1.55) contrast(1.12) brightness(1.12);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1.03);
+    filter: saturate(1.08) contrast(1.04);
+  }
+}
+
+@keyframes wallpaper-vignette-burst {
+  0%, 100% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0.72;
+    filter: saturate(1.45) brightness(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-wallpaper-section-pulse .portfolio-wallpaper-image,
+  .portfolio-wallpaper-section-pulse .portfolio-wallpaper-webgl,
+  .portfolio-wallpaper-section-pulse .portfolio-wallpaper-vignette {
+    animation: none;
+  }
+}
+
 .portfolio-neural-canvas {
   opacity: 0.2;
 }

@@ -115,6 +115,11 @@ export default function ScrollReactiveWallpaper({
       root?.style.removeProperty('--wallpaper-fallback-tilt');
       root?.style.removeProperty('--wallpaper-fallback-x');
       root?.style.removeProperty('--wallpaper-section-scale');
+      root?.style.removeProperty('--wallpaper-click-x');
+      root?.style.removeProperty('--wallpaper-click-y');
+      root?.style.removeProperty('--wallpaper-click-tilt');
+      root?.classList.remove('portfolio-wallpaper-section-pulse');
+      window.removeEventListener('portfolio:section-transition', handleSectionTransition);
     };
 
     const getSectionMotion = () => {
@@ -150,6 +155,21 @@ export default function ScrollReactiveWallpaper({
         scale: profile.scale * (1 - Math.min(Math.abs(normalizedProgress), 1)),
       };
     };
+
+    const handleSectionTransition = (event: Event) => {
+      const sectionId = (event as CustomEvent<{ id?: string }>).detail?.id;
+      const profile = sectionProfiles[sectionId ?? 'home'] ?? sectionProfiles.home;
+      if (!root) return;
+
+      root.style.setProperty('--wallpaper-click-x', `${profile.x * 0.65}px`);
+      root.style.setProperty('--wallpaper-click-y', `${profile.y * 0.65}px`);
+      root.style.setProperty('--wallpaper-click-tilt', `${profile.tilt * 1.8}deg`);
+      root.classList.remove('portfolio-wallpaper-section-pulse');
+      void root.offsetWidth;
+      root.classList.add('portfolio-wallpaper-section-pulse');
+    };
+
+    window.addEventListener('portfolio:section-transition', handleSectionTransition);
 
     const probe = document.createElement('canvas');
     const webglAvailable =

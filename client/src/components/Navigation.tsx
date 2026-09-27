@@ -37,6 +37,12 @@ export default function Navigation() {
   }, []);
 
   const scrollTo = (id: string) => {
+    setActiveSection(id);
+    window.dispatchEvent(
+      new CustomEvent('portfolio:section-transition', {
+        detail: { id },
+      }),
+    );
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setIsMobileMenuOpen(false);
   };
