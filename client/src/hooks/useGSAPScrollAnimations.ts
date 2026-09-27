@@ -23,6 +23,34 @@ export default function useGSAPScrollAnimations() {
           });
         }
 
+        // ── Section-to-section scroll transition ────────────────────────────
+        // Each section enters with a soft lift and blur that reverses naturally
+        // when the user scrolls back up.
+        gsap.utils.toArray<HTMLElement>('main > section[id]').forEach((section) => {
+          gsap.fromTo(
+            section,
+            {
+              y: 72,
+              opacity: 0.35,
+              scale: 0.985,
+              filter: 'blur(8px)',
+            },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              filter: 'blur(0px)',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top 90%',
+                end: 'top 52%',
+                scrub: 1.1,
+              },
+            },
+          );
+        });
+
         // ── Section headings slide-up ─────────────────────────────────────
         gsap.utils.toArray<HTMLElement>('section h2').forEach((el) => {
           gsap.from(el, {
