@@ -668,8 +668,22 @@
   }
 }
 
+@keyframes hero-name-glow {
+  0%, 100% {
+    transform: translateY(0);
+    text-shadow: 0 0 0 hsl(285 90% 72% / 0);
+  }
+  50% {
+    transform: translateY(-2px);
+    text-shadow:
+      0 0 22px hsl(285 90% 72% / 0.24),
+      0 0 48px hsl(270 95% 68% / 0.12);
+  }
+}
+
 .hero-name-reveal {
   perspective: 900px;
+  animation: hero-name-glow 4.8s ease-in-out 1.2s infinite;
 }
 
 .hero-name-letter {
@@ -684,6 +698,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-name-reveal {
+    animation: none;
+  }
+
   .hero-name-letter {
     opacity: 1;
     animation: none;
