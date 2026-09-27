@@ -3,7 +3,7 @@ import { Briefcase, Award } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
 import aboutPhoto from '@assets/image_1780578013237.png';
 import {
-  SiAmazonwebservices,
+SiAmazonaws ,
   SiGithub,
 } from 'react-icons/si';
 
