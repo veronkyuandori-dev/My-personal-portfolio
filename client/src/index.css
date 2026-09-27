@@ -668,46 +668,25 @@
   }
 }
 
-@keyframes hero-name-glow {
+@keyframes hero-name-pulse {
   0%, 100% {
-    transform: translateY(0);
-    text-shadow: 0 0 0 hsl(285 90% 72% / 0);
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 hsl(285 90% 72% / 0));
   }
   50% {
-    transform: translateY(-2px);
-    text-shadow:
-      0 0 22px hsl(285 90% 72% / 0.24),
-      0 0 48px hsl(270 95% 68% / 0.12);
+    transform: scale(1.018);
+    filter:
+      brightness(1.18)
+      drop-shadow(0 0 16px hsl(285 90% 72% / 0.62))
+      drop-shadow(0 0 34px hsl(270 95% 68% / 0.28));
   }
 }
 
 .hero-name-reveal {
-  perspective: 900px;
-  animation: hero-name-glow 4.8s ease-in-out 1.2s infinite;
-}
-
-.hero-name-letter {
   display: inline-block;
-  opacity: 0;
-  transform-origin: 50% 100%;
-  animation: hero-name-letter-reveal 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.hero-name-space {
-  width: 0.28em;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-name-reveal {
-    animation: none;
-  }
-
-  .hero-name-letter {
-    opacity: 1;
-    animation: none;
-    transform: none;
-    filter: none;
-  }
+  max-width: 100%;
+  transform-origin: center;
+  animation: hero-name-pulse 3.2s ease-in-out infinite;
 }
 
 /* Stagger fade-up for list items */

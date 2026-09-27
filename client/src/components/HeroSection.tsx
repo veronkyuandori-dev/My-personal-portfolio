@@ -263,16 +263,7 @@ export default function HeroSection() {
                 style={{ fontSize: 'clamp(3.5rem, 10vw, 7.5rem)' }}
                 aria-label={fullName}
               >
-                {fullName.split('').map((letter, index) => (
-                  <span
-                    key={`${letter}-${index}`}
-                    className={`hero-name-letter${letter === ' ' ? ' hero-name-space' : ''}`}
-                    style={{ animationDelay: `${index * 55}ms` }}
-                    aria-hidden="true"
-                  >
-                    {letter === ' ' ? '\u00a0' : letter}
-                  </span>
-                ))}
+                {fullName}
               </h1>
               <p className="mt-4 font-mono text-sm md:text-base font-bold uppercase tracking-[0.28em] text-primary">
                 Software Developer
