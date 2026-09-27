@@ -364,9 +364,13 @@
   opacity: var(--wallpaper-image-opacity);
   filter: saturate(1.08) contrast(1.04);
   transform:
-    translate3d(0, var(--wallpaper-fallback-y, 0px), 0)
+    translate3d(
+      var(--wallpaper-fallback-x, 0px),
+      var(--wallpaper-fallback-y, 0px),
+      0
+    )
     rotate(var(--wallpaper-fallback-tilt, 0deg))
-    scale(1.03);
+    scale(calc(1.03 + var(--wallpaper-section-scale, 0)));
   transition: opacity 450ms ease;
 }
 

@@ -1,0 +1,1 @@
+- [WebGL preview fallback](webgl-preview-fallback.md) — preserve scroll-reactive CSS behavior when the preview browser cannot create a WebGL context.

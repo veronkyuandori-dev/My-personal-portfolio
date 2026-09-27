@@ -2,6 +2,17 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import neuralWallpaper from '@assets/IMG_20260924_083223_1790210406304.jpg';
 
+const sectionProfiles: Record<string, { x: number; y: number; tilt: number; scale: number }> = {
+  home: { x: 0, y: 0, tilt: 0, scale: 0.006 },
+  about: { x: -18, y: 14, tilt: -0.22, scale: 0.014 },
+  projects: { x: 22, y: -12, tilt: 0.28, scale: 0.02 },
+  achievements: { x: -14, y: 18, tilt: -0.18, scale: 0.012 },
+  github: { x: 16, y: -16, tilt: 0.2, scale: 0.016 },
+  skills: { x: -20, y: 10, tilt: -0.26, scale: 0.018 },
+  certifications: { x: 18, y: -14, tilt: 0.24, scale: 0.015 },
+  contact: { x: -10, y: 16, tilt: -0.16, scale: 0.01 },
+};
+
 const vertexShader = `
   uniform float uVelocity;
   varying vec2 vUv;
@@ -67,6 +78,7 @@ export default function ScrollReactiveWallpaper({
     if (!mount) return;
 
     const root = mount.parentElement;
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
     let fallbackFrameId = 0;
     let fallbackCurrent = window.scrollY;
     let fallbackTarget = window.scrollY;
@@ -79,11 +91,17 @@ export default function ScrollReactiveWallpaper({
     const animateFallback = () => {
       fallbackCurrent += (fallbackTarget - fallbackCurrent) * 0.08;
       fallbackVelocity += (fallbackTarget - fallbackCurrent - fallbackVelocity) * 0.16;
-      root?.style.setProperty('--wallpaper-fallback-y', `${-fallbackCurrent * 0.035}px`);
+      const sectionMotion = getSectionMotion();
+      root?.style.setProperty('--wallpaper-fallback-x', `${sectionMotion.x}px`);
+      root?.style.setProperty(
+        '--wallpaper-fallback-y',
+        `${-fallbackCurrent * 0.035 + sectionMotion.y}px`,
+      );
       root?.style.setProperty(
         '--wallpaper-fallback-tilt',
-        `${THREE.MathUtils.clamp(fallbackVelocity * 0.0018, -0.9, 0.9)}deg`,
+        `${THREE.MathUtils.clamp(fallbackVelocity * 0.0018, -0.9, 0.9) + sectionMotion.tilt}deg`,
       );
+      root?.style.setProperty('--wallpaper-section-scale', `${sectionMotion.scale}`);
       fallbackFrameId = requestAnimationFrame(animateFallback);
     };
 
@@ -95,6 +113,42 @@ export default function ScrollReactiveWallpaper({
       window.removeEventListener('scroll', handleScroll);
       root?.style.removeProperty('--wallpaper-fallback-y');
       root?.style.removeProperty('--wallpaper-fallback-tilt');
+      root?.style.removeProperty('--wallpaper-fallback-x');
+      root?.style.removeProperty('--wallpaper-section-scale');
+    };
+
+    const getSectionMotion = () => {
+      const viewportCenter = window.innerHeight / 2;
+      let activeSection = sections[0];
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          activeSection = section;
+        }
+      });
+
+      if (!activeSection) {
+        return { x: 0, y: 0, tilt: 0, scale: 0 };
+      }
+
+      const rect = activeSection.getBoundingClientRect();
+      const profile = sectionProfiles[activeSection.id] ?? sectionProfiles.home;
+      const normalizedProgress = THREE.MathUtils.clamp(
+        (rect.top + rect.height / 2 - viewportCenter) / Math.max(window.innerHeight, 1),
+        -1.4,
+        1.4,
+      );
+
+      return {
+        x: profile.x * normalizedProgress,
+        y: profile.y * normalizedProgress,
+        tilt: profile.tilt * normalizedProgress,
+        scale: profile.scale * (1 - Math.min(Math.abs(normalizedProgress), 1)),
+      };
     };
 
     const probe = document.createElement('canvas');
@@ -166,6 +220,7 @@ export default function ScrollReactiveWallpaper({
     };
     let animationFrameId = 0;
     let lastTime = performance.now();
+    let sectionMotion = { x: 0, y: 0, tilt: 0, scale: 0 };
 
     const resize = () => {
       const width = window.innerWidth;
@@ -187,16 +242,21 @@ export default function ScrollReactiveWallpaper({
       scrollState.current += (scrollState.target - scrollState.current) * 0.075;
       const distanceToTarget = scrollState.target - scrollState.current;
       scrollState.velocity += (distanceToTarget - scrollState.velocity) * 0.16;
+      sectionMotion = getSectionMotion();
 
       const rotationTarget = THREE.MathUtils.clamp(
-        scrollState.velocity * 0.000045,
+        scrollState.velocity * 0.000045 + sectionMotion.tilt * 0.035,
         -0.035,
         0.035,
       );
       wallpaper.rotation.z += (rotationTarget - wallpaper.rotation.z) * 0.08;
+      wallpaper.position.x += (sectionMotion.x * 0.001 - wallpaper.position.x) * 0.075;
       wallpaper.position.y +=
-        (-scrollState.current * 0.000055 - wallpaper.position.y) * 0.075;
-      const scaleTarget = 1.035 + Math.min(Math.abs(scrollState.velocity) * 0.00008, 0.035);
+        (-scrollState.current * 0.000055 + sectionMotion.y * 0.001 - wallpaper.position.y) * 0.075;
+      const scaleTarget =
+        1.035 +
+        Math.min(Math.abs(scrollState.velocity) * 0.00008, 0.035) +
+        sectionMotion.scale;
       const scale = THREE.MathUtils.lerp(wallpaper.scale.x, scaleTarget, 0.08);
       wallpaper.scale.set(scale, scale, 1);
 
