@@ -3,7 +3,7 @@ import { Briefcase, Award } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
 import aboutPhoto from '@assets/image_1780578013237.png';
 import {
-SiAmazonaws ,
+SiAmazon ,
   SiGithub,
 } from 'react-icons/si';
 
@@ -290,7 +290,7 @@ export default function AboutSection() {
                             <MicrosoftIcon className="w-5 h-5" />
                           )}
                           {cert.platform === 'aws' && (
-                            <SiAmazonaws className="w-5 h-5 text-[#FF9900]" />
+                            <SiAmazon className="w-5 h-5 text-[#FF9900]" />
                           )}
                           {cert.platform === 'github' && (
                             <SiGithub className="w-5 h-5 text-foreground" />
