@@ -3,7 +3,7 @@ import { Briefcase, Award } from 'lucide-react';
 import AnimationWrapper from '@/components/AnimationWrapper';
 import aboutPhoto from '@assets/image_1780578013237.png';
 import {
-SiAmazon ,
+SiAmazonwebservices ,
   SiGithub,
 } from 'react-icons/si';
 
@@ -57,7 +57,7 @@ function MicrosoftIcon({ className }: { className?: string }) {
 
 const platforms = [
   { name: 'Microsoft', Icon: MicrosoftIcon, color: 'text-[#00A4EF]' },
-  { name: 'AWS', Icon: SiAmazonwebservices, color: 'text-[#FF9900]' },
+  { name: 'AWS', Icon: SiAmazonwebserviceswebservices, color: 'text-[#FF9900]' },
   { name: 'GitHub', Icon: SiGithub, color: 'text-foreground' },
 ];
 
@@ -290,7 +290,7 @@ export default function AboutSection() {
                             <MicrosoftIcon className="w-5 h-5" />
                           )}
                           {cert.platform === 'aws' && (
-                            <SiAmazon className="w-5 h-5 text-[#FF9900]" />
+                            <SiAmazonwebservices className="w-5 h-5 text-[#FF9900]" />
                           )}
                           {cert.platform === 'github' && (
                             <SiGithub className="w-5 h-5 text-foreground" />
