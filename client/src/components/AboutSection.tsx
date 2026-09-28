@@ -290,7 +290,7 @@ export default function AboutSection() {
                             <MicrosoftIcon className="w-5 h-5" />
                           )}
                           {cert.platform === 'aws' && (
-                            <SiAmazonawsclassName="w-5 h-5 text-[#FF9900]" />
+                            <SiAmazonaws className="w-5 h-5 text-[#FF9900]" />
                           )}
                           {cert.platform === 'github' && (
                             <SiGithub className="w-5 h-5 text-foreground" />
