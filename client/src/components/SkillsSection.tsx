@@ -1,6 +1,6 @@
 import {
   SiDart, SiHtml5, SiCplusplus, SiPython, SiFigma, SiPostgresql, SiMongodb,
-  SiJavascript, SiTypescript, SiReact, SiFlutter, SiNodedotjs, SiCss3,
+  SiJavascript, SiTypescript, SiReact, SiFlutter, SiNodedotjs, SiCss,
   SiGit, SiGithub, SiArduino, SiFirebase, SiTailwindcss, SiNextdotjs,
   SiVite, SiMysql, SiLinux, SiRaspberrypi, SiDocker,
 } from 'react-icons/si';
@@ -14,7 +14,7 @@ const techStack = [
   { name: 'Python', Icon: SiPython, color: '#3776AB' },
   { name: 'C++', Icon: SiCplusplus, color: '#00599C' },
   { name: 'HTML5', Icon: SiHtml5, color: '#E34F26' },
-  { name: 'CSS3', Icon: SiCss3, color: '#1572B6' },
+  { name: 'CSS3', Icon: SiCss, color: '#1572B6' },
   { name: 'Tailwind', Icon: SiTailwindcss, color: '#06B6D4' },
   { name: 'Next.js', Icon: SiNextdotjs, color: '#FFFFFF' },
   { name: 'Vite', Icon: SiVite, color: '#646CFF' },
